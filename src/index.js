@@ -16,6 +16,11 @@ class CultureHQ {
   getProfile (callback) {
     Network.get("/profile", { token: this.token }, callback);
   }
+
+  sendInvite (email, callback) {
+    const params = { email };
+    Network.post("/invites", { token: this.token, params }, callback);
+  }
 }
 
 window.cultureHQ = new CultureHQ();

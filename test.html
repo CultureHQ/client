@@ -16,13 +16,11 @@
         <div class="col-xs-6 col-xs-offset-3">
           <h1 class="page-header">CultureHQ Client</h1>
 
-          <form class="form">
-            <input type="text" name="email" class="form-control" /><br />
-            <input type="password" name="password" class="form-control" /><br />
-            <button id="sign-in" class="btn">Sign In</button>
-          </form><br />
-
+          <input type="text" name="email" class="form-control" /><br />
+          <input type="password" name="password" class="form-control" /><br />
+          <button id="sign-in" class="btn">Sign In</button>
           <button id="get-profile" class="btn">Get Profile</button>
+          <button id="invite-user" class="btn">Invite User</button>
         </div>
       </div>
       <br />
@@ -38,8 +36,7 @@ const callback = function (error, response) {
   output.innerHTML = JSON.stringify({ error: error, response: response });
 };
 
-document.querySelector("#sign-in").addEventListener("click", function (event) {
-  event.preventDefault();
+document.querySelector("#sign-in").addEventListener("click", function () {
   const email = document.querySelector("input[name=email]").value;
   const password = document.querySelector("input[name=password]").value;
   cultureHQ.signIn(email, password, callback);
@@ -47,6 +44,11 @@ document.querySelector("#sign-in").addEventListener("click", function (event) {
 
 document.querySelector("#get-profile").addEventListener("click", function () {
   cultureHQ.getProfile(callback);
+});
+
+document.querySelector("#invite-user").addEventListener("click", function () {
+  const email = document.querySelector("input[name=email]").value;
+  cultureHQ.sendInvite(email, callback);
 });
     </script>
   </body>
