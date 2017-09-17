@@ -1,3 +1,5 @@
+import camelize from "./camelize";
+
 let API_ENDPOINT;
 
 if (process.env.NODE_ENV === "prod") {
@@ -23,7 +25,7 @@ const sendRequest = (method, path, options, callback) => {
   fetch(`${API_ENDPOINT}${path}`, reqOptions)
     .then(response => {
       if (response.status / 100 === 2) {
-        response.json().then(json => callback(null, json));
+        response.json().then(json => callback(null, camelize(json)));
       } else {
         callback(response.status, response.statusText);
       }
