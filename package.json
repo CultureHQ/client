@@ -4,16 +4,26 @@
   "description": "A JavaScript client that wraps the CultureHQ API",
   "main": "index.js",
   "scripts": {
+    "build": "webpack --config webpack.config.babel.js --progress",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CultureHQ/client.git"
+    "url": "git@github.com:CultureHQ/client.git"
   },
   "author": "Kevin Deisz",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/CultureHQ/client/issues"
   },
-  "homepage": "https://github.com/CultureHQ/client#readme"
+  "homepage": "https://github.com/CultureHQ/client#readme",
+  "dependencies": {
+    "node-fetch": "^1.7.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "webpack": "^3.5.5"
+  }
 }
