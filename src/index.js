@@ -1,13 +1,22 @@
 import fetch from "node-fetch";
+import FormData from "form-data";
+import Network from "./network";
 
-const API_ENDPOINT = "http://localhost:3000";
-const CultureHQ = {};
-
-CultureHQ.signIn = (email, password, callback) => {
-  fetch(`${apiEndpoint}/api_keys`, { method: 'POST', body: `email=${email}&password=${password}` })
-    .then(res => res.json()).then(json => {
-      console.log(json);
+class CultureHQ {
+  signIn (email, password, callback) {
+    const params = { email, password };
+    Network.post("/api_keys", { params }, (error, response) => {
+      if (error === null) {
+        this.token = response.token;
+      }
+      callback(error, response);
     });
-};
+  }
 
+  getProfile (callback) {
+    Network.get("/profile", { token: this.token }, callback);
+  }
+}
+
+window.cultureHQ = new CultureHQ();
 export default CultureHQ;

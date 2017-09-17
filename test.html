@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>Testing</title>
+    <script src="index.js"></script>
+    <style>
+#output {
+  max-width: 100%;
+  white-space: pre-wrap;
+}
+    </style>
+  </head>
+  <body>
+    <h1>CultureHQ Client</h1>
+
+    <input type="text" name="email" /><br />
+    <input type="password" name="password" /><br />
+    <button id="sign-in">Sign In</button><br />
+    <button id="get-profile">Get Profile</button><br />
+
+    <pre id="output"></pre>
+
+    <script>
+const output = document.querySelector("#output");
+const callback = function (error, response) {
+  output.innerHTML = JSON.stringify({ error: error, response: response });
+};
+
+document.querySelector("#sign-in").addEventListener("click", function () {
+  const email = document.querySelector("input[name=email]").value;
+  const password = document.querySelector("input[name=password]").value;
+  cultureHQ.signIn(email, password, callback);
+});
+
+document.querySelector("#get-profile").addEventListener("click", function () {
+  cultureHQ.getProfile(callback);
+});
+    </script>
+  </body>
+</html>
