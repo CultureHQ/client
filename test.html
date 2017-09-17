@@ -40,21 +40,21 @@ const callback = function (error, response) {
 document.querySelector("#sign-in").addEventListener("click", function () {
   const email = document.querySelector("input[name=email]").value;
   const password = document.querySelector("input[name=password]").value;
-  cultureHQ.signIn(email, password, callback);
+  CultureHQ.signIn(email, password, callback);
 });
 
 document.querySelector("#get-profile").addEventListener("click", function () {
-  cultureHQ.getProfile(callback);
+  CultureHQ.getProfile(callback);
 });
 
 document.querySelector("#invite-user").addEventListener("click", function () {
   const email = document.querySelector("input[name=email]").value;
-  cultureHQ.sendInvite(email, callback);
+  CultureHQ.sendInvite(email, callback);
 });
 
 document.querySelector("#change-pwd").addEventListener("click", function () {
   const password = document.querySelector("input[name=password]").value;
-  cultureHQ.changePassword(password, callback);
+  CultureHQ.changePassword(password, callback);
 });
     </script>
   </body>

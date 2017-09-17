@@ -1,3 +1,4 @@
+import fetch from "node-fetch";
 import camelize from "./camelize";
 
 let API_ENDPOINT;
