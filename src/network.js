@@ -36,8 +36,7 @@ const sendRequest = (method, path, options, callback) => {
 };
 
 export default {
-  get: (path, options, callback) =>
-    sendRequest("GET", path, options, callback),
+  get: (path, options, callback) => sendRequest("GET", path, options, callback),
 
   patch: (path, options, callback) =>
     sendRequest("PATCH", path, options, callback),

@@ -3,7 +3,7 @@ import FormData from "form-data";
 import Network from "./network";
 
 class CultureHQ {
-  signIn (email, password, callback) {
+  signIn(email, password, callback) {
     const params = { email, password };
     Network.post("/api_keys", { params }, (error, response) => {
       if (error === null) {
@@ -13,21 +13,21 @@ class CultureHQ {
     });
   }
 
-  getProfile (callback) {
+  getProfile(callback) {
     Network.get("/profile", { token: this.token }, callback);
   }
 
-  sendInvite (email, callback) {
+  sendInvite(email, callback) {
     const params = { email };
     Network.post("/invites", { token: this.token, params }, callback);
   }
 
-  changePassword (password, callback) {
+  changePassword(password, callback) {
     const params = { password };
     Network.patch("/password", { token: this.token, params }, callback);
   }
 
-  createCompany (name, callback) {
+  createCompany(name, callback) {
     const params = { name };
     Network.post("/admin/companies", { token: this.token, params }, callback);
   }

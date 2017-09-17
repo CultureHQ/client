@@ -1,8 +1,6 @@
 import webpack from "webpack";
 
-const plugins = [
-  new webpack.optimize.ModuleConcatenationPlugin()
-];
+const plugins = [new webpack.optimize.ModuleConcatenationPlugin()];
 
 if (process.env.NODE_ENV === "prod") {
   plugins.push(new webpack.optimize.UglifyJsPlugin());
@@ -17,9 +15,7 @@ module.exports = {
     extensions: [".js"]
   },
   module: {
-    rules: [
-      { test: /\.js$/, use: "babel-loader", exclude: /node_modules/ }
-    ]
+    rules: [{ test: /\.js$/, use: "babel-loader", exclude: /node_modules/ }]
   },
   plugins
 };
