@@ -21,6 +21,7 @@
           <button id="sign-in" class="btn">Sign In</button>
           <button id="get-profile" class="btn">Get Profile</button>
           <button id="invite-user" class="btn">Invite User</button>
+          <button id="change-pwd" class="btn">Change Password</button>
         </div>
       </div>
       <br />
@@ -49,6 +50,11 @@ document.querySelector("#get-profile").addEventListener("click", function () {
 document.querySelector("#invite-user").addEventListener("click", function () {
   const email = document.querySelector("input[name=email]").value;
   cultureHQ.sendInvite(email, callback);
+});
+
+document.querySelector("#change-pwd").addEventListener("click", function () {
+  const password = document.querySelector("input[name=password]").value;
+  cultureHQ.changePassword(password, callback);
 });
     </script>
   </body>

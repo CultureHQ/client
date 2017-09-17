@@ -15,8 +15,8 @@ const sendRequest = (method, path, options, callback) => {
     reqOptions.headers["Authorization"] = `token ${options.token}`;
   }
 
-  if (method === "POST") {
-    reqOptions.method = "POST";
+  if (method !== "GET") {
+    reqOptions.method = method;
     reqOptions.body = JSON.stringify(options.params);
   }
 
@@ -36,6 +36,9 @@ const sendRequest = (method, path, options, callback) => {
 export default {
   get: (path, options, callback) =>
     sendRequest("GET", path, options, callback),
+
+  patch: (path, options, callback) =>
+    sendRequest("PATCH", path, options, callback),
 
   post: (path, options, callback) =>
     sendRequest("POST", path, options, callback)

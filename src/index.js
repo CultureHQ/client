@@ -21,6 +21,11 @@ class CultureHQ {
     const params = { email };
     Network.post("/invites", { token: this.token, params }, callback);
   }
+
+  changePassword (password, callback) {
+    const params = { password };
+    Network.patch("/password", { token: this.token, params }, callback);
+  }
 }
 
 window.cultureHQ = new CultureHQ();
