@@ -26,7 +26,15 @@ class CultureHQ {
     const params = { password };
     Network.patch("/password", { token: this.token, params }, callback);
   }
+
+  createCompany (name, callback) {
+    const params = { name };
+    Network.post("/admin/companies", { token: this.token, params }, callback);
+  }
 }
 
-window.cultureHQ = new CultureHQ();
+if (window) {
+  window.cultureHQ = new CultureHQ();
+}
+
 export default CultureHQ;
