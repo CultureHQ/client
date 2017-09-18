@@ -40,7 +40,7 @@ const callback = function (error, response) {
 document.querySelector("#sign-in").addEventListener("click", function () {
   const email = document.querySelector("input[name=email]").value;
   const password = document.querySelector("input[name=password]").value;
-  CultureHQ.signIn(email, password, callback);
+  CultureHQ.signIn({ email: email, password: password }, callback);
 });
 
 document.querySelector("#get-profile").addEventListener("click", function () {
@@ -49,12 +49,12 @@ document.querySelector("#get-profile").addEventListener("click", function () {
 
 document.querySelector("#invite-user").addEventListener("click", function () {
   const email = document.querySelector("input[name=email]").value;
-  CultureHQ.sendInvite(email, callback);
+  CultureHQ.sendInvite({ email: email }, callback);
 });
 
 document.querySelector("#change-pwd").addEventListener("click", function () {
   const password = document.querySelector("input[name=password]").value;
-  CultureHQ.changePassword(password, callback);
+  CultureHQ.changePassword({ password: password }, callback);
 });
     </script>
   </body>
