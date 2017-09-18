@@ -11,10 +11,10 @@ class CultureHQ {
     network.patch("/password", { token: this.token, params }, callback);
   }
 
-  createCompany(params, callback) {
+  createOrganization(params, callback) {
     this._ensureSignedIn();
     this._validateParams(params, ["name"]);
-    network.post("/admin/companies", { token: this.token, params }, callback);
+    network.post("/admin/organizations", { token: this.token, params }, callback);
   }
 
   getProfile(callback) {
