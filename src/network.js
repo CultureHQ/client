@@ -1,12 +1,12 @@
 import fetch from "node-fetch";
 import camelize from "./camelize";
 
-let API_ENDPOINT;
+let apiHost;
 
 if (process.env.NODE_ENV === "prod") {
-  API_ENDPOINT = "https://api.culturehq.net";
+  apiHost = "https://api.culturehq.net";
 } else {
-  API_ENDPOINT = "http://localhost:3000";
+  apiHost = "http://localhost:3000";
 }
 
 const sendRequest = (method, path, options, callback) => {
@@ -23,7 +23,7 @@ const sendRequest = (method, path, options, callback) => {
     reqOptions.body = JSON.stringify(options.params);
   }
 
-  fetch(`${API_ENDPOINT}${path}`, reqOptions)
+  fetch(`${apiHost}${path}`, reqOptions)
     .then(response => {
       if (response.status / 100 === 2) {
         response.json().then(json => callback(null, camelize(json)));
