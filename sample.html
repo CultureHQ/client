@@ -33,28 +33,28 @@
     </div>
     <script>
 const output = document.querySelector("#output");
-const callback = function (error, response) {
-  output.innerHTML = JSON.stringify({ error: error, response: response });
+const callback = function (response) {
+  output.innerHTML = JSON.stringify(response);
 };
 
 document.querySelector("#sign-in").addEventListener("click", function () {
   const email = document.querySelector("input[name=email]").value;
   const password = document.querySelector("input[name=password]").value;
-  CultureHQ.signIn({ email: email, password: password }, callback);
+  CultureHQ.signIn({ email: email, password: password }).then(callback);
 });
 
 document.querySelector("#get-profile").addEventListener("click", function () {
-  CultureHQ.getProfile(callback);
+  CultureHQ.getProfile().then(callback);
 });
 
 document.querySelector("#invite-user").addEventListener("click", function () {
   const email = document.querySelector("input[name=email]").value;
-  CultureHQ.sendInvite({ email: email }, callback);
+  CultureHQ.sendInvite({ email: email }).then(callback);
 });
 
 document.querySelector("#change-pwd").addEventListener("click", function () {
   const password = document.querySelector("input[name=password]").value;
-  CultureHQ.changePassword({ password: password }, callback);
+  CultureHQ.changePassword({ password: password }).then(callback);
 });
     </script>
   </body>
