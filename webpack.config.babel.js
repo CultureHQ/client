@@ -2,7 +2,7 @@ import webpack from "webpack";
 
 const plugins = [new webpack.optimize.ModuleConcatenationPlugin()];
 
-if (process.env.NODE_ENV === "prod") {
+if (process.env.NODE_ENV === "production") {
   plugins.push(new webpack.optimize.UglifyJsPlugin());
 }
 
