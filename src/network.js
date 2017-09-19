@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === "prod") {
   apiHost = "http://localhost:3000";
 }
 
-const sendRequest = (method, path, options, callback) => {
+const sendRequest = (method, path, options) => {
   let reqOptions = {
     headers: { "Content-Type": "application/json" }
   };
@@ -23,25 +23,22 @@ const sendRequest = (method, path, options, callback) => {
     reqOptions.body = JSON.stringify(options.params);
   }
 
-  fetch(`${apiHost}${path}`, reqOptions)
-    .then(response => {
-      if (response.status / 100 === 2) {
-        response.json().then(json => callback(null, camelize(json)));
-      } else {
-        callback(response.status, response.statusText);
-      }
-    })
-    .catch(error => {
-      callback(error, null);
-    });
+  return new Promise((resolve, reject) => {
+    fetch(`${apiHost}${path}`, reqOptions)
+      .then(response => {
+        if (response.status / 100 === 2) {
+          response.json().then(json => resolve(camelize(json)))
+                         .catch(error => reject(error));
+        } else {
+          reject(response.statusText);
+        }
+      })
+      .catch(error => reject(error));
+  });
 };
 
 export default {
-  get: (path, options, callback) => sendRequest("GET", path, options, callback),
-
-  patch: (path, options, callback) =>
-    sendRequest("PATCH", path, options, callback),
-
-  post: (path, options, callback) =>
-    sendRequest("POST", path, options, callback)
+  get: (path, options) => sendRequest("GET", path, options),
+  patch: (path, options) => sendRequest("PATCH", path, options),
+  post: (path, options) => sendRequest("POST", path, options)
 };

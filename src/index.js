@@ -5,40 +5,38 @@ class CultureHQ {
     this.token = null;
   }
 
-  changePassword(params, callback) {
+  changePassword(params) {
     this._ensureSignedIn();
     this._validateParams(params, ["password"]);
-    network.patch("/password", { token: this.token, params }, callback);
+    return network.patch("/password", { token: this.token, params });
   }
 
-  createOrganization(params, callback) {
+  createOrganization(params) {
     this._ensureSignedIn();
     this._validateParams(params, ["name"]);
-    network.post("/admin/organizations", { token: this.token, params }, callback);
+    return network.post("/admin/organizations", { token: this.token, params });
   }
 
-  getProfile(callback) {
+  getProfile() {
     this._ensureSignedIn();
-    network.get("/profile", { token: this.token }, callback);
+    return network.get("/profile", { token: this.token });
   }
 
   isSignedIn() {
     return this.token !== null;
   }
 
-  sendInvite(params, callback) {
+  sendInvite(params) {
     this._ensureSignedIn();
     this._validateParams(params, ["email"]);
-    network.post("/invites", { token: this.token, params }, callback);
+    return network.post("/invites", { token: this.token, params });
   }
 
-  signIn(params, callback) {
+  signIn(params) {
     this._validateParams(params, ["email", "password"]);
-    network.post("/api_keys", { params }, (error, response) => {
-      if (error === null) {
-        this.token = response.token;
-      }
-      callback(error, response);
+    return network.post("/api_keys", { params }).then(response => {
+      this.token = response.token;
+      return response;
     });
   }
 
