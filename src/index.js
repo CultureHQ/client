@@ -11,6 +11,7 @@ class CultureHQ {
     return network.patch("/password", { token: this.token, params });
   }
 
+  /** Optional params = [sponsored] */
   createEvent(params) {
     this._ensureSignedIn();
     const required = ["name", "details", "startsAt", "endsAt", "eventType"];
@@ -22,6 +23,21 @@ class CultureHQ {
     this._ensureSignedIn();
     this._validateParams(params, ["name"]);
     return network.post("/admin/organizations", { token: this.token, params });
+  }
+
+  /** Optional params = [extra] */
+  createRSVP(params) {
+    this._ensureSignedIn();
+    this._validateParams(params, ["eventId", "responseType"]);
+
+    const eventId = params.eventId;
+    delete params.eventId;
+
+    if (["declined", "interested", "accepted"].indexOf(params.responseType) === -1) {
+      throw new Error("responseType parameter must be one of declined, interested, or accepted");
+    }
+
+    return network.post(`/events/${eventId}/rsvps`, { token: this.token, params });
   }
 
   getProfile() {

@@ -16,6 +16,7 @@ test("cannot call signed in functions without signing in first", () => {
     "changePassword",
     "createEvent",
     "createOrganization",
+    "createRSVP",
     "getProfile",
     "getUser",
     "getUserEvents",
@@ -68,6 +69,11 @@ describe("with a signed in user", () => {
       eventType: "Social"
     },
     createOrganization: { name: "foo" },
+    createRSVP: {
+      eventId: 12345,
+      responseType: "accepted",
+      extra: "This is a test commment"
+    },
     getProfile: {},
     getUser: { userId: 1 },
     getUserEvents: { userId: 1 },
@@ -99,6 +105,7 @@ test("fails when required parameters aren't given", async () => {
     "changePassword",
     "createEvent",
     "createOrganization",
+    "createRSVP",
     "getUser",
     "getUserEvents",
     "registerUser",
