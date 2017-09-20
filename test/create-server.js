@@ -2,7 +2,8 @@ import http from "http";
 
 const createServer = mockConfig => {
   let mocks;
-  if (typeof mockConfig.forEach === "undefined") { // it's an object
+  if (typeof mockConfig.forEach === "undefined") {
+    // it's an object
     mocks = [mockConfig];
   } else {
     mocks = mockConfig;

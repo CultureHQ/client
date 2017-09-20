@@ -12,13 +12,21 @@ test("starts signed out", () => {
 });
 
 test("cannot call signed in functions without signing in first", () => {
-  expect(() => { cultureHQ.createOrganization({}) }).toThrow();
-  expect(() => { cultureHQ.getProfile() }).toThrow();
-  expect(() => { cultureHQ.sendInvite({}) }).toThrow();
+  expect(() => {
+    cultureHQ.createOrganization({});
+  }).toThrow();
+
+  expect(() => {
+    cultureHQ.getProfile();
+  }).toThrow();
+
+  expect(() => {
+    cultureHQ.sendInvite({});
+  }).toThrow();
 });
 
 test("signs in and reports signed in status correctly", async () => {
-  const server = createServer({ status: 200, body: { "token": "baz" } });
+  const server = createServer({ status: 200, body: { token: "baz" } });
   server.listen(3000);
 
   const response = await cultureHQ.signIn({ email: "foo", password: "bar" });
@@ -34,7 +42,7 @@ describe("with a signed in user", () => {
   beforeEach(async () => {
     number = Math.random();
     server = createServer([
-      { status: 200, body: { "token": "baz" } },
+      { status: 200, body: { token: "baz" } },
       { status: 200, body: { number } }
     ]);
     server.listen(3000);
@@ -61,6 +69,17 @@ describe("with a signed in user", () => {
     expect(response).toEqual({ number });
   });
 
+  test("can register a user", async () => {
+    const params = {
+      token: "some-random-token",
+      name: "Kevin",
+      email: "kevin@culturehq.net",
+      password: "password"
+    };
+    const response = await cultureHQ.registerUser(params);
+    expect(response).toEqual({ number });
+  });
+
   test("can send invite", async () => {
     const response = await cultureHQ.sendInvite({ email: "foo" });
     expect(response).toEqual({ number });
@@ -69,7 +88,7 @@ describe("with a signed in user", () => {
 
 describe("fails when required parameters aren't given", () => {
   beforeEach(async () => {
-    const server = createServer({ status: 200, body: { "token": "baz" } });
+    const server = createServer({ status: 200, body: { token: "baz" } });
     server.listen(3000);
 
     await cultureHQ.signIn({ email: "foo", password: "bar" });
@@ -77,14 +96,26 @@ describe("fails when required parameters aren't given", () => {
   });
 
   test("on the changePassword function", () => {
-    expect(() => { cultureHQ.changePassword() }).toThrow();
+    expect(() => {
+      cultureHQ.changePassword();
+    }).toThrow();
   });
 
   test("on the createOrganization function", () => {
-    expect(() => { cultureHQ.createOrganization() }).toThrow();
+    expect(() => {
+      cultureHQ.createOrganization();
+    }).toThrow();
+  });
+
+  test("on the registerUser function", () => {
+    expect(() => {
+      cultureHQ.registerUser();
+    }).toThrow();
   });
 
   test("on the sendInvite function", () => {
-    expect(() => { cultureHQ.sendInvite() }).toThrow();
+    expect(() => {
+      cultureHQ.sendInvite();
+    }).toThrow();
   });
 });
