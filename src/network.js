@@ -1,5 +1,5 @@
 import fetch from "node-fetch";
-import camelize from "./camelize";
+import { camelize, snakerize } from "./string-case";
 
 let apiHost;
 
@@ -20,7 +20,7 @@ const sendRequest = (method, path, options) => {
 
   if (method !== "GET") {
     reqOptions.method = method;
-    reqOptions.body = JSON.stringify(options.params);
+    reqOptions.body = JSON.stringify(snakerize(options.params));
   }
 
   return new Promise((resolve, reject) => {

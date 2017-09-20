@@ -11,6 +11,13 @@ class CultureHQ {
     return network.patch("/password", { token: this.token, params });
   }
 
+  createEvent(params) {
+    this._ensureSignedIn();
+    const required = ["name", "details", "startsAt", "endsAt", "eventType"];
+    this._validateParams(params, required);
+    return network.post("/events", { token: this.token, params });
+  }
+
   createOrganization(params) {
     this._ensureSignedIn();
     this._validateParams(params, ["name"]);
@@ -20,6 +27,18 @@ class CultureHQ {
   getProfile() {
     this._ensureSignedIn();
     return network.get("/profile", { token: this.token });
+  }
+
+  getUser(params) {
+    this._ensureSignedIn();
+    this._validateParams(params, ["userId"]);
+    return network.get(`/users/${params.userId}`, { token: this.token });
+  }
+
+  getUserEvents(params) {
+    this._ensureSignedIn();
+    this._validateParams(params, ["userId"]);
+    return network.get(`/users/${params.userId}/events`, { token: this.token });
   }
 
   isSignedIn() {

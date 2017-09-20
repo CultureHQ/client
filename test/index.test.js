@@ -12,17 +12,21 @@ test("starts signed out", () => {
 });
 
 test("cannot call signed in functions without signing in first", () => {
-  expect(() => {
-    cultureHQ.createOrganization({});
-  }).toThrow();
+  const signedInActions = [
+    "changePassword",
+    "createEvent",
+    "createOrganization",
+    "getProfile",
+    "getUser",
+    "getUserEvents",
+    "sendInvite"
+  ];
 
-  expect(() => {
-    cultureHQ.getProfile();
-  }).toThrow();
-
-  expect(() => {
-    cultureHQ.sendInvite({});
-  }).toThrow();
+  signedInActions.forEach(action => {
+    expect(() => {
+      cultureHQ[action]({});
+    }).toThrow();
+  });
 });
 
 test("signs in and reports signed in status correctly", async () => {
@@ -54,68 +58,56 @@ describe("with a signed in user", () => {
     server.close();
   });
 
-  test("can change password", async () => {
-    const response = await cultureHQ.changePassword({ password: "foo" });
-    expect(response).toEqual({ number });
-  });
-
-  test("can create an organization", async () => {
-    const response = await cultureHQ.changePassword({ password: "foo" });
-    expect(response).toEqual({ number });
-  });
-
-  test("can get the profile", async () => {
-    const response = await cultureHQ.getProfile();
-    expect(response).toEqual({ number });
-  });
-
-  test("can register a user", async () => {
-    const params = {
+  const actions = {
+    changePassword: { password: "foo" },
+    createEvent: {
+      name: "Test event",
+      details: "This is a test event",
+      startsAt: "2017-01-01",
+      endsAt: "2018-01-01",
+      eventType: "Social"
+    },
+    createOrganization: { name: "foo" },
+    getProfile: {},
+    getUser: { userId: 1 },
+    getUserEvents: { userId: 1 },
+    registerUser: {
       token: "some-random-token",
       name: "Kevin",
       email: "kevin@culturehq.net",
       password: "password"
-    };
-    const response = await cultureHQ.registerUser(params);
-    expect(response).toEqual({ number });
-  });
+    },
+    sendInvite: { email: "foo" }
+  };
 
-  test("can send invite", async () => {
-    const response = await cultureHQ.sendInvite({ email: "foo" });
-    expect(response).toEqual({ number });
+  Object.keys(actions).forEach(action => {
+    test(`can ${action}`, async () => {
+      const response = await cultureHQ[action](actions[action]);
+      expect(response).toEqual({ number });
+    });
   });
 });
 
-describe("fails when required parameters aren't given", () => {
-  beforeEach(async () => {
-    const server = createServer({ status: 200, body: { token: "baz" } });
-    server.listen(3000);
+test("fails when required parameters aren't given", async () => {
+  const server = createServer({ status: 200, body: { token: "baz" } });
+  server.listen(3000);
 
-    await cultureHQ.signIn({ email: "foo", password: "bar" });
-    server.close();
-  });
+  await cultureHQ.signIn({ email: "foo", password: "bar" });
+  server.close();
 
-  test("on the changePassword function", () => {
+  const requiredParamActions = [
+    "changePassword",
+    "createEvent",
+    "createOrganization",
+    "getUser",
+    "getUserEvents",
+    "registerUser",
+    "sendInvite"
+  ];
+
+  requiredParamActions.forEach(action => {
     expect(() => {
-      cultureHQ.changePassword();
-    }).toThrow();
-  });
-
-  test("on the createOrganization function", () => {
-    expect(() => {
-      cultureHQ.createOrganization();
-    }).toThrow();
-  });
-
-  test("on the registerUser function", () => {
-    expect(() => {
-      cultureHQ.registerUser();
-    }).toThrow();
-  });
-
-  test("on the sendInvite function", () => {
-    expect(() => {
-      cultureHQ.sendInvite();
+      cultureHQ[action]();
     }).toThrow();
   });
 });
