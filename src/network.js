@@ -27,8 +27,10 @@ const sendRequest = (method, path, options) => {
     fetch(`${apiHost}${path}`, reqOptions)
       .then(response => {
         if (response.status / 100 === 2) {
-          response.json().then(json => resolve(camelize(json)))
-                         .catch(error => reject(error));
+          response
+            .json()
+            .then(json => resolve(camelize(json)))
+            .catch(error => reject(error));
         } else {
           reject(response.statusText);
         }

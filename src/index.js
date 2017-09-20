@@ -26,6 +26,13 @@ class CultureHQ {
     return this.token !== null;
   }
 
+  registerUser(params) {
+    this._validateParams(params, ["token", "name", "email", "password"]);
+    const token = params.token;
+    delete params.token;
+    return network.post(`/invites/${token}/users`, { params });
+  }
+
   sendInvite(params) {
     this._ensureSignedIn();
     this._validateParams(params, ["email"]);
