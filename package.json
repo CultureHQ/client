@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/CultureHQ/client#readme",
   "dependencies": {
-    "node-fetch": "^1.7.2"
+    "node-fetch": "^1.7.2",
+    "store": "^2.0.12"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
