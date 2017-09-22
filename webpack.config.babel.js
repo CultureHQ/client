@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === "production") {
 module.exports = {
   entry: "./src/index",
   output: {
-    filename: "index.js"
+    filename: "build/index.js"
   },
   resolve: {
     extensions: [".js"]
