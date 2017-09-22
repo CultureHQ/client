@@ -3,13 +3,14 @@ import { camelize, snakerize } from "./string-case";
 
 let apiHost;
 
-if (process.env.NODE_ENV === "prod") {
+if (process.env.NODE_ENV === "production") {
   apiHost = "https://api.culturehq.net";
 } else {
   apiHost = "http://localhost:3000";
 }
 
-const sendRequest = (method, path, options) => {
+const buildRequest = (method, path, options) => {
+  let url = new URL(`${apiHost}${path}`);
   let reqOptions = {
     headers: { "Content-Type": "application/json" }
   };
@@ -18,15 +19,26 @@ const sendRequest = (method, path, options) => {
     reqOptions.headers["Authorization"] = `token ${options.token}`;
   }
 
-  if (method !== "GET") {
+  if (method === "GET") {
+    const params = snakerize(options.params);
+    Object.keys(params).forEach(key =>
+      url.searchParams.append(key, params[key])
+    );
+  } else {
     reqOptions.method = method;
     reqOptions.body = JSON.stringify(snakerize(options.params));
   }
 
+  return { url: url.href, options: reqOptions };
+};
+
+const sendRequest = (method, path, options) => {
+  const request = buildRequest(method, path, options);
+
   return new Promise((resolve, reject) => {
-    fetch(`${apiHost}${path}`, reqOptions)
+    fetch(request.url, request.options)
       .then(response => {
-        if (response.status / 100 === 2) {
+        if (Math.round(response.status / 200) === 1) {
           response
             .json()
             .then(json => resolve(camelize(json)))
