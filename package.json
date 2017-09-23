@@ -4,7 +4,7 @@
   "description": "A JavaScript client that wraps the CultureHQ API",
   "main": "src/index.js",
   "scripts": {
-    "build": "webpack --config webpack.config.babel.js --progress",
+    "build": "bin/build",
     "test": "jest",
     "cleanup": "find . | grep -v node_modules | grep -v '^./index.js' | grep -v 'index.js' | grep '^.*js$' | xargs $(npm bin)/prettier --write"
   },
@@ -28,6 +28,7 @@
     "babel-preset-es2015": "^6.24.1",
     "jest": "^20.0.4",
     "prettier": "^1.6.1",
-    "webpack": "^3.5.5"
+    "webpack": "^3.5.5",
+    "webpack-node-externals": "^1.6.0"
   }
 }

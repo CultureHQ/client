@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+build() {
+  [ "$#" -ne 2 ] && echo "USAGE: build [output] [bundle]" && exit 1
+  export OUTPUT="build/$1"
+  export BUNDLE="$2"
+  webpack --config webpack.config.babel.js --progress
+}
+
+process_ids=""
+
+if [ "$NODE_ENV" == "production" ]; then
+  build bundled.min.js 1 &
+  process_ids+=" $!"
+
+  build index.min.js 0 &
+  process_ids+=" $!"
+else
+  build bundled.js 1 &
+  process_ids+=" $!"
+
+  build index.js 0 &
+  process_ids+=" $!"
+fi
+
+process_ids=($process_ids)
+for process_id in "${process_ids[@]}"; do
+  wait $process_id
+done
