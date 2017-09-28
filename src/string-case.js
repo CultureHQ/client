@@ -24,6 +24,9 @@ const modifyKeys = (object, stringFunc) => {
   let modified = {};
   let value;
 
+  // If object is undefined/null
+  if (typeof object == 'undefined' || object == null) return
+
   Object.keys(object).forEach(key => {
     value = object[key];
     if (typeof value === "object") {
