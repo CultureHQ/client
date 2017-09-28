@@ -20499,6 +20499,9 @@ var modifyKeys = function modifyKeys(object, stringFunc) {
   var modified = {};
   var value = void 0;
 
+  // If object is undefined/null
+  if (typeof object == 'undefined' || object == null) return;
+
   Object.keys(object).forEach(function (key) {
     value = object[key];
     if ((typeof value === "undefined" ? "undefined" : _typeof(value)) === "object") {
