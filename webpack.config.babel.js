@@ -17,9 +17,9 @@ if (process.env.OUTPUT) {
 }
 
 module.exports = {
-  entry: "./build/index.min.js",
+  entry: "./src/index.js",
   output: {
-    filename: output,
+    filename: output
   },
   resolve: {
     extensions: [".js"]

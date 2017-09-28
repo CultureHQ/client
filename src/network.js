@@ -15,7 +15,7 @@ const buildRequest = (method, path, options) => {
     headers: { "Content-Type": "application/json" }
   };
 
-  if (options.token) {
+  if (typeof options.token === "string" && options.token.length) {
     reqOptions.headers["Authorization"] = `token ${options.token}`;
   }
 
@@ -52,6 +52,7 @@ const sendRequest = (method, path, options) => {
 };
 
 export default {
+  delete: (path, options) => sendRequest("DELETE", path, options),
   get: (path, options) => sendRequest("GET", path, options),
   patch: (path, options) => sendRequest("PATCH", path, options),
   post: (path, options) => sendRequest("POST", path, options)

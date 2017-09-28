@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+- Refactor the API calls to be generated functions run through the api-call module. This simplifies the call structure and allows easier refactoring of overall interactions with the API.
+- Move API calls into their own modules that extend the main object so that it's easier to extend in the future.
+- Rename some parameters to make more sense, e.g. id -> orgId.
 
 ## [0.0.3] - 2017-09-23
 ### Changed

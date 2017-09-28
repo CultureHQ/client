@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -70,217 +70,640 @@
 "use strict";
 
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-!function (e) {
-  function t(r) {
-    if (n[r]) return n[r].exports;var o = n[r] = { i: r, l: !1, exports: {} };return e[r].call(o.exports, o, o.exports, t), o.l = !0, o.exports;
-  }var n = {};t.m = e, t.c = n, t.d = function (e, n, r) {
-    t.o(e, n) || Object.defineProperty(e, n, { configurable: !1, enumerable: !0, get: r });
-  }, t.n = function (e) {
-    var n = e && e.__esModule ? function () {
-      return e.default;
-    } : function () {
-      return e;
-    };return t.d(n, "a", n), n;
-  }, t.o = function (e, t) {
-    return Object.prototype.hasOwnProperty.call(e, t);
-  }, t.p = "", t(t.s = 0);
-}([function (e, t, n) {
-  "use strict";
-  function r(e) {
-    return e && e.__esModule ? e : { default: e };
-  }Object.defineProperty(t, "__esModule", { value: !0 });var o = n(1),
-      i = r(o),
-      u = n(2),
-      s = r(u),
-      a = { storeKey: "token", ensureSignedIn: function ensureSignedIn() {
-      if (!c.isSignedIn()) throw new Error("signIn() must be called first.");
-    }, signedInRequest: function signedInRequest(e, t, n) {
-      return a.ensureSignedIn(), s.default[e](t, { token: i.default.get(a.storeKey), params: n });
-    }, validateParams: function validateParams(e, t) {
-      t.forEach(function (t) {
-        if (!e.hasOwnProperty(t)) throw new Error("Required param " + t + " not provided.");
-      });
-    } },
-      c = { changePassword: function changePassword(e) {
-      return a.validateParams(e, ["password"]), a.signedInRequest("patch", "/password", e);
-    }, createEvent: function createEvent(e) {
-      return a.validateParams(e, ["name", "details", "startsAt", "endsAt", "eventType"]), a.signedInRequest("post", "/events", e);
-    }, createOrganization: function createOrganization(e) {
-      return a.validateParams(e, ["name"]), a.signedInRequest("post", "/admin/organizations", e);
-    }, createRSVP: function createRSVP(e) {
-      a.validateParams(e, ["eventId", "responseType"]);var t = e.eventId;if (delete e.eventId, -1 === ["declined", "interested", "accepted"].indexOf(e.responseType)) throw new Error("responseType parameter must be one of declined, interested, or accepted");return a.signedInRequest("post", "/events/" + t + "/rsvps", e);
-    }, getProfile: function getProfile() {
-      return a.signedInRequest("get", "/profile", {});
-    }, getUser: function getUser(e) {
-      return a.validateParams(e, ["userId"]), a.signedInRequest("get", "/users/" + e.userId, {});
-    }, getUserEvents: function getUserEvents(e) {
-      return a.validateParams(e, ["userId"]), a.signedInRequest("get", "/users/" + e.userId + "/events", {});
-    }, isSignedIn: function isSignedIn() {
-      return void 0 !== i.default.get(a.storeKey);
-    }, registerUser: function registerUser(e) {
-      a.validateParams(e, ["token", "name", "email", "password"]);var t = e.token;return delete e.token, a.signedInRequest("post", "/invites/" + t + "/users", e);
-    }, sendInvite: function sendInvite(e) {
-      return a.validateParams(e, ["email"]), a.signedInRequest("post", "/invites", e);
-    }, signIn: function signIn(e) {
-      return a.validateParams(e, ["email", "password"]), s.default.post("/api_keys", { params: e }).then(function (e) {
-        return i.default.set(a.storeKey, e.token), e;
-      });
-    }, signOut: function signOut() {
-      i.default.clearAll();
-    } };window && (window.CultureHQ = c), t.default = c;
-}, function (e, t) {
-  e.exports = __webpack_require__(1);
-}, function (e, t, n) {
-  "use strict";
-  (function (e) {
-    Object.defineProperty(t, "__esModule", { value: !0 });var r = n(4),
-        o = function (e) {
-      return e && e.__esModule ? e : { default: e };
-    }(r),
-        i = n(5),
-        u = void 0;u = "production" === e.env.NODE_ENV ? "https://api.culturehq.net" : "http://localhost:3000";var s = function s(e, t, n) {
-      var r = new URL("" + u + t),
-          o = { headers: { "Content-Type": "application/json" } };if (n.token && (o.headers.Authorization = "token " + n.token), "GET" === e) {
-        var s = (0, i.snakerize)(n.params);Object.keys(s).forEach(function (e) {
-          return r.searchParams.append(e, s[e]);
-        });
-      } else o.method = e, o.body = JSON.stringify((0, i.snakerize)(n.params));return { url: r.href, options: o };
-    },
-        a = function a(e, t, n) {
-      var r = s(e, t, n);return new Promise(function (e, t) {
-        (0, o.default)(r.url, r.options).then(function (n) {
-          1 === Math.round(n.status / 200) ? n.json().then(function (t) {
-            return e((0, i.camelize)(t));
-          }).catch(function (e) {
-            return t(e);
-          }) : t(n.statusText);
-        }).catch(function (e) {
-          return t(e);
-        });
-      });
-    };t.default = { get: function get(e, t) {
-        return a("GET", e, t);
-      }, patch: function patch(e, t) {
-        return a("PATCH", e, t);
-      }, post: function post(e, t) {
-        return a("POST", e, t);
-      } };
-  }).call(t, n(3));
-}, function (e, t) {
-  function n() {
-    throw new Error("setTimeout has not been defined");
-  }function r() {
-    throw new Error("clearTimeout has not been defined");
-  }function o(e) {
-    if (f === setTimeout) return setTimeout(e, 0);if ((f === n || !f) && setTimeout) return f = setTimeout, setTimeout(e, 0);try {
-      return f(e, 0);
-    } catch (t) {
-      try {
-        return f.call(null, e, 0);
-      } catch (t) {
-        return f.call(this, e, 0);
-      }
-    }
-  }function i(e) {
-    if (l === clearTimeout) return clearTimeout(e);if ((l === r || !l) && clearTimeout) return l = clearTimeout, clearTimeout(e);try {
-      return l(e);
-    } catch (t) {
-      try {
-        return l.call(null, e);
-      } catch (t) {
-        return l.call(this, e);
-      }
-    }
-  }function u() {
-    m && p && (m = !1, p.length ? v = p.concat(v) : h = -1, v.length && s());
-  }function s() {
-    if (!m) {
-      var e = o(u);m = !0;for (var t = v.length; t;) {
-        for (p = v, v = []; ++h < t;) {
-          p && p[h].run();
-        }h = -1, t = v.length;
-      }p = null, m = !1, i(e);
-    }
-  }function a(e, t) {
-    this.fun = e, this.array = t;
-  }function c() {}var f,
-      l,
-      d = e.exports = {};!function () {
-    try {
-      f = "function" == typeof setTimeout ? setTimeout : n;
-    } catch (e) {
-      f = n;
-    }try {
-      l = "function" == typeof clearTimeout ? clearTimeout : r;
-    } catch (e) {
-      l = r;
-    }
-  }();var p,
-      v = [],
-      m = !1,
-      h = -1;d.nextTick = function (e) {
-    var t = new Array(arguments.length - 1);if (arguments.length > 1) for (var n = 1; n < arguments.length; n++) {
-      t[n - 1] = arguments[n];
-    }v.push(new a(e, t)), 1 !== v.length || m || o(s);
-  }, a.prototype.run = function () {
-    this.fun.apply(null, this.array);
-  }, d.title = "browser", d.browser = !0, d.env = {}, d.argv = [], d.version = "", d.versions = {}, d.on = c, d.addListener = c, d.once = c, d.off = c, d.removeListener = c, d.removeAllListeners = c, d.emit = c, d.prependListener = c, d.prependOnceListener = c, d.listeners = function (e) {
-    return [];
-  }, d.binding = function (e) {
-    throw new Error("process.binding is not supported");
-  }, d.cwd = function () {
-    return "/";
-  }, d.chdir = function (e) {
-    throw new Error("process.chdir is not supported");
-  }, d.umask = function () {
-    return 0;
-  };
-}, function (e, t) {
-  e.exports = __webpack_require__(2);
-}, function (e, t, n) {
-  "use strict";
-  Object.defineProperty(t, "__esModule", { value: !0 });var r = "function" == typeof Symbol && "symbol" == _typeof(Symbol.iterator) ? function (e) {
-    return typeof e === "undefined" ? "undefined" : _typeof(e);
-  } : function (e) {
-    return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e === "undefined" ? "undefined" : _typeof(e);
+var _store = __webpack_require__(3);
+
+var _store2 = _interopRequireDefault(_store);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var state = {
+  getToken: function getToken() {
+    return _store2.default.get(state.storeKey);
   },
-      o = function o(e) {
-    for (var t = /_([a-z])/, n = void 0; null !== (n = t.exec(e));) {
-      e = e.replace(n[0], n[1].toUpperCase());
-    }return e;
+
+  isSignedIn: function isSignedIn() {
+    return state.getToken() !== undefined;
   },
-      i = function i(e) {
-    for (var t = /([A-Z])/, n = void 0; null !== (n = t.exec(e));) {
-      e = e.replace(n[0], "_" + n[1].toLowerCase());
-    }return e;
+
+  signIn: function signIn(token) {
+    _store2.default.set(state.storeKey, token);
   },
-      u = function e(t, n) {
-    var o = {},
-        i = void 0;return Object.keys(t).forEach(function (u) {
-      i = t[u], "object" === (void 0 === i ? "undefined" : r(i)) && (i = e(i, n)), o[n(u)] = i;
-    }), o;
+
+  signOut: function signOut() {
+    _store2.default.clearAll();
   },
-      s = function s(e) {
-    return u(e, o);
-  },
-      a = function a(e) {
-    return u(e, i);
-  };t.camelize = s, t.snakerize = a;
-}]);
+
+  storeKey: "token"
+};
+
+exports.default = state;
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _network = __webpack_require__(5);
+
+var _network2 = _interopRequireDefault(_network);
+
+var _state = __webpack_require__(0);
+
+var _state2 = _interopRequireDefault(_state);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (options) {
+  return function (actualParams) {
+    if ((typeof actualParams === "undefined" ? "undefined" : _typeof(actualParams)) !== "object") {
+      actualParams = {};
+    }
+
+    Object.keys(actualParams).forEach(function (param) {
+      var needle = ":" + param;
+      if (options.path.indexOf(needle) !== -1) {
+        options.path = options.path.replace(needle, actualParams[param]);
+        delete actualParams[param];
+      }
+    });
+
+    if (typeof options.expectedParams !== "undefined") {
+      options.expectedParams.forEach(function (param) {
+        if (!actualParams.hasOwnProperty(param)) {
+          throw new Error("Required parameter " + param + " not given");
+        }
+      });
+    }
+
+    return _network2.default[options.method](options.path, {
+      token: _state2.default.getToken(),
+      params: actualParams
+    });
+  };
+};
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _state = __webpack_require__(0);
+
+var _state2 = _interopRequireDefault(_state);
+
+var _event = __webpack_require__(4);
+
+var _event2 = _interopRequireDefault(_event);
+
+var _organization = __webpack_require__(9);
+
+var _organization2 = _interopRequireDefault(_organization);
+
+var _user = __webpack_require__(10);
+
+var _user2 = _interopRequireDefault(_user);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var CultureHQ = {
+  isSignedIn: function isSignedIn() {
+    return _state2.default.isSignedIn();
+  },
+
+  signOut: function signOut() {
+    _state2.default.signOut();
+  }
+};
+
+(0, _event2.default)(CultureHQ);
+
+(0, _organization2.default)(CultureHQ);
+
+(0, _user2.default)(CultureHQ);
+
+if (window) {
+  window.CultureHQ = CultureHQ;
+}
+
+exports.default = CultureHQ;
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports) {
 
 module.exports = require("store/dist/store.modern");
 
 /***/ }),
-/* 2 */
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _apiCall = __webpack_require__(1);
+
+var _apiCall2 = _interopRequireDefault(_apiCall);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var createRSVPCall = (0, _apiCall2.default)({
+  method: "post",
+  path: "/events/:eventId/rsvps",
+  expectedParams: ["responseType"],
+  optionalParams: ["extra"]
+});
+
+exports.default = function (object) {
+  return Object.assign(object, {
+    createEvent: (0, _apiCall2.default)({
+      method: "post",
+      path: "/events",
+      expectedParams: ["name", "details", "startsAt", "endsAt", "eventType"],
+      optionalParams: ["sponsored"]
+    }),
+
+    createRSVP: function createRSVP(params) {
+      var responseTypes = ["declined", "interested", "accepted"];
+      if (responseTypes.indexOf(params.responseType) === -1) {
+        throw new Error("responseType parameter must be one of " + responseTypes.join(", "));
+      }
+      return createRSVPCall(params);
+    },
+
+    getEvent: (0, _apiCall2.default)({ method: "get", path: "/events/:eventId" }),
+
+    listEvents: (0, _apiCall2.default)({ method: "get", path: "/events" }),
+
+    listUserEvents: (0, _apiCall2.default)({ method: "get", path: "/users/:userId/events" })
+  });
+};
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _nodeFetch = __webpack_require__(7);
+
+var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
+
+var _stringCase = __webpack_require__(8);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var apiHost = void 0;
+
+if (process.env.NODE_ENV === "production") {
+  apiHost = "https://api.culturehq.net";
+} else {
+  apiHost = "http://localhost:3000";
+}
+
+var buildRequest = function buildRequest(method, path, options) {
+  var url = new URL("" + apiHost + path);
+  var reqOptions = {
+    headers: { "Content-Type": "application/json" }
+  };
+
+  if (typeof options.token === "string" && options.token.length) {
+    reqOptions.headers["Authorization"] = "token " + options.token;
+  }
+
+  if (method === "GET") {
+    var params = (0, _stringCase.snakerize)(options.params);
+    Object.keys(params).forEach(function (key) {
+      return url.searchParams.append(key, params[key]);
+    });
+  } else {
+    reqOptions.method = method;
+    reqOptions.body = JSON.stringify((0, _stringCase.snakerize)(options.params));
+  }
+
+  return { url: url.href, options: reqOptions };
+};
+
+var sendRequest = function sendRequest(method, path, options) {
+  var request = buildRequest(method, path, options);
+
+  return new Promise(function (resolve, reject) {
+    (0, _nodeFetch2.default)(request.url, request.options).then(function (response) {
+      if (Math.round(response.status / 200) === 1) {
+        response.json().then(function (json) {
+          return resolve((0, _stringCase.camelize)(json));
+        }).catch(function (error) {
+          return reject(error);
+        });
+      } else {
+        reject(response.statusText);
+      }
+    }).catch(function (error) {
+      return reject(error);
+    });
+  });
+};
+
+exports.default = {
+  delete: function _delete(path, options) {
+    return sendRequest("DELETE", path, options);
+  },
+  get: function get(path, options) {
+    return sendRequest("GET", path, options);
+  },
+  patch: function patch(path, options) {
+    return sendRequest("PATCH", path, options);
+  },
+  post: function post(path, options) {
+    return sendRequest("POST", path, options);
+  }
+};
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+// shim for using process in browser
+var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports) {
 
 module.exports = require("node-fetch");
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+// Convert from lower_snake_case to lowerCamelCase
+var camelizeString = function camelizeString(string) {
+  var pattern = /_([a-z])/;
+  var match = void 0;
+
+  while ((match = pattern.exec(string)) !== null) {
+    string = string.replace(match[0], match[1].toUpperCase());
+  }
+  return string;
+};
+
+// Convert from lowerCamelCase to lower_snake_case
+var snakerizeString = function snakerizeString(string) {
+  var pattern = /([A-Z])/;
+  var match = void 0;
+
+  while ((match = pattern.exec(string)) !== null) {
+    string = string.replace(match[0], "_" + match[1].toLowerCase());
+  }
+  return string;
+};
+
+var modifyKeys = function modifyKeys(object, stringFunc) {
+  var modified = {};
+  var value = void 0;
+
+  Object.keys(object).forEach(function (key) {
+    value = object[key];
+    if ((typeof value === "undefined" ? "undefined" : _typeof(value)) === "object") {
+      value = modifyKeys(value, stringFunc);
+    }
+    modified[stringFunc(key)] = value;
+  });
+  return modified;
+};
+
+var camelize = function camelize(object) {
+  return modifyKeys(object, camelizeString);
+};
+var snakerize = function snakerize(object) {
+  return modifyKeys(object, snakerizeString);
+};
+exports.camelize = camelize;
+exports.snakerize = snakerize;
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _apiCall = __webpack_require__(1);
+
+var _apiCall2 = _interopRequireDefault(_apiCall);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (object) {
+  return Object.assign(object, {
+    createOrganization: (0, _apiCall2.default)({
+      method: "post",
+      path: "/admin/organizations",
+      expectedParams: ["name"]
+    }),
+
+    deleteOrganization: (0, _apiCall2.default)({
+      method: "delete",
+      path: "/admin/organizations/:orgId"
+    }),
+
+    getOrganization: (0, _apiCall2.default)({
+      method: "get",
+      path: "/admin/organizations/:orgId"
+    }),
+
+    listOrganizations: (0, _apiCall2.default)({ method: "get", path: "/admin/organizations" }),
+
+    updateOrganization: (0, _apiCall2.default)({
+      method: "patch",
+      path: "/admin/organizations/:orgId",
+      expectedParams: ["name"]
+    })
+  });
+};
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _apiCall = __webpack_require__(1);
+
+var _apiCall2 = _interopRequireDefault(_apiCall);
+
+var _state = __webpack_require__(0);
+
+var _state2 = _interopRequireDefault(_state);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var signInCall = (0, _apiCall2.default)({
+  method: "post",
+  path: "/api_keys",
+  expectedParams: ["email", "password"]
+});
+
+exports.default = function (object) {
+  return Object.assign(object, {
+    changePassword: (0, _apiCall2.default)({
+      method: "patch",
+      path: "/password",
+      expectedParams: ["password"]
+    }),
+
+    getProfile: (0, _apiCall2.default)({ method: "get", path: "/profile" }),
+
+    getUser: (0, _apiCall2.default)({ method: "get", path: "/users/:userId" }),
+
+    registerUser: (0, _apiCall2.default)({
+      method: "post",
+      path: "/invites/:token/users",
+      expectedParams: ["name", "email", "password"]
+    }),
+
+    sendInvite: (0, _apiCall2.default)({
+      method: "post",
+      path: "/invites",
+      expectedParams: ["email"]
+    }),
+
+    signIn: function signIn(params) {
+      return signInCall(params).then(function (response) {
+        _state2.default.signIn(response.apiKey.token);
+        return response;
+      });
+    }
+  });
+};
 
 /***/ })
 /******/ ]);
