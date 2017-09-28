@@ -6,7 +6,7 @@
   "scripts": {
     "build": "bin/build",
     "test": "jest",
-    "cleanup": "find . | grep -v node_modules | grep -v '^./index.js' | grep -v 'index.js' | grep '^.*js$' | xargs $(npm bin)/prettier --write"
+    "cleanup": "find . | grep -v node_modules | grep -v '^./build/' | grep '^.*js$' | xargs $(npm bin)/prettier --write"
   },
   "repository": {
     "type": "git",

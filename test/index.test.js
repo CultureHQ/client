@@ -9,34 +9,20 @@ test("starts signed out", () => {
   expect(CultureHQ.isSignedIn()).toBe(false);
 });
 
-test("cannot call signed in functions without signing in first", () => {
-  const signedInActions = [
-    "changePassword",
-    "createEvent",
-    "createOrganization",
-    "createRSVP",
-    "getProfile",
-    "getUser",
-    "getUserEvents",
-    "sendInvite"
-  ];
-
-  signedInActions.forEach(action => {
-    expect(() => {
-      CultureHQ[action]({});
-    }).toThrow();
-  });
-});
-
 test("signs in and reports signed in status correctly", async () => {
-  const server = createServer({ status: 200, body: { token: "baz" } });
+  const server = createServer({
+    status: 200,
+    body: { apiKey: { token: "baz" } }
+  });
   server.listen(3000);
 
-  const response = await CultureHQ.signIn({ email: "foo", password: "bar" });
-  expect(response.token).toEqual("baz");
-  expect(CultureHQ.isSignedIn()).toBe(true);
-
-  server.close();
+  try {
+    const response = await CultureHQ.signIn({ email: "foo", password: "bar" });
+    expect(response.apiKey.token).toEqual("baz");
+    expect(CultureHQ.isSignedIn()).toBe(true);
+  } finally {
+    server.close();
+  }
 });
 
 describe("with a signed in user", () => {
@@ -45,7 +31,7 @@ describe("with a signed in user", () => {
   beforeEach(async () => {
     number = Math.random();
     server = createServer([
-      { status: 200, body: { token: "baz" } },
+      { status: 200, body: { apiKey: { token: "baz" } } },
       { status: 200, body: { number } }
     ]);
     server.listen(3000);
@@ -67,21 +53,25 @@ describe("with a signed in user", () => {
       eventType: "Social"
     },
     createOrganization: { name: "foo" },
+    deleteOrganization: { orgId: "foo" },
     createRSVP: {
       eventId: 12345,
       responseType: "accepted",
       extra: "This is a test commment"
     },
+    getOrganization: { orgId: "foo" },
     getProfile: {},
     getUser: { userId: 1 },
-    getUserEvents: { userId: 1 },
+    listOrganizations: {},
+    listUserEvents: { userId: 1 },
     registerUser: {
       token: "some-random-token",
       name: "Kevin",
       email: "kevin@culturehq.net",
       password: "password"
     },
-    sendInvite: { email: "foo" }
+    sendInvite: { email: "foo" },
+    updateOrganization: { orgId: "foo", name: "foo" }
   };
 
   Object.keys(actions).forEach(action => {
@@ -93,7 +83,10 @@ describe("with a signed in user", () => {
 });
 
 test("fails when required parameters aren't given", async () => {
-  const server = createServer({ status: 200, body: { token: "baz" } });
+  const server = createServer({
+    status: 200,
+    body: { apiKey: { token: "baz" } }
+  });
   server.listen(3000);
 
   await CultureHQ.signIn({ email: "foo", password: "bar" });
@@ -104,10 +97,10 @@ test("fails when required parameters aren't given", async () => {
     "createEvent",
     "createOrganization",
     "createRSVP",
-    "getUser",
-    "getUserEvents",
     "registerUser",
-    "sendInvite"
+    "sendInvite",
+    "signIn",
+    "updateOrganization"
   ];
 
   requiredParamActions.forEach(action => {
