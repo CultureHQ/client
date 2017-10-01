@@ -578,6 +578,10 @@ var snakerizeString = function snakerizeString(string) {
 };
 
 var modifyKeys = function modifyKeys(object, stringFunc) {
+  if ((typeof object === "undefined" ? "undefined" : _typeof(object)) !== "object" || object === null) {
+    return object;
+  }
+
   var modified = {};
   var value = void 0;
 
