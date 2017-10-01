@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.0.6] - 2017-10-01
 ### Added
 - Add the listInvites command for hitting the corresponding API endpoint.
 - Add deactivateUser and reactivateUser commands.
@@ -40,7 +42,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.5...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.6...HEAD
+[0.0.6]: https://github.com/CultureHQ/client/compare/v0.0.5...v0.0.6
 [0.0.5]: https://github.com/CultureHQ/client/compare/v0.0.4...v0.0.5
 [0.0.4]: https://github.com/CultureHQ/client/compare/v0.0.3...v0.0.4
 [0.0.3]: https://github.com/CultureHQ/client/compare/v0.0.2...v0.0.3
