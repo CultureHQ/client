@@ -5,6 +5,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.5] - 2017-10-01
+### Added
+- Add the listUsers command for hitting the corresponding API endpoint.
+
+### Changed
+- Allow case changing to handle undefined or null response bodies returned from the API.
+
 ## [0.0.4] - 2017-09-28
 ### Changed
 - Refactor the API calls to be generated functions run through the api-call module. This simplifies the call structure and allows easier refactoring of overall interactions with the API.
@@ -25,7 +32,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.4...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.5...HEAD
+[0.0.5]: https://github.com/CultureHQ/client/compare/v0.0.4...v0.0.5
 [0.0.4]: https://github.com/CultureHQ/client/compare/v0.0.3...v0.0.4
 [0.0.3]: https://github.com/CultureHQ/client/compare/v0.0.2...v0.0.3
 [0.0.2]: https://github.com/CultureHQ/client/compare/v0.0.1...v0.0.2

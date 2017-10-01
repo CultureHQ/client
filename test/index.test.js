@@ -64,6 +64,7 @@ describe("with a signed in user", () => {
     getUser: { userId: 1 },
     listOrganizations: {},
     listUserEvents: { userId: 1 },
+    listUsers: {},
     registerUser: {
       token: "some-random-token",
       name: "Kevin",

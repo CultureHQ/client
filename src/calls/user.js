@@ -19,6 +19,12 @@ export default object =>
 
     getUser: apiCall({ method: "get", path: "/users/:userId" }),
 
+    listUsers: apiCall({
+      method: "get",
+      path: "/users",
+      optionalParams: ["page"]
+    }),
+
     registerUser: apiCall({
       method: "post",
       path: "/invites/:token/users",
