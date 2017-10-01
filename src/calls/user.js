@@ -15,6 +15,11 @@ export default object =>
       expectedParams: ["password"]
     }),
 
+    deactivateUser: apiCall({
+      method: "delete",
+      path: "/users/:userId/deactivations"
+    }),
+
     getProfile: apiCall({ method: "get", path: "/profile" }),
 
     getUser: apiCall({ method: "get", path: "/users/:userId" }),
@@ -23,6 +28,11 @@ export default object =>
       method: "get",
       path: "/users",
       optionalParams: ["page"]
+    }),
+
+    reactivateUser: apiCall({
+      method: "post",
+      path: "/users/:userId/deactivations"
     }),
 
     registerUser: apiCall({

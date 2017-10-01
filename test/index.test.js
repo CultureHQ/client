@@ -53,12 +53,13 @@ describe("with a signed in user", () => {
       eventType: "Social"
     },
     createOrganization: { name: "foo" },
-    deleteOrganization: { orgId: "foo" },
     createRSVP: {
       eventId: 12345,
       responseType: "accepted",
       extra: "This is a test commment"
     },
+    deactivateUser: { userId: "foo" },
+    deleteOrganization: { orgId: "foo" },
     getOrganization: { orgId: "foo" },
     getProfile: {},
     getUser: { userId: 1 },
@@ -66,6 +67,7 @@ describe("with a signed in user", () => {
     listOrganizations: {},
     listUserEvents: { userId: 1 },
     listUsers: {},
+    reactivateUser: { userId: "foo" },
     registerUser: {
       token: "some-random-token",
       name: "Kevin",
