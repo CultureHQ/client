@@ -38,7 +38,7 @@ export default object =>
     registerUser: apiCall({
       method: "post",
       path: "/invites/:token/users",
-      expectedParams: ["name", "email", "password"]
+      expectedParams: ["name", "password"]
     }),
 
     sendInvite: apiCall({
@@ -56,6 +56,6 @@ export default object =>
     updateUser: apiCall({
       method: "patch",
       path: "/users/:userId",
-      optionalParams: ["name", "email"]
+      optionalParams: ["name", "email", "departmentIds"]
     })
   });

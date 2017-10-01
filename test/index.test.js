@@ -68,15 +68,15 @@ describe("with a signed in user", () => {
     listUserEvents: { userId: 1 },
     listUsers: {},
     reactivateUser: { userId: "foo" },
-    registerUser: {
-      token: "some-random-token",
-      name: "Kevin",
-      email: "kevin@culturehq.net",
-      password: "password"
-    },
+    registerUser: { token: "token", name: "Kevin", password: "password" },
     sendInvite: { email: "foo" },
     updateOrganization: { orgId: "foo", name: "foo" },
-    updateUser: { userId: "foo", name: "foo", email: "foo" }
+    updateUser: {
+      userId: "foo",
+      name: "foo",
+      email: "foo",
+      departmentIds: [1, 2, 3]
+    }
   };
 
   Object.keys(actions).forEach(action => {

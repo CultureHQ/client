@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Add the listInvites command for hitting the corresponding API endpoint.
 - Add deactivateUser and reactivateUser commands.
 - Add the updateUser command.
+- Add department commands to handle department CRUD.
+
+### Changed
+- Allow department ids to be passed to the updateUser command.
 
 ## [0.0.5] - 2017-10-01
 ### Added
