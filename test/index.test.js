@@ -62,6 +62,7 @@ describe("with a signed in user", () => {
     getOrganization: { orgId: "foo" },
     getProfile: {},
     getUser: { userId: 1 },
+    listInvites: {},
     listOrganizations: {},
     listUserEvents: { userId: 1 },
     listUsers: {},

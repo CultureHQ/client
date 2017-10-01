@@ -13,6 +13,9 @@ const CultureHQ = {
 import eventCalls from "./calls/event";
 eventCalls(CultureHQ);
 
+import inviteCalls from "./calls/invite";
+inviteCalls(CultureHQ);
+
 import organizationCalls from "./calls/organization";
 organizationCalls(CultureHQ);
 
