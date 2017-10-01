@@ -21,11 +21,12 @@ const snakerizeString = string => {
 };
 
 const modifyKeys = (object, stringFunc) => {
+  if (typeof object !== "object" || object === null) {
+    return object;
+  }
+
   let modified = {};
   let value;
-
-  // If object is undefined/null
-  if (typeof object == 'undefined' || object == null) return
 
   Object.keys(object).forEach(key => {
     value = object[key];

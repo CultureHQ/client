@@ -47,3 +47,8 @@ test("snakerizes the keys of basic objects", () => {
     eta: "iota"
   });
 });
+
+test("handles null or undefined objects", () => {
+  expect(snakerize(null)).toEqual(null);
+  expect(snakerize(undefined)).toEqual(undefined);
+});
