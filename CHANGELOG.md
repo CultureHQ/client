@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Add the listInvites command for hitting the corresponding API endpoint.
 - Add deactivateUser and reactivateUser commands.
+- Add the updateUser command.
 
 ## [0.0.5] - 2017-10-01
 ### Added

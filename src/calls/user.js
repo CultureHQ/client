@@ -51,5 +51,11 @@ export default object =>
       signInCall(params).then(response => {
         state.signIn(response.apiKey.token);
         return response;
-      })
+      }),
+
+    updateUser: apiCall({
+      method: "patch",
+      path: "/users/:userId",
+      optionalParams: ["name", "email"]
+    })
   });

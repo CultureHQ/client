@@ -75,7 +75,8 @@ describe("with a signed in user", () => {
       password: "password"
     },
     sendInvite: { email: "foo" },
-    updateOrganization: { orgId: "foo", name: "foo" }
+    updateOrganization: { orgId: "foo", name: "foo" },
+    updateUser: { userId: "foo", name: "foo", email: "foo" }
   };
 
   Object.keys(actions).forEach(action => {
