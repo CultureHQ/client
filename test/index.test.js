@@ -44,46 +44,51 @@ describe("with a signed in user", () => {
   });
 
   const actions = {
-    changePassword: { password: "foo" },
-    createEvent: {
-      name: "Test event",
-      details: "This is a test event",
-      startsAt: "2017-01-01",
-      endsAt: "2018-01-01",
-      eventType: "Social"
-    },
-    createOrganization: { name: "foo" },
-    createRSVP: {
-      eventId: 12345,
-      responseType: "accepted",
-      extra: "This is a test commment"
-    },
-    deactivateUser: { userId: "foo" },
-    deleteOrganization: { orgId: "foo" },
-    getOrganization: { orgId: "foo" },
-    getProfile: {},
-    getUser: { userId: 1 },
-    listInvites: {},
-    listOrganizations: {},
-    listUserEvents: { userId: 1 },
-    listUsers: {},
-    reactivateUser: { userId: "foo" },
-    registerUser: { token: "token", name: "Kevin", password: "password" },
-    requestPasswordReset: { email: "email" },
-    resetPassword: { token: "foo", password: "password" },
-    sendInvite: { email: "foo" },
-    updateOrganization: { orgId: "foo", name: "foo" },
-    updateUser: {
-      userId: "foo",
-      name: "foo",
-      email: "foo",
-      departmentIds: [1, 2, 3]
+    changePassword: ["password"],
+    createComment: ["eventId", "body"],
+    createDepartment: ["name"],
+    createEvent: ["name", "details", "startsAt", "endsAt", "eventType"],
+    createOrganization: ["name"],
+    createRSVP: { eventId: "foo", responseType: "accepted", extra: "foo" },
+    deactivateUser: ["userId"],
+    deleteComment: ["eventId", "commentId"],
+    deleteDepartment: ["dptId"],
+    deleteOrganization: ["orgId"],
+    getComment: ["eventId", "commentId"],
+    getDepartment: ["dptId"],
+    getOrganization: ["orgId"],
+    getProfile: [],
+    getUser: ["userId"],
+    listComments: ["eventId"],
+    listDepartments: [],
+    listInvites: [],
+    listOrganizations: [],
+    listUserEvents: ["userId"],
+    listUsers: [],
+    reactivateUser: ["userId"],
+    registerUser: ["token", "name", "password"],
+    requestPasswordReset: ["email"],
+    resetPassword: ["token", "password"],
+    sendInvite: ["email"],
+    updateComment: ["eventId", "commentId", "body"],
+    updateDepartment: ["dptId", "name"],
+    updateOrganization: ["orgId", "name"],
+    updateUser: ["userId", "name", "email", "departmentIds"]
+  };
+
+  const createParams = keys => {
+    if (typeof keys.forEach === "undefined") {
+      return keys;
     }
+
+    const params = {};
+    keys.forEach(key => (params[key] = "foo"));
+    return params;
   };
 
   Object.keys(actions).forEach(action => {
     test(`can ${action}`, async () => {
-      const response = await CultureHQ[action](actions[action]);
+      const response = await CultureHQ[action](createParams(actions[action]));
       expect(response).toEqual({ number });
     });
   });
