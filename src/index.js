@@ -19,6 +19,9 @@ inviteCalls(CultureHQ);
 import organizationCalls from "./calls/organization";
 organizationCalls(CultureHQ);
 
+import passwordCalls from "./calls/password";
+passwordCalls(CultureHQ);
+
 import userCalls from "./calls/user";
 userCalls(CultureHQ);
 

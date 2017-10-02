@@ -69,6 +69,8 @@ describe("with a signed in user", () => {
     listUsers: {},
     reactivateUser: { userId: "foo" },
     registerUser: { token: "token", name: "Kevin", password: "password" },
+    requestPasswordReset: { email: "email" },
+    resetPassword: { token: "foo", password: "password" },
     sendInvite: { email: "foo" },
     updateOrganization: { orgId: "foo", name: "foo" },
     updateUser: {
@@ -103,6 +105,8 @@ test("fails when required parameters aren't given", async () => {
     "createOrganization",
     "createRSVP",
     "registerUser",
+    "requestPasswordReset",
+    "resetPassword",
     "sendInvite",
     "signIn",
     "updateOrganization"

@@ -9,12 +9,6 @@ const signInCall = apiCall({
 
 export default object =>
   Object.assign(object, {
-    changePassword: apiCall({
-      method: "patch",
-      path: "/password",
-      expectedParams: ["password"]
-    }),
-
     deactivateUser: apiCall({
       method: "delete",
       path: "/users/:userId/deactivations"
