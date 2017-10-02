@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Added
 - Add requestPasswordReset and resetPassword commands for a "Forgot Password" flow.
+- Add the comment CRUD actions.
+
+### Changed
+- Fixed the department calls such that they're actually added to the singleton CultureHQ object.
 
 ## [0.0.6] - 2017-10-01
 ### Added

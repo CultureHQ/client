@@ -10,6 +10,12 @@ const CultureHQ = {
   }
 };
 
+import commentCalls from "./calls/comment";
+commentCalls(CultureHQ);
+
+import departmentCalls from "./calls/department";
+departmentCalls(CultureHQ);
+
 import eventCalls from "./calls/event";
 eventCalls(CultureHQ);
 
