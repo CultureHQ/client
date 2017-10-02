@@ -19,6 +19,9 @@ departmentCalls(CultureHQ);
 import eventCalls from "./calls/event";
 eventCalls(CultureHQ);
 
+import feedbackCalls from "./calls/feedback";
+feedbackCalls(CultureHQ);
+
 import inviteCalls from "./calls/invite";
 inviteCalls(CultureHQ);
 
