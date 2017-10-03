@@ -14,7 +14,7 @@ export default object =>
       path: "/feedbacks/:feedbackId"
     }),
 
-    listFeedback: apiCall({
+    listFeedbacks: apiCall({
       method: "get",
       path: "/feedbacks",
       optionalParams: ["page"]

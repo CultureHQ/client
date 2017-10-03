@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ### Changed
 - Refactored tests to automatically detect new API calls and test them.
+- Make the routes more consistent with their id names by changing orgId to organizationId and dptId to departmentId.
 
 ## [0.0.7] - 2017-10-02
 ### Added
