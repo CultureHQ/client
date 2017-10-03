@@ -2,7 +2,7 @@ import network from "./network";
 import state from "./state";
 
 export default options => {
-  return actualParams => {
+  const apiCall = actualParams => {
     if (typeof actualParams !== "object") {
       actualParams = {};
     }
@@ -18,7 +18,7 @@ export default options => {
     if (typeof options.expectedParams !== "undefined") {
       options.expectedParams.forEach(param => {
         if (!actualParams.hasOwnProperty(param)) {
-          throw new Error(`Required parameter ${param} not given`);
+          throw new Error(`Expected parameter ${param} not given`);
         }
       });
     }
@@ -28,4 +28,7 @@ export default options => {
       params: actualParams
     });
   };
+
+  Object.assign(apiCall, options);
+  return apiCall;
 };

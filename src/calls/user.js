@@ -1,11 +1,4 @@
 import apiCall from "../api-call";
-import state from "../state";
-
-const signInCall = apiCall({
-  method: "post",
-  path: "/api_keys",
-  expectedParams: ["email", "password"]
-});
 
 export default object =>
   Object.assign(object, {
@@ -14,9 +7,15 @@ export default object =>
       path: "/users/:userId/deactivations"
     }),
 
-    getProfile: apiCall({ method: "get", path: "/profile" }),
+    getProfile: apiCall({
+      method: "get",
+      path: "/profile"
+    }),
 
-    getUser: apiCall({ method: "get", path: "/users/:userId" }),
+    getUser: apiCall({
+      method: "get",
+      path: "/users/:userId"
+    }),
 
     listUsers: apiCall({
       method: "get",
@@ -40,12 +39,6 @@ export default object =>
       path: "/invites",
       expectedParams: ["email"]
     }),
-
-    signIn: params =>
-      signInCall(params).then(response => {
-        state.signIn(response.apiKey.token);
-        return response;
-      }),
 
     updateUser: apiCall({
       method: "patch",
