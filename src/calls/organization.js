@@ -5,7 +5,8 @@ export default object =>
     createOrganization: apiCall({
       method: "post",
       path: "/admin/organizations",
-      expectedParams: ["name"]
+      expectedParams: ["name"],
+      optionalParams: ["primaryColor", "secondaryColor"]
     }),
 
     deleteOrganization: apiCall({
@@ -27,6 +28,6 @@ export default object =>
     updateOrganization: apiCall({
       method: "patch",
       path: "/admin/organizations/:organizationId",
-      expectedParams: ["name"]
+      optionalParams: ["name", "primaryColor", "secondaryColor"]
     })
   });
