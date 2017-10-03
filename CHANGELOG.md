@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Add reward CRUD actions.
 - Add redemption CRUD actions.
+- Add announcement CRUD actions.
 
 ### Changed
 - Refactored tests to automatically detect new API calls and test them.
