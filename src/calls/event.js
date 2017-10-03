@@ -1,12 +1,5 @@
 import apiCall from "../api-call";
 
-const createRSVPCall = apiCall({
-  method: "post",
-  path: "/events/:eventId/rsvps",
-  expectedParams: ["responseType"],
-  optionalParams: ["extra"]
-});
-
 export default object =>
   Object.assign(object, {
     createEvent: apiCall({
@@ -16,19 +9,27 @@ export default object =>
       optionalParams: ["sponsored"]
     }),
 
-    createRSVP: params => {
-      const responseTypes = ["declined", "interested", "accepted"];
-      if (responseTypes.indexOf(params.responseType) === -1) {
-        throw new Error(
-          "responseType parameter must be one of " + responseTypes.join(", ")
-        );
-      }
-      return createRSVPCall(params);
-    },
+    createRSVP: apiCall({
+      method: "post",
+      path: "/events/:eventId/rsvps",
+      expectedParams: ["responseType"],
+      optionalParams: ["extra"]
+    }),
 
-    getEvent: apiCall({ method: "get", path: "/events/:eventId" }),
+    getEvent: apiCall({
+      method: "get",
+      path: "/events/:eventId"
+    }),
 
-    listEvents: apiCall({ method: "get", path: "/events" }),
+    listEvents: apiCall({
+      method: "get",
+      path: "/events",
+      optionalParams: ["page"]
+    }),
 
-    listUserEvents: apiCall({ method: "get", path: "/users/:userId/events" })
+    listUserEvents: apiCall({
+      method: "get",
+      path: "/users/:userId/events",
+      optionalParams: ["page"]
+    })
   });

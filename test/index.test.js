@@ -30,9 +30,6 @@ test("signs in and reports signed in status correctly", async () => {
 
 describe("with a signed in user", () => {
   const apiCaller = caller({});
-  const paramOverrides = {
-    createRSVP: { responseType: "accepted" }
-  };
 
   Object.keys(apiCaller).forEach(callName => {
     const number = Math.random();
@@ -46,10 +43,6 @@ describe("with a signed in user", () => {
 
     if (typeof apiCall.expectedParams !== "undefined") {
       apiCall.expectedParams.forEach(key => (params[key] = "foo"));
-    }
-
-    if (typeof paramOverrides[callName] !== "undefined") {
-      Object.assign(params, paramOverrides[callName]);
     }
 
     test(`can ${callName}`, async () => {
@@ -98,10 +91,11 @@ describe("contains the expected calls", () => {
 
     test(`CultureHQ object contains calls for the ${entityName} entity`, () => {
       const entityPattern = new RegExp(entityName);
-      const matched =
-        Object.keys(CultureHQ).filter(callName => entityPattern.test(callName));
+      const matched = Object.keys(CultureHQ).filter(callName =>
+        entityPattern.test(callName)
+      );
 
       expect(matched.length).toBeGreaterThanOrEqual(1);
-    })
+    });
   });
 });

@@ -10,12 +10,12 @@ export default object =>
 
     deleteDepartment: apiCall({
       method: "delete",
-      path: "/departments/:dptId"
+      path: "/departments/:departmentId"
     }),
 
     getDepartment: apiCall({
       method: "get",
-      path: "/departments/:dptId"
+      path: "/departments/:departmentId"
     }),
 
     listDepartments: apiCall({
@@ -26,7 +26,7 @@ export default object =>
 
     updateDepartment: apiCall({
       method: "patch",
-      path: "/departments/:dptId",
+      path: "/departments/:departmentId",
       optionalParams: ["name"]
     })
   });
