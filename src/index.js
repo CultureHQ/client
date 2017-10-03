@@ -31,6 +31,9 @@ organizationCalls(CultureHQ);
 import passwordCalls from "./calls/password";
 passwordCalls(CultureHQ);
 
+import rewardCalls from "./calls/reward";
+rewardCalls(CultureHQ);
+
 import userCalls from "./calls/user";
 userCalls(CultureHQ);
 
