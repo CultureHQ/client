@@ -1,41 +1,28 @@
 import state from "./state";
+import caller from "./caller";
+import apiCall from "./api-call";
 
-const CultureHQ = {
+const signInCallOptions = {
+  method: "post",
+  path: "/api_keys",
+  expectedParams: ["email", "password"]
+};
+
+const CultureHQ = caller({
   isSignedIn: () => {
     return state.isSignedIn();
   },
 
+  signIn: params =>
+    apiCall(signInCallOptions)(params).then(response => {
+      state.signIn(response.apiKey.token);
+      return response;
+    }),
+
   signOut: () => {
     state.signOut();
   }
-};
-
-import commentCalls from "./calls/comment";
-commentCalls(CultureHQ);
-
-import departmentCalls from "./calls/department";
-departmentCalls(CultureHQ);
-
-import eventCalls from "./calls/event";
-eventCalls(CultureHQ);
-
-import feedbackCalls from "./calls/feedback";
-feedbackCalls(CultureHQ);
-
-import inviteCalls from "./calls/invite";
-inviteCalls(CultureHQ);
-
-import organizationCalls from "./calls/organization";
-organizationCalls(CultureHQ);
-
-import passwordCalls from "./calls/password";
-passwordCalls(CultureHQ);
-
-import rewardCalls from "./calls/reward";
-rewardCalls(CultureHQ);
-
-import userCalls from "./calls/user";
-userCalls(CultureHQ);
+});
 
 if (window) {
   window.CultureHQ = CultureHQ;

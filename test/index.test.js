@@ -1,5 +1,8 @@
+import fs from "fs";
+
 import createServer from "./create-server";
 import CultureHQ from "../src/index";
+import caller from "../src/caller";
 
 afterEach(() => {
   CultureHQ.signOut();
@@ -26,109 +29,79 @@ test("signs in and reports signed in status correctly", async () => {
 });
 
 describe("with a signed in user", () => {
-  let server, number;
+  const apiCaller = caller({});
+  const paramOverrides = {
+    createRSVP: { responseType: "accepted" }
+  };
 
-  beforeEach(async () => {
-    number = Math.random();
-    server = createServer([
+  Object.keys(apiCaller).forEach(callName => {
+    const number = Math.random();
+    const server = createServer([
       { status: 200, body: { apiKey: { token: "baz" } } },
       { status: 200, body: { number } }
     ]);
-    server.listen(3000);
-
-    await CultureHQ.signIn({ email: "foo", password: "bar" });
-  });
-
-  afterEach(() => {
-    server.close();
-  });
-
-  const actions = {
-    changePassword: ["password"],
-    createComment: ["eventId", "body"],
-    createDepartment: ["name"],
-    createEvent: ["name", "details", "startsAt", "endsAt", "eventType"],
-    createFeedback: ["body", "anonymous"],
-    createOrganization: ["name"],
-    createReward: ["name", "points"],
-    createRSVP: { eventId: "foo", responseType: "accepted", extra: "foo" },
-    deactivateUser: ["userId"],
-    deleteComment: ["eventId", "commentId"],
-    deleteDepartment: ["dptId"],
-    deleteOrganization: ["orgId"],
-    deleteReward: ["rewardId"],
-    getComment: ["eventId", "commentId"],
-    getDepartment: ["dptId"],
-    getFeedback: ["feedbackId"],
-    getOrganization: ["orgId"],
-    getProfile: [],
-    getReward: ["rewardId"],
-    getUser: ["userId"],
-    listComments: ["eventId"],
-    listDepartments: [],
-    listFeedback: [],
-    listInvites: [],
-    listOrganizations: [],
-    listRewards: [],
-    listUserEvents: ["userId"],
-    listUsers: [],
-    reactivateUser: ["userId"],
-    registerUser: ["token", "name", "password"],
-    requestPasswordReset: ["email"],
-    resetPassword: ["token", "password"],
-    reviewFeedback: ["feedbackId"],
-    sendInvite: ["email"],
-    updateComment: ["eventId", "commentId", "body"],
-    updateDepartment: ["dptId", "name"],
-    updateOrganization: ["orgId", "name"],
-    updateReward: ["name", "points", "description"],
-    updateUser: ["userId", "name", "email", "departmentIds"]
-  };
-
-  const createParams = keys => {
-    if (typeof keys.forEach === "undefined") {
-      return keys;
-    }
 
     const params = {};
-    keys.forEach(key => (params[key] = "foo"));
-    return params;
-  };
+    const apiCall = CultureHQ[callName];
 
-  Object.keys(actions).forEach(action => {
-    test(`can ${action}`, async () => {
-      const response = await CultureHQ[action](createParams(actions[action]));
-      expect(response).toEqual({ number });
+    if (typeof apiCall.expectedParams !== "undefined") {
+      apiCall.expectedParams.forEach(key => (params[key] = "foo"));
+    }
+
+    if (typeof paramOverrides[callName] !== "undefined") {
+      Object.assign(params, paramOverrides[callName]);
+    }
+
+    test(`can ${callName}`, async () => {
+      server.listen(3000);
+
+      try {
+        await CultureHQ.signIn({ email: "foo", password: "bar" });
+        const response = await CultureHQ[callName](params);
+        expect(response).toEqual({ number });
+      } finally {
+        server.close();
+      }
     });
   });
 });
 
-test("fails when required parameters aren't given", async () => {
-  const server = createServer({
-    status: 200,
-    body: { apiKey: { token: "baz" } }
+describe("with an action that expects parameters", () => {
+  Object.keys(CultureHQ).forEach(callName => {
+    const expectedParams = CultureHQ[callName].expectedParams;
+
+    if (typeof expectedParams !== "undefined") {
+      test(`cannot call ${callName} without expected parameters`, async () => {
+        const server = createServer({
+          status: 200,
+          body: { apiKey: { token: "baz" } }
+        });
+        server.listen(3000);
+
+        try {
+          await CultureHQ.signIn({ email: "foo", password: "bar" });
+        } finally {
+          server.close();
+        }
+
+        const pattern = new RegExp(`parameter ${expectedParams[0]}`);
+        expect(() => CultureHQ[callName]({})).toThrow(pattern);
+      });
+    }
   });
-  server.listen(3000);
+});
 
-  await CultureHQ.signIn({ email: "foo", password: "bar" });
-  server.close();
+describe("contains the expected calls", () => {
+  fs.readdirSync("./src/calls").forEach(filepath => {
+    let entityName = filepath.replace(".js", "");
+    entityName = `${entityName[0].toUpperCase()}${entityName.slice(1)}`;
 
-  const requiredParamActions = [
-    "changePassword",
-    "createEvent",
-    "createOrganization",
-    "createRSVP",
-    "registerUser",
-    "requestPasswordReset",
-    "resetPassword",
-    "sendInvite",
-    "signIn",
-    "updateOrganization"
-  ];
+    test(`CultureHQ object contains calls for the ${entityName} entity`, () => {
+      const entityPattern = new RegExp(entityName);
+      const matched =
+        Object.keys(CultureHQ).filter(callName => entityPattern.test(callName));
 
-  requiredParamActions.forEach(action => {
-    expect(() => {
-      CultureHQ[action]();
-    }).toThrow();
+      expect(matched.length).toBeGreaterThanOrEqual(1);
+    })
   });
 });
