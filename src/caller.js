@@ -3,6 +3,7 @@ import announcementCalls from "./calls/announcement";
 import commentCalls from "./calls/comment";
 import departmentCalls from "./calls/department";
 import eventCalls from "./calls/event";
+import expenseCalls from "./calls/expense";
 import feedbackCalls from "./calls/feedback";
 import inviteCalls from "./calls/invite";
 import organizationCalls from "./calls/organization";
@@ -17,6 +18,7 @@ export default object => {
   commentCalls(object);
   departmentCalls(object);
   eventCalls(object);
+  expenseCalls(object);
   feedbackCalls(object);
   inviteCalls(object);
   organizationCalls(object);
