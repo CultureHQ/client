@@ -49,6 +49,6 @@ export default object =>
     updateUser: apiCall({
       method: "patch",
       path: "/users/:userId",
-      optionalParams: ["name", "email", "departmentIds"]
+      optionalParams: ["name", "email", "departmentIds", "interestList"]
     })
   });

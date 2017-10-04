@@ -5,6 +5,7 @@ import departmentCalls from "./calls/department";
 import eventCalls from "./calls/event";
 import expenseCalls from "./calls/expense";
 import feedbackCalls from "./calls/feedback";
+import interestCalls from "./calls/interest";
 import inviteCalls from "./calls/invite";
 import organizationCalls from "./calls/organization";
 import passwordCalls from "./calls/password";
@@ -20,6 +21,7 @@ export default object => {
   eventCalls(object);
   expenseCalls(object);
   feedbackCalls(object);
+  interestCalls(object);
   inviteCalls(object);
   organizationCalls(object);
   passwordCalls(object);

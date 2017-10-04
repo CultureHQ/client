@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Add analytics calls for users and events.
 - Add gamificationEnabled optional parameter to organizations CRUD.
 - Add expense CRUD actions.
+- Add interest fetching and deleting actions.
 
 ### Changed
 - Refactored tests to automatically detect new API calls and test them.
