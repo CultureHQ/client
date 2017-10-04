@@ -4,14 +4,14 @@ export default object =>
   Object.assign(object, {
     createComment: apiCall({
       method: "post",
-      path: "/events/:eventId/comment",
+      path: "/events/:eventId/comments",
       expectedParams: ["body"],
       optionalParams: ["parentCommentId"]
     }),
 
     deleteComment: apiCall({
       method: "delete",
-      path: "/events/:eventId/comment"
+      path: "/events/:eventId/comments/:commentId"
     }),
 
     getComment: apiCall({
