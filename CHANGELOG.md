@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Add incrementUserPoints action.
 - Add the optional color parameters to organizations CRUD.
 - Add analytics calls for users and events.
+- Add gamificationEnabled optional parameter to organizations CRUD.
 
 ### Changed
 - Refactored tests to automatically detect new API calls and test them.
