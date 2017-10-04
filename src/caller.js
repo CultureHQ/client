@@ -1,3 +1,4 @@
+import analyticsCalls from "./calls/analytics";
 import announcementCalls from "./calls/announcement";
 import commentCalls from "./calls/comment";
 import departmentCalls from "./calls/department";
@@ -11,6 +12,7 @@ import rewardCalls from "./calls/reward";
 import userCalls from "./calls/user";
 
 export default object => {
+  analyticsCalls(object);
   announcementCalls(object);
   commentCalls(object);
   departmentCalls(object);
