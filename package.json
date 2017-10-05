@@ -2,11 +2,11 @@
   "name": "culturehq-client",
   "version": "0.0.9",
   "description": "A JavaScript client that wraps the CultureHQ API",
-  "main": "dist/index.min.js",
+  "main": "dist/lib.min.js",
   "scripts": {
     "build": "webpack --config webpack.config.babel.js --progress",
     "test": "jest",
-    "cleanup": "find . | grep -v node_modules | grep -v '^./build/' | grep '^.*js$' | xargs $(npm bin)/prettier --write"
+    "cleanup": "find . | grep -v node_modules | grep -v '^./dist/' | grep '^.*js$' | xargs $(npm bin)/prettier --write"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/CultureHQ/client#readme",
   "dependencies": {
-    "node-fetch": "^1.7.2",
+    "isomorphic-fetch": "^2.2.1",
     "store": "^2.0.12"
   },
   "devDependencies": {
