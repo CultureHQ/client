@@ -48,6 +48,30 @@ test("snakerizes the keys of basic objects", () => {
   });
 });
 
+test("handle arrays properly", () => {
+  const object = {
+    alphaBeta: [
+      {
+        gammaDelta: "epsilon"
+      },
+      {
+        zetaEta: "iota"
+      }
+    ]
+  };
+
+  expect(snakerize(object)).toEqual({
+    alpha_beta: [
+      {
+        gamma_delta: "epsilon"
+      },
+      {
+        zeta_eta: "iota"
+      }
+    ]
+  });
+});
+
 test("handles null or undefined objects", () => {
   expect(snakerize(null)).toEqual(null);
   expect(snakerize(undefined)).toEqual(undefined);

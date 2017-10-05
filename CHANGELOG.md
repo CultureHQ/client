@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ### Changed
 - Changed the name of the `createRSVP` action to `createEventRsvp` to be more consistent.
+- Properly handle arrays coming back to be transformed as arrays.
 
 ## [0.0.9] - 2017-10-05
 ### Changed
