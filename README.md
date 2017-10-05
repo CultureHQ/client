@@ -10,7 +10,7 @@ Install the dependencies with `yarn`.
 
 ## Building
 
-You can build the client with `yarn build`. This will generate a new `build/index.js`. To build uglified, run under `NODE_ENV=production`.
+You can build the client with `yarn build`. This will generate a new `dist/index.js`.
 
 ## Testing
 
