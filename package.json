@@ -1,10 +1,10 @@
 {
   "name": "culturehq-client",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A JavaScript client that wraps the CultureHQ API",
-  "main": "src/index.js",
+  "main": "dist/index.min.js",
   "scripts": {
-    "build": "bin/build",
+    "build": "webpack --config webpack.config.babel.js --progress",
     "test": "jest",
     "cleanup": "find . | grep -v node_modules | grep -v '^./build/' | grep '^.*js$' | xargs $(npm bin)/prettier --write"
   },
