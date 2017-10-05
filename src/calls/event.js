@@ -9,13 +9,6 @@ export default object =>
       optionalParams: ["sponsored"]
     }),
 
-    createRSVP: apiCall({
-      method: "post",
-      path: "/events/:eventId/rsvps",
-      expectedParams: ["responseType"],
-      optionalParams: ["extra"]
-    }),
-
     getEvent: apiCall({
       method: "get",
       path: "/events/:eventId"
