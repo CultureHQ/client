@@ -85,16 +85,27 @@ describe("with an action that expects parameters", () => {
 });
 
 describe("contains the expected calls", () => {
-  fs.readdirSync("./src/calls").forEach(filepath => {
+  const filepathToEntityName = filepath => {
     let entityName = filepath.replace(".js", "");
     entityName = `${entityName[0].toUpperCase()}${entityName.slice(1)}`;
+
+    const pattern = /\-([a-z])/;
+    let match;
+
+    while ((match = pattern.exec(entityName)) !== null) {
+      entityName = entityName.replace(match[0], match[1].toUpperCase());
+    }
+    return entityName;
+  };
+
+  fs.readdirSync("./src/calls").forEach(filepath => {
+    const entityName = filepathToEntityName(filepath);
 
     test(`CultureHQ object contains calls for the ${entityName} entity`, () => {
       const entityPattern = new RegExp(entityName);
       const matched = Object.keys(CultureHQ).filter(callName =>
         entityPattern.test(callName)
       );
-
       expect(matched.length).toBeGreaterThanOrEqual(1);
     });
   });
