@@ -11,6 +11,7 @@ import organizationCalls from "./calls/organization";
 import passwordCalls from "./calls/password";
 import redemptionCalls from "./calls/redemption";
 import rewardCalls from "./calls/reward";
+import rsvpCalls from "./calls/rsvp";
 import userCalls from "./calls/user";
 
 export default object => {
@@ -27,6 +28,7 @@ export default object => {
   passwordCalls(object);
   redemptionCalls(object);
   rewardCalls(object);
+  rsvpCalls(object);
   userCalls(object);
   return object;
 };
