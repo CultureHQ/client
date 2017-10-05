@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.9] - 2017-10-05
+### Changed
+- The main entry point for this package has been changed to the `dist` directory for usage as a library.
+
 ## [0.0.8] - 2017-10-04
 ### Added
 - Add reward CRUD actions.

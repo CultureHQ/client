@@ -24,8 +24,4 @@ const CultureHQ = caller({
   }
 });
 
-if (window) {
-  window.CultureHQ = CultureHQ;
-}
-
 export default CultureHQ;
