@@ -25,6 +25,10 @@ const modifyKeys = (object, stringFunc) => {
     return object;
   }
 
+  if (Array.isArray(object)) {
+    return object.map(element => modifyKeys(element, stringFunc));
+  }
+
   let modified = {};
   let value;
 
