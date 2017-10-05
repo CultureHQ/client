@@ -286,7 +286,11 @@ var _reward = __webpack_require__(20);
 
 var _reward2 = _interopRequireDefault(_reward);
 
-var _user = __webpack_require__(21);
+var _rsvp = __webpack_require__(21);
+
+var _rsvp2 = _interopRequireDefault(_rsvp);
+
+var _user = __webpack_require__(22);
 
 var _user2 = _interopRequireDefault(_user);
 
@@ -306,6 +310,7 @@ exports.default = function (object) {
   (0, _password2.default)(object);
   (0, _redemption2.default)(object);
   (0, _reward2.default)(object);
+  (0, _rsvp2.default)(object);
   (0, _user2.default)(object);
   return object;
 };
@@ -468,6 +473,12 @@ var snakerizeString = function snakerizeString(string) {
 var modifyKeys = function modifyKeys(object, stringFunc) {
   if ((typeof object === "undefined" ? "undefined" : _typeof(object)) !== "object" || object === null) {
     return object;
+  }
+
+  if (Array.isArray(object)) {
+    return object.map(function (element) {
+      return modifyKeys(element, stringFunc);
+    });
   }
 
   var modified = {};
@@ -664,13 +675,6 @@ exports.default = function (object) {
       path: "/events",
       expectedParams: ["name", "details", "startsAt", "endsAt", "eventType"],
       optionalParams: ["sponsored"]
-    }),
-
-    createRSVP: (0, _apiCall2.default)({
-      method: "post",
-      path: "/events/:eventId/rsvps",
-      expectedParams: ["responseType"],
-      optionalParams: ["extra"]
     }),
 
     getEvent: (0, _apiCall2.default)({
@@ -1043,6 +1047,52 @@ exports.default = function (object) {
 
 /***/ }),
 /* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _apiCall = __webpack_require__(0);
+
+var _apiCall2 = _interopRequireDefault(_apiCall);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (object) {
+  return Object.assign(object, {
+    createEventRsvp: (0, _apiCall2.default)({
+      method: "post",
+      path: "/events/:eventId/rsvps",
+      expectedParams: ["responseType"],
+      optionalParams: ["extra"]
+    }),
+
+    getEventRsvp: (0, _apiCall2.default)({
+      method: "get",
+      path: "/events/:eventId/rsvps/:rsvpId"
+    }),
+
+    listEventRsvps: (0, _apiCall2.default)({
+      method: "get",
+      path: "/events/:eventId/rsvps",
+      optionalParams: ["page"]
+    }),
+
+    updateEventRsvp: (0, _apiCall2.default)({
+      method: "patch",
+      path: "/events/:eventId/rsvps/:rsvpId",
+      expectedParams: ["responseType"],
+      optionalParams: ["extra"]
+    })
+  });
+};
+
+/***/ }),
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
