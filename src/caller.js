@@ -8,6 +8,7 @@ import feedbackCalls from "./calls/feedback";
 import interestCalls from "./calls/interest";
 import inviteCalls from "./calls/invite";
 import organizationCalls from "./calls/organization";
+import organizationValueCalls from "./calls/organization-value";
 import passwordCalls from "./calls/password";
 import redemptionCalls from "./calls/redemption";
 import rewardCalls from "./calls/reward";
@@ -25,6 +26,7 @@ export default object => {
   interestCalls(object);
   inviteCalls(object);
   organizationCalls(object);
+  organizationValueCalls(object);
   passwordCalls(object);
   redemptionCalls(object);
   rewardCalls(object);
