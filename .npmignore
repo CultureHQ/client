@@ -1,8 +1,6 @@
 /.babelrc
 /.travis.yml
-/sample.html
 /webpack.config.babel.js
-/bin
 /src
 /test
 /yarn.lock

@@ -4,7 +4,7 @@ import nodeExternals from "webpack-node-externals";
 module.exports = {
   entry: "./src/index.js",
   output: {
-    filename: "./dist/index.min.js",
+    filename: "./dist/index.js",
     library: "CultureHQ",
     libraryTarget: "umd"
   },
@@ -16,8 +16,5 @@ module.exports = {
   },
   target: "node",
   externals: [nodeExternals()],
-  plugins: [
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.optimize.UglifyJsPlugin()
-  ]
+  plugins: [new webpack.optimize.ModuleConcatenationPlugin()]
 };
