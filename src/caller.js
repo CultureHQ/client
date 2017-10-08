@@ -10,6 +10,7 @@ import inviteCalls from "./calls/invite";
 import organizationCalls from "./calls/organization";
 import organizationValueCalls from "./calls/organization-value";
 import passwordCalls from "./calls/password";
+import recognitionCalls from "./calls/recognition";
 import redemptionCalls from "./calls/redemption";
 import rewardCalls from "./calls/reward";
 import rsvpCalls from "./calls/rsvp";
@@ -28,6 +29,7 @@ export default object => {
   organizationCalls(object);
   organizationValueCalls(object);
   passwordCalls(object);
+  recognitionCalls(object);
   redemptionCalls(object);
   rewardCalls(object);
   rsvpCalls(object);
