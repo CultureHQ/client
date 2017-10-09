@@ -14,6 +14,9 @@ import recognitionCalls from "./calls/recognition";
 import redemptionCalls from "./calls/redemption";
 import rewardCalls from "./calls/reward";
 import rsvpCalls from "./calls/rsvp";
+import surveyCalls from "./calls/survey";
+import surveyItemCalls from "./calls/survey-item";
+import surveyItemResponseOptionCalls from "./calls/survey-item-response-option";
 import userCalls from "./calls/user";
 
 export default object => {
@@ -33,6 +36,9 @@ export default object => {
   redemptionCalls(object);
   rewardCalls(object);
   rsvpCalls(object);
+  surveyCalls(object);
+  surveyItemCalls(object);
+  surveyItemResponseOptionCalls(object);
   userCalls(object);
   return object;
 };

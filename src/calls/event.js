@@ -6,7 +6,7 @@ export default object =>
       method: "post",
       path: "/events",
       expectedParams: ["name", "details", "startsAt", "endsAt", "eventType"],
-      optionalParams: ["sponsored"]
+      optionalParams: ["sponsored", "surveyId"]
     }),
 
     getEvent: apiCall({
