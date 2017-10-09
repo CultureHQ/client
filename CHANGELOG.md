@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Add organization value CRUD actions.
 - Add recognition CRUD actions.
+- Add CRUD actions for surveys, survey items, and survey item response options.
 
 ## [0.0.11] - 2017-10-05
 ### Changed
