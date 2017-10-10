@@ -102,10 +102,11 @@ exports.default = function (options) {
       actualParams = {};
     }
 
+    var callPath = options.path;
     Object.keys(actualParams).forEach(function (param) {
       var needle = ":" + param;
-      if (options.path.indexOf(needle) !== -1) {
-        options.path = options.path.replace(needle, actualParams[param]);
+      if (callPath.indexOf(needle) !== -1) {
+        callPath = callPath.replace(needle, actualParams[param]);
         delete actualParams[param];
       }
     });
@@ -118,7 +119,7 @@ exports.default = function (options) {
       });
     }
 
-    return _network2.default[options.method](options.path, {
+    return _network2.default[options.method](callPath, {
       token: _state2.default.getToken(),
       params: actualParams
     });
@@ -274,23 +275,47 @@ var _organization = __webpack_require__(17);
 
 var _organization2 = _interopRequireDefault(_organization);
 
-var _password = __webpack_require__(18);
+var _organizationValue = __webpack_require__(18);
+
+var _organizationValue2 = _interopRequireDefault(_organizationValue);
+
+var _password = __webpack_require__(19);
 
 var _password2 = _interopRequireDefault(_password);
 
-var _redemption = __webpack_require__(19);
+var _recognition = __webpack_require__(20);
+
+var _recognition2 = _interopRequireDefault(_recognition);
+
+var _redemption = __webpack_require__(21);
 
 var _redemption2 = _interopRequireDefault(_redemption);
 
-var _reward = __webpack_require__(20);
+var _reward = __webpack_require__(22);
 
 var _reward2 = _interopRequireDefault(_reward);
 
-var _rsvp = __webpack_require__(21);
+var _rsvp = __webpack_require__(23);
 
 var _rsvp2 = _interopRequireDefault(_rsvp);
 
-var _user = __webpack_require__(22);
+var _survey = __webpack_require__(24);
+
+var _survey2 = _interopRequireDefault(_survey);
+
+var _surveyItem = __webpack_require__(25);
+
+var _surveyItem2 = _interopRequireDefault(_surveyItem);
+
+var _surveyItemResponseOption = __webpack_require__(26);
+
+var _surveyItemResponseOption2 = _interopRequireDefault(_surveyItemResponseOption);
+
+var _surveyUserItemResponse = __webpack_require__(27);
+
+var _surveyUserItemResponse2 = _interopRequireDefault(_surveyUserItemResponse);
+
+var _user = __webpack_require__(28);
 
 var _user2 = _interopRequireDefault(_user);
 
@@ -307,10 +332,16 @@ exports.default = function (object) {
   (0, _interest2.default)(object);
   (0, _invite2.default)(object);
   (0, _organization2.default)(object);
+  (0, _organizationValue2.default)(object);
   (0, _password2.default)(object);
+  (0, _recognition2.default)(object);
   (0, _redemption2.default)(object);
   (0, _reward2.default)(object);
   (0, _rsvp2.default)(object);
+  (0, _survey2.default)(object);
+  (0, _surveyItem2.default)(object);
+  (0, _surveyItemResponseOption2.default)(object);
+  (0, _surveyUserItemResponse2.default)(object);
   (0, _user2.default)(object);
   return object;
 };
@@ -674,7 +705,7 @@ exports.default = function (object) {
       method: "post",
       path: "/events",
       expectedParams: ["name", "details", "startsAt", "endsAt", "eventType"],
-      optionalParams: ["sponsored"]
+      optionalParams: ["sponsored", "surveyId"]
     }),
 
     getEvent: (0, _apiCall2.default)({
@@ -922,6 +953,55 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = function (object) {
   return Object.assign(object, {
+    createOrganizationValue: (0, _apiCall2.default)({
+      method: "post",
+      path: "/organization_values",
+      expectedParams: ["name"]
+    }),
+
+    deleteOrganizationValue: (0, _apiCall2.default)({
+      method: "delete",
+      path: "/organization_values/:organizationValueId"
+    }),
+
+    getOrganizationValue: (0, _apiCall2.default)({
+      method: "get",
+      path: "/organization_values/:organizationValueId"
+    }),
+
+    listOrganizationValues: (0, _apiCall2.default)({
+      method: "get",
+      path: "/organization_values",
+      optionalParams: ["page"]
+    }),
+
+    updateOrganizationValue: (0, _apiCall2.default)({
+      method: "patch",
+      path: "/organization_values/:organizationValueId",
+      expectedParams: ["name"]
+    })
+  });
+};
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _apiCall = __webpack_require__(0);
+
+var _apiCall2 = _interopRequireDefault(_apiCall);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (object) {
+  return Object.assign(object, {
     changePassword: (0, _apiCall2.default)({
       method: "patch",
       path: "/password",
@@ -943,7 +1023,69 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 19 */
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _apiCall = __webpack_require__(0);
+
+var _apiCall2 = _interopRequireDefault(_apiCall);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (object) {
+  return Object.assign(object, {
+    createRecognition: (0, _apiCall2.default)({
+      method: "post",
+      path: "/recognitions",
+      expectedParams: ["body", "userIds"]
+    }),
+
+    deleteRecognition: (0, _apiCall2.default)({
+      method: "delete",
+      path: "/recognitions/:recognitionId"
+    }),
+
+    getRecognition: (0, _apiCall2.default)({
+      method: "get",
+      path: "/recognitions/:recognitionId"
+    }),
+
+    listOrganizationValueRecognitions: (0, _apiCall2.default)({
+      method: "get",
+      path: "/organization_values/:organizationValueId/recognitions",
+      optionalParams: ["page"]
+    }),
+
+    listRecognitions: (0, _apiCall2.default)({
+      method: "get",
+      path: "/recognitions",
+      optionalParams: ["page"]
+    }),
+
+    listUserRecognitions: (0, _apiCall2.default)({
+      method: "get",
+      path: "/users/:userId/recognitions",
+      optionalParams: ["page"]
+    }),
+
+    updateRecognition: (0, _apiCall2.default)({
+      method: "patch",
+      path: "/recognitions/:recognitionId",
+      expectedParams: ["body"],
+      optionalParams: ["userIds"]
+    })
+  });
+};
+
+/***/ }),
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -996,7 +1138,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1046,7 +1188,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1092,7 +1234,203 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 22 */
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _apiCall = __webpack_require__(0);
+
+var _apiCall2 = _interopRequireDefault(_apiCall);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (object) {
+  return Object.assign(object, {
+    createSurvey: (0, _apiCall2.default)({
+      method: "post",
+      path: "/surveys",
+      expectedParams: ["title"]
+    }),
+
+    deleteSurvey: (0, _apiCall2.default)({
+      method: "delete",
+      path: "/surveys/:surveyId"
+    }),
+
+    getSurvey: (0, _apiCall2.default)({
+      method: "get",
+      path: "/surveys/:surveyId"
+    }),
+
+    listSurveys: (0, _apiCall2.default)({
+      method: "get",
+      path: "/surveys",
+      optionalParams: ["page"]
+    }),
+
+    listSurveyResults: (0, _apiCall2.default)({
+      method: "get",
+      path: "/surveys/:survey_id/survey_results"
+    }),
+
+    updateSurvey: (0, _apiCall2.default)({
+      method: "patch",
+      path: "/surveys/:surveyId",
+      optionalParams: ["title"]
+    })
+  });
+};
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _apiCall = __webpack_require__(0);
+
+var _apiCall2 = _interopRequireDefault(_apiCall);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (object) {
+  return Object.assign(object, {
+    createSurveyItem: (0, _apiCall2.default)({
+      method: "post",
+      path: "/surveys/:surveyId/survey_items",
+      expectedParams: ["prompt", "itemType"],
+      optionalParams: ["minRange", "maxRange"]
+    }),
+
+    deleteSurveyItem: (0, _apiCall2.default)({
+      method: "delete",
+      path: "/survey_items/:surveyItemId"
+    }),
+
+    getSurveyItem: (0, _apiCall2.default)({
+      method: "get",
+      path: "/survey_items/:surveyItemId"
+    }),
+
+    listSurveyItems: (0, _apiCall2.default)({
+      method: "get",
+      path: "/surveys/:surveyId/survey_items",
+      optionalParams: ["page"]
+    }),
+
+    updateSurvey: (0, _apiCall2.default)({
+      method: "patch",
+      path: "/survey_items/:surveyItem",
+      optionalParams: ["prompt", "itemType", "minRange", "maxRange"]
+    })
+  });
+};
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _apiCall = __webpack_require__(0);
+
+var _apiCall2 = _interopRequireDefault(_apiCall);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (object) {
+  return Object.assign(object, {
+    createSurveyItemResponseOption: (0, _apiCall2.default)({
+      method: "post",
+      path: "/survey_items/:surveyItemId/survey_item_response_options",
+      expectedParams: ["body"]
+    }),
+
+    deleteSurveyItemResponseOption: (0, _apiCall2.default)({
+      method: "delete",
+      path: "/survey_item_response_options/:surveyItemResponseOptionId"
+    }),
+
+    getSurveyItemResponseOption: (0, _apiCall2.default)({
+      method: "get",
+      path: "/survey_item_response_options/:surveyItemResponseOptionId"
+    }),
+
+    listSurveyItemResponseOptions: (0, _apiCall2.default)({
+      method: "get",
+      path: "/survey_items/:surveyItemId/survey_item_response_options",
+      optionalParams: ["page"]
+    }),
+
+    updateSurveyItemResponseOption: (0, _apiCall2.default)({
+      method: "patch",
+      path: "/survey_item_response_options/:surveyItemResponseOptionId",
+      optionalParams: ["body"]
+    })
+  });
+};
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _apiCall = __webpack_require__(0);
+
+var _apiCall2 = _interopRequireDefault(_apiCall);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (object) {
+  return Object.assign(object, {
+    createSurveyUserItemResponse: (0, _apiCall2.default)({
+      method: "post",
+      path: "/survey_items/:surveyItemId/survey_user_item_response",
+      expectedParams: ["body", "surveyItemResponseOptionIds"]
+    }),
+
+    deleteSurveyUserItemResponse: (0, _apiCall2.default)({
+      method: "delete",
+      path: "/survey_items/:surveyItemId/survey_user_item_response"
+    }),
+
+    getSurveyUserItemResponse: (0, _apiCall2.default)({
+      method: "get",
+      path: "/survey_items/:surveyItemId/survey_user_item_response"
+    }),
+
+    updateSurveyUserItemResponse: (0, _apiCall2.default)({
+      method: "patch",
+      path: "/survey_items/:surveyItemId/survey_user_item_response",
+      optionalParams: ["body", "surveyItemResponseOptionIds"]
+    })
+  });
+};
+
+/***/ }),
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
