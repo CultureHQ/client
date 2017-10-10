@@ -3,8 +3,8 @@ import apiCall from "../api-call";
 export default object =>
   Object.assign(object, {
     deactivateUser: apiCall({
-      method: "delete",
-      path: "/users/:userId/deactivations"
+      method: "post",
+      path: "/users/:userId/deactivation"
     }),
 
     getProfile: apiCall({
@@ -30,8 +30,8 @@ export default object =>
     }),
 
     reactivateUser: apiCall({
-      method: "post",
-      path: "/users/:userId/deactivations"
+      method: "delete",
+      path: "/users/:userId/deactivation"
     }),
 
     registerUser: apiCall({
