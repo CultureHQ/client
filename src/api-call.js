@@ -7,10 +7,11 @@ export default options => {
       actualParams = {};
     }
 
+    let callPath = options.path;
     Object.keys(actualParams).forEach(param => {
       const needle = `:${param}`;
-      if (options.path.indexOf(needle) !== -1) {
-        options.path = options.path.replace(needle, actualParams[param]);
+      if (callPath.indexOf(needle) !== -1) {
+        callPath = callPath.replace(needle, actualParams[param]);
         delete actualParams[param];
       }
     });
@@ -23,7 +24,7 @@ export default options => {
       });
     }
 
-    return network[options.method](options.path, {
+    return network[options.method](callPath, {
       token: state.getToken(),
       params: actualParams
     });

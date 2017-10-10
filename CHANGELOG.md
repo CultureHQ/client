@@ -11,6 +11,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Add CRUD actions for surveys, survey items, and survey item response options.
 - Add CRUD actions for listing survey results and managing responses to survey items.
 
+### Changed
+- Fixed accidentally assigning back to call path which was preventing binds in paths being used more than once.
+
 ## [0.0.11] - 2017-10-05
 ### Changed
 - Properly handle arrays coming back to be transformed as arrays.
