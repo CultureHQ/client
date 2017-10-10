@@ -20,6 +20,11 @@ export default object =>
       optionalParams: ["page"]
     }),
 
+    listEventSurveyResults: apiCall({
+      method: "get",
+      path: "/events/:eventId/survey_results"
+    }),
+
     listUserEvents: apiCall({
       method: "get",
       path: "/users/:userId/events",
