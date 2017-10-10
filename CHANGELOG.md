@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Actions for listing survey results attached to events and for responding to surveys attached to events.
 
+### Changed
+- Fixed the deactivation endpoint for users.
+
 ## [0.0.12] - 2017-10-10
 ### Added
 - Add organization value CRUD actions.
