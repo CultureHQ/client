@@ -17,6 +17,7 @@ import rsvpCalls from "./calls/rsvp";
 import surveyCalls from "./calls/survey";
 import surveyItemCalls from "./calls/survey-item";
 import surveyItemResponseOptionCalls from "./calls/survey-item-response-option";
+import surveyUserItemResponseCalls from "./calls/survey-user-item-response";
 import userCalls from "./calls/user";
 
 export default object => {
@@ -39,6 +40,7 @@ export default object => {
   surveyCalls(object);
   surveyItemCalls(object);
   surveyItemResponseOptionCalls(object);
+  surveyUserItemResponseCalls(object);
   userCalls(object);
   return object;
 };
