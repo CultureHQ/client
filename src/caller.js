@@ -10,6 +10,7 @@ import inviteCalls from "./calls/invite";
 import organizationCalls from "./calls/organization";
 import organizationValueCalls from "./calls/organization-value";
 import passwordCalls from "./calls/password";
+import pointConfigCalls from "./calls/point-config";
 import recognitionCalls from "./calls/recognition";
 import redemptionCalls from "./calls/redemption";
 import rewardCalls from "./calls/reward";
@@ -33,6 +34,7 @@ export default object => {
   organizationCalls(object);
   organizationValueCalls(object);
   passwordCalls(object);
+  pointConfigCalls(object);
   recognitionCalls(object);
   redemptionCalls(object);
   rewardCalls(object);
