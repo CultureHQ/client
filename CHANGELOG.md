@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Added
 - Actions for listing survey results attached to events and for responding to surveys attached to events.
+- Actions for getting and updating the point configuration for an organization.
 
 ### Changed
 - Fixed the deactivation endpoint for users.
