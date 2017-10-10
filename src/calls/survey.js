@@ -24,6 +24,11 @@ export default object =>
       optionalParams: ["page"]
     }),
 
+    listSurveyResults: apiCall({
+      method: "get",
+      path: "/surveys/:survey_id/survey_results"
+    }),
+
     updateSurvey: apiCall({
       method: "patch",
       path: "/surveys/:surveyId",
