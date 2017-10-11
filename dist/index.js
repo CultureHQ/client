@@ -121,7 +121,8 @@ exports.default = function (options) {
 
     return _network2.default[options.method](callPath, {
       token: _state2.default.getToken(),
-      params: actualParams
+      params: actualParams,
+      multipart: options.multipart || false
     });
   };
 
@@ -199,17 +200,21 @@ var signInCallOptions = {
   expectedParams: ["email", "password"]
 };
 
+var signIn = function signIn(params) {
+  return (0, _apiCall2.default)(signInCallOptions)(params).then(function (response) {
+    _state2.default.signIn(response.apiKey.token);
+    return response;
+  });
+};
+
+Object.assign(signIn, signInCallOptions);
+
 var CultureHQ = (0, _caller2.default)({
   isSignedIn: function isSignedIn() {
     return _state2.default.isSignedIn();
   },
 
-  signIn: function signIn(params) {
-    return (0, _apiCall2.default)(signInCallOptions)(params).then(function (response) {
-      _state2.default.signIn(response.apiKey.token);
-      return response;
-    });
-  },
+  signIn: signIn,
 
   signOut: function signOut() {
     _state2.default.signOut();
@@ -287,39 +292,43 @@ var _pointConfig = __webpack_require__(20);
 
 var _pointConfig2 = _interopRequireDefault(_pointConfig);
 
-var _recognition = __webpack_require__(21);
+var _profile = __webpack_require__(21);
+
+var _profile2 = _interopRequireDefault(_profile);
+
+var _recognition = __webpack_require__(22);
 
 var _recognition2 = _interopRequireDefault(_recognition);
 
-var _redemption = __webpack_require__(22);
+var _redemption = __webpack_require__(23);
 
 var _redemption2 = _interopRequireDefault(_redemption);
 
-var _reward = __webpack_require__(23);
+var _reward = __webpack_require__(24);
 
 var _reward2 = _interopRequireDefault(_reward);
 
-var _rsvp = __webpack_require__(24);
+var _rsvp = __webpack_require__(25);
 
 var _rsvp2 = _interopRequireDefault(_rsvp);
 
-var _survey = __webpack_require__(25);
+var _survey = __webpack_require__(26);
 
 var _survey2 = _interopRequireDefault(_survey);
 
-var _surveyItem = __webpack_require__(26);
+var _surveyItem = __webpack_require__(27);
 
 var _surveyItem2 = _interopRequireDefault(_surveyItem);
 
-var _surveyItemResponseOption = __webpack_require__(27);
+var _surveyItemResponseOption = __webpack_require__(28);
 
 var _surveyItemResponseOption2 = _interopRequireDefault(_surveyItemResponseOption);
 
-var _surveyUserItemResponse = __webpack_require__(28);
+var _surveyUserItemResponse = __webpack_require__(29);
 
 var _surveyUserItemResponse2 = _interopRequireDefault(_surveyUserItemResponse);
 
-var _user = __webpack_require__(29);
+var _user = __webpack_require__(30);
 
 var _user2 = _interopRequireDefault(_user);
 
@@ -339,6 +348,7 @@ exports.default = function (object) {
   (0, _organizationValue2.default)(object);
   (0, _password2.default)(object);
   (0, _pointConfig2.default)(object);
+  (0, _profile2.default)(object);
   (0, _recognition2.default)(object);
   (0, _redemption2.default)(object);
   (0, _reward2.default)(object);
@@ -407,24 +417,36 @@ if (process.env.NODE_ENV === "production") {
   apiHost = "http://localhost:3000";
 }
 
-var buildRequest = function buildRequest(method, path, options) {
-  var url = new URL("" + apiHost + path);
-  var reqOptions = {
-    headers: { "Content-Type": "application/json" }
-  };
+var buildHeaders = function buildHeaders(options) {
+  var headers = {};
 
+  if (!options.multipart) {
+    headers["Content-Type"] = "application/json";
+  }
   if (typeof options.token === "string" && options.token.length) {
-    reqOptions.headers["Authorization"] = "token " + options.token;
+    headers["Authorization"] = "token " + options.token;
   }
 
+  return headers;
+};
+
+var buildRequest = function buildRequest(method, path, options) {
+  var url = new URL("" + apiHost + path);
+  var reqOptions = { headers: buildHeaders(options), method: method };
+  var params = (0, _stringCase.snakerize)(options.params);
+
   if (method === "GET") {
-    var params = (0, _stringCase.snakerize)(options.params);
     Object.keys(params).forEach(function (key) {
       return url.searchParams.append(key, params[key]);
     });
+  } else if (options.multipart) {
+    var formData = new FormData();
+    Object.keys(params).forEach(function (key) {
+      return formData.append(key, params[key]);
+    });
+    reqOptions.body = formData;
   } else {
-    reqOptions.method = method;
-    reqOptions.body = JSON.stringify((0, _stringCase.snakerize)(options.params));
+    reqOptions.body = JSON.stringify(params);
   }
 
   return { url: url.href, options: reqOptions };
@@ -506,6 +528,10 @@ var snakerizeString = function snakerizeString(string) {
   return string;
 };
 
+var shouldRecurse = function shouldRecurse(value) {
+  return typeof value !== "undefined" && (value.toString() === "[object Object]" || Array.isArray(value));
+};
+
 var modifyKeys = function modifyKeys(object, stringFunc) {
   if ((typeof object === "undefined" ? "undefined" : _typeof(object)) !== "object" || object === null) {
     return object;
@@ -522,11 +548,12 @@ var modifyKeys = function modifyKeys(object, stringFunc) {
 
   Object.keys(object).forEach(function (key) {
     value = object[key];
-    if ((typeof value === "undefined" ? "undefined" : _typeof(value)) === "object") {
+    if (shouldRecurse(value)) {
       value = modifyKeys(value, stringFunc);
     }
     modified[stringFunc(key)] = value;
   });
+
   return modified;
 };
 
@@ -1059,13 +1086,46 @@ exports.default = function (object) {
     updatePointConfig: (0, _apiCall2.default)({
       method: "patch",
       path: "/point_config",
-      optionalParams: ["firstEvent", "eventWithTwoNew", "profilePicture", "interests", "widgetSurvey", "eventSurvey", "recognition"]
+      optionalParams: ["firstEvent", "eventWithTwoNew", "avatar", "interests", "widgetSurvey", "eventSurvey", "recognition"]
     })
   });
 };
 
 /***/ }),
 /* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _apiCall = __webpack_require__(0);
+
+var _apiCall2 = _interopRequireDefault(_apiCall);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (object) {
+  return Object.assign(object, {
+    getProfile: (0, _apiCall2.default)({
+      method: "get",
+      path: "/profile"
+    }),
+
+    updateProfile: (0, _apiCall2.default)({
+      method: "patch",
+      path: "/profile",
+      multipart: true,
+      optionalParams: ["name", "email", "departmentIds", "interestList", "avatar"]
+    })
+  });
+};
+
+/***/ }),
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1127,7 +1187,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1180,7 +1240,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1230,7 +1290,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1276,7 +1336,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1331,7 +1391,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1381,7 +1441,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1430,7 +1490,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1494,7 +1554,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1559,7 +1619,8 @@ exports.default = function (object) {
     updateUser: (0, _apiCall2.default)({
       method: "patch",
       path: "/users/:userId",
-      optionalParams: ["name", "email", "departmentIds", "interestList"]
+      multipart: true,
+      optionalParams: ["name", "email", "departmentIds", "interestList", "avatar"]
     })
   });
 };
