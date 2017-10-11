@@ -76,3 +76,9 @@ test("handles null or undefined objects", () => {
   expect(snakerize(null)).toEqual(null);
   expect(snakerize(undefined)).toEqual(undefined);
 });
+
+test("does not attempt to modify non-simple objects", () => {
+  class Foobar {}
+  const foobar = new Foobar();
+  expect(snakerize(foobar)).toEqual(foobar);
+});
