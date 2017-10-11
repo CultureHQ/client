@@ -13,7 +13,7 @@ export default object =>
       optionalParams: [
         "firstEvent",
         "eventWithTwoNew",
-        "profilePicture",
+        "avatar",
         "interests",
         "widgetSurvey",
         "eventSurvey",

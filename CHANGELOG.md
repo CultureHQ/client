@@ -9,6 +9,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - The ability to handle multipart uploads.
 - An `updateProfile` call because the `updateUser` action on the API is now locked down to admins.
 
+### Changed
+- The point config parameter `profilePicture` was changed to `avatar`.
+
 ## [0.0.13] - 2017-10-11
 ### Added
 - Actions for listing survey results attached to events and for responding to surveys attached to events.
