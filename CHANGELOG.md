@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- The ability to handle multipart uploads.
+- An `updateProfile` call because the `updateUser` action on the API is now locked down to admins.
 
 ## [0.0.13] - 2017-10-11
 ### Added
