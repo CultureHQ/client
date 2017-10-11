@@ -5,7 +5,8 @@ export default object =>
     createSurvey: apiCall({
       method: "post",
       path: "/surveys",
-      expectedParams: ["title"]
+      expectedParams: ["title"],
+      optionalParams: ["points"]
     }),
 
     deleteSurvey: apiCall({
@@ -32,6 +33,6 @@ export default object =>
     updateSurvey: apiCall({
       method: "patch",
       path: "/surveys/:surveyId",
-      optionalParams: ["title"]
+      optionalParams: ["title", "points"]
     })
   });

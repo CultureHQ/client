@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Fixed the deactivation endpoint for users.
 - Fixed the point increments endpoint.
 - Fixed the name of the point config param from `hobbies` to `interests`.
+- Adding the optional points param to surveys.
 
 ## [0.0.12] - 2017-10-10
 ### Added
