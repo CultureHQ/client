@@ -283,39 +283,43 @@ var _password = __webpack_require__(19);
 
 var _password2 = _interopRequireDefault(_password);
 
-var _recognition = __webpack_require__(20);
+var _pointConfig = __webpack_require__(20);
+
+var _pointConfig2 = _interopRequireDefault(_pointConfig);
+
+var _recognition = __webpack_require__(21);
 
 var _recognition2 = _interopRequireDefault(_recognition);
 
-var _redemption = __webpack_require__(21);
+var _redemption = __webpack_require__(22);
 
 var _redemption2 = _interopRequireDefault(_redemption);
 
-var _reward = __webpack_require__(22);
+var _reward = __webpack_require__(23);
 
 var _reward2 = _interopRequireDefault(_reward);
 
-var _rsvp = __webpack_require__(23);
+var _rsvp = __webpack_require__(24);
 
 var _rsvp2 = _interopRequireDefault(_rsvp);
 
-var _survey = __webpack_require__(24);
+var _survey = __webpack_require__(25);
 
 var _survey2 = _interopRequireDefault(_survey);
 
-var _surveyItem = __webpack_require__(25);
+var _surveyItem = __webpack_require__(26);
 
 var _surveyItem2 = _interopRequireDefault(_surveyItem);
 
-var _surveyItemResponseOption = __webpack_require__(26);
+var _surveyItemResponseOption = __webpack_require__(27);
 
 var _surveyItemResponseOption2 = _interopRequireDefault(_surveyItemResponseOption);
 
-var _surveyUserItemResponse = __webpack_require__(27);
+var _surveyUserItemResponse = __webpack_require__(28);
 
 var _surveyUserItemResponse2 = _interopRequireDefault(_surveyUserItemResponse);
 
-var _user = __webpack_require__(28);
+var _user = __webpack_require__(29);
 
 var _user2 = _interopRequireDefault(_user);
 
@@ -334,6 +338,7 @@ exports.default = function (object) {
   (0, _organization2.default)(object);
   (0, _organizationValue2.default)(object);
   (0, _password2.default)(object);
+  (0, _pointConfig2.default)(object);
   (0, _recognition2.default)(object);
   (0, _redemption2.default)(object);
   (0, _reward2.default)(object);
@@ -719,6 +724,11 @@ exports.default = function (object) {
       optionalParams: ["page"]
     }),
 
+    listEventSurveyResults: (0, _apiCall2.default)({
+      method: "get",
+      path: "/events/:eventId/survey_results"
+    }),
+
     listUserEvents: (0, _apiCall2.default)({
       method: "get",
       path: "/users/:userId/events",
@@ -1041,6 +1051,38 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = function (object) {
   return Object.assign(object, {
+    getPointConfig: (0, _apiCall2.default)({
+      method: "get",
+      path: "/point_config"
+    }),
+
+    updatePointConfig: (0, _apiCall2.default)({
+      method: "patch",
+      path: "/point_config",
+      optionalParams: ["firstEvent", "eventWithTwoNew", "profilePicture", "interests", "widgetSurvey", "eventSurvey", "recognition"]
+    })
+  });
+};
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _apiCall = __webpack_require__(0);
+
+var _apiCall2 = _interopRequireDefault(_apiCall);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (object) {
+  return Object.assign(object, {
     createRecognition: (0, _apiCall2.default)({
       method: "post",
       path: "/recognitions",
@@ -1085,7 +1127,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1138,7 +1180,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1188,7 +1230,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1234,7 +1276,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1255,7 +1297,8 @@ exports.default = function (object) {
     createSurvey: (0, _apiCall2.default)({
       method: "post",
       path: "/surveys",
-      expectedParams: ["title"]
+      expectedParams: ["title"],
+      optionalParams: ["points"]
     }),
 
     deleteSurvey: (0, _apiCall2.default)({
@@ -1282,13 +1325,13 @@ exports.default = function (object) {
     updateSurvey: (0, _apiCall2.default)({
       method: "patch",
       path: "/surveys/:surveyId",
-      optionalParams: ["title"]
+      optionalParams: ["title", "points"]
     })
   });
 };
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1338,7 +1381,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1387,7 +1430,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1403,11 +1446,21 @@ var _apiCall2 = _interopRequireDefault(_apiCall);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 exports.default = function (object) {
-  return Object.assign(object, {
+  var _Object$assign;
+
+  return Object.assign(object, (_Object$assign = {
     createSurveyUserItemResponse: (0, _apiCall2.default)({
       method: "post",
       path: "/survey_items/:surveyItemId/survey_user_item_response",
+      expectedParams: ["body", "surveyItemResponseOptionIds"]
+    }),
+
+    createEventSurveyUserItemResponse: (0, _apiCall2.default)({
+      method: "post",
+      path: "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response",
       expectedParams: ["body", "surveyItemResponseOptionIds"]
     }),
 
@@ -1416,21 +1469,32 @@ exports.default = function (object) {
       path: "/survey_items/:surveyItemId/survey_user_item_response"
     }),
 
+    deleteEventSurveyUserItemResponse: (0, _apiCall2.default)({
+      method: "delete",
+      path: "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response"
+    }),
+
     getSurveyUserItemResponse: (0, _apiCall2.default)({
       method: "get",
       path: "/survey_items/:surveyItemId/survey_user_item_response"
-    }),
-
-    updateSurveyUserItemResponse: (0, _apiCall2.default)({
-      method: "patch",
-      path: "/survey_items/:surveyItemId/survey_user_item_response",
-      optionalParams: ["body", "surveyItemResponseOptionIds"]
     })
-  });
+
+  }, _defineProperty(_Object$assign, "getSurveyUserItemResponse", (0, _apiCall2.default)({
+    method: "get",
+    path: "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response"
+  })), _defineProperty(_Object$assign, "updateSurveyUserItemResponse", (0, _apiCall2.default)({
+    method: "patch",
+    path: "/survey_items/:surveyItemId/survey_user_item_response",
+    optionalParams: ["body", "surveyItemResponseOptionIds"]
+  })), _defineProperty(_Object$assign, "updateEventSurveyUserItemResponse", (0, _apiCall2.default)({
+    method: "patch",
+    path: "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response",
+    optionalParams: ["body", "surveyItemResponseOptionIds"]
+  })), _Object$assign));
 };
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1449,8 +1513,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = function (object) {
   return Object.assign(object, {
     deactivateUser: (0, _apiCall2.default)({
-      method: "delete",
-      path: "/users/:userId/deactivations"
+      method: "post",
+      path: "/users/:userId/deactivation"
     }),
 
     getProfile: (0, _apiCall2.default)({
@@ -1465,7 +1529,7 @@ exports.default = function (object) {
 
     incrementUserPoints: (0, _apiCall2.default)({
       method: "post",
-      path: "/users/:userId/points_increments",
+      path: "/users/:userId/point_increments",
       expectedParams: ["points"]
     }),
 
@@ -1476,8 +1540,8 @@ exports.default = function (object) {
     }),
 
     reactivateUser: (0, _apiCall2.default)({
-      method: "post",
-      path: "/users/:userId/deactivations"
+      method: "delete",
+      path: "/users/:userId/deactivation"
     }),
 
     registerUser: (0, _apiCall2.default)({
