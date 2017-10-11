@@ -14,7 +14,7 @@ export default object =>
         "firstEvent",
         "eventWithTwoNew",
         "profilePicture",
-        "hobbies",
+        "interests",
         "widgetSurvey",
         "eventSurvey",
         "recognition"
