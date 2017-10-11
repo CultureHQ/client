@@ -9,24 +9,34 @@ if (process.env.NODE_ENV === "production") {
   apiHost = "http://localhost:3000";
 }
 
-const buildRequest = (method, path, options) => {
-  let url = new URL(`${apiHost}${path}`);
-  let reqOptions = {
-    headers: { "Content-Type": "application/json" }
-  };
+const buildHeaders = options => {
+  let headers = {};
 
+  if (!options.multipart) {
+    headers["Content-Type"] = "application/json";
+  }
   if (typeof options.token === "string" && options.token.length) {
-    reqOptions.headers["Authorization"] = `token ${options.token}`;
+    headers["Authorization"] = `token ${options.token}`;
   }
 
+  return headers;
+};
+
+const buildRequest = (method, path, options) => {
+  let url = new URL(`${apiHost}${path}`);
+  let reqOptions = { headers: buildHeaders(options), method };
+  const params = snakerize(options.params);
+
   if (method === "GET") {
-    const params = snakerize(options.params);
     Object.keys(params).forEach(key =>
       url.searchParams.append(key, params[key])
     );
+  } else if (options.multipart) {
+    const formData = new FormData();
+    Object.keys(params).forEach(key => formData.append(key, params[key]));
+    reqOptions.body = formData;
   } else {
-    reqOptions.method = method;
-    reqOptions.body = JSON.stringify(snakerize(options.params));
+    reqOptions.body = JSON.stringify(params);
   }
 
   return { url: url.href, options: reqOptions };

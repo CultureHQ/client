@@ -8,16 +8,20 @@ const signInCallOptions = {
   expectedParams: ["email", "password"]
 };
 
+const signIn = params =>
+  apiCall(signInCallOptions)(params).then(response => {
+    state.signIn(response.apiKey.token);
+    return response;
+  });
+
+Object.assign(signIn, signInCallOptions);
+
 const CultureHQ = caller({
   isSignedIn: () => {
     return state.isSignedIn();
   },
 
-  signIn: params =>
-    apiCall(signInCallOptions)(params).then(response => {
-      state.signIn(response.apiKey.token);
-      return response;
-    }),
+  signIn,
 
   signOut: () => {
     state.signOut();

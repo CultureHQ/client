@@ -26,7 +26,8 @@ export default options => {
 
     return network[options.method](callPath, {
       token: state.getToken(),
-      params: actualParams
+      params: actualParams,
+      multipart: options.multipart || false
     });
   };
 

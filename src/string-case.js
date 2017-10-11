@@ -20,6 +20,10 @@ const snakerizeString = string => {
   return string;
 };
 
+const shouldRecurse = value =>
+  typeof value !== "undefined" &&
+  (value.toString() === "[object Object]" || Array.isArray(value));
+
 const modifyKeys = (object, stringFunc) => {
   if (typeof object !== "object" || object === null) {
     return object;
@@ -34,11 +38,12 @@ const modifyKeys = (object, stringFunc) => {
 
   Object.keys(object).forEach(key => {
     value = object[key];
-    if (typeof value === "object") {
+    if (shouldRecurse(value)) {
       value = modifyKeys(value, stringFunc);
     }
     modified[stringFunc(key)] = value;
   });
+
   return modified;
 };
 
