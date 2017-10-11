@@ -19,7 +19,7 @@ export default object =>
 
     incrementUserPoints: apiCall({
       method: "post",
-      path: "/users/:userId/points_increments",
+      path: "/users/:userId/point_increments",
       expectedParams: ["points"]
     }),
 
