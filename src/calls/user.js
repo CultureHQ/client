@@ -55,7 +55,8 @@ export default object =>
         "email",
         "departmentIds",
         "interestList",
-        "avatar"
+        "avatar",
+        "title"
       ]
     })
   });
