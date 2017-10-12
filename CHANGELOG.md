@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Actions for creating event photos.
 
+### Changed
+- Handle nested null in API call params.
+
 ## [0.0.14] - 2017-10-11
 ### Added
 - The ability to handle multipart uploads.
