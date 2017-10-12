@@ -7,14 +7,14 @@ export default object =>
       path: "/users/:userId/deactivation"
     }),
 
-    getProfile: apiCall({
-      method: "get",
-      path: "/profile"
-    }),
-
     getUser: apiCall({
       method: "get",
       path: "/users/:userId"
+    }),
+
+    getUserPointBreakdown: apiCall({
+      method: "get",
+      path: "/users/:userId/point_breakdown"
     }),
 
     incrementUserPoints: apiCall({
