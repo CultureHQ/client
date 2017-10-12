@@ -21,8 +21,7 @@ const snakerizeString = string => {
 };
 
 const shouldRecurse = value =>
-  typeof value !== "undefined" &&
-  (value.toString() === "[object Object]" || Array.isArray(value));
+  value && (value.toString() === "[object Object]" || Array.isArray(value));
 
 const modifyKeys = (object, stringFunc) => {
   if (typeof object !== "object" || object === null) {

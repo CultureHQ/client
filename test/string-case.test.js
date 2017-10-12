@@ -82,3 +82,7 @@ test("does not attempt to modify non-simple objects", () => {
   const foobar = new Foobar();
   expect(snakerize(foobar)).toEqual(foobar);
 });
+
+test("handles nested null", () => {
+  expect(snakerize({ alphaBeta: null })).toEqual({ alpha_beta: null });
+});
