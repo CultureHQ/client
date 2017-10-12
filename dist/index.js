@@ -288,47 +288,51 @@ var _password = __webpack_require__(19);
 
 var _password2 = _interopRequireDefault(_password);
 
-var _pointConfig = __webpack_require__(20);
+var _photo = __webpack_require__(20);
+
+var _photo2 = _interopRequireDefault(_photo);
+
+var _pointConfig = __webpack_require__(21);
 
 var _pointConfig2 = _interopRequireDefault(_pointConfig);
 
-var _profile = __webpack_require__(21);
+var _profile = __webpack_require__(22);
 
 var _profile2 = _interopRequireDefault(_profile);
 
-var _recognition = __webpack_require__(22);
+var _recognition = __webpack_require__(23);
 
 var _recognition2 = _interopRequireDefault(_recognition);
 
-var _redemption = __webpack_require__(23);
+var _redemption = __webpack_require__(24);
 
 var _redemption2 = _interopRequireDefault(_redemption);
 
-var _reward = __webpack_require__(24);
+var _reward = __webpack_require__(25);
 
 var _reward2 = _interopRequireDefault(_reward);
 
-var _rsvp = __webpack_require__(25);
+var _rsvp = __webpack_require__(26);
 
 var _rsvp2 = _interopRequireDefault(_rsvp);
 
-var _survey = __webpack_require__(26);
+var _survey = __webpack_require__(27);
 
 var _survey2 = _interopRequireDefault(_survey);
 
-var _surveyItem = __webpack_require__(27);
+var _surveyItem = __webpack_require__(28);
 
 var _surveyItem2 = _interopRequireDefault(_surveyItem);
 
-var _surveyItemResponseOption = __webpack_require__(28);
+var _surveyItemResponseOption = __webpack_require__(29);
 
 var _surveyItemResponseOption2 = _interopRequireDefault(_surveyItemResponseOption);
 
-var _surveyUserItemResponse = __webpack_require__(29);
+var _surveyUserItemResponse = __webpack_require__(30);
 
 var _surveyUserItemResponse2 = _interopRequireDefault(_surveyUserItemResponse);
 
-var _user = __webpack_require__(30);
+var _user = __webpack_require__(31);
 
 var _user2 = _interopRequireDefault(_user);
 
@@ -347,6 +351,7 @@ exports.default = function (object) {
   (0, _organization2.default)(object);
   (0, _organizationValue2.default)(object);
   (0, _password2.default)(object);
+  (0, _photo2.default)(object);
   (0, _pointConfig2.default)(object);
   (0, _profile2.default)(object);
   (0, _recognition2.default)(object);
@@ -529,7 +534,7 @@ var snakerizeString = function snakerizeString(string) {
 };
 
 var shouldRecurse = function shouldRecurse(value) {
-  return typeof value !== "undefined" && (value.toString() === "[object Object]" || Array.isArray(value));
+  return value && (value.toString() === "[object Object]" || Array.isArray(value));
 };
 
 var modifyKeys = function modifyKeys(object, stringFunc) {
@@ -1078,6 +1083,65 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = function (object) {
   return Object.assign(object, {
+    createEventPhoto: (0, _apiCall2.default)({
+      method: "post",
+      path: "/events/:eventId/photos",
+      multipart: true,
+      expectedParams: ["image"],
+      optionalParams: ["caption"]
+    }),
+
+    bulkCreateEventPhotos: (0, _apiCall2.default)({
+      method: "post",
+      path: "/events/:eventId/albums",
+      multipart: true,
+      expectedParams: ["images"]
+    }),
+
+    deleteEventPhoto: (0, _apiCall2.default)({
+      method: "delete",
+      path: "/events/:eventId/photos/:photoId"
+    }),
+
+    getEventPhoto: (0, _apiCall2.default)({
+      method: "get",
+      path: "/events/:eventId/photos/:photoId"
+    }),
+
+    listEventPhotos: (0, _apiCall2.default)({
+      method: "get",
+      path: "/events/:eventId/photos",
+      optionalParams: ["page"]
+    }),
+
+    updateEventPhoto: (0, _apiCall2.default)({
+      method: "patch",
+      path: "/events/:eventId/photos/:photoId",
+      multipart: true,
+      optionalParams: ["image", "caption"]
+    })
+  });
+};
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _apiCall = __webpack_require__(0);
+
+var _apiCall2 = _interopRequireDefault(_apiCall);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (object) {
+  return Object.assign(object, {
     getPointConfig: (0, _apiCall2.default)({
       method: "get",
       path: "/point_config"
@@ -1092,7 +1156,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1119,13 +1183,13 @@ exports.default = function (object) {
       method: "patch",
       path: "/profile",
       multipart: true,
-      optionalParams: ["name", "email", "departmentIds", "interestList", "avatar"]
+      optionalParams: ["name", "email", "departmentIds", "interestList", "avatar", "title"]
     })
   });
 };
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1187,7 +1251,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1228,7 +1292,7 @@ exports.default = function (object) {
 
     listRewardRedemptions: (0, _apiCall2.default)({
       method: "get",
-      path: "/rewards/:rewardId/redemptions/:redemptionId",
+      path: "/rewards/:rewardId/redemptions",
       optionalParams: ["page"]
     }),
 
@@ -1240,7 +1304,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1290,7 +1354,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1336,7 +1400,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1391,7 +1455,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1441,7 +1505,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1490,7 +1554,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1554,7 +1618,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1620,7 +1684,7 @@ exports.default = function (object) {
       method: "patch",
       path: "/users/:userId",
       multipart: true,
-      optionalParams: ["name", "email", "departmentIds", "interestList", "avatar"]
+      optionalParams: ["name", "email", "departmentIds", "interestList", "avatar", "title"]
     })
   });
 };
