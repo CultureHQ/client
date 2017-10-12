@@ -25,7 +25,7 @@ export default object =>
       optionalParams: ["page"]
     }),
 
-    updateSurvey: apiCall({
+    updateSurveyItem: apiCall({
       method: "patch",
       path: "/survey_items/:surveyItem",
       optionalParams: ["prompt", "itemType", "minRange", "maxRange"]
