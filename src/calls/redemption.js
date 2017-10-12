@@ -25,7 +25,7 @@ export default object =>
 
     listRewardRedemptions: apiCall({
       method: "get",
-      path: "/rewards/:rewardId/redemptions/:redemptionId",
+      path: "/rewards/:rewardId/redemptions",
       optionalParams: ["page"]
     }),
 
