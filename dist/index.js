@@ -1496,7 +1496,7 @@ exports.default = function (object) {
       optionalParams: ["page"]
     }),
 
-    updateSurvey: (0, _apiCall2.default)({
+    updateSurveyItem: (0, _apiCall2.default)({
       method: "patch",
       path: "/survey_items/:surveyItem",
       optionalParams: ["prompt", "itemType", "minRange", "maxRange"]
@@ -1641,14 +1641,24 @@ exports.default = function (object) {
       path: "/users/:userId/deactivation"
     }),
 
-    getProfile: (0, _apiCall2.default)({
-      method: "get",
-      path: "/profile"
-    }),
-
     getUser: (0, _apiCall2.default)({
       method: "get",
       path: "/users/:userId"
+    }),
+
+    getUserAttendedEvents: (0, _apiCall2.default)({
+      method: "get",
+      path: "/users/:userId/attended_events"
+    }),
+
+    getUserEventTypeBreakdown: (0, _apiCall2.default)({
+      method: "get",
+      path: "/users/:userId/event_type_breakdown"
+    }),
+
+    getUserPointBreakdown: (0, _apiCall2.default)({
+      method: "get",
+      path: "/users/:userId/point_breakdown"
     }),
 
     incrementUserPoints: (0, _apiCall2.default)({
