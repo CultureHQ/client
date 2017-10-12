@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - The `getUserPointBreakdown` call for generating pie charts based on historical user points.
 - The `getUserEventTypeBreakdown` call for generating pie charts based on historical user attendance.
+- The `getUserAttendedEvents` to get the past events that a user has attended.
 
 ## [0.0.15] - 2017-10-12
 ### Added

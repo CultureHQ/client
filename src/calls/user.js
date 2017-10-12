@@ -12,6 +12,11 @@ export default object =>
       path: "/users/:userId"
     }),
 
+    getUserAttendedEvents: apiCall({
+      method: "get",
+      path: "/users/:userId/attended_events"
+    }),
+
     getUserEventTypeBreakdown: apiCall({
       method: "get",
       path: "/users/:userId/event_type_breakdown"
