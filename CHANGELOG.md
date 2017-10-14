@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Changed
 - Modified the `surveyItem` param to be `surveyItemId` on the `updateSurveyItem` action to be consistent.
+- Build process should extract config from application code by having a `build/constants.js` that can define a webpack plugin.
 
 ## [0.0.16] - 2017-10-12
 ### Added
