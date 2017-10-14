@@ -1,7 +1,8 @@
 const constants = {
   API_HOST: {
     production: JSON.stringify("https://api.culturehq.net"),
-    development: JSON.stringify("http://localhost:3000")
+    development: JSON.stringify("http://localhost:3000"),
+    test: "http://localhost:8080"
   }
 };
 
@@ -17,4 +18,4 @@ constants.for = environment => {
   return envConstants;
 };
 
-export default constants;
+module.exports = constants;
