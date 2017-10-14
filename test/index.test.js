@@ -17,7 +17,7 @@ test("signs in and reports signed in status correctly", async () => {
     status: 200,
     body: { apiKey: { token: "baz" } }
   });
-  server.listen(3000);
+  server.listen(8080);
 
   try {
     const response = await CultureHQ.signIn({ email: "foo", password: "bar" });
@@ -46,7 +46,7 @@ describe("with a signed in user", () => {
     }
 
     test(`can ${callName}`, async () => {
-      server.listen(3000);
+      server.listen(8080);
 
       try {
         await CultureHQ.signIn({ email: "foo", password: "bar" });
@@ -69,7 +69,7 @@ describe("with an action that expects parameters", () => {
           status: 200,
           body: { apiKey: { token: "baz" } }
         });
-        server.listen(3000);
+        server.listen(8080);
 
         try {
           await CultureHQ.signIn({ email: "foo", password: "bar" });

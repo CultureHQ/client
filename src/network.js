@@ -1,14 +1,6 @@
 import "isomorphic-fetch";
 import { camelize, snakerize } from "./string-case";
 
-let apiHost;
-
-if (process.env.NODE_ENV === "production") {
-  apiHost = "https://api.culturehq.net";
-} else {
-  apiHost = "http://localhost:3000";
-}
-
 const buildHeaders = options => {
   let headers = {};
 
@@ -23,7 +15,7 @@ const buildHeaders = options => {
 };
 
 const buildRequest = (method, path, options) => {
-  let url = new URL(`${apiHost}${path}`);
+  let url = new URL(`${API_HOST}${path}`);
   let reqOptions = { headers: buildHeaders(options), method };
   const params = snakerize(options.params);
 
