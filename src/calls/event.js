@@ -46,5 +46,20 @@ export default object =>
     unsubscribeFromEventNotifications: apiCall({
       method: "delete",
       path: "/events/:eventId/event_notification_subscription"
+    }),
+
+    updateEvent: apiCall({
+      method: "patch",
+      path: "/events/:eventId",
+      optionalParams: [
+        "name",
+        "details",
+        "startsAt",
+        "endsAt",
+        "eventType",
+        "sponsored",
+        "surveyId",
+        "image"
+      ]
     })
   });
