@@ -32,6 +32,11 @@ export default object =>
       optionalParams: ["page"]
     }),
 
+    markEventAsSponsored: apiCall({
+      method: "post",
+      path: "/events/:eventId/event_sponsorship"
+    }),
+
     messageEventGuests: apiCall({
       method: "post",
       path: "/events/:eventId/event_notifications",
