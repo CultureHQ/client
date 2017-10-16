@@ -30,5 +30,11 @@ export default object =>
       method: "get",
       path: "/users/:userId/events",
       optionalParams: ["page"]
+    }),
+
+    messageEventGuests: apiCall({
+      method: "post",
+      path: "/events/:eventId/event_notifications",
+      expectedParams: ["body"]
     })
   });
