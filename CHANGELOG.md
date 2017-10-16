@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - The `getPointLeaderboard` call.
 - The `image` param on the `createEvent` call.
 - The `getPhotoGallery` call.
+- The `logo` param on the `createOrganization` and `updateOrganization` call.
 
 ### Changed
 - Modified the `surveyItem` param to be `surveyItemId` on the `updateSurveyItem` action to be consistent.
