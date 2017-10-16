@@ -21,6 +21,11 @@ export default object =>
       optionalParams: ["page"]
     }),
 
+    listEventsByOrganization: apiCall({
+      method: "get",
+      path: "/admin/events"
+    }),
+
     listEventSurveyResults: apiCall({
       method: "get",
       path: "/events/:eventId/survey_results"
