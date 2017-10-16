@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - The `getPointLeaderboard` call.
 - The `image` param on the `createEvent` call.
+- The `getPhotoGallery` call.
 
 ### Changed
 - Modified the `surveyItem` param to be `surveyItemId` on the `updateSurveyItem` action to be consistent.

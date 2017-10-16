@@ -27,6 +27,12 @@ export default object =>
       path: "/events/:eventId/photos/:photoId"
     }),
 
+    getPhotoGallery: apiCall({
+      method: "get",
+      path: "/gallery",
+      optionalParams: ["page", "range"]
+    }),
+
     listEventPhotos: apiCall({
       method: "get",
       path: "/events/:eventId/photos",
