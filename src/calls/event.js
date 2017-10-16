@@ -36,5 +36,15 @@ export default object =>
       method: "post",
       path: "/events/:eventId/event_notifications",
       expectedParams: ["body"]
+    }),
+
+    subscribeToEventNotifications: apiCall({
+      method: "post",
+      path: "/events/:eventId/event_notification_subscription"
+    }),
+
+    unsubscribeFromEventNotifications: apiCall({
+      method: "delete",
+      path: "/events/:eventId/event_notification_subscription"
     })
   });
