@@ -6,7 +6,12 @@ export default object =>
       method: "post",
       path: "/admin/organizations",
       expectedParams: ["name"],
-      optionalParams: ["primaryColor", "secondaryColor", "gamificationEnabled"]
+      optionalParams: [
+        "primaryColor",
+        "secondaryColor",
+        "gamificationEnabled",
+        "logo"
+      ]
     }),
 
     deleteOrganization: apiCall({
@@ -32,7 +37,8 @@ export default object =>
         "name",
         "primaryColor",
         "secondaryColor",
-        "gamificationEnabled"
+        "gamificationEnabled",
+        "logo"
       ]
     })
   });
