@@ -11,6 +11,7 @@ import organizationCalls from "./calls/organization";
 import organizationValueCalls from "./calls/organization-value";
 import passwordCalls from "./calls/password";
 import photoCalls from "./calls/photo";
+import photoTagCalls from "./calls/photo-tag";
 import pointConfigCalls from "./calls/point-config";
 import pointLeaderboardCalls from "./calls/point-leaderboard";
 import profileCalls from "./calls/profile";
@@ -38,6 +39,7 @@ export default object => {
   organizationValueCalls(object);
   passwordCalls(object);
   photoCalls(object);
+  photoTagCalls(object);
   pointConfigCalls(object);
   pointLeaderboardCalls(object);
   profileCalls(object);
