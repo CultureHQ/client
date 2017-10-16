@@ -5,8 +5,9 @@ export default object =>
     createEvent: apiCall({
       method: "post",
       path: "/events",
+      multipart: true,
       expectedParams: ["name", "details", "startsAt", "endsAt", "eventType"],
-      optionalParams: ["sponsored", "surveyId"]
+      optionalParams: ["sponsored", "surveyId", "image"]
     }),
 
     getEvent: apiCall({
