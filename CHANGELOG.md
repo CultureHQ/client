@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - The `getPhotoGallery` call.
 - The `logo` param on the `createOrganization` and `updateOrganization` call.
 - The `messageEventGuests` param.
+- The `subscribeToEventNotifications` and `unsubscribeFromEventNotifications` calls.
 
 ### Changed
 - Modified the `surveyItem` param to be `surveyItemId` on the `updateSurveyItem` action to be consistent.
