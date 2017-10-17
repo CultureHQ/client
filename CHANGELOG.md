@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.0.18] - 2017-10-17
 ### Changed
 - The `listUserEvents` call to `listUserHostedEvents` to better reflect what it's doing.
 - The `getUserAttendedEvents` to `listUserAttendedEvents` to better reflect that an array is returned.
@@ -155,7 +157,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.17...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.18...HEAD
+[0.0.18]: https://github.com/CultureHQ/client/compare/v0.0.17...v0.0.18
 [0.0.17]: https://github.com/CultureHQ/client/compare/v0.0.16...v0.0.17
 [0.0.16]: https://github.com/CultureHQ/client/compare/v0.0.15...v0.0.16
 [0.0.15]: https://github.com/CultureHQ/client/compare/v0.0.14...v0.0.15
