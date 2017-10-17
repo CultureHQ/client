@@ -292,47 +292,55 @@ var _photo = __webpack_require__(20);
 
 var _photo2 = _interopRequireDefault(_photo);
 
-var _pointConfig = __webpack_require__(21);
+var _photoTag = __webpack_require__(21);
+
+var _photoTag2 = _interopRequireDefault(_photoTag);
+
+var _pointConfig = __webpack_require__(22);
 
 var _pointConfig2 = _interopRequireDefault(_pointConfig);
 
-var _profile = __webpack_require__(22);
+var _pointLeaderboard = __webpack_require__(23);
+
+var _pointLeaderboard2 = _interopRequireDefault(_pointLeaderboard);
+
+var _profile = __webpack_require__(24);
 
 var _profile2 = _interopRequireDefault(_profile);
 
-var _recognition = __webpack_require__(23);
+var _recognition = __webpack_require__(25);
 
 var _recognition2 = _interopRequireDefault(_recognition);
 
-var _redemption = __webpack_require__(24);
+var _redemption = __webpack_require__(26);
 
 var _redemption2 = _interopRequireDefault(_redemption);
 
-var _reward = __webpack_require__(25);
+var _reward = __webpack_require__(27);
 
 var _reward2 = _interopRequireDefault(_reward);
 
-var _rsvp = __webpack_require__(26);
+var _rsvp = __webpack_require__(28);
 
 var _rsvp2 = _interopRequireDefault(_rsvp);
 
-var _survey = __webpack_require__(27);
+var _survey = __webpack_require__(29);
 
 var _survey2 = _interopRequireDefault(_survey);
 
-var _surveyItem = __webpack_require__(28);
+var _surveyItem = __webpack_require__(30);
 
 var _surveyItem2 = _interopRequireDefault(_surveyItem);
 
-var _surveyItemResponseOption = __webpack_require__(29);
+var _surveyItemResponseOption = __webpack_require__(31);
 
 var _surveyItemResponseOption2 = _interopRequireDefault(_surveyItemResponseOption);
 
-var _surveyUserItemResponse = __webpack_require__(30);
+var _surveyUserItemResponse = __webpack_require__(32);
 
 var _surveyUserItemResponse2 = _interopRequireDefault(_surveyUserItemResponse);
 
-var _user = __webpack_require__(31);
+var _user = __webpack_require__(33);
 
 var _user2 = _interopRequireDefault(_user);
 
@@ -352,7 +360,9 @@ exports.default = function (object) {
   (0, _organizationValue2.default)(object);
   (0, _password2.default)(object);
   (0, _photo2.default)(object);
+  (0, _photoTag2.default)(object);
   (0, _pointConfig2.default)(object);
+  (0, _pointLeaderboard2.default)(object);
   (0, _profile2.default)(object);
   (0, _recognition2.default)(object);
   (0, _redemption2.default)(object);
@@ -414,14 +424,6 @@ __webpack_require__(7);
 
 var _stringCase = __webpack_require__(8);
 
-var apiHost = void 0;
-
-if (process.env.NODE_ENV === "production") {
-  apiHost = "https://api.culturehq.net";
-} else {
-  apiHost = "http://localhost:3000";
-}
-
 var buildHeaders = function buildHeaders(options) {
   var headers = {};
 
@@ -436,7 +438,7 @@ var buildHeaders = function buildHeaders(options) {
 };
 
 var buildRequest = function buildRequest(method, path, options) {
-  var url = new URL("" + apiHost + path);
+  var url = new URL("" + "http://localhost:3000" + path);
   var reqOptions = { headers: buildHeaders(options), method: method };
   var params = (0, _stringCase.snakerize)(options.params);
 
@@ -741,8 +743,16 @@ exports.default = function (object) {
     createEvent: (0, _apiCall2.default)({
       method: "post",
       path: "/events",
+      multipart: true,
       expectedParams: ["name", "details", "startsAt", "endsAt", "eventType"],
-      optionalParams: ["sponsored", "surveyId"]
+      optionalParams: ["sponsored", "surveyId", "image"]
+    }),
+
+    duplicateEvent: (0, _apiCall2.default)({
+      method: "post",
+      path: "/events/:eventId/event_duplicates",
+      expectedParams: ["startsAt"],
+      optionalParams: ["endsAt"]
     }),
 
     getEvent: (0, _apiCall2.default)({
@@ -756,6 +766,11 @@ exports.default = function (object) {
       optionalParams: ["page"]
     }),
 
+    listEventsByOrganization: (0, _apiCall2.default)({
+      method: "get",
+      path: "/admin/events"
+    }),
+
     listEventSurveyResults: (0, _apiCall2.default)({
       method: "get",
       path: "/events/:eventId/survey_results"
@@ -765,6 +780,33 @@ exports.default = function (object) {
       method: "get",
       path: "/users/:userId/events",
       optionalParams: ["page"]
+    }),
+
+    markEventAsSponsored: (0, _apiCall2.default)({
+      method: "post",
+      path: "/events/:eventId/event_sponsorship"
+    }),
+
+    messageEventGuests: (0, _apiCall2.default)({
+      method: "post",
+      path: "/events/:eventId/event_notifications",
+      expectedParams: ["body"]
+    }),
+
+    subscribeToEventNotifications: (0, _apiCall2.default)({
+      method: "post",
+      path: "/events/:eventId/event_notification_subscription"
+    }),
+
+    unsubscribeFromEventNotifications: (0, _apiCall2.default)({
+      method: "delete",
+      path: "/events/:eventId/event_notification_subscription"
+    }),
+
+    updateEvent: (0, _apiCall2.default)({
+      method: "patch",
+      path: "/events/:eventId",
+      optionalParams: ["name", "details", "startsAt", "endsAt", "eventType", "sponsored", "surveyId", "image"]
     })
   });
 };
@@ -790,13 +832,13 @@ exports.default = function (object) {
   return Object.assign(object, {
     createExpense: (0, _apiCall2.default)({
       method: "post",
-      path: "/events/:eventId/expense",
+      path: "/events/:eventId/expenses",
       expectedParams: ["description", "amount"]
     }),
 
     deleteExpense: (0, _apiCall2.default)({
       method: "delete",
-      path: "/events/:eventId/expense"
+      path: "/events/:eventId/expenses/:expenseId"
     }),
 
     getExpense: (0, _apiCall2.default)({
@@ -949,7 +991,7 @@ exports.default = function (object) {
       method: "post",
       path: "/admin/organizations",
       expectedParams: ["name"],
-      optionalParams: ["primaryColor", "secondaryColor", "gamificationEnabled"]
+      optionalParams: ["primaryColor", "secondaryColor", "gamificationEnabled", "logo"]
     }),
 
     deleteOrganization: (0, _apiCall2.default)({
@@ -971,7 +1013,7 @@ exports.default = function (object) {
     updateOrganization: (0, _apiCall2.default)({
       method: "patch",
       path: "/admin/organizations/:organizationId",
-      optionalParams: ["name", "primaryColor", "secondaryColor", "gamificationEnabled"]
+      optionalParams: ["name", "primaryColor", "secondaryColor", "gamificationEnabled", "logo"]
     })
   });
 };
@@ -1108,6 +1150,12 @@ exports.default = function (object) {
       path: "/events/:eventId/photos/:photoId"
     }),
 
+    getPhotoGallery: (0, _apiCall2.default)({
+      method: "get",
+      path: "/gallery",
+      optionalParams: ["page", "range"]
+    }),
+
     listEventPhotos: (0, _apiCall2.default)({
       method: "get",
       path: "/events/:eventId/photos",
@@ -1142,6 +1190,44 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = function (object) {
   return Object.assign(object, {
+    createPhotoTag: (0, _apiCall2.default)({
+      method: "post",
+      path: "/photos/:photoId/photo_tags",
+      expectedParams: ["userId"]
+    }),
+
+    deletePhotoTag: (0, _apiCall2.default)({
+      method: "delete",
+      path: "/photos/:photoId/photo_tags/:photoTagId"
+    }),
+
+    listPhotoTags: (0, _apiCall2.default)({
+      method: "get",
+      path: "/photos/:photoId/photo_tags",
+      optionalParams: ["page"]
+    })
+  });
+};
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _apiCall = __webpack_require__(0);
+
+var _apiCall2 = _interopRequireDefault(_apiCall);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (object) {
+  return Object.assign(object, {
     getPointConfig: (0, _apiCall2.default)({
       method: "get",
       path: "/point_config"
@@ -1156,7 +1242,33 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 22 */
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _apiCall = __webpack_require__(0);
+
+var _apiCall2 = _interopRequireDefault(_apiCall);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (object) {
+  return Object.assign(object, {
+    getPointLeaderboard: (0, _apiCall2.default)({
+      method: "get",
+      path: "/point_leaderboard"
+    })
+  });
+};
+
+/***/ }),
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1189,7 +1301,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1251,7 +1363,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1304,7 +1416,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1354,7 +1466,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1400,7 +1512,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1455,7 +1567,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1498,14 +1610,14 @@ exports.default = function (object) {
 
     updateSurveyItem: (0, _apiCall2.default)({
       method: "patch",
-      path: "/survey_items/:surveyItem",
+      path: "/survey_items/:surveyItemId",
       optionalParams: ["prompt", "itemType", "minRange", "maxRange"]
     })
   });
 };
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1554,7 +1666,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1618,7 +1730,7 @@ exports.default = function (object) {
 };
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
