@@ -4,13 +4,13 @@ export default object =>
   Object.assign(object, {
     createExpense: apiCall({
       method: "post",
-      path: "/events/:eventId/expense",
+      path: "/events/:eventId/expenses",
       expectedParams: ["description", "amount"]
     }),
 
     deleteExpense: apiCall({
       method: "delete",
-      path: "/events/:eventId/expense"
+      path: "/events/:eventId/expenses/:expenseId"
     }),
 
     getExpense: apiCall({
