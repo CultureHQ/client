@@ -10,6 +10,13 @@ export default object =>
       optionalParams: ["sponsored", "surveyId", "image"]
     }),
 
+    duplicateEvent: apiCall({
+      method: "post",
+      path: "/events/:eventId/event_duplicates",
+      expectedParams: ["startsAt"],
+      optionalParams: ["endsAt"]
+    }),
+
     getEvent: apiCall({
       method: "get",
       path: "/events/:eventId"
