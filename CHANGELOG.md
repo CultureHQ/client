@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- The `listUserEvents` call to `listUserHostedEvents` to better reflect what it's doing.
+- The `getUserAttendedEvents` to `listUserAttendedEvents` to better reflect that an array is returned.
+- Moved all of the calls from `/src/calls/*.js` into one `/src/calls.json`. Things are now much more consolidated and smaller.
+- Made the `CultureHQ` object into a class that should now be instantiated with an object that contains an `apiHost` key. For now this is the only option, but it leaves it open for further expansion later (currently considering a `verbose` option).
 
 ## [0.0.17] - 2017-10-17
 ### Added

@@ -376,10 +376,6 @@
     "method": "GET",
     "path": "/users/:userId"
   },
-  "getUserAttendedEvents": {
-    "method": "GET",
-    "path": "/users/:userId/attended_events"
-  },
   "getUserEventTypeBreakdown": {
     "method": "GET",
     "path": "/users/:userId/event_type_breakdown"
@@ -568,9 +564,13 @@
       "page"
     ]
   },
-  "listUserEvents": {
+  "listUserAttendedEvents": {
     "method": "GET",
-    "path": "/users/:userId/events",
+    "path": "/users/:userId/attended_events"
+  },
+  "listUserHostedEvents": {
+    "method": "GET",
+    "path": "/users/:userId/hosted_events",
     "optionalParams": [
       "page"
     ]

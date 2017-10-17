@@ -42,7 +42,7 @@ describe("with a signed in user", () => {
     const params = {};
     const apiCall = client[callName];
 
-    if (typeof apiCall.expectedParams !== "undefined") {
+    if (apiCall.expectedParams.length) {
       apiCall.expectedParams.forEach(key => (params[key] = "foo"));
     }
 
@@ -64,7 +64,7 @@ describe("with an action that expects parameters", () => {
   Object.keys(calls).forEach(callName => {
     const expectedParams = client[callName].expectedParams;
 
-    if (typeof expectedParams !== "undefined") {
+    if (expectedParams.length) {
       test(`cannot call ${callName} without expected parameters`, async () => {
         const server = createServer({
           status: 200,
