@@ -14,8 +14,7 @@ const buildHeaders = options => {
   return headers;
 };
 
-const buildRequest = (method, path, options) => {
-  let url = new URL(`${API_HOST}${path}`);
+const buildRequest = (method, url, options) => {
   let reqOptions = { headers: buildHeaders(options), method };
   const params = snakerize(options.params);
 
@@ -34,8 +33,8 @@ const buildRequest = (method, path, options) => {
   return { url: url.href, options: reqOptions };
 };
 
-const sendRequest = (method, path, options) => {
-  const request = buildRequest(method, path, options);
+export default (method, url, options) => {
+  const request = buildRequest(method, url, options);
 
   return new Promise((resolve, reject) => {
     fetch(request.url, request.options)
@@ -51,11 +50,4 @@ const sendRequest = (method, path, options) => {
       })
       .catch(error => reject(error));
   });
-};
-
-export default {
-  delete: (path, options) => sendRequest("DELETE", path, options),
-  get: (path, options) => sendRequest("GET", path, options),
-  patch: (path, options) => sendRequest("PATCH", path, options),
-  post: (path, options) => sendRequest("POST", path, options)
 };

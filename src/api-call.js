@@ -1,8 +1,8 @@
-import network from "./network";
+import request from "./request";
 import state from "./state";
 
 export default options => {
-  const apiCall = actualParams => {
+  const apiCall = (client, actualParams) => {
     if (typeof actualParams !== "object") {
       actualParams = {};
     }
@@ -24,13 +24,13 @@ export default options => {
       });
     }
 
-    return network[options.method](callPath, {
+    return request(options.method, new URL(`${client.apiHost}${callPath}`), {
       token: state.getToken(),
       params: actualParams,
       multipart: options.multipart || false
     });
   };
 
-  Object.assign(apiCall, options);
+  apiCall.options = options;
   return apiCall;
 };
