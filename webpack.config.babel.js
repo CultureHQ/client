@@ -1,9 +1,5 @@
 import webpack from "webpack";
 import nodeExternals from "webpack-node-externals";
-import constants from "./build/constants";
-
-const environment =
-  process.env.NODE_ENV === "production" ? "production" : "development";
 
 module.exports = {
   entry: "./src/index.js",
@@ -13,15 +9,15 @@ module.exports = {
     libraryTarget: "umd"
   },
   resolve: {
-    extensions: [".js"]
+    extensions: [".js", ".json"]
   },
   module: {
-    rules: [{ test: /\.js$/, use: "babel-loader", exclude: /node_modules/ }]
+    rules: [
+      { test: /\.js$/, use: "babel-loader", exclude: /node_modules/ },
+      { test: /\.json$/, use: "json-loader", exclude: /node_modules/ }
+    ]
   },
   target: "node",
   externals: [nodeExternals()],
-  plugins: [
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.DefinePlugin(constants.for(environment))
-  ]
+  plugins: [new webpack.optimize.ModuleConcatenationPlugin()]
 };

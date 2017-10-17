@@ -1,36 +1,46 @@
-import network from "./network";
+import request from "./request";
 import state from "./state";
 
+const ensureExpectedParams = (expectedParams, actualParams) => {
+  expectedParams.forEach(param => {
+    if (!actualParams.hasOwnProperty(param)) {
+      throw new Error(`Expected parameter ${param} not given`);
+    }
+  });
+};
+
+const substitutePath = (path, params) => {
+  let substitutedPath = path;
+
+  Object.keys(params).forEach(param => {
+    const needle = `:${param}`;
+    if (substitutedPath.indexOf(needle) !== -1) {
+      substitutedPath = substitutedPath.replace(needle, params[param]);
+      delete params[param];
+    }
+  });
+
+  return substitutedPath;
+};
+
 export default options => {
-  const apiCall = actualParams => {
+  options.expectedParams = options.expectedParams || [];
+
+  const apiCall = (client, actualParams) => {
     if (typeof actualParams !== "object") {
       actualParams = {};
     }
 
-    let callPath = options.path;
-    Object.keys(actualParams).forEach(param => {
-      const needle = `:${param}`;
-      if (callPath.indexOf(needle) !== -1) {
-        callPath = callPath.replace(needle, actualParams[param]);
-        delete actualParams[param];
-      }
-    });
+    ensureExpectedParams(options.expectedParams, actualParams);
+    const callPath = substitutePath(options.path, actualParams);
 
-    if (typeof options.expectedParams !== "undefined") {
-      options.expectedParams.forEach(param => {
-        if (!actualParams.hasOwnProperty(param)) {
-          throw new Error(`Expected parameter ${param} not given`);
-        }
-      });
-    }
-
-    return network[options.method](callPath, {
+    return request(options.method, new URL(`${client.apiHost}${callPath}`), {
       token: state.getToken(),
       params: actualParams,
       multipart: options.multipart || false
     });
   };
 
-  Object.assign(apiCall, options);
+  apiCall.options = options;
   return apiCall;
 };

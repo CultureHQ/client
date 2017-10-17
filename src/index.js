@@ -1,31 +1,36 @@
 import state from "./state";
-import caller from "./caller";
+import calls from "./calls";
 import apiCall from "./api-call";
 
-const signInCallOptions = {
-  method: "post",
-  path: "/api_keys",
-  expectedParams: ["email", "password"]
-};
+class CultureHQ {
+  constructor(options = {}) {
+    this.apiHost = options.apiHost;
+  }
 
-const signIn = params =>
-  apiCall(signInCallOptions)(params).then(response => {
-    state.signIn(response.apiKey.token);
-    return response;
-  });
-
-Object.assign(signIn, signInCallOptions);
-
-const CultureHQ = caller({
-  isSignedIn: () => {
+  isSignedIn() {
     return state.isSignedIn();
-  },
+  }
 
-  signIn,
+  signIn(params) {
+    return this.createApiKey(params).then(response => {
+      state.signIn(response.apiKey.token);
+      return response;
+    });
+  }
 
-  signOut: () => {
+  signOut() {
     state.signOut();
   }
+}
+
+Object.keys(calls).forEach(callName => {
+  const builtApiCall = apiCall(calls[callName]);
+
+  CultureHQ.prototype[callName] = function(params) {
+    return builtApiCall(this, params);
+  };
+
+  Object.assign(CultureHQ.prototype[callName], calls[callName]);
 });
 
 export default CultureHQ;

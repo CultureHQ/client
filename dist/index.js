@@ -7,7 +7,7 @@
 		exports["CultureHQ"] = factory(require("store/dist/store.modern"), require("isomorphic-fetch"));
 	else
 		root["CultureHQ"] = factory(root["store/dist/store.modern"], root["isomorphic-fetch"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_7__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_6__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -84,64 +84,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _network = __webpack_require__(6);
-
-var _network2 = _interopRequireDefault(_network);
-
-var _state = __webpack_require__(1);
-
-var _state2 = _interopRequireDefault(_state);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (options) {
-  var apiCall = function apiCall(actualParams) {
-    if ((typeof actualParams === "undefined" ? "undefined" : _typeof(actualParams)) !== "object") {
-      actualParams = {};
-    }
-
-    var callPath = options.path;
-    Object.keys(actualParams).forEach(function (param) {
-      var needle = ":" + param;
-      if (callPath.indexOf(needle) !== -1) {
-        callPath = callPath.replace(needle, actualParams[param]);
-        delete actualParams[param];
-      }
-    });
-
-    if (typeof options.expectedParams !== "undefined") {
-      options.expectedParams.forEach(function (param) {
-        if (!actualParams.hasOwnProperty(param)) {
-          throw new Error("Expected parameter " + param + " not given");
-        }
-      });
-    }
-
-    return _network2.default[options.method](callPath, {
-      token: _state2.default.getToken(),
-      params: actualParams,
-      multipart: options.multipart || false
-    });
-  };
-
-  Object.assign(apiCall, options);
-  return apiCall;
-};
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _store = __webpack_require__(3);
+var _store = __webpack_require__(2);
 
 var _store2 = _interopRequireDefault(_store);
 
@@ -170,7 +113,7 @@ var state = {
 exports.default = state;
 
 /***/ }),
-/* 2 */
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -180,54 +123,79 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _state = __webpack_require__(1);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _state = __webpack_require__(0);
 
 var _state2 = _interopRequireDefault(_state);
 
-var _caller = __webpack_require__(4);
+var _calls = __webpack_require__(3);
 
-var _caller2 = _interopRequireDefault(_caller);
+var _calls2 = _interopRequireDefault(_calls);
 
-var _apiCall = __webpack_require__(0);
+var _apiCall = __webpack_require__(4);
 
 var _apiCall2 = _interopRequireDefault(_apiCall);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var signInCallOptions = {
-  method: "post",
-  path: "/api_keys",
-  expectedParams: ["email", "password"]
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var signIn = function signIn(params) {
-  return (0, _apiCall2.default)(signInCallOptions)(params).then(function (response) {
-    _state2.default.signIn(response.apiKey.token);
-    return response;
-  });
-};
+var CultureHQ = function () {
+  function CultureHQ() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-Object.assign(signIn, signInCallOptions);
+    _classCallCheck(this, CultureHQ);
 
-var CultureHQ = (0, _caller2.default)({
-  isSignedIn: function isSignedIn() {
-    return _state2.default.isSignedIn();
-  },
-
-  signIn: signIn,
-
-  signOut: function signOut() {
-    _state2.default.signOut();
+    this.apiHost = options.apiHost;
   }
+
+  _createClass(CultureHQ, [{
+    key: "isSignedIn",
+    value: function isSignedIn() {
+      return _state2.default.isSignedIn();
+    }
+  }, {
+    key: "signIn",
+    value: function signIn(params) {
+      return this.createApiKey(params).then(function (response) {
+        _state2.default.signIn(response.apiKey.token);
+        return response;
+      });
+    }
+  }, {
+    key: "signOut",
+    value: function signOut() {
+      _state2.default.signOut();
+    }
+  }]);
+
+  return CultureHQ;
+}();
+
+Object.keys(_calls2.default).forEach(function (callName) {
+  var builtApiCall = (0, _apiCall2.default)(_calls2.default[callName]);
+
+  CultureHQ.prototype[callName] = function (params) {
+    return builtApiCall(this, params);
+  };
+
+  Object.assign(CultureHQ.prototype[callName], _calls2.default[callName]);
 });
 
 exports.default = CultureHQ;
 
 /***/ }),
-/* 3 */
+/* 2 */
 /***/ (function(module, exports) {
 
 module.exports = require("store/dist/store.modern");
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+module.exports = {"bulkCreateEventPhotos":{"method":"POST","path":"/events/:eventId/albums","multipart":true,"expectedParams":["images"]},"changePassword":{"method":"PATCH","path":"/password","expectedParams":["password"]},"createAnnouncement":{"method":"POST","path":"/announcements","expectedParams":["title","body"]},"createApiKey":{"method":"POST","path":"/api_keys","expectedParams":["email","password"]},"createComment":{"method":"POST","path":"/events/:eventId/comments","expectedParams":["body"],"optionalParams":["parentCommentId"]},"createDepartment":{"method":"POST","path":"/departments","expectedParams":["name"]},"createEvent":{"method":"POST","path":"/events","multipart":true,"expectedParams":["name","details","startsAt","endsAt","eventType"],"optionalParams":["sponsored","surveyId","image"]},"createEventPhoto":{"method":"POST","path":"/events/:eventId/photos","multipart":true,"expectedParams":["image"],"optionalParams":["caption"]},"createEventRsvp":{"method":"POST","path":"/events/:eventId/rsvps","expectedParams":["responseType"],"optionalParams":["extra"]},"createEventSurveyUserItemResponse":{"method":"POST","path":"/events/:eventId/survey_items/:surveyItemId/survey_user_item_response","expectedParams":["body","surveyItemResponseOptionIds"]},"createExpense":{"method":"POST","path":"/events/:eventId/expenses","expectedParams":["description","amount"]},"createFeedback":{"method":"POST","path":"/feedbacks","expectedParams":["body"],"optionalParams":["anonymous"]},"createOrganization":{"method":"POST","path":"/admin/organizations","expectedParams":["name"],"optionalParams":["primaryColor","secondaryColor","gamificationEnabled","logo"]},"createOrganizationValue":{"method":"POST","path":"/organization_values","expectedParams":["name"]},"createPhotoTag":{"method":"POST","path":"/photos/:photoId/photo_tags","expectedParams":["userId"]},"createRecognition":{"method":"POST","path":"/recognitions","expectedParams":["body","userIds"]},"createReward":{"method":"POST","path":"/rewards","expectedParams":["name","points"],"optionalParams":["description"]},"createRewardRedemption":{"method":"POST","path":"/rewards/:rewardId/redemptions"},"createSurvey":{"method":"POST","path":"/surveys","expectedParams":["title"],"optionalParams":["points"]},"createSurveyItem":{"method":"POST","path":"/surveys/:surveyId/survey_items","expectedParams":["prompt","itemType"],"optionalParams":["minRange","maxRange"]},"createSurveyItemResponseOption":{"method":"POST","path":"/survey_items/:surveyItemId/survey_item_response_options","expectedParams":["body"]},"createSurveyUserItemResponse":{"method":"POST","path":"/survey_items/:surveyItemId/survey_user_item_response","expectedParams":["body","surveyItemResponseOptionIds"]},"deactivateUser":{"method":"POST","path":"/users/:userId/deactivation"},"deleteAnnouncement":{"method":"DELETE","path":"/announcements/:announcementId"},"deleteComment":{"method":"DELETE","path":"/events/:eventId/comments/:commentId"},"deleteDepartment":{"method":"DELETE","path":"/departments/:departmentId"},"deleteEventPhoto":{"method":"DELETE","path":"/events/:eventId/photos/:photoId"},"deleteEventSurveyUserItemResponse":{"method":"DELETE","path":"/events/:eventId/survey_items/:surveyItemId/survey_user_item_response"},"deleteExpense":{"method":"DELETE","path":"/events/:eventId/expenses/:expenseId"},"deleteInterest":{"method":"DELETE","path":"/interests/:interestId"},"deleteOrganization":{"method":"DELETE","path":"/admin/organizations/:organizationId"},"deleteOrganizationValue":{"method":"DELETE","path":"/organization_values/:organizationValueId"},"deletePhotoTag":{"method":"DELETE","path":"/photos/:photoId/photo_tags/:photoTagId"},"deleteRecognition":{"method":"DELETE","path":"/recognitions/:recognitionId"},"deleteReward":{"method":"DELETE","path":"/rewards/:rewardId"},"deleteRewardRedemption":{"method":"DELETE","path":"/rewards/:rewardId/redemptions/:redemptionId"},"deleteSurvey":{"method":"DELETE","path":"/surveys/:surveyId"},"deleteSurveyItem":{"method":"DELETE","path":"/survey_items/:surveyItemId"},"deleteSurveyItemResponseOption":{"method":"DELETE","path":"/survey_item_response_options/:surveyItemResponseOptionId"},"deleteSurveyUserItemResponse":{"method":"DELETE","path":"/survey_items/:surveyItemId/survey_user_item_response"},"duplicateEvent":{"method":"POST","path":"/events/:eventId/event_duplicates","expectedParams":["startsAt"],"optionalParams":["endsAt"]},"getAnnouncement":{"method":"GET","path":"/announcements/:announcementId"},"getComment":{"method":"GET","path":"/events/:eventId/comments/:commentId"},"getDepartment":{"method":"GET","path":"/departments/:departmentId"},"getEvent":{"method":"GET","path":"/events/:eventId"},"getEventPhoto":{"method":"GET","path":"/events/:eventId/photos/:photoId"},"getEventRsvp":{"method":"GET","path":"/events/:eventId/rsvps/:rsvpId"},"getExpense":{"method":"GET","path":"/events/:eventId/expenses/:expenseId"},"getFeedback":{"method":"GET","path":"/feedbacks/:feedbackId"},"getInterest":{"method":"GET","path":"/interests/:interestId"},"getOrganization":{"method":"GET","path":"/admin/organizations/:organizationId"},"getOrganizationValue":{"method":"GET","path":"/organization_values/:organizationValueId"},"getPhotoGallery":{"method":"GET","path":"/gallery","optionalParams":["page","range"]},"getPointConfig":{"method":"GET","path":"/point_config"},"getPointLeaderboard":{"method":"GET","path":"/point_leaderboard"},"getProfile":{"method":"GET","path":"/profile"},"getRecognition":{"method":"GET","path":"/recognitions/:recognitionId"},"getReward":{"method":"GET","path":"/rewards/:rewardId"},"getRewardRedemption":{"method":"GET","path":"/rewards/:rewardId/redemptions/:redemptionId"},"getSurvey":{"method":"GET","path":"/surveys/:surveyId"},"getSurveyItem":{"method":"GET","path":"/survey_items/:surveyItemId"},"getSurveyItemResponseOption":{"method":"GET","path":"/survey_item_response_options/:surveyItemResponseOptionId"},"getSurveyUserItemResponse":{"method":"GET","path":"/events/:eventId/survey_items/:surveyItemId/survey_user_item_response"},"getUser":{"method":"GET","path":"/users/:userId"},"getUserAttendedEvents":{"method":"GET","path":"/users/:userId/attended_events"},"getUserEventTypeBreakdown":{"method":"GET","path":"/users/:userId/event_type_breakdown"},"getUserPointBreakdown":{"method":"GET","path":"/users/:userId/point_breakdown"},"incrementUserPoints":{"method":"POST","path":"/users/:userId/point_increments","expectedParams":["points"]},"listAnnouncements":{"method":"GET","path":"/announcements","optionalParams":["page"]},"listComments":{"method":"GET","path":"/events/:eventId/comments","optionalParams":["page"]},"listDepartments":{"method":"GET","path":"/departments","optionalParams":["page"]},"listEventAnalytics":{"method":"GET","path":"/analytics/events","optionalParams":["page"]},"listEventPhotos":{"method":"GET","path":"/events/:eventId/photos","optionalParams":["page"]},"listEventRsvps":{"method":"GET","path":"/events/:eventId/rsvps","optionalParams":["page"]},"listEventSurveyResults":{"method":"GET","path":"/events/:eventId/survey_results"},"listEvents":{"method":"GET","path":"/events","optionalParams":["page"]},"listEventsByOrganization":{"method":"GET","path":"/admin/events"},"listExpenses":{"method":"GET","path":"/events/:eventId/expenses","optionalParams":["page"]},"listFeedbacks":{"method":"GET","path":"/feedbacks","optionalParams":["page"]},"listInterests":{"method":"GET","path":"/interests","optionalParams":["page"]},"listInvites":{"method":"GET","path":"/invites","optionalParams":["page"]},"listOrganizationValueRecognitions":{"method":"GET","path":"/organization_values/:organizationValueId/recognitions","optionalParams":["page"]},"listOrganizationValues":{"method":"GET","path":"/organization_values","optionalParams":["page"]},"listOrganizations":{"method":"GET","path":"/admin/organizations","optionalParams":["page"]},"listPhotoTags":{"method":"GET","path":"/photos/:photoId/photo_tags","optionalParams":["page"]},"listRecognitions":{"method":"GET","path":"/recognitions","optionalParams":["page"]},"listRedemptions":{"method":"GET","path":"/redemptions","optionalParams":["page"]},"listRewardRedemptions":{"method":"GET","path":"/rewards/:rewardId/redemptions","optionalParams":["page"]},"listRewards":{"method":"GET","path":"/rewards","optionalParams":["page"]},"listSurveyItemResponseOptions":{"method":"GET","path":"/survey_items/:surveyItemId/survey_item_response_options","optionalParams":["page"]},"listSurveyItems":{"method":"GET","path":"/surveys/:surveyId/survey_items","optionalParams":["page"]},"listSurveyResults":{"method":"GET","path":"/surveys/:survey_id/survey_results"},"listSurveys":{"method":"GET","path":"/surveys","optionalParams":["page"]},"listUserAnalytics":{"method":"GET","path":"/analytics/users","optionalParams":["page"]},"listUserEvents":{"method":"GET","path":"/users/:userId/events","optionalParams":["page"]},"listUserRecognitions":{"method":"GET","path":"/users/:userId/recognitions","optionalParams":["page"]},"listUsers":{"method":"GET","path":"/users","optionalParams":["page"]},"markEventAsSponsored":{"method":"POST","path":"/events/:eventId/event_sponsorship"},"messageEventGuests":{"method":"POST","path":"/events/:eventId/event_notifications","expectedParams":["body"]},"reactivateUser":{"method":"DELETE","path":"/users/:userId/deactivation"},"registerUser":{"method":"POST","path":"/invites/:token/users","expectedParams":["name","password"]},"requestPasswordReset":{"method":"POST","path":"/password_resets","expectedParams":["email"]},"resetPassword":{"method":"PATCH","path":"/password_resets/:token","expectedParams":["password"]},"reviewFeedback":{"method":"PATCH","path":"/feedbacks/:feedbackId"},"sendInvite":{"method":"POST","path":"/invites","expectedParams":["email"]},"subscribeToEventNotifications":{"method":"POST","path":"/events/:eventId/event_notification_subscription"},"unsubscribeFromEventNotifications":{"method":"DELETE","path":"/events/:eventId/event_notification_subscription"},"updateAnnouncement":{"method":"PATCH","path":"/announcements/:announcementId","optionalParams":["title","body"]},"updateComment":{"method":"PATCH","path":"/events/:eventId/comments/:commentId","expectedParams":["body"]},"updateDepartment":{"method":"PATCH","path":"/departments/:departmentId","optionalParams":["name"]},"updateEvent":{"method":"PATCH","path":"/events/:eventId","optionalParams":["name","details","startsAt","endsAt","eventType","sponsored","surveyId","image"]},"updateEventPhoto":{"method":"PATCH","path":"/events/:eventId/photos/:photoId","multipart":true,"optionalParams":["image","caption"]},"updateEventRsvp":{"method":"PATCH","path":"/events/:eventId/rsvps/:rsvpId","expectedParams":["responseType"],"optionalParams":["extra"]},"updateEventSurveyUserItemResponse":{"method":"PATCH","path":"/events/:eventId/survey_items/:surveyItemId/survey_user_item_response","optionalParams":["body","surveyItemResponseOptionIds"]},"updateExpense":{"method":"PATCH","path":"/events/:eventId/expenses/:expenseId","optionalParams":["description","amount"]},"updateOrganization":{"method":"PATCH","path":"/admin/organizations/:organizationId","optionalParams":["name","primaryColor","secondaryColor","gamificationEnabled","logo"]},"updateOrganizationValue":{"method":"PATCH","path":"/organization_values/:organizationValueId","expectedParams":["name"]},"updatePointConfig":{"method":"PATCH","path":"/point_config","optionalParams":["firstEvent","eventWithTwoNew","avatar","interests","widgetSurvey","eventSurvey","recognition"]},"updateProfile":{"method":"PATCH","path":"/profile","multipart":true,"optionalParams":["name","email","departmentIds","interestList","avatar","title"]},"updateRecognition":{"method":"PATCH","path":"/recognitions/:recognitionId","expectedParams":["body"],"optionalParams":["userIds"]},"updateReward":{"method":"PATCH","path":"/rewards/:rewardId","optionalParams":["name","points","description"]},"updateRewardRedemption":{"method":"PATCH","path":"/rewards/:rewardId/redemptions/:redemptionId"},"updateSurvey":{"method":"PATCH","path":"/surveys/:surveyId","optionalParams":["title","points"]},"updateSurveyItem":{"method":"PATCH","path":"/survey_items/:surveyItemId","optionalParams":["prompt","itemType","minRange","maxRange"]},"updateSurveyItemResponseOption":{"method":"PATCH","path":"/survey_item_response_options/:surveyItemResponseOptionId","optionalParams":["body"]},"updateSurveyUserItemResponse":{"method":"PATCH","path":"/survey_items/:surveyItemId/survey_user_item_response","optionalParams":["body","surveyItemResponseOptionIds"]},"updateUser":{"method":"PATCH","path":"/users/:userId","multipart":true,"optionalParams":["name","email","departmentIds","interestList","avatar","title"]}}
 
 /***/ }),
 /* 4 */
@@ -240,140 +208,50 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _analytics = __webpack_require__(5);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _analytics2 = _interopRequireDefault(_analytics);
+var _request = __webpack_require__(5);
 
-var _announcement = __webpack_require__(9);
+var _request2 = _interopRequireDefault(_request);
 
-var _announcement2 = _interopRequireDefault(_announcement);
+var _state = __webpack_require__(0);
 
-var _comment = __webpack_require__(10);
-
-var _comment2 = _interopRequireDefault(_comment);
-
-var _department = __webpack_require__(11);
-
-var _department2 = _interopRequireDefault(_department);
-
-var _event = __webpack_require__(12);
-
-var _event2 = _interopRequireDefault(_event);
-
-var _expense = __webpack_require__(13);
-
-var _expense2 = _interopRequireDefault(_expense);
-
-var _feedback = __webpack_require__(14);
-
-var _feedback2 = _interopRequireDefault(_feedback);
-
-var _interest = __webpack_require__(15);
-
-var _interest2 = _interopRequireDefault(_interest);
-
-var _invite = __webpack_require__(16);
-
-var _invite2 = _interopRequireDefault(_invite);
-
-var _organization = __webpack_require__(17);
-
-var _organization2 = _interopRequireDefault(_organization);
-
-var _organizationValue = __webpack_require__(18);
-
-var _organizationValue2 = _interopRequireDefault(_organizationValue);
-
-var _password = __webpack_require__(19);
-
-var _password2 = _interopRequireDefault(_password);
-
-var _photo = __webpack_require__(20);
-
-var _photo2 = _interopRequireDefault(_photo);
-
-var _photoTag = __webpack_require__(21);
-
-var _photoTag2 = _interopRequireDefault(_photoTag);
-
-var _pointConfig = __webpack_require__(22);
-
-var _pointConfig2 = _interopRequireDefault(_pointConfig);
-
-var _pointLeaderboard = __webpack_require__(23);
-
-var _pointLeaderboard2 = _interopRequireDefault(_pointLeaderboard);
-
-var _profile = __webpack_require__(24);
-
-var _profile2 = _interopRequireDefault(_profile);
-
-var _recognition = __webpack_require__(25);
-
-var _recognition2 = _interopRequireDefault(_recognition);
-
-var _redemption = __webpack_require__(26);
-
-var _redemption2 = _interopRequireDefault(_redemption);
-
-var _reward = __webpack_require__(27);
-
-var _reward2 = _interopRequireDefault(_reward);
-
-var _rsvp = __webpack_require__(28);
-
-var _rsvp2 = _interopRequireDefault(_rsvp);
-
-var _survey = __webpack_require__(29);
-
-var _survey2 = _interopRequireDefault(_survey);
-
-var _surveyItem = __webpack_require__(30);
-
-var _surveyItem2 = _interopRequireDefault(_surveyItem);
-
-var _surveyItemResponseOption = __webpack_require__(31);
-
-var _surveyItemResponseOption2 = _interopRequireDefault(_surveyItemResponseOption);
-
-var _surveyUserItemResponse = __webpack_require__(32);
-
-var _surveyUserItemResponse2 = _interopRequireDefault(_surveyUserItemResponse);
-
-var _user = __webpack_require__(33);
-
-var _user2 = _interopRequireDefault(_user);
+var _state2 = _interopRequireDefault(_state);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = function (object) {
-  (0, _analytics2.default)(object);
-  (0, _announcement2.default)(object);
-  (0, _comment2.default)(object);
-  (0, _department2.default)(object);
-  (0, _event2.default)(object);
-  (0, _expense2.default)(object);
-  (0, _feedback2.default)(object);
-  (0, _interest2.default)(object);
-  (0, _invite2.default)(object);
-  (0, _organization2.default)(object);
-  (0, _organizationValue2.default)(object);
-  (0, _password2.default)(object);
-  (0, _photo2.default)(object);
-  (0, _photoTag2.default)(object);
-  (0, _pointConfig2.default)(object);
-  (0, _pointLeaderboard2.default)(object);
-  (0, _profile2.default)(object);
-  (0, _recognition2.default)(object);
-  (0, _redemption2.default)(object);
-  (0, _reward2.default)(object);
-  (0, _rsvp2.default)(object);
-  (0, _survey2.default)(object);
-  (0, _surveyItem2.default)(object);
-  (0, _surveyItemResponseOption2.default)(object);
-  (0, _surveyUserItemResponse2.default)(object);
-  (0, _user2.default)(object);
-  return object;
+exports.default = function (options) {
+  var apiCall = function apiCall(client, actualParams) {
+    if ((typeof actualParams === "undefined" ? "undefined" : _typeof(actualParams)) !== "object") {
+      actualParams = {};
+    }
+
+    var callPath = options.path;
+    Object.keys(actualParams).forEach(function (param) {
+      var needle = ":" + param;
+      if (callPath.indexOf(needle) !== -1) {
+        callPath = callPath.replace(needle, actualParams[param]);
+        delete actualParams[param];
+      }
+    });
+
+    if (typeof options.expectedParams !== "undefined") {
+      options.expectedParams.forEach(function (param) {
+        if (!actualParams.hasOwnProperty(param)) {
+          throw new Error("Expected parameter " + param + " not given");
+        }
+      });
+    }
+
+    return (0, _request2.default)(options.method, new URL("" + client.apiHost + callPath), {
+      token: _state2.default.getToken(),
+      params: actualParams,
+      multipart: options.multipart || false
+    });
+  };
+
+  apiCall.options = options;
+  return apiCall;
 };
 
 /***/ }),
@@ -387,42 +265,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _apiCall = __webpack_require__(0);
+__webpack_require__(6);
 
-var _apiCall2 = _interopRequireDefault(_apiCall);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (object) {
-  return Object.assign(object, {
-    listEventAnalytics: (0, _apiCall2.default)({
-      method: "get",
-      path: "/analytics/events",
-      optionalParams: ["page"]
-    }),
-
-    listUserAnalytics: (0, _apiCall2.default)({
-      method: "get",
-      path: "/analytics/users",
-      optionalParams: ["page"]
-    })
-  });
-};
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-__webpack_require__(7);
-
-var _stringCase = __webpack_require__(8);
+var _stringCase = __webpack_require__(7);
 
 var buildHeaders = function buildHeaders(options) {
   var headers = {};
@@ -437,8 +282,7 @@ var buildHeaders = function buildHeaders(options) {
   return headers;
 };
 
-var buildRequest = function buildRequest(method, path, options) {
-  var url = new URL("" + "http://localhost:3000" + path);
+var buildRequest = function buildRequest(method, url, options) {
   var reqOptions = { headers: buildHeaders(options), method: method };
   var params = (0, _stringCase.snakerize)(options.params);
 
@@ -459,8 +303,8 @@ var buildRequest = function buildRequest(method, path, options) {
   return { url: url.href, options: reqOptions };
 };
 
-var sendRequest = function sendRequest(method, path, options) {
-  var request = buildRequest(method, path, options);
+exports.default = function (method, url, options) {
+  var request = buildRequest(method, url, options);
 
   return new Promise(function (resolve, reject) {
     fetch(request.url, request.options).then(function (response) {
@@ -479,29 +323,14 @@ var sendRequest = function sendRequest(method, path, options) {
   });
 };
 
-exports.default = {
-  delete: function _delete(path, options) {
-    return sendRequest("DELETE", path, options);
-  },
-  get: function get(path, options) {
-    return sendRequest("GET", path, options);
-  },
-  patch: function patch(path, options) {
-    return sendRequest("PATCH", path, options);
-  },
-  post: function post(path, options) {
-    return sendRequest("POST", path, options);
-  }
-};
-
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports) {
 
 module.exports = require("isomorphic-fetch");
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -572,1244 +401,6 @@ var snakerize = function snakerize(object) {
 };
 exports.camelize = camelize;
 exports.snakerize = snakerize;
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _apiCall = __webpack_require__(0);
-
-var _apiCall2 = _interopRequireDefault(_apiCall);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (object) {
-  return Object.assign(object, {
-    createAnnouncement: (0, _apiCall2.default)({
-      method: "post",
-      path: "/announcements",
-      expectedParams: ["title", "body"]
-    }),
-
-    deleteAnnouncement: (0, _apiCall2.default)({
-      method: "delete",
-      path: "/announcements/:announcementId"
-    }),
-
-    getAnnouncement: (0, _apiCall2.default)({
-      method: "get",
-      path: "/announcements/:announcementId"
-    }),
-
-    listAnnouncements: (0, _apiCall2.default)({
-      method: "get",
-      path: "/announcements",
-      optionalParams: ["page"]
-    }),
-
-    updateAnnouncement: (0, _apiCall2.default)({
-      method: "patch",
-      path: "/announcements/:announcementId",
-      optionalParams: ["title", "body"]
-    })
-  });
-};
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _apiCall = __webpack_require__(0);
-
-var _apiCall2 = _interopRequireDefault(_apiCall);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (object) {
-  return Object.assign(object, {
-    createComment: (0, _apiCall2.default)({
-      method: "post",
-      path: "/events/:eventId/comments",
-      expectedParams: ["body"],
-      optionalParams: ["parentCommentId"]
-    }),
-
-    deleteComment: (0, _apiCall2.default)({
-      method: "delete",
-      path: "/events/:eventId/comments/:commentId"
-    }),
-
-    getComment: (0, _apiCall2.default)({
-      method: "get",
-      path: "/events/:eventId/comments/:commentId"
-    }),
-
-    listComments: (0, _apiCall2.default)({
-      method: "get",
-      path: "/events/:eventId/comments",
-      optionalParams: ["page"]
-    }),
-
-    updateComment: (0, _apiCall2.default)({
-      method: "patch",
-      path: "/events/:eventId/comments/:commentId",
-      expectedParams: ["body"]
-    })
-  });
-};
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _apiCall = __webpack_require__(0);
-
-var _apiCall2 = _interopRequireDefault(_apiCall);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (object) {
-  return Object.assign(object, {
-    createDepartment: (0, _apiCall2.default)({
-      method: "post",
-      path: "/departments",
-      expectedParams: ["name"]
-    }),
-
-    deleteDepartment: (0, _apiCall2.default)({
-      method: "delete",
-      path: "/departments/:departmentId"
-    }),
-
-    getDepartment: (0, _apiCall2.default)({
-      method: "get",
-      path: "/departments/:departmentId"
-    }),
-
-    listDepartments: (0, _apiCall2.default)({
-      method: "get",
-      path: "/departments",
-      optionalParams: ["page"]
-    }),
-
-    updateDepartment: (0, _apiCall2.default)({
-      method: "patch",
-      path: "/departments/:departmentId",
-      optionalParams: ["name"]
-    })
-  });
-};
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _apiCall = __webpack_require__(0);
-
-var _apiCall2 = _interopRequireDefault(_apiCall);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (object) {
-  return Object.assign(object, {
-    createEvent: (0, _apiCall2.default)({
-      method: "post",
-      path: "/events",
-      multipart: true,
-      expectedParams: ["name", "details", "startsAt", "endsAt", "eventType"],
-      optionalParams: ["sponsored", "surveyId", "image"]
-    }),
-
-    duplicateEvent: (0, _apiCall2.default)({
-      method: "post",
-      path: "/events/:eventId/event_duplicates",
-      expectedParams: ["startsAt"],
-      optionalParams: ["endsAt"]
-    }),
-
-    getEvent: (0, _apiCall2.default)({
-      method: "get",
-      path: "/events/:eventId"
-    }),
-
-    listEvents: (0, _apiCall2.default)({
-      method: "get",
-      path: "/events",
-      optionalParams: ["page"]
-    }),
-
-    listEventsByOrganization: (0, _apiCall2.default)({
-      method: "get",
-      path: "/admin/events"
-    }),
-
-    listEventSurveyResults: (0, _apiCall2.default)({
-      method: "get",
-      path: "/events/:eventId/survey_results"
-    }),
-
-    listUserEvents: (0, _apiCall2.default)({
-      method: "get",
-      path: "/users/:userId/events",
-      optionalParams: ["page"]
-    }),
-
-    markEventAsSponsored: (0, _apiCall2.default)({
-      method: "post",
-      path: "/events/:eventId/event_sponsorship"
-    }),
-
-    messageEventGuests: (0, _apiCall2.default)({
-      method: "post",
-      path: "/events/:eventId/event_notifications",
-      expectedParams: ["body"]
-    }),
-
-    subscribeToEventNotifications: (0, _apiCall2.default)({
-      method: "post",
-      path: "/events/:eventId/event_notification_subscription"
-    }),
-
-    unsubscribeFromEventNotifications: (0, _apiCall2.default)({
-      method: "delete",
-      path: "/events/:eventId/event_notification_subscription"
-    }),
-
-    updateEvent: (0, _apiCall2.default)({
-      method: "patch",
-      path: "/events/:eventId",
-      optionalParams: ["name", "details", "startsAt", "endsAt", "eventType", "sponsored", "surveyId", "image"]
-    })
-  });
-};
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _apiCall = __webpack_require__(0);
-
-var _apiCall2 = _interopRequireDefault(_apiCall);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (object) {
-  return Object.assign(object, {
-    createExpense: (0, _apiCall2.default)({
-      method: "post",
-      path: "/events/:eventId/expenses",
-      expectedParams: ["description", "amount"]
-    }),
-
-    deleteExpense: (0, _apiCall2.default)({
-      method: "delete",
-      path: "/events/:eventId/expenses/:expenseId"
-    }),
-
-    getExpense: (0, _apiCall2.default)({
-      method: "get",
-      path: "/events/:eventId/expenses/:expenseId"
-    }),
-
-    listExpenses: (0, _apiCall2.default)({
-      method: "get",
-      path: "/events/:eventId/expenses",
-      optionalParams: ["page"]
-    }),
-
-    updateExpense: (0, _apiCall2.default)({
-      method: "patch",
-      path: "/events/:eventId/expenses/:expenseId",
-      optionalParams: ["description", "amount"]
-    })
-  });
-};
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _apiCall = __webpack_require__(0);
-
-var _apiCall2 = _interopRequireDefault(_apiCall);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (object) {
-  return Object.assign(object, {
-    createFeedback: (0, _apiCall2.default)({
-      method: "post",
-      path: "/feedbacks",
-      expectedParams: ["body"],
-      optionalParams: ["anonymous"]
-    }),
-
-    getFeedback: (0, _apiCall2.default)({
-      method: "get",
-      path: "/feedbacks/:feedbackId"
-    }),
-
-    listFeedbacks: (0, _apiCall2.default)({
-      method: "get",
-      path: "/feedbacks",
-      optionalParams: ["page"]
-    }),
-
-    reviewFeedback: (0, _apiCall2.default)({
-      method: "patch",
-      path: "/feedbacks/:feedbackId"
-    })
-  });
-};
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _apiCall = __webpack_require__(0);
-
-var _apiCall2 = _interopRequireDefault(_apiCall);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (object) {
-  return Object.assign(object, {
-    deleteInterest: (0, _apiCall2.default)({
-      method: "delete",
-      path: "/interests/:interestId"
-    }),
-
-    getInterest: (0, _apiCall2.default)({
-      method: "get",
-      path: "/interests/:interestId"
-    }),
-
-    listInterests: (0, _apiCall2.default)({
-      method: "get",
-      path: "/interests",
-      optionalParams: ["page"]
-    })
-  });
-};
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _apiCall = __webpack_require__(0);
-
-var _apiCall2 = _interopRequireDefault(_apiCall);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (object) {
-  return Object.assign(object, {
-    listInvites: (0, _apiCall2.default)({
-      method: "get",
-      path: "/invites",
-      optionalParams: ["page"]
-    })
-  });
-};
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _apiCall = __webpack_require__(0);
-
-var _apiCall2 = _interopRequireDefault(_apiCall);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (object) {
-  return Object.assign(object, {
-    createOrganization: (0, _apiCall2.default)({
-      method: "post",
-      path: "/admin/organizations",
-      expectedParams: ["name"],
-      optionalParams: ["primaryColor", "secondaryColor", "gamificationEnabled", "logo"]
-    }),
-
-    deleteOrganization: (0, _apiCall2.default)({
-      method: "delete",
-      path: "/admin/organizations/:organizationId"
-    }),
-
-    getOrganization: (0, _apiCall2.default)({
-      method: "get",
-      path: "/admin/organizations/:organizationId"
-    }),
-
-    listOrganizations: (0, _apiCall2.default)({
-      method: "get",
-      path: "/admin/organizations",
-      optionalParams: ["page"]
-    }),
-
-    updateOrganization: (0, _apiCall2.default)({
-      method: "patch",
-      path: "/admin/organizations/:organizationId",
-      optionalParams: ["name", "primaryColor", "secondaryColor", "gamificationEnabled", "logo"]
-    })
-  });
-};
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _apiCall = __webpack_require__(0);
-
-var _apiCall2 = _interopRequireDefault(_apiCall);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (object) {
-  return Object.assign(object, {
-    createOrganizationValue: (0, _apiCall2.default)({
-      method: "post",
-      path: "/organization_values",
-      expectedParams: ["name"]
-    }),
-
-    deleteOrganizationValue: (0, _apiCall2.default)({
-      method: "delete",
-      path: "/organization_values/:organizationValueId"
-    }),
-
-    getOrganizationValue: (0, _apiCall2.default)({
-      method: "get",
-      path: "/organization_values/:organizationValueId"
-    }),
-
-    listOrganizationValues: (0, _apiCall2.default)({
-      method: "get",
-      path: "/organization_values",
-      optionalParams: ["page"]
-    }),
-
-    updateOrganizationValue: (0, _apiCall2.default)({
-      method: "patch",
-      path: "/organization_values/:organizationValueId",
-      expectedParams: ["name"]
-    })
-  });
-};
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _apiCall = __webpack_require__(0);
-
-var _apiCall2 = _interopRequireDefault(_apiCall);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (object) {
-  return Object.assign(object, {
-    changePassword: (0, _apiCall2.default)({
-      method: "patch",
-      path: "/password",
-      expectedParams: ["password"]
-    }),
-
-    requestPasswordReset: (0, _apiCall2.default)({
-      method: "post",
-      path: "/password_resets",
-      expectedParams: ["email"]
-    }),
-
-    resetPassword: (0, _apiCall2.default)({
-      method: "patch",
-      path: "/password_resets/:token",
-      expectedParams: ["password"]
-    })
-  });
-};
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _apiCall = __webpack_require__(0);
-
-var _apiCall2 = _interopRequireDefault(_apiCall);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (object) {
-  return Object.assign(object, {
-    createEventPhoto: (0, _apiCall2.default)({
-      method: "post",
-      path: "/events/:eventId/photos",
-      multipart: true,
-      expectedParams: ["image"],
-      optionalParams: ["caption"]
-    }),
-
-    bulkCreateEventPhotos: (0, _apiCall2.default)({
-      method: "post",
-      path: "/events/:eventId/albums",
-      multipart: true,
-      expectedParams: ["images"]
-    }),
-
-    deleteEventPhoto: (0, _apiCall2.default)({
-      method: "delete",
-      path: "/events/:eventId/photos/:photoId"
-    }),
-
-    getEventPhoto: (0, _apiCall2.default)({
-      method: "get",
-      path: "/events/:eventId/photos/:photoId"
-    }),
-
-    getPhotoGallery: (0, _apiCall2.default)({
-      method: "get",
-      path: "/gallery",
-      optionalParams: ["page", "range"]
-    }),
-
-    listEventPhotos: (0, _apiCall2.default)({
-      method: "get",
-      path: "/events/:eventId/photos",
-      optionalParams: ["page"]
-    }),
-
-    updateEventPhoto: (0, _apiCall2.default)({
-      method: "patch",
-      path: "/events/:eventId/photos/:photoId",
-      multipart: true,
-      optionalParams: ["image", "caption"]
-    })
-  });
-};
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _apiCall = __webpack_require__(0);
-
-var _apiCall2 = _interopRequireDefault(_apiCall);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (object) {
-  return Object.assign(object, {
-    createPhotoTag: (0, _apiCall2.default)({
-      method: "post",
-      path: "/photos/:photoId/photo_tags",
-      expectedParams: ["userId"]
-    }),
-
-    deletePhotoTag: (0, _apiCall2.default)({
-      method: "delete",
-      path: "/photos/:photoId/photo_tags/:photoTagId"
-    }),
-
-    listPhotoTags: (0, _apiCall2.default)({
-      method: "get",
-      path: "/photos/:photoId/photo_tags",
-      optionalParams: ["page"]
-    })
-  });
-};
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _apiCall = __webpack_require__(0);
-
-var _apiCall2 = _interopRequireDefault(_apiCall);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (object) {
-  return Object.assign(object, {
-    getPointConfig: (0, _apiCall2.default)({
-      method: "get",
-      path: "/point_config"
-    }),
-
-    updatePointConfig: (0, _apiCall2.default)({
-      method: "patch",
-      path: "/point_config",
-      optionalParams: ["firstEvent", "eventWithTwoNew", "avatar", "interests", "widgetSurvey", "eventSurvey", "recognition"]
-    })
-  });
-};
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _apiCall = __webpack_require__(0);
-
-var _apiCall2 = _interopRequireDefault(_apiCall);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (object) {
-  return Object.assign(object, {
-    getPointLeaderboard: (0, _apiCall2.default)({
-      method: "get",
-      path: "/point_leaderboard"
-    })
-  });
-};
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _apiCall = __webpack_require__(0);
-
-var _apiCall2 = _interopRequireDefault(_apiCall);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (object) {
-  return Object.assign(object, {
-    getProfile: (0, _apiCall2.default)({
-      method: "get",
-      path: "/profile"
-    }),
-
-    updateProfile: (0, _apiCall2.default)({
-      method: "patch",
-      path: "/profile",
-      multipart: true,
-      optionalParams: ["name", "email", "departmentIds", "interestList", "avatar", "title"]
-    })
-  });
-};
-
-/***/ }),
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _apiCall = __webpack_require__(0);
-
-var _apiCall2 = _interopRequireDefault(_apiCall);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (object) {
-  return Object.assign(object, {
-    createRecognition: (0, _apiCall2.default)({
-      method: "post",
-      path: "/recognitions",
-      expectedParams: ["body", "userIds"]
-    }),
-
-    deleteRecognition: (0, _apiCall2.default)({
-      method: "delete",
-      path: "/recognitions/:recognitionId"
-    }),
-
-    getRecognition: (0, _apiCall2.default)({
-      method: "get",
-      path: "/recognitions/:recognitionId"
-    }),
-
-    listOrganizationValueRecognitions: (0, _apiCall2.default)({
-      method: "get",
-      path: "/organization_values/:organizationValueId/recognitions",
-      optionalParams: ["page"]
-    }),
-
-    listRecognitions: (0, _apiCall2.default)({
-      method: "get",
-      path: "/recognitions",
-      optionalParams: ["page"]
-    }),
-
-    listUserRecognitions: (0, _apiCall2.default)({
-      method: "get",
-      path: "/users/:userId/recognitions",
-      optionalParams: ["page"]
-    }),
-
-    updateRecognition: (0, _apiCall2.default)({
-      method: "patch",
-      path: "/recognitions/:recognitionId",
-      expectedParams: ["body"],
-      optionalParams: ["userIds"]
-    })
-  });
-};
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _apiCall = __webpack_require__(0);
-
-var _apiCall2 = _interopRequireDefault(_apiCall);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (object) {
-  return Object.assign(object, {
-    createRewardRedemption: (0, _apiCall2.default)({
-      method: "post",
-      path: "/rewards/:rewardId/redemptions"
-    }),
-
-    deleteRewardRedemption: (0, _apiCall2.default)({
-      method: "delete",
-      path: "/rewards/:rewardId/redemptions/:redemptionId"
-    }),
-
-    getRewardRedemption: (0, _apiCall2.default)({
-      method: "get",
-      path: "/rewards/:rewardId/redemptions/:redemptionId"
-    }),
-
-    listRedemptions: (0, _apiCall2.default)({
-      method: "get",
-      path: "/redemptions",
-      optionalParams: ["page"]
-    }),
-
-    listRewardRedemptions: (0, _apiCall2.default)({
-      method: "get",
-      path: "/rewards/:rewardId/redemptions",
-      optionalParams: ["page"]
-    }),
-
-    updateRewardRedemption: (0, _apiCall2.default)({
-      method: "patch",
-      path: "/rewards/:rewardId/redemptions/:redemptionId"
-    })
-  });
-};
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _apiCall = __webpack_require__(0);
-
-var _apiCall2 = _interopRequireDefault(_apiCall);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (object) {
-  return Object.assign(object, {
-    createReward: (0, _apiCall2.default)({
-      method: "post",
-      path: "/rewards",
-      expectedParams: ["name", "points"],
-      optionalParams: ["description"]
-    }),
-
-    deleteReward: (0, _apiCall2.default)({
-      method: "delete",
-      path: "/rewards/:rewardId"
-    }),
-
-    getReward: (0, _apiCall2.default)({
-      method: "get",
-      path: "/rewards/:rewardId"
-    }),
-
-    listRewards: (0, _apiCall2.default)({
-      method: "get",
-      path: "/rewards",
-      optionalParams: ["page"]
-    }),
-
-    updateReward: (0, _apiCall2.default)({
-      method: "patch",
-      path: "/rewards/:rewardId",
-      optionalParams: ["name", "points", "description"]
-    })
-  });
-};
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _apiCall = __webpack_require__(0);
-
-var _apiCall2 = _interopRequireDefault(_apiCall);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (object) {
-  return Object.assign(object, {
-    createEventRsvp: (0, _apiCall2.default)({
-      method: "post",
-      path: "/events/:eventId/rsvps",
-      expectedParams: ["responseType"],
-      optionalParams: ["extra"]
-    }),
-
-    getEventRsvp: (0, _apiCall2.default)({
-      method: "get",
-      path: "/events/:eventId/rsvps/:rsvpId"
-    }),
-
-    listEventRsvps: (0, _apiCall2.default)({
-      method: "get",
-      path: "/events/:eventId/rsvps",
-      optionalParams: ["page"]
-    }),
-
-    updateEventRsvp: (0, _apiCall2.default)({
-      method: "patch",
-      path: "/events/:eventId/rsvps/:rsvpId",
-      expectedParams: ["responseType"],
-      optionalParams: ["extra"]
-    })
-  });
-};
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _apiCall = __webpack_require__(0);
-
-var _apiCall2 = _interopRequireDefault(_apiCall);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (object) {
-  return Object.assign(object, {
-    createSurvey: (0, _apiCall2.default)({
-      method: "post",
-      path: "/surveys",
-      expectedParams: ["title"],
-      optionalParams: ["points"]
-    }),
-
-    deleteSurvey: (0, _apiCall2.default)({
-      method: "delete",
-      path: "/surveys/:surveyId"
-    }),
-
-    getSurvey: (0, _apiCall2.default)({
-      method: "get",
-      path: "/surveys/:surveyId"
-    }),
-
-    listSurveys: (0, _apiCall2.default)({
-      method: "get",
-      path: "/surveys",
-      optionalParams: ["page"]
-    }),
-
-    listSurveyResults: (0, _apiCall2.default)({
-      method: "get",
-      path: "/surveys/:survey_id/survey_results"
-    }),
-
-    updateSurvey: (0, _apiCall2.default)({
-      method: "patch",
-      path: "/surveys/:surveyId",
-      optionalParams: ["title", "points"]
-    })
-  });
-};
-
-/***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _apiCall = __webpack_require__(0);
-
-var _apiCall2 = _interopRequireDefault(_apiCall);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (object) {
-  return Object.assign(object, {
-    createSurveyItem: (0, _apiCall2.default)({
-      method: "post",
-      path: "/surveys/:surveyId/survey_items",
-      expectedParams: ["prompt", "itemType"],
-      optionalParams: ["minRange", "maxRange"]
-    }),
-
-    deleteSurveyItem: (0, _apiCall2.default)({
-      method: "delete",
-      path: "/survey_items/:surveyItemId"
-    }),
-
-    getSurveyItem: (0, _apiCall2.default)({
-      method: "get",
-      path: "/survey_items/:surveyItemId"
-    }),
-
-    listSurveyItems: (0, _apiCall2.default)({
-      method: "get",
-      path: "/surveys/:surveyId/survey_items",
-      optionalParams: ["page"]
-    }),
-
-    updateSurveyItem: (0, _apiCall2.default)({
-      method: "patch",
-      path: "/survey_items/:surveyItemId",
-      optionalParams: ["prompt", "itemType", "minRange", "maxRange"]
-    })
-  });
-};
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _apiCall = __webpack_require__(0);
-
-var _apiCall2 = _interopRequireDefault(_apiCall);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (object) {
-  return Object.assign(object, {
-    createSurveyItemResponseOption: (0, _apiCall2.default)({
-      method: "post",
-      path: "/survey_items/:surveyItemId/survey_item_response_options",
-      expectedParams: ["body"]
-    }),
-
-    deleteSurveyItemResponseOption: (0, _apiCall2.default)({
-      method: "delete",
-      path: "/survey_item_response_options/:surveyItemResponseOptionId"
-    }),
-
-    getSurveyItemResponseOption: (0, _apiCall2.default)({
-      method: "get",
-      path: "/survey_item_response_options/:surveyItemResponseOptionId"
-    }),
-
-    listSurveyItemResponseOptions: (0, _apiCall2.default)({
-      method: "get",
-      path: "/survey_items/:surveyItemId/survey_item_response_options",
-      optionalParams: ["page"]
-    }),
-
-    updateSurveyItemResponseOption: (0, _apiCall2.default)({
-      method: "patch",
-      path: "/survey_item_response_options/:surveyItemResponseOptionId",
-      optionalParams: ["body"]
-    })
-  });
-};
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _apiCall = __webpack_require__(0);
-
-var _apiCall2 = _interopRequireDefault(_apiCall);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-exports.default = function (object) {
-  var _Object$assign;
-
-  return Object.assign(object, (_Object$assign = {
-    createSurveyUserItemResponse: (0, _apiCall2.default)({
-      method: "post",
-      path: "/survey_items/:surveyItemId/survey_user_item_response",
-      expectedParams: ["body", "surveyItemResponseOptionIds"]
-    }),
-
-    createEventSurveyUserItemResponse: (0, _apiCall2.default)({
-      method: "post",
-      path: "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response",
-      expectedParams: ["body", "surveyItemResponseOptionIds"]
-    }),
-
-    deleteSurveyUserItemResponse: (0, _apiCall2.default)({
-      method: "delete",
-      path: "/survey_items/:surveyItemId/survey_user_item_response"
-    }),
-
-    deleteEventSurveyUserItemResponse: (0, _apiCall2.default)({
-      method: "delete",
-      path: "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response"
-    }),
-
-    getSurveyUserItemResponse: (0, _apiCall2.default)({
-      method: "get",
-      path: "/survey_items/:surveyItemId/survey_user_item_response"
-    })
-
-  }, _defineProperty(_Object$assign, "getSurveyUserItemResponse", (0, _apiCall2.default)({
-    method: "get",
-    path: "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response"
-  })), _defineProperty(_Object$assign, "updateSurveyUserItemResponse", (0, _apiCall2.default)({
-    method: "patch",
-    path: "/survey_items/:surveyItemId/survey_user_item_response",
-    optionalParams: ["body", "surveyItemResponseOptionIds"]
-  })), _defineProperty(_Object$assign, "updateEventSurveyUserItemResponse", (0, _apiCall2.default)({
-    method: "patch",
-    path: "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response",
-    optionalParams: ["body", "surveyItemResponseOptionIds"]
-  })), _Object$assign));
-};
-
-/***/ }),
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _apiCall = __webpack_require__(0);
-
-var _apiCall2 = _interopRequireDefault(_apiCall);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (object) {
-  return Object.assign(object, {
-    deactivateUser: (0, _apiCall2.default)({
-      method: "post",
-      path: "/users/:userId/deactivation"
-    }),
-
-    getUser: (0, _apiCall2.default)({
-      method: "get",
-      path: "/users/:userId"
-    }),
-
-    getUserAttendedEvents: (0, _apiCall2.default)({
-      method: "get",
-      path: "/users/:userId/attended_events"
-    }),
-
-    getUserEventTypeBreakdown: (0, _apiCall2.default)({
-      method: "get",
-      path: "/users/:userId/event_type_breakdown"
-    }),
-
-    getUserPointBreakdown: (0, _apiCall2.default)({
-      method: "get",
-      path: "/users/:userId/point_breakdown"
-    }),
-
-    incrementUserPoints: (0, _apiCall2.default)({
-      method: "post",
-      path: "/users/:userId/point_increments",
-      expectedParams: ["points"]
-    }),
-
-    listUsers: (0, _apiCall2.default)({
-      method: "get",
-      path: "/users",
-      optionalParams: ["page"]
-    }),
-
-    reactivateUser: (0, _apiCall2.default)({
-      method: "delete",
-      path: "/users/:userId/deactivation"
-    }),
-
-    registerUser: (0, _apiCall2.default)({
-      method: "post",
-      path: "/invites/:token/users",
-      expectedParams: ["name", "password"]
-    }),
-
-    sendInvite: (0, _apiCall2.default)({
-      method: "post",
-      path: "/invites",
-      expectedParams: ["email"]
-    }),
-
-    updateUser: (0, _apiCall2.default)({
-      method: "patch",
-      path: "/users/:userId",
-      multipart: true,
-      optionalParams: ["name", "email", "departmentIds", "interestList", "avatar", "title"]
-    })
-  });
-};
 
 /***/ })
 /******/ ]);
