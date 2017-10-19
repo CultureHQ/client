@@ -14,6 +14,16 @@
       "password"
     ]
   },
+  "checkInEventAttendee": {
+    "method": "POST",
+    "path": "/events/:eventId/check_ins",
+    "expectedParams": [
+      "userId"
+    ],
+    "optionalParams": [
+      "extra"
+    ]
+  },
   "createAnnouncement": {
     "method": "POST",
     "path": "/announcements",
