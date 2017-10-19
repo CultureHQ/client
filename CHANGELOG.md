@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Added
 - The `checkInEventAttendee` call.
+- The optional `image` param to the create and update rewards calls.
 
 ### Changed
 - `DELETE` calls are now properly handled (since they return no content, they were previously breaking because we were attempting to parse an empty string as JSON).

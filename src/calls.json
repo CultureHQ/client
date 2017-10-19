@@ -159,12 +159,14 @@
   "createReward": {
     "method": "POST",
     "path": "/rewards",
+    "multipart": true,
     "expectedParams": [
       "name",
       "points"
     ],
     "optionalParams": [
-      "description"
+      "description",
+      "image"
     ]
   },
   "createRewardRedemption": {
@@ -783,10 +785,12 @@
   "updateReward": {
     "method": "PATCH",
     "path": "/rewards/:rewardId",
+    "multipart": true,
     "optionalParams": [
       "name",
       "points",
-      "description"
+      "description",
+      "image"
     ]
   },
   "updateRewardRedemption": {
