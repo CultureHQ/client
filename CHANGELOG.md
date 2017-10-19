@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ### Changed
 - `DELETE` calls are now properly handled (since they return no content, they were previously breaking because we were attempting to parse an empty string as JSON).
+- API call functions are now constructed when the client is initially constructed as opposed to on the prototype. This allows them to change state based on the configuration of the client object.
 
 ## [0.0.18] - 2017-10-17
 ### Changed

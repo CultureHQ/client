@@ -23,10 +23,10 @@ const substitutePath = (path, params) => {
   return substitutedPath;
 };
 
-export default options => {
+export default (client, options) => {
   options.expectedParams = options.expectedParams || [];
 
-  const apiCall = (client, actualParams) => {
+  const apiCall = actualParams => {
     if (typeof actualParams !== "object") {
       actualParams = {};
     }
@@ -41,6 +41,6 @@ export default options => {
     });
   };
 
-  apiCall.options = options;
+  Object.assign(apiCall, options);
   return apiCall;
 };
