@@ -417,6 +417,13 @@
       "page"
     ]
   },
+  "listDepartmentAnalytics": {
+    "method": "GET",
+    "path": "/analytics/departments",
+    "optionalParams": [
+      "page"
+    ]
+  },
   "listDepartments": {
     "method": "GET",
     "path": "/departments",
