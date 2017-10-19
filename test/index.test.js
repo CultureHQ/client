@@ -52,7 +52,12 @@ describe("with a signed in user", () => {
       try {
         await client.signIn({ email: "foo", password: "bar" });
         const response = await client[callName](params);
-        expect(response).toEqual({ number });
+
+        if (client[callName].method === "DELETE") {
+          expect(response).toEqual({});
+        } else {
+          expect(response).toEqual({ number });
+        }
       } finally {
         server.close();
       }

@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - The `checkInEventAttendee` call.
 
+### Changed
+- `DELETE` calls are now properly handled (since they return no content, they were previously breaking because we were attempting to parse an empty string as JSON).
+
 ## [0.0.18] - 2017-10-17
 ### Changed
 - The `listUserEvents` call to `listUserHostedEvents` to better reflect what it's doing.

@@ -39,13 +39,15 @@ export default (method, url, options) => {
   return new Promise((resolve, reject) => {
     fetch(request.url, request.options)
       .then(response => {
-        if (Math.round(response.status / 200) === 1) {
+        if (Math.round(response.status / 200) !== 1) {
+          reject(response.statusText);
+        } else if (method === "DELETE") {
+          resolve({});
+        } else {
           response
             .json()
             .then(json => resolve(camelize(json)))
             .catch(error => reject(error));
-        } else {
-          reject(response.statusText);
         }
       })
       .catch(error => reject(error));
