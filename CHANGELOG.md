@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.20] - 2017-10-19
+### Changed
+- Fixing the bad 0.0.19 release.
+
 ## [0.0.19] - 2017-10-19
 ### Added
 - The `checkInEventAttendee` call.
@@ -166,7 +170,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.19...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.20...HEAD
+[0.0.20]: https://github.com/CultureHQ/client/compare/v0.0.19...v0.0.20
 [0.0.19]: https://github.com/CultureHQ/client/compare/v0.0.18...v0.0.19
 [0.0.18]: https://github.com/CultureHQ/client/compare/v0.0.17...v0.0.18
 [0.0.17]: https://github.com/CultureHQ/client/compare/v0.0.16...v0.0.17

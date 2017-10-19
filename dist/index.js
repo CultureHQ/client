@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory();
+		module.exports = factory(require("store/dist/store.modern"), require("isomorphic-fetch"));
 	else if(typeof define === 'function' && define.amd)
-		define([], factory);
+		define(["store/dist/store.modern", "isomorphic-fetch"], factory);
 	else if(typeof exports === 'object')
-		exports["CultureHQ"] = factory();
+		exports["CultureHQ"] = factory(require("store/dist/store.modern"), require("isomorphic-fetch"));
 	else
-		root["CultureHQ"] = factory();
-})(this, function() {
+		root["CultureHQ"] = factory(root["store/dist/store.modern"], root["isomorphic-fetch"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_6__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
