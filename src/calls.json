@@ -305,6 +305,10 @@
     "method": "GET",
     "path": "/departments/:departmentId"
   },
+  "getDepartmentEventParticipation": {
+    "method": "GET",
+    "path": "/events/:eventId/department_event_participation"
+  },
   "getEvent": {
     "method": "GET",
     "path": "/events/:eventId"
