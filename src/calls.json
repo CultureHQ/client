@@ -71,7 +71,8 @@
     "optionalParams": [
       "sponsored",
       "surveyId",
-      "image"
+      "image",
+      "organizationValueIds"
     ]
   },
   "createEventPhoto": {
@@ -495,6 +496,13 @@
       "page"
     ]
   },
+  "listOrganizationValueEvents": {
+    "method": "GET",
+    "path": "/organization_values/:organizationValueId/events",
+    "optionalParams": [
+      "page"
+    ]
+  },
   "listOrganizationValueRecognitions": {
     "method": "GET",
     "path": "/organization_values/:organizationValueId/recognitions",
@@ -697,7 +705,8 @@
       "eventType",
       "sponsored",
       "surveyId",
-      "image"
+      "image",
+      "organizationValueIds"
     ]
   },
   "updateEventPhoto": {
