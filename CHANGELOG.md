@@ -7,6 +7,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Added
 - The `listDepartmentAnalytics` call.
+- The `listOrganizationValueEvents` call.
+- The optional `organizationValueIds` param to the create and update event calls.
 
 ## [0.0.20] - 2017-10-19
 ### Changed

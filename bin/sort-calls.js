@@ -3,4 +3,12 @@
 const fs = require("fs");
 
 const content = JSON.parse(fs.readFileSync("src/calls.json"));
-fs.writeFileSync("src/calls.json", JSON.stringify(content, null, 2) + "\n");
+const modified = {};
+
+Object.keys(content)
+  .sort()
+  .forEach(key => {
+    modified[key] = content[key];
+  });
+
+fs.writeFileSync("src/calls.json", JSON.stringify(modified, null, 2) + "\n");
