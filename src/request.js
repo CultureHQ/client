@@ -24,7 +24,17 @@ const buildRequest = (method, url, options) => {
     );
   } else if (options.multipart) {
     const formData = new FormData();
-    Object.keys(params).forEach(key => formData.append(key, params[key]));
+
+    Object.keys(params).forEach(key => {
+      if (Array.isArray(params[key])) {
+        params[key].forEach(nestedValue =>
+          formData.append(`${key}[]`, nestedValue)
+        );
+      } else {
+        formData.append(key, params[key]);
+      }
+    });
+
     reqOptions.body = formData;
   } else {
     reqOptions.body = JSON.stringify(params);
