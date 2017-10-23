@@ -75,6 +75,13 @@
       "organizationValueIds"
     ]
   },
+  "createEventInvites": {
+    "method": "POST",
+    "path": "/events/:eventId/event_invites",
+    "expectedParams": [
+      "userIds"
+    ]
+  },
   "createEventPhoto": {
     "method": "POST",
     "path": "/events/:eventId/photos",
