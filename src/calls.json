@@ -73,7 +73,8 @@
       "surveyId",
       "image",
       "organizationValueIds",
-      "location"
+      "location",
+      "visibility"
     ]
   },
   "createEventInvites": {
@@ -719,7 +720,8 @@
       "surveyId",
       "image",
       "organizationValueIds",
-      "location"
+      "location",
+      "visibility"
     ]
   },
   "updateEventPhoto": {
