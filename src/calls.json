@@ -85,6 +85,27 @@
       "userIds"
     ]
   },
+  "createEventLeaderboardAttribute": {
+    "method": "POST",
+    "path": "/events/:eventId/event_leaderboard_attributes",
+    "expectedParams": [
+      "title"
+    ],
+    "optionalParams": [
+      "quantitative",
+      "sortDescending"
+    ]
+  },
+  "createEventLeaderboardAttributeRsvp": {
+    "method": "POST",
+    "path": "/event_leaderboard_attributes/:eventLeaderboardAttributeId/event_leaderboard_attribute_rsvps",
+    "expectedParams": [
+      "value"
+    ],
+    "optionalParams": [
+      "rsvpId"
+    ]
+  },
   "createEventPhoto": {
     "method": "POST",
     "path": "/events/:eventId/photos",
@@ -237,6 +258,14 @@
     "method": "DELETE",
     "path": "/departments/:departmentId"
   },
+  "deleteEventLeaderboardAttribute": {
+    "method": "DELETE",
+    "path": "/event_leaderboard_attributes/:eventLeaderboardAttributeId"
+  },
+  "deleteEventLeaderboardAttributeRsvp": {
+    "method": "DELETE",
+    "path": "/event_leaderboard_attribute_rsvps/:eventLeaderboardAttributeRsvpId"
+  },
   "deleteEventPhoto": {
     "method": "DELETE",
     "path": "/events/:eventId/photos/:photoId"
@@ -322,6 +351,10 @@
   "getEvent": {
     "method": "GET",
     "path": "/events/:eventId"
+  },
+  "getEventLeaderboardAttribute": {
+    "method": "GET",
+    "path": "/event_leaderboard_attributes/:eventLeaderboardAttributeId"
   },
   "getEventPhoto": {
     "method": "GET",
@@ -456,6 +489,13 @@
   "listEventAnalytics": {
     "method": "GET",
     "path": "/analytics/events",
+    "optionalParams": [
+      "page"
+    ]
+  },
+  "listEventLeaderboardAttributes": {
+    "method": "GET",
+    "path": "/events/:eventId/event_leaderboard_attributes",
     "optionalParams": [
       "page"
     ]
@@ -731,6 +771,25 @@
       "organizationValueIds",
       "location",
       "visibility"
+    ]
+  },
+  "updateEventLeaderboardAttribute": {
+    "method": "PATCH",
+    "path": "/event_leaderboard_attributes/:eventLeaderboardAttributeId",
+    "optionalParams": [
+      "title",
+      "quantitative",
+      "sortDescending"
+    ]
+  },
+  "updateEventLeaderboardAttributeRsvp": {
+    "method": "PATCH",
+    "path": "/event_leaderboard_attribute_rsvps/:eventLeaderboardAttributeRsvpId",
+    "expectedParams": [
+      "value"
+    ],
+    "optionalParams": [
+      "rsvpId"
     ]
   },
   "updateEventPhoto": {

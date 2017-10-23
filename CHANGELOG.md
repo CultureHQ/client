@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- The CRUD calls for the event leaderboard attribute entity, including: `createEventLeaderboardAttribute`, `deleteEventLeaderboardAttribute`, `getEventLeaderboardAttribute`, `listEventLeaderboardAttributes`, and `updateEventLeaderboardAttribute`.
+- The CRUD calls for the event leaderboard attribute rsvp entity, including: `createEventLeaderboardAttributeRsvp`, `deleteEventLeaderboardAttributeRsvp`, and `updateEventLeaderboardAttributeRsvp`.
 
 ## [0.0.21] - 2017-10-23
 ### Added
