@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - The `createEventInvites` call.
 - The optional `location` param to the create and update event calls.
 - The optional `visibility` param to the create and update event calls, must be either `"view_public"` or `"view_private"`.
+- The `listActiveAnnouncements` call and the optional `active` param on announcement create and update calls.
 
 ## [0.0.20] - 2017-10-19
 ### Changed

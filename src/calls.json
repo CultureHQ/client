@@ -29,7 +29,8 @@
     "path": "/announcements",
     "expectedParams": [
       "title",
-      "body"
+      "body",
+      "active"
     ]
   },
   "createApiKey": {
@@ -417,6 +418,13 @@
       "points"
     ]
   },
+  "listActiveAnnouncements": {
+    "method": "GET",
+    "path": "/active_announcements",
+    "optionalParams": [
+      "page"
+    ]
+  },
   "listAnnouncements": {
     "method": "GET",
     "path": "/announcements",
@@ -690,7 +698,8 @@
     "path": "/announcements/:announcementId",
     "optionalParams": [
       "title",
-      "body"
+      "body",
+      "active"
     ]
   },
   "updateComment": {
