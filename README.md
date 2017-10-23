@@ -51,10 +51,18 @@ const avatar = document.querySelector("#avatar").files[0];
 const response = await CultureHQ.updateUser({ userId: 12345, avatar });
 ```
 
-## Building
+## Development
 
-Install the dependencies with `yarn`. You can build the client with `yarn build`. This will generate a new `dist/index.js`.
+First, install the dependencies with `yarn`.
 
-## Testing
+### Styling
+
+Styling at the moment is handled through `prettier`. Run it with `yarn cleanup`.
+
+### Testing
 
 Run `yarn test` to run the tests with `jest`.
+
+### Releasing
+
+First, build the client with `yarn build`. This will generate a new `dist/index.js`. Then, modify [CHANGELOG.md](CHANGELOG.md) to include the new release. Finally, bump the version in [package.json](package.json).
