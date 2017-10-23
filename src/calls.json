@@ -72,7 +72,8 @@
       "sponsored",
       "surveyId",
       "image",
-      "organizationValueIds"
+      "organizationValueIds",
+      "location"
     ]
   },
   "createEventInvites": {
@@ -717,7 +718,8 @@
       "sponsored",
       "surveyId",
       "image",
-      "organizationValueIds"
+      "organizationValueIds",
+      "location"
     ]
   },
   "updateEventPhoto": {
