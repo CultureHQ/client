@@ -418,6 +418,13 @@
       "points"
     ]
   },
+  "listActiveAnnouncements": {
+    "method": "GET",
+    "path": "/active_announcements",
+    "optionalParams": [
+      "page"
+    ]
+  },
   "listAnnouncements": {
     "method": "GET",
     "path": "/announcements",
@@ -875,10 +882,5 @@
       "avatar",
       "title"
     ]
-  },
-  "listActiveAnnouncements": {
-    "method": "GET",
-    "path": "/active_announcements",
-    "optionalParams": ["page"]
   }
 }
