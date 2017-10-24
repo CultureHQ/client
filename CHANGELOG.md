@@ -13,6 +13,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - The calls for approving and unapproving an event vote entry.
 - The calls for voting for and removing a vote from an event vote entry.
 
+### Changed
+- The `updatePointConfig` param from `firstEvent` to `firstPublicEvent`.
+
 ## [0.0.21] - 2017-10-23
 ### Added
 - The `listDepartmentAnalytics` call.
