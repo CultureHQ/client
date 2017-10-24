@@ -1,4 +1,8 @@
 {
+  "approveEventVoteEntry": {
+    "method": "POST",
+    "path": "/event_vote_entries/:eventVoteEntryId/event_vote_entry_approval"
+  },
   "bulkCreateEventPhotos": {
     "method": "POST",
     "path": "/events/:eventId/albums",
@@ -133,6 +137,27 @@
     "expectedParams": [
       "body",
       "surveyItemResponseOptionIds"
+    ]
+  },
+  "createEventVote": {
+    "method": "POST",
+    "path": "/events/:eventId/event_votes",
+    "expectedParams": [
+      "title"
+    ],
+    "optionalParams": [
+      "maxVotes"
+    ]
+  },
+  "createEventVoteEntry": {
+    "method": "POST",
+    "path": "/event_votes/:eventVoteId/event_vote_entries",
+    "multipart": true,
+    "expectedParams": [
+      "title"
+    ],
+    "optionalParams": [
+      "image"
     ]
   },
   "createExpense": {
@@ -274,6 +299,14 @@
     "method": "DELETE",
     "path": "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response"
   },
+  "deleteEventVote": {
+    "method": "DELETE",
+    "path": "/event_votes/:eventVoteId"
+  },
+  "deleteEventVoteEntry": {
+    "method": "DELETE",
+    "path": "/event_vote_entries/:eventVoteEntryId"
+  },
   "deleteExpense": {
     "method": "DELETE",
     "path": "/events/:eventId/expenses/:expenseId"
@@ -363,6 +396,10 @@
   "getEventRsvp": {
     "method": "GET",
     "path": "/events/:eventId/rsvps/:rsvpId"
+  },
+  "getEventVote": {
+    "method": "GET",
+    "path": "/event_votes/:eventVoteId"
   },
   "getExpense": {
     "method": "GET",
@@ -517,6 +554,13 @@
   "listEventSurveyResults": {
     "method": "GET",
     "path": "/events/:eventId/survey_results"
+  },
+  "listEventVotes": {
+    "method": "GET",
+    "path": "/events/:eventId/event_votes",
+    "optionalParams": [
+      "page"
+    ]
   },
   "listEvents": {
     "method": "GET",
@@ -729,9 +773,17 @@
     "method": "POST",
     "path": "/events/:eventId/event_notification_subscription"
   },
+  "unapproveEventVoteEntry": {
+    "method": "DELETE",
+    "path": "/event_vote_entries/:eventVoteEntryId/event_vote_entry_approval"
+  },
   "unsubscribeFromEventNotifications": {
     "method": "DELETE",
     "path": "/events/:eventId/event_notification_subscription"
+  },
+  "unvoteForEventVoteEntry": {
+    "method": "DELETE",
+    "path": "/event_vote_entries/:eventVoteEntryId/event_vote_entry_rsvp"
   },
   "updateAnnouncement": {
     "method": "PATCH",
@@ -817,6 +869,22 @@
     "optionalParams": [
       "body",
       "surveyItemResponseOptionIds"
+    ]
+  },
+  "updateEventVote": {
+    "method": "PATCH",
+    "path": "/event_votes/:eventVoteId",
+    "optionalParams": [
+      "title",
+      "maxVotes"
+    ]
+  },
+  "updateEventVoteEntry": {
+    "method": "PATCH",
+    "path": "/event_vote_entries/:eventVoteEntryId",
+    "optionalParams": [
+      "title",
+      "image"
     ]
   },
   "updateExpense": {
@@ -941,5 +1009,9 @@
       "avatar",
       "title"
     ]
+  },
+  "voteForEventVoteEntry": {
+    "method": "POST",
+    "path": "/event_vote_entries/:eventVoteEntryId/event_vote_entry_rsvp"
   }
 }
