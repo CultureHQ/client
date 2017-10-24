@@ -1,8 +1,11 @@
 import fs from "fs";
+import universalUrl from "universal-url";
 
 import createServer from "./create-server";
 import CultureHQ from "../src/index";
 import calls from "../src/calls";
+
+universalUrl.shim();
 
 const port = 8080;
 const client = new CultureHQ({ apiHost: `http://localhost:${port}` });

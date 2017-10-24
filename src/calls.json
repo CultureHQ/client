@@ -3,6 +3,13 @@
     "method": "POST",
     "path": "/event_vote_entries/:eventVoteEntryId/event_vote_entry_approval"
   },
+  "autocompleteUsers": {
+    "method": "GET",
+    "path": "/autocomplete/users",
+    "expectedParams": [
+      "query"
+    ]
+  },
   "bulkCreateEventPhotos": {
     "method": "POST",
     "path": "/events/:eventId/albums",
