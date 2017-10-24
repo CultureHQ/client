@@ -400,6 +400,10 @@
     "method": "GET",
     "path": "/events/:eventId"
   },
+  "getEventAnalytics": {
+    "method": "GET",
+    "path": "/analytics/events/:eventId"
+  },
   "getEventLeaderboardAttribute": {
     "method": "GET",
     "path": "/event_leaderboard_attributes/:eventLeaderboardAttributeId"

@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - The ability to activate and deactivate surveys through the `activateSurvey` and `deactivateSurvey` calls.
 - The `listActiveSurveys` call.
+- The `getEventAnalytics` call.
 
 ## [0.0.22] - 2017-10-24
 ### Added
