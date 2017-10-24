@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - The CRUD calls for the event leaderboard attribute entity, including: `createEventLeaderboardAttribute`, `deleteEventLeaderboardAttribute`, `getEventLeaderboardAttribute`, `listEventLeaderboardAttributes`, and `updateEventLeaderboardAttribute`.
 - The CRUD calls for the event leaderboard attribute rsvp entity, including: `createEventLeaderboardAttributeRsvp`, `deleteEventLeaderboardAttributeRsvp`, and `updateEventLeaderboardAttributeRsvp`.
+- The CRUD calls for the event votes entity, including: `createEventVote`, `getEventVote`, `deleteEventVote`, `listEventVotes`, and `updateEventVote`.
+- The CRUD calls for the event vote entry entity, including: `createEventVoteEntry`, `deleteEventVoteEntry`, and `updateEventVoteEntry`.
+- The calls for approving and unapproving an event vote entry.
+- The calls for voting for and removing a vote from an event vote entry.
 
 ## [0.0.21] - 2017-10-23
 ### Added

@@ -941,5 +941,61 @@
       "avatar",
       "title"
     ]
+  },
+  "createEventVote": {
+    "method": "POST",
+    "path": "/events/:eventId/event_votes",
+    "expectedParams": ["title"],
+    "optionalParams": ["maxVotes"]
+  },
+  "getEventVote": {
+    "method": "GET",
+    "path": "/event_votes/:eventVoteId"
+  },
+  "deleteEventVote": {
+    "method": "DELETE",
+    "path": "/event_votes/:eventVoteId"
+  },
+  "listEventVotes": {
+    "method": "GET",
+    "path": "/events/:eventId/event_votes",
+    "optionalParams": ["page"]
+  },
+  "updateEventVote": {
+    "method": "PATCH",
+    "path": "/event_votes/:eventVoteId",
+    "optionalParams": ["title", "maxVotes"]
+  },
+  "createEventVoteEntry": {
+    "method": "POST",
+    "path": "/event_votes/:eventVoteId/event_vote_entries",
+    "multipart": true,
+    "expectedParams": ["title"],
+    "optionalParams": ["image"]
+  },
+  "deleteEventVoteEntry": {
+    "method": "DELETE",
+    "path": "/event_vote_entries/:eventVoteEntryId"
+  },
+  "updateEventVoteEntry": {
+    "method": "PATCH",
+    "path": "/event_vote_entries/:eventVoteEntryId",
+    "optionalParams": ["title", "image"]
+  },
+  "voteForEventVoteEntry": {
+    "method": "POST",
+    "path": "/event_vote_entries/:eventVoteEntryId/event_vote_entry_rsvp"
+  },
+  "unvoteForEventVoteEntry": {
+    "method": "DELETE",
+    "path": "/event_vote_entries/:eventVoteEntryId/event_vote_entry_rsvp"
+  },
+  "approveEventVoteEntry": {
+    "method": "POST",
+    "path": "/event_vote_entries/:eventVoteEntryId/event_vote_entry_approval"
+  },
+  "unapproveEventVoteEntry": {
+    "method": "DELETE",
+    "path": "/event_vote_entries/:eventVoteEntryId/event_vote_entry_approval"
   }
 }
