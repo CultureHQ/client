@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - The calls for approving and unapproving an event vote entry.
 - The calls for voting for and removing a vote from an event vote entry.
 - The `autocompleteUsers` call.
+- The optional `range` option to the `listEvents` call.
 
 ### Changed
 - The `updatePointConfig` param from `firstEvent` to `firstPublicEvent`.
