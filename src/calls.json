@@ -917,7 +917,7 @@
     "method": "PATCH",
     "path": "/point_config",
     "optionalParams": [
-      "firstEvent",
+      "firstPublicEvent",
       "eventWithTwoNew",
       "avatar",
       "interests",
