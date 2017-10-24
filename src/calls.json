@@ -1,4 +1,8 @@
 {
+  "activateSurvey": {
+    "method": "POST",
+    "path": "/surveys/:surveyId/survey_activation"
+  },
   "approveEventVoteEntry": {
     "method": "POST",
     "path": "/event_vote_entries/:eventVoteEntryId/event_vote_entry_approval"
@@ -274,6 +278,10 @@
       "surveyItemResponseOptionIds"
     ]
   },
+  "deactivateSurvey": {
+    "method": "DELETE",
+    "path": "/surveys/:surveyId/survey_activation"
+  },
   "deactivateUser": {
     "method": "POST",
     "path": "/users/:userId/deactivation"
@@ -498,6 +506,13 @@
   "listActiveAnnouncements": {
     "method": "GET",
     "path": "/active_announcements",
+    "optionalParams": [
+      "page"
+    ]
+  },
+  "listActiveSurveys": {
+    "method": "GET",
+    "path": "/active_surveys",
     "optionalParams": [
       "page"
     ]
@@ -1021,18 +1036,5 @@
   "voteForEventVoteEntry": {
     "method": "POST",
     "path": "/event_vote_entries/:eventVoteEntryId/event_vote_entry_rsvp"
-  },
-  "listActiveSurveys": {
-    "method": "GET",
-    "path": "/active_surveys",
-    "optionalParams": ["page"]
-  },
-  "activateSurvey": {
-    "method": "POST",
-    "path": "/surveys/:surveyId/survey_activation"
-  },
-  "deactivateSurvey": {
-    "method": "DELETE",
-    "path": "/surveys/:surveyId/survey_activation"
   }
 }
