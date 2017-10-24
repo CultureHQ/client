@@ -50,9 +50,12 @@ export default (method, url, options) => {
     fetch(request.url, request.options)
       .then(response => {
         if (Math.round(response.status / 200) !== 1) {
-          reject(response.statusText);
-        } else if (method === "DELETE") {
-          resolve({});
+          response
+            .json()
+            .then(json => reject(camelize(json)))
+            .catch(error => reject(error));
+        } else if (response.status === 204) {
+          resolve(null);
         } else {
           response
             .json()

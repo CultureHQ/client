@@ -942,7 +942,7 @@
       "name",
       "email",
       "departmentIds",
-      "interestList",
+      "interests",
       "avatar",
       "title"
     ]
@@ -1013,7 +1013,7 @@
       "name",
       "email",
       "departmentIds",
-      "interestList",
+      "interests",
       "avatar",
       "title"
     ]

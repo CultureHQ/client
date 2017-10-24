@@ -17,6 +17,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ### Changed
 - The `updatePointConfig` param from `firstEvent` to `firstPublicEvent`.
+- Fixed handling no content coming back from API.
+- Fixed the `interestList` param to be `interests`.
 
 ## [0.0.21] - 2017-10-23
 ### Added
