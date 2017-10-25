@@ -11,6 +11,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - The `getEventAnalytics` call.
 - The optional `firstEventId` param to the `createSurvey` call.
 - The optional `cap` param to the create and update event calls.
+- The optional `locationIds` param to the create and update event calls.
+- The CRUD calls for locations, including: `createLocation`, `deleteLocation`, `getLocation`, `listLocations`, and `updateLocation`.
+- The optional `locationIds` param to the `listEvents` call.
+- The `locationId` param to the register and update user calls.
 
 ## [0.0.22] - 2017-10-24
 ### Added
