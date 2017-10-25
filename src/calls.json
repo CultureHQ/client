@@ -191,6 +191,13 @@
       "anonymous"
     ]
   },
+  "createInterest": {
+    "method": "POST",
+    "path": "/interests",
+    "expectedParams": [
+      "name"
+    ]
+  },
   "createLocation": {
     "method": "POST",
     "path": "/locations",
@@ -949,6 +956,13 @@
     "optionalParams": [
       "description",
       "amount"
+    ]
+  },
+  "updateInterest": {
+    "method": "PATCH",
+    "path": "/interests/:interestId",
+    "expectedParams": [
+      "name"
     ]
   },
   "updateLocation": {
