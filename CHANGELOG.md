@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.0.23] - 2017-10-25
 ### Added
 - The ability to activate and deactivate surveys through the `activateSurvey` and `deactivateSurvey` calls.
 - The `listActiveSurveys` call.
@@ -210,7 +212,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.22...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.23...HEAD
+[0.0.23]: https://github.com/CultureHQ/client/compare/v0.0.22...v0.0.23
 [0.0.22]: https://github.com/CultureHQ/client/compare/v0.0.21...v0.0.22
 [0.0.21]: https://github.com/CultureHQ/client/compare/v0.0.20...v0.0.21
 [0.0.20]: https://github.com/CultureHQ/client/compare/v0.0.19...v0.0.20
