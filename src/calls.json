@@ -91,7 +91,8 @@
       "organizationValueIds",
       "location",
       "visibility",
-      "cap"
+      "cap",
+      "locationIds"
     ]
   },
   "createEventInvites": {
@@ -188,6 +189,13 @@
     ],
     "optionalParams": [
       "anonymous"
+    ]
+  },
+  "createLocation": {
+    "method": "POST",
+    "path": "/locations",
+    "expectedParams": [
+      "name"
     ]
   },
   "createOrganization": {
@@ -332,6 +340,10 @@
     "method": "DELETE",
     "path": "/interests/:interestId"
   },
+  "deleteLocation": {
+    "method": "DELETE",
+    "path": "/locations/:locationId"
+  },
   "deleteOrganization": {
     "method": "DELETE",
     "path": "/admin/organizations/:organizationId"
@@ -433,6 +445,10 @@
   "getInterest": {
     "method": "GET",
     "path": "/interests/:interestId"
+  },
+  "getLocation": {
+    "method": "GET",
+    "path": "/locations/:locationId"
   },
   "getOrganization": {
     "method": "GET",
@@ -595,7 +611,8 @@
     "path": "/events",
     "optionalParams": [
       "page",
-      "range"
+      "range",
+      "locationIds"
     ]
   },
   "listEventsByOrganization": {
@@ -626,6 +643,13 @@
   "listInvites": {
     "method": "GET",
     "path": "/invites",
+    "optionalParams": [
+      "page"
+    ]
+  },
+  "listLocations": {
+    "method": "GET",
+    "path": "/locations",
     "optionalParams": [
       "page"
     ]
@@ -770,7 +794,8 @@
     "path": "/invites/:token/users",
     "expectedParams": [
       "name",
-      "password"
+      "password",
+      "locationId"
     ]
   },
   "requestPasswordReset": {
@@ -852,7 +877,8 @@
       "organizationValueIds",
       "location",
       "visibility",
-      "cap"
+      "cap",
+      "locationIds"
     ]
   },
   "updateEventLeaderboardAttribute": {
@@ -925,6 +951,13 @@
       "amount"
     ]
   },
+  "updateLocation": {
+    "method": "PATCH",
+    "path": "/locations/:locationId",
+    "expectedParams": [
+      "name"
+    ]
+  },
   "updateOrganization": {
     "method": "PATCH",
     "path": "/admin/organizations/:organizationId",
@@ -966,7 +999,8 @@
       "departmentIds",
       "interests",
       "avatar",
-      "title"
+      "title",
+      "locationId"
     ]
   },
   "updateRecognition": {
@@ -1037,7 +1071,8 @@
       "departmentIds",
       "interests",
       "avatar",
-      "title"
+      "title",
+      "locationId"
     ]
   },
   "voteForEventVoteEntry": {
