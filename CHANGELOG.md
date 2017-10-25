@@ -9,7 +9,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - The ability to activate and deactivate surveys through the `activateSurvey` and `deactivateSurvey` calls.
 - The `listActiveSurveys` call.
 - The `getEventAnalytics` call.
-- The optional `firstEventId` to the `createSurvey` call.
+- The optional `firstEventId` param to the `createSurvey` call.
+- The optional `cap` param to the create and update event calls.
 
 ## [0.0.22] - 2017-10-24
 ### Added

@@ -90,7 +90,8 @@
       "image",
       "organizationValueIds",
       "location",
-      "visibility"
+      "visibility",
+      "cap"
     ]
   },
   "createEventInvites": {
@@ -850,7 +851,8 @@
       "image",
       "organizationValueIds",
       "location",
-      "visibility"
+      "visibility",
+      "cap"
     ]
   },
   "updateEventLeaderboardAttribute": {
