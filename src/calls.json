@@ -248,7 +248,8 @@
       "title"
     ],
     "optionalParams": [
-      "points"
+      "points",
+      "firstEventId"
     ]
   },
   "createSurveyItem": {
