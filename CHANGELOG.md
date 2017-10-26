@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - The `createInterest` and `updateInterest` calls.
 - The optional `active` param to the create and update organization calls.
+- The `listProfileEventSurveys` call with the optional `filter` param, which can be "complete" or "incomplete".
 
 ## [0.0.23] - 2017-10-25
 ### Added

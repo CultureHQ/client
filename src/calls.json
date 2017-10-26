@@ -697,6 +697,13 @@
       "page"
     ]
   },
+  "listProfileEventSurveys": {
+    "method": "GET",
+    "path": "/profile/event_surveys",
+    "optionalParams": [
+      "filter"
+    ]
+  },
   "listRecognitions": {
     "method": "GET",
     "path": "/recognitions",
