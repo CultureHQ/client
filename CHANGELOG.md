@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Added
 - The `createInterest` and `updateInterest` calls.
+- The optional `active` param to the create and update organization calls.
 
 ## [0.0.23] - 2017-10-25
 ### Added
