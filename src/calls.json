@@ -93,7 +93,8 @@
       "visibility",
       "cap",
       "locationIds",
-      "inviteOnly"
+      "inviteOnly",
+      "openInvites"
     ]
   },
   "createEventInvites": {
@@ -895,7 +896,8 @@
       "visibility",
       "cap",
       "locationIds",
-      "inviteOnly"
+      "inviteOnly",
+      "openInvites"
     ]
   },
   "updateEventLeaderboardAttribute": {
