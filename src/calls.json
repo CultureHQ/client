@@ -469,6 +469,10 @@
     "method": "GET",
     "path": "/organization_values/:organizationValueId"
   },
+  "getOrganizationValueLeaderboard": {
+    "method": "GET",
+    "path": "/leaderboard/organization_values"
+  },
   "getPhotoGallery": {
     "method": "GET",
     "path": "/gallery",
@@ -483,7 +487,7 @@
   },
   "getPointLeaderboard": {
     "method": "GET",
-    "path": "/point_leaderboard"
+    "path": "/leaderboard/points"
   },
   "getProfile": {
     "method": "GET",
