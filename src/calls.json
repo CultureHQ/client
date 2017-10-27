@@ -94,7 +94,8 @@
       "cap",
       "locationIds",
       "inviteOnly",
-      "openInvites"
+      "openInvites",
+      "inviteeIds"
     ]
   },
   "createEventInvites": {

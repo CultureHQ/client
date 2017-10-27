@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Added
 - The optional `openInvites` param to create and update event calls.
+- The optional `inviteeIds` param on the `createEvent` call.
 
 ## [0.0.24] - 2017-10-26
 ### Added
