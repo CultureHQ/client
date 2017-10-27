@@ -649,7 +649,8 @@
     "method": "GET",
     "path": "/feedbacks",
     "optionalParams": [
-      "page"
+      "page",
+      "reviewed"
     ]
   },
   "listInterests": {

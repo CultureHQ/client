@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - The optional `inviteeIds` param on the `createEvent` call.
 - The `getOrganizationValueLeaderboard` call.
 - The `getUserRecognitionLeaderboard` call.
+- The optional `reviewed` param on the `listFeedbacks` call that can be either `reviewed` or `not_reviewed`.
 
 ### Changed
 - The `getPointLeaderboard` call got an updated endpoint.
