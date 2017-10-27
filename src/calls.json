@@ -533,6 +533,10 @@
     "method": "GET",
     "path": "/users/:userId/point_breakdown"
   },
+  "getUserRecognitionLeaderboard": {
+    "method": "GET",
+    "path": "/leaderboard/user_recognitions"
+  },
   "incrementUserPoints": {
     "method": "POST",
     "path": "/users/:userId/point_increments",
