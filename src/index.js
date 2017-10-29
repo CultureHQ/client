@@ -2,6 +2,11 @@ import state from "./state";
 import calls from "./calls";
 import apiCall from "./api-call";
 
+const signInCallback = response => {
+  state.signIn(response.apiKey.token);
+  return response;
+};
+
 class CultureHQ {
   constructor(options = {}) {
     this.apiHost = options.apiHost;
@@ -16,10 +21,11 @@ class CultureHQ {
   }
 
   signIn(params) {
-    return this.createApiKey(params).then(response => {
-      state.signIn(response.apiKey.token);
-      return response;
-    });
+    return this.createApiKey(params).then(signInCallback);
+  }
+
+  signInWithOkta(params) {
+    return this.createOktaApiKey(params).then(signInCallback);
   }
 
   signOut() {

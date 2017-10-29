@@ -208,6 +208,19 @@
       "name"
     ]
   },
+  "createOktaApiKey": {
+    "method": "POST",
+    "path": "/okta/api_keys",
+    "expectedParams": [
+      "access_token",
+      "state"
+    ],
+    "optionalParams": [
+      "scope",
+      "expires_in",
+      "token_type"
+    ]
+  },
   "createOrganization": {
     "method": "POST",
     "path": "/admin/organizations",
