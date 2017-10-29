@@ -210,7 +210,7 @@
   },
   "createOktaApiKey": {
     "method": "POST",
-    "path": "/okta/api_keys",
+    "path": "/oauth/okta/api_keys",
     "expectedParams": [
       "access_token",
       "state"
