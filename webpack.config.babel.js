@@ -1,5 +1,8 @@
 import webpack from "webpack";
 import nodeExternals from "webpack-node-externals";
+import fs from "fs";
+
+const packageDefinition = JSON.parse(fs.readFileSync("package.json"));
 
 module.exports = {
   entry: "./src/index.js",
@@ -19,5 +22,10 @@ module.exports = {
   },
   target: "node",
   externals: [nodeExternals()],
-  plugins: [new webpack.optimize.ModuleConcatenationPlugin()]
+  plugins: [
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new webpack.DefinePlugin({
+      CLIENT_VERSION: JSON.stringify(packageDefinition.version)
+    })
+  ]
 };

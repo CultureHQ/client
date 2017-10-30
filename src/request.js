@@ -2,7 +2,7 @@ import "isomorphic-fetch";
 import { camelize, snakerize } from "./string-case";
 
 const buildHeaders = options => {
-  let headers = {};
+  let headers = { "X-Client-Version": CLIENT_VERSION };
 
   if (!options.multipart) {
     headers["Content-Type"] = "application/json";
