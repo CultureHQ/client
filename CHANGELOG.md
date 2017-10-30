@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - The `getOrganizationValueLeaderboard` call.
 - The `getUserRecognitionLeaderboard` call.
 - The optional `reviewed` param on the `listFeedbacks` call that can be either `reviewed` or `not_reviewed`.
+- The `createOktaApiKey` call and `signInWithOkta` function.
 
 ### Changed
 - The `getPointLeaderboard` call got an updated endpoint.
