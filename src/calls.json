@@ -1063,6 +1063,20 @@
       "locationId"
     ]
   },
+  "listDepartmentUsers": {
+    "method": "GET",
+    "path": "/departments/:departmentId/users",
+    "optionalParams": [
+      "page"
+    ]
+  },
+  "listInterestUsers": {
+    "method": "GET",
+    "path": "/interests/:interestId/users",
+    "optionalParams": [
+      "page"
+    ]
+  },
   "updateRecognition": {
     "method": "PATCH",
     "path": "/recognitions/:recognitionId",
