@@ -592,6 +592,13 @@
       "page"
     ]
   },
+  "listDepartmentUsers": {
+    "method": "GET",
+    "path": "/departments/:departmentId/users",
+    "optionalParams": [
+      "page"
+    ]
+  },
   "listDepartments": {
     "method": "GET",
     "path": "/departments",
@@ -670,6 +677,13 @@
     "optionalParams": [
       "page",
       "reviewed"
+    ]
+  },
+  "listInterestUsers": {
+    "method": "GET",
+    "path": "/interests/:interestId/users",
+    "optionalParams": [
+      "page"
     ]
   },
   "listInterests": {
@@ -1061,20 +1075,6 @@
       "avatar",
       "title",
       "locationId"
-    ]
-  },
-  "listDepartmentUsers": {
-    "method": "GET",
-    "path": "/departments/:departmentId/users",
-    "optionalParams": [
-      "page"
-    ]
-  },
-  "listInterestUsers": {
-    "method": "GET",
-    "path": "/interests/:interestId/users",
-    "optionalParams": [
-      "page"
     ]
   },
   "updateRecognition": {
