@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Added
 - A `bin/cleanup` script for prettier.
+- Added `listSlackIntegrations`, `createSlackIntegration`, and `deleteSlackIntegration`
 
 ## [0.0.26] - 2017-11-02
 ### Added
