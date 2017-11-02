@@ -184,6 +184,11 @@
     "method": "POST",
     "path": "/rewards/:rewardId/redemptions"
   },
+  "createSlackIntegration": {
+    "method": "POST",
+    "path": "/slack_integrations",
+    "expectedParams": ["code"]
+  },
   "createSurvey": {
     "method": "POST",
     "path": "/surveys",
@@ -287,6 +292,10 @@
   "deleteRewardRedemption": {
     "method": "DELETE",
     "path": "/rewards/:rewardId/redemptions/:redemptionId"
+  },
+  "deleteSlackIntegration": {
+    "method": "DELETE",
+    "path": "/slack_integrations/:slackIntegrationId"
   },
   "deleteSurvey": {
     "method": "DELETE",
@@ -601,6 +610,10 @@
     "method": "GET",
     "path": "/rewards",
     "optionalParams": ["page"]
+  },
+  "listSlackIntegrations": {
+    "method": "GET",
+    "path": "/slack_integrations"
   },
   "listSurveyItemResponseOptions": {
     "method": "GET",
