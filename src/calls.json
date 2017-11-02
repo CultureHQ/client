@@ -632,6 +632,10 @@
     "method": "GET",
     "path": "/events/:eventId/survey_results"
   },
+  "listEventSurveySubmittedResponses": {
+    "method": "GET",
+    "path": "/events/:eventId/submitted_responses"
+  },
   "listEventVotes": {
     "method": "GET",
     "path": "/events/:eventId/event_votes",
@@ -776,6 +780,10 @@
   "listSurveyResults": {
     "method": "GET",
     "path": "/surveys/:survey_id/survey_results"
+  },
+  "listSurveySubmittedResponses": {
+    "method": "GET",
+    "path": "/surveys/:surveyId/submitted_responses"
   },
   "listSurveys": {
     "method": "GET",
