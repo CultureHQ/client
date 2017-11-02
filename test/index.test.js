@@ -7,7 +7,7 @@ import calls from "../src/calls";
 
 universalUrl.shim();
 
-const port = 8080;
+const port = 1693;
 const client = new CultureHQ({ apiHost: `http://localhost:${port}` });
 
 afterEach(() => {

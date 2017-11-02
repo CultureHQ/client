@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ### Changed
 - Fixed the way responses were being parsed to instead check the content-type header such that we don't run into unexpected JSON parsing errors.
+- Changed the test port from 8080 to 1693.
 
 ## [0.0.25] - 2017-10-29
 ### Added
