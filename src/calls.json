@@ -624,7 +624,8 @@
     "method": "GET",
     "path": "/events/:eventId/rsvps",
     "optionalParams": [
-      "page"
+      "page",
+      "responseType"
     ]
   },
   "listEventSurveyResults": {
