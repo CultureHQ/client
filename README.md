@@ -65,4 +65,4 @@ Run `yarn test` to run the tests with `jest`.
 
 ### Releasing
 
-First, build the client with `yarn build`. This will generate a new `dist/index.js`. Then, modify [CHANGELOG.md](CHANGELOG.md) to include the new release. Finally, bump the version in [package.json](package.json).
+First, bump the version in [package.json](package.json). Then, build the client with `yarn build`. This will generate a new `dist/index.js`. Finally, modify [CHANGELOG.md](CHANGELOG.md) to include the new release.
