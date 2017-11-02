@@ -644,7 +644,8 @@
     "optionalParams": [
       "page",
       "range",
-      "locationIds"
+      "locationIds",
+      "sort"
     ]
   },
   "listEventsByOrganization": {
