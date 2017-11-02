@@ -474,6 +474,11 @@
     "path": "/analytics/departments",
     "optionalParams": ["page"]
   },
+  "listDepartmentUsers": {
+    "method": "GET",
+    "path": "/departments/:departmentId/users",
+    "optionalParams": ["page"]
+  },
   "listDepartments": {
     "method": "GET",
     "path": "/departments",
@@ -497,11 +502,15 @@
   "listEventRsvps": {
     "method": "GET",
     "path": "/events/:eventId/rsvps",
-    "optionalParams": ["page"]
+    "optionalParams": ["page", "responseType"]
   },
   "listEventSurveyResults": {
     "method": "GET",
     "path": "/events/:eventId/survey_results"
+  },
+  "listEventSurveySubmittedResponses": {
+    "method": "GET",
+    "path": "/events/:eventId/submitted_responses"
   },
   "listEventVotes": {
     "method": "GET",
@@ -526,6 +535,11 @@
     "method": "GET",
     "path": "/feedbacks",
     "optionalParams": ["page", "reviewed"]
+  },
+  "listInterestUsers": {
+    "method": "GET",
+    "path": "/interests/:interestId/users",
+    "optionalParams": ["page"]
   },
   "listInterests": {
     "method": "GET",
@@ -609,6 +623,10 @@
   "listSurveyResults": {
     "method": "GET",
     "path": "/surveys/:survey_id/survey_results"
+  },
+  "listSurveySubmittedResponses": {
+    "method": "GET",
+    "path": "/surveys/:surveyId/submitted_responses"
   },
   "listSurveys": {
     "method": "GET",

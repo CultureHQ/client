@@ -5,11 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.0.26] - 2017-11-02
 ### Added
 - The optional `sort` param to the `listEvents` call, which at the moment can be either `-starts_at` or `+starts_at`.
+- The optional `responseType` param to the `listEventRsvps` call for filtering. Currently can be one of `invited`, `declined`, `interested`, `accepted`, or `checked_in`.
+- The `listSurveySubmittedResponses` and `listEventSurveySubmittedResponses` calls.
+- The `listDepartmentUsers` and `listInterestUsers` calls.
 
 ### Changed
 - Fixed the way responses were being parsed to instead check the content-type header such that we don't run into unexpected JSON parsing errors.
+- Changed the test port from 8080 to 1693.
 
 ## [0.0.25] - 2017-10-29
 ### Added
@@ -237,7 +243,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.25...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.26...HEAD
+[0.0.26]: https://github.com/CultureHQ/client/compare/v0.0.25...v0.0.26
 [0.0.25]: https://github.com/CultureHQ/client/compare/v0.0.24...v0.0.25
 [0.0.24]: https://github.com/CultureHQ/client/compare/v0.0.23...v0.0.24
 [0.0.23]: https://github.com/CultureHQ/client/compare/v0.0.22...v0.0.23
