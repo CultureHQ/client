@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - The optional `sort` param to the `listEvents` call, which at the moment can be either `-starts_at` or `+starts_at`.
 - The optional `responseType` param to the `listEventRsvps` call for filtering. Currently can be one of `invited`, `declined`, `interested`, `accepted`, or `checked_in`.
+- The `listSurveySubmittedResponses` and `listEventSurveySubmittedResponses` calls.
 
 ### Changed
 - Fixed the way responses were being parsed to instead check the content-type header such that we don't run into unexpected JSON parsing errors.
