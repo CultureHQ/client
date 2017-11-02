@@ -82,7 +82,8 @@
   },
   "createEventLeaderboardAttributeRsvp": {
     "method": "POST",
-    "path": "/event_leaderboard_attributes/:eventLeaderboardAttributeId/event_leaderboard_attribute_rsvps",
+    "path":
+      "/event_leaderboard_attributes/:eventLeaderboardAttributeId/event_leaderboard_attribute_rsvps",
     "expectedParams": ["value"],
     "optionalParams": ["rsvpId"]
   },
@@ -101,7 +102,8 @@
   },
   "createEventSurveyUserItemResponse": {
     "method": "POST",
-    "path": "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response",
+    "path":
+      "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response",
     "expectedParams": ["body", "surveyItemResponseOptionIds"]
   },
   "createEventVote": {
@@ -235,7 +237,8 @@
   },
   "deleteEventLeaderboardAttributeRsvp": {
     "method": "DELETE",
-    "path": "/event_leaderboard_attribute_rsvps/:eventLeaderboardAttributeRsvpId"
+    "path":
+      "/event_leaderboard_attribute_rsvps/:eventLeaderboardAttributeRsvpId"
   },
   "deleteEventPhoto": {
     "method": "DELETE",
@@ -243,7 +246,8 @@
   },
   "deleteEventSurveyUserItemResponse": {
     "method": "DELETE",
-    "path": "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response"
+    "path":
+      "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response"
   },
   "deleteEventVote": {
     "method": "DELETE",
@@ -426,7 +430,8 @@
   },
   "getSurveyUserItemResponse": {
     "method": "GET",
-    "path": "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response"
+    "path":
+      "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response"
   },
   "getUser": {
     "method": "GET",
@@ -753,7 +758,8 @@
   },
   "updateEventLeaderboardAttributeRsvp": {
     "method": "PATCH",
-    "path": "/event_leaderboard_attribute_rsvps/:eventLeaderboardAttributeRsvpId",
+    "path":
+      "/event_leaderboard_attribute_rsvps/:eventLeaderboardAttributeRsvpId",
     "expectedParams": ["value"],
     "optionalParams": ["rsvpId"]
   },
@@ -771,7 +777,8 @@
   },
   "updateEventSurveyUserItemResponse": {
     "method": "PATCH",
-    "path": "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response",
+    "path":
+      "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response",
     "optionalParams": ["body", "surveyItemResponseOptionIds"]
   },
   "updateEventVote": {
