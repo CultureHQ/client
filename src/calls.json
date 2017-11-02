@@ -606,6 +606,10 @@
     "path": "/rewards",
     "optionalParams": ["page"]
   },
+  "listSlackIntegrations": {
+    "method": "GET",
+    "path": "/slack_integrations"
+  },
   "listSurveyItemResponseOptions": {
     "method": "GET",
     "path": "/survey_items/:surveyItemId/survey_item_response_options",
