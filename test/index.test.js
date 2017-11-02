@@ -55,7 +55,7 @@ describe("with a signed in user", () => {
       try {
         await client.signIn({ email: "foo", password: "bar" });
         const response = await client[callName](params);
-        expect(response).toEqual({ number });
+        expect(response.number).toEqual(number);
       } finally {
         server.close();
       }
