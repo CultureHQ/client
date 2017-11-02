@@ -17,7 +17,7 @@ const parseMultipart = (body, boundary) => {
 
 test("properly handles multipart array parameters", async () => {
   const server = createServer({ status: 200, body: { foo: "bar" } });
-  const port = 1693;
+  const port = 1694;
   server.listen(port);
 
   try {
