@@ -17,10 +17,12 @@ const parseMultipart = (body, boundary) => {
 
 test("properly handles multipart array parameters", async () => {
   const server = createServer({ status: 200, body: { foo: "bar" } });
-  server.listen(8080);
+  const port = 1693;
+  server.listen(port);
 
   try {
-    const response = await request("POST", new URL("http://localhost:8080"), {
+    const url = new URL(`http://localhost:${port}`);
+    const response = await request("POST", url, {
       params: { foo: [1, 2, 3] },
       multipart: true
     });
