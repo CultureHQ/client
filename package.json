@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --config webpack.config.babel.js --progress",
     "test": "jest",
-    "cleanup": "find . | grep -v node_modules | grep -v '^./dist/' | grep '^.*js$' | xargs $(npm bin)/prettier --write"
+    "cleanup": "bin/cleanup"
   },
   "repository": {
     "type": "git",
