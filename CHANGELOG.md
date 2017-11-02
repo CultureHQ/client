@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.0.27] - 2017-11-02
 ### Added
 - A `bin/cleanup` script for prettier.
 - Added `listSlackIntegrations`, `createSlackIntegration`, and `deleteSlackIntegration`
@@ -246,7 +248,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.26...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.27...HEAD
+[0.0.27]: https://github.com/CultureHQ/client/compare/v0.0.26...v0.0.27
 [0.0.26]: https://github.com/CultureHQ/client/compare/v0.0.25...v0.0.26
 [0.0.25]: https://github.com/CultureHQ/client/compare/v0.0.24...v0.0.25
 [0.0.24]: https://github.com/CultureHQ/client/compare/v0.0.23...v0.0.24
