@@ -47,26 +47,31 @@ export default (method, url, options) => {
   const request = buildRequest(method, url, options);
 
   return new Promise(async (resolve, reject) => {
-    try {
-      const response = await fetch(request.url, request.options);
-      const success = Math.round(response.status / 200) === 1;
+    fetch(request.url, request.options)
+      .then(response => {
+        const success = Math.round(response.status / 200) === 1;
 
-      if (response.status === 204) {
-        resolve(null);
-      } else if (response.headers.get("content-type") === "text/html") {
-        if (success) {
-          const text = await response.text();
-          resolve({ response, text });
+        if (response.status === 204) {
+          resolve(null);
+        } else if (response.headers.get("content-type") === "text/html") {
+          if (success) {
+            response
+              .text()
+              .then(text => resolve({ response, text }))
+              .catch(error => reject(error));
+          } else {
+            reject({ response, error: response.statusText });
+          }
         } else {
-          reject({ response, error: response.statusText });
+          response
+            .json()
+            .then(json => {
+              const fullResponse = Object.assign({ response }, camelize(json));
+              success ? resolve(fullResponse) : reject(fullResponse);
+            })
+            .catch(error => reject(error));
         }
-      } else {
-        const json = await response.json();
-        const fullResponse = Object.assign({ response }, camelize(json));
-        success ? resolve(fullResponse) : reject(fullResponse);
-      }
-    } catch (error) {
-      reject(error);
-    }
+      })
+      .catch(error => reject(error));
   });
 };

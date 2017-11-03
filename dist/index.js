@@ -285,7 +285,7 @@ var _stringCase = __webpack_require__(7);
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 var buildHeaders = function buildHeaders(options) {
-  var headers = { "X-Client-Version": "0.0.28" };
+  var headers = { "X-Client-Version": "0.0.29" };
 
   if (!options.multipart) {
     headers["Content-Type"] = "application/json";
@@ -331,82 +331,43 @@ exports.default = function (method, url, options) {
 
   return new Promise(function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(resolve, reject) {
-      var response, success, text, json, fullResponse;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.prev = 0;
-              _context.next = 3;
-              return fetch(request.url, request.options);
+              fetch(request.url, request.options).then(function (response) {
+                var success = Math.round(response.status / 200) === 1;
 
-            case 3:
-              response = _context.sent;
-              success = Math.round(response.status / 200) === 1;
+                if (response.status === 204) {
+                  resolve(null);
+                } else if (response.headers.get("content-type") === "text/html") {
+                  if (success) {
+                    response.text().then(function (text) {
+                      return resolve({ response: response, text: text });
+                    }).catch(function (error) {
+                      return reject(error);
+                    });
+                  } else {
+                    reject({ response: response, error: response.statusText });
+                  }
+                } else {
+                  response.json().then(function (json) {
+                    var fullResponse = Object.assign({ response: response }, (0, _stringCase.camelize)(json));
+                    success ? resolve(fullResponse) : reject(fullResponse);
+                  }).catch(function (error) {
+                    return reject(error);
+                  });
+                }
+              }).catch(function (error) {
+                return reject(error);
+              });
 
-              if (!(response.status === 204)) {
-                _context.next = 9;
-                break;
-              }
-
-              resolve(null);
-              _context.next = 25;
-              break;
-
-            case 9:
-              if (!(response.headers.get("content-type") === "text/html")) {
-                _context.next = 20;
-                break;
-              }
-
-              if (!success) {
-                _context.next = 17;
-                break;
-              }
-
-              _context.next = 13;
-              return response.text();
-
-            case 13:
-              text = _context.sent;
-
-              resolve({ response: response, text: text });
-              _context.next = 18;
-              break;
-
-            case 17:
-              reject({ response: response, error: response.statusText });
-
-            case 18:
-              _context.next = 25;
-              break;
-
-            case 20:
-              _context.next = 22;
-              return response.json();
-
-            case 22:
-              json = _context.sent;
-              fullResponse = Object.assign({ response: response }, (0, _stringCase.camelize)(json));
-
-              success ? resolve(fullResponse) : reject(fullResponse);
-
-            case 25:
-              _context.next = 30;
-              break;
-
-            case 27:
-              _context.prev = 27;
-              _context.t0 = _context["catch"](0);
-
-              reject(_context.t0);
-
-            case 30:
+            case 1:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, undefined, [[0, 27]]);
+      }, _callee, undefined);
     }));
 
     return function (_x, _x2) {
