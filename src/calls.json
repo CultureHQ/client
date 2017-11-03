@@ -371,6 +371,10 @@
     "method": "GET",
     "path": "/interests/:interestId"
   },
+  "getInvite": {
+    "method": "GET",
+    "path": "/invites/:token"
+  },
   "getLocation": {
     "method": "GET",
     "path": "/locations/:locationId"
