@@ -282,6 +282,8 @@ __webpack_require__(6);
 
 var _stringCase = __webpack_require__(7);
 
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 var buildHeaders = function buildHeaders(options) {
   var headers = { "X-Client-Version": "0.0.27" };
 
@@ -327,29 +329,90 @@ var buildRequest = function buildRequest(method, url, options) {
 exports.default = function (method, url, options) {
   var request = buildRequest(method, url, options);
 
-  return new Promise(async function (resolve, reject) {
-    try {
-      var response = await fetch(request.url, request.options);
-      var success = Math.round(response.status / 200) === 1;
+  return new Promise(function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(resolve, reject) {
+      var response, success, text, json, fullResponse;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return fetch(request.url, request.options);
 
-      if (response.status === 204) {
-        resolve(null);
-      } else if (response.headers.get("content-type") === "text/html") {
-        if (success) {
-          var text = await response.text();
-          resolve({ response: response, text: text });
-        } else {
-          reject({ response: response, error: response.statusText });
+            case 3:
+              response = _context.sent;
+              success = Math.round(response.status / 200) === 1;
+
+              if (!(response.status === 204)) {
+                _context.next = 9;
+                break;
+              }
+
+              resolve(null);
+              _context.next = 25;
+              break;
+
+            case 9:
+              if (!(response.headers.get("content-type") === "text/html")) {
+                _context.next = 20;
+                break;
+              }
+
+              if (!success) {
+                _context.next = 17;
+                break;
+              }
+
+              _context.next = 13;
+              return response.text();
+
+            case 13:
+              text = _context.sent;
+
+              resolve({ response: response, text: text });
+              _context.next = 18;
+              break;
+
+            case 17:
+              reject({ response: response, error: response.statusText });
+
+            case 18:
+              _context.next = 25;
+              break;
+
+            case 20:
+              _context.next = 22;
+              return response.json();
+
+            case 22:
+              json = _context.sent;
+              fullResponse = Object.assign({ response: response }, (0, _stringCase.camelize)(json));
+
+              success ? resolve(fullResponse) : reject(fullResponse);
+
+            case 25:
+              _context.next = 30;
+              break;
+
+            case 27:
+              _context.prev = 27;
+              _context.t0 = _context["catch"](0);
+
+              reject(_context.t0);
+
+            case 30:
+            case "end":
+              return _context.stop();
+          }
         }
-      } else {
-        var json = await response.json();
-        var fullResponse = Object.assign({ response: response }, (0, _stringCase.camelize)(json));
-        success ? resolve(fullResponse) : reject(fullResponse);
-      }
-    } catch (error) {
-      reject(error);
-    }
-  });
+      }, _callee, undefined, [[0, 27]]);
+    }));
+
+    return function (_x, _x2) {
+      return _ref.apply(this, arguments);
+    };
+  }());
 };
 
 /***/ }),
