@@ -46,7 +46,7 @@ const buildRequest = (method, url, options) => {
 export default (method, url, options) => {
   const request = buildRequest(method, url, options);
 
-  return new Promise(async (resolve, reject) => {
+  return new Promise((resolve, reject) => {
     fetch(request.url, request.options)
       .then(response => {
         const success = Math.round(response.status / 200) === 1;
