@@ -10,51 +10,80 @@
   "autocompleteUsers": {
     "method": "GET",
     "path": "/autocomplete/users",
-    "expectedParams": ["query"]
+    "expectedParams": [
+      "query"
+    ]
   },
   "bulkCreateEventPhotos": {
     "method": "POST",
     "path": "/events/:eventId/albums",
     "multipart": true,
-    "expectedParams": ["images"]
+    "expectedParams": [
+      "images"
+    ]
   },
   "changePassword": {
     "method": "PATCH",
     "path": "/password",
-    "expectedParams": ["password"]
+    "expectedParams": [
+      "password"
+    ]
   },
   "checkInEventAttendee": {
     "method": "POST",
     "path": "/events/:eventId/check_ins",
-    "expectedParams": ["userId"],
-    "optionalParams": ["extra"]
+    "expectedParams": [
+      "userId"
+    ],
+    "optionalParams": [
+      "extra"
+    ]
   },
   "createAnnouncement": {
     "method": "POST",
     "path": "/announcements",
-    "expectedParams": ["title", "body", "active"]
+    "expectedParams": [
+      "title",
+      "body",
+      "active"
+    ]
   },
   "createApiKey": {
     "method": "POST",
     "path": "/api_keys",
-    "expectedParams": ["email", "password"]
+    "expectedParams": [
+      "email",
+      "password"
+    ]
   },
   "createComment": {
     "method": "POST",
     "path": "/events/:eventId/comments",
-    "expectedParams": ["body"],
-    "optionalParams": ["parentCommentId"]
+    "expectedParams": [
+      "body"
+    ],
+    "optionalParams": [
+      "parentCommentId"
+    ]
   },
   "createDepartment": {
     "method": "POST",
     "path": "/departments",
-    "expectedParams": ["name"]
+    "expectedParams": [
+      "name"
+    ]
   },
   "createEvent": {
     "method": "POST",
     "path": "/events",
     "multipart": true,
-    "expectedParams": ["name", "details", "startsAt", "endsAt", "eventType"],
+    "expectedParams": [
+      "name",
+      "details",
+      "startsAt",
+      "endsAt",
+      "eventType"
+    ],
     "optionalParams": [
       "sponsored",
       "surveyId",
@@ -72,84 +101,132 @@
   "createEventInvites": {
     "method": "POST",
     "path": "/events/:eventId/event_invites",
-    "expectedParams": ["userIds"]
+    "expectedParams": [
+      "userIds"
+    ]
   },
   "createEventLeaderboardAttribute": {
     "method": "POST",
     "path": "/events/:eventId/event_leaderboard_attributes",
-    "expectedParams": ["title"],
-    "optionalParams": ["quantitative", "sortDescending"]
+    "expectedParams": [
+      "title"
+    ],
+    "optionalParams": [
+      "quantitative",
+      "sortDescending"
+    ]
   },
   "createEventLeaderboardAttributeRsvp": {
     "method": "POST",
-    "path":
-      "/event_leaderboard_attributes/:eventLeaderboardAttributeId/event_leaderboard_attribute_rsvps",
-    "expectedParams": ["value"],
-    "optionalParams": ["rsvpId"]
+    "path": "/event_leaderboard_attributes/:eventLeaderboardAttributeId/event_leaderboard_attribute_rsvps",
+    "expectedParams": [
+      "value"
+    ],
+    "optionalParams": [
+      "rsvpId"
+    ]
   },
   "createEventPhoto": {
     "method": "POST",
     "path": "/events/:eventId/photos",
     "multipart": true,
-    "expectedParams": ["image"],
-    "optionalParams": ["caption"]
+    "expectedParams": [
+      "image"
+    ],
+    "optionalParams": [
+      "caption"
+    ]
   },
   "createEventRsvp": {
     "method": "POST",
     "path": "/events/:eventId/rsvps",
-    "expectedParams": ["responseType"],
-    "optionalParams": ["extra"]
+    "expectedParams": [
+      "responseType"
+    ],
+    "optionalParams": [
+      "extra"
+    ]
   },
   "createEventSurveyUserItemResponse": {
     "method": "POST",
-    "path":
-      "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response",
-    "expectedParams": ["body", "surveyItemResponseOptionIds"]
+    "path": "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response",
+    "expectedParams": [
+      "body",
+      "surveyItemResponseOptionIds"
+    ]
   },
   "createEventVote": {
     "method": "POST",
     "path": "/events/:eventId/event_votes",
-    "expectedParams": ["title"],
-    "optionalParams": ["maxVotes"]
+    "expectedParams": [
+      "title"
+    ],
+    "optionalParams": [
+      "maxVotes"
+    ]
   },
   "createEventVoteEntry": {
     "method": "POST",
     "path": "/event_votes/:eventVoteId/event_vote_entries",
     "multipart": true,
-    "expectedParams": ["title"],
-    "optionalParams": ["image"]
+    "expectedParams": [
+      "title"
+    ],
+    "optionalParams": [
+      "image"
+    ]
   },
   "createExpense": {
     "method": "POST",
     "path": "/events/:eventId/expenses",
-    "expectedParams": ["description", "amount"]
+    "expectedParams": [
+      "description",
+      "amount"
+    ]
   },
   "createFeedback": {
     "method": "POST",
     "path": "/feedbacks",
-    "expectedParams": ["body"],
-    "optionalParams": ["anonymous"]
+    "expectedParams": [
+      "body"
+    ],
+    "optionalParams": [
+      "anonymous"
+    ]
   },
   "createInterest": {
     "method": "POST",
     "path": "/interests",
-    "expectedParams": ["name"]
+    "expectedParams": [
+      "name"
+    ]
   },
   "createLocation": {
     "method": "POST",
     "path": "/locations",
-    "expectedParams": ["name"]
+    "expectedParams": [
+      "name"
+    ]
   },
   "createOktaApiKey": {
     "method": "POST",
     "path": "/oauth/okta/api_keys",
-    "expectedParams": ["access_token", "state"],
-    "optionalParams": ["scope", "expires_in", "token_type"]
+    "expectedParams": [
+      "access_token",
+      "state"
+    ],
+    "optionalParams": [
+      "scope",
+      "expires_in",
+      "token_type"
+    ]
   },
   "createOrganization": {
     "method": "POST",
     "path": "/admin/organizations",
-    "expectedParams": ["name"],
+    "expectedParams": [
+      "name"
+    ],
     "optionalParams": [
       "primaryColor",
       "secondaryColor",
@@ -161,24 +238,37 @@
   "createOrganizationValue": {
     "method": "POST",
     "path": "/organization_values",
-    "expectedParams": ["name"]
+    "expectedParams": [
+      "name"
+    ]
   },
   "createPhotoTag": {
     "method": "POST",
     "path": "/photos/:photoId/photo_tags",
-    "expectedParams": ["userId"]
+    "expectedParams": [
+      "userId"
+    ]
   },
   "createRecognition": {
     "method": "POST",
     "path": "/recognitions",
-    "expectedParams": ["body", "userIds"]
+    "expectedParams": [
+      "body",
+      "userIds"
+    ]
   },
   "createReward": {
     "method": "POST",
     "path": "/rewards",
     "multipart": true,
-    "expectedParams": ["name", "points"],
-    "optionalParams": ["description", "image"]
+    "expectedParams": [
+      "name",
+      "points"
+    ],
+    "optionalParams": [
+      "description",
+      "image"
+    ]
   },
   "createRewardRedemption": {
     "method": "POST",
@@ -187,29 +277,47 @@
   "createSlackIntegration": {
     "method": "POST",
     "path": "/slack_integrations",
-    "expectedParams": ["code"]
+    "expectedParams": [
+      "code"
+    ]
   },
   "createSurvey": {
     "method": "POST",
     "path": "/surveys",
-    "expectedParams": ["title"],
-    "optionalParams": ["points", "firstEventId"]
+    "expectedParams": [
+      "title"
+    ],
+    "optionalParams": [
+      "points",
+      "firstEventId"
+    ]
   },
   "createSurveyItem": {
     "method": "POST",
     "path": "/surveys/:surveyId/survey_items",
-    "expectedParams": ["prompt", "itemType"],
-    "optionalParams": ["minRange", "maxRange"]
+    "expectedParams": [
+      "prompt",
+      "itemType"
+    ],
+    "optionalParams": [
+      "minRange",
+      "maxRange"
+    ]
   },
   "createSurveyItemResponseOption": {
     "method": "POST",
     "path": "/survey_items/:surveyItemId/survey_item_response_options",
-    "expectedParams": ["body"]
+    "expectedParams": [
+      "body"
+    ]
   },
   "createSurveyUserItemResponse": {
     "method": "POST",
     "path": "/survey_items/:surveyItemId/survey_user_item_response",
-    "expectedParams": ["body", "surveyItemResponseOptionIds"]
+    "expectedParams": [
+      "body",
+      "surveyItemResponseOptionIds"
+    ]
   },
   "deactivateSurvey": {
     "method": "DELETE",
@@ -237,8 +345,7 @@
   },
   "deleteEventLeaderboardAttributeRsvp": {
     "method": "DELETE",
-    "path":
-      "/event_leaderboard_attribute_rsvps/:eventLeaderboardAttributeRsvpId"
+    "path": "/event_leaderboard_attribute_rsvps/:eventLeaderboardAttributeRsvpId"
   },
   "deleteEventPhoto": {
     "method": "DELETE",
@@ -246,8 +353,7 @@
   },
   "deleteEventSurveyUserItemResponse": {
     "method": "DELETE",
-    "path":
-      "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response"
+    "path": "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response"
   },
   "deleteEventVote": {
     "method": "DELETE",
@@ -316,8 +422,12 @@
   "duplicateEvent": {
     "method": "POST",
     "path": "/events/:eventId/event_duplicates",
-    "expectedParams": ["startsAt"],
-    "optionalParams": ["endsAt"]
+    "expectedParams": [
+      "startsAt"
+    ],
+    "optionalParams": [
+      "endsAt"
+    ]
   },
   "getAnnouncement": {
     "method": "GET",
@@ -371,6 +481,10 @@
     "method": "GET",
     "path": "/interests/:interestId"
   },
+  "getInvite": {
+    "method": "GET",
+    "path": "/invites/:token"
+  },
   "getLocation": {
     "method": "GET",
     "path": "/locations/:locationId"
@@ -390,7 +504,10 @@
   "getPhotoGallery": {
     "method": "GET",
     "path": "/gallery",
-    "optionalParams": ["page", "range"]
+    "optionalParams": [
+      "page",
+      "range"
+    ]
   },
   "getPointConfig": {
     "method": "GET",
@@ -430,8 +547,7 @@
   },
   "getSurveyUserItemResponse": {
     "method": "GET",
-    "path":
-      "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response"
+    "path": "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response"
   },
   "getUser": {
     "method": "GET",
@@ -452,62 +568,87 @@
   "incrementUserPoints": {
     "method": "POST",
     "path": "/users/:userId/point_increments",
-    "expectedParams": ["points"]
+    "expectedParams": [
+      "points"
+    ]
   },
   "listActiveAnnouncements": {
     "method": "GET",
     "path": "/active_announcements",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listActiveSurveys": {
     "method": "GET",
     "path": "/active_surveys",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listAnnouncements": {
     "method": "GET",
     "path": "/announcements",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listComments": {
     "method": "GET",
     "path": "/events/:eventId/comments",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listDepartmentAnalytics": {
     "method": "GET",
     "path": "/analytics/departments",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listDepartmentUsers": {
     "method": "GET",
     "path": "/departments/:departmentId/users",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listDepartments": {
     "method": "GET",
     "path": "/departments",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listEventAnalytics": {
     "method": "GET",
     "path": "/analytics/events",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listEventLeaderboardAttributes": {
     "method": "GET",
     "path": "/events/:eventId/event_leaderboard_attributes",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listEventPhotos": {
     "method": "GET",
     "path": "/events/:eventId/photos",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listEventRsvps": {
     "method": "GET",
     "path": "/events/:eventId/rsvps",
-    "optionalParams": ["page", "responseType"]
+    "optionalParams": [
+      "page",
+      "responseType"
+    ]
   },
   "listEventSurveyResults": {
     "method": "GET",
@@ -520,12 +661,19 @@
   "listEventVotes": {
     "method": "GET",
     "path": "/events/:eventId/event_votes",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listEvents": {
     "method": "GET",
     "path": "/events",
-    "optionalParams": ["page", "range", "locationIds", "sort"]
+    "optionalParams": [
+      "page",
+      "range",
+      "locationIds",
+      "sort"
+    ]
   },
   "listEventsByOrganization": {
     "method": "GET",
@@ -534,82 +682,115 @@
   "listExpenses": {
     "method": "GET",
     "path": "/events/:eventId/expenses",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listFeedbacks": {
     "method": "GET",
     "path": "/feedbacks",
-    "optionalParams": ["page", "reviewed"]
+    "optionalParams": [
+      "page",
+      "reviewed"
+    ]
   },
   "listInterestUsers": {
     "method": "GET",
     "path": "/interests/:interestId/users",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listInterests": {
     "method": "GET",
     "path": "/interests",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listInvites": {
     "method": "GET",
     "path": "/invites",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listLocations": {
     "method": "GET",
     "path": "/locations",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listOrganizationValueEvents": {
     "method": "GET",
     "path": "/organization_values/:organizationValueId/events",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listOrganizationValueRecognitions": {
     "method": "GET",
     "path": "/organization_values/:organizationValueId/recognitions",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listOrganizationValues": {
     "method": "GET",
     "path": "/organization_values",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listOrganizations": {
     "method": "GET",
     "path": "/admin/organizations",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listPhotoTags": {
     "method": "GET",
     "path": "/photos/:photoId/photo_tags",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listProfileEventSurveys": {
     "method": "GET",
     "path": "/profile/event_surveys",
-    "optionalParams": ["filter"]
+    "optionalParams": [
+      "filter"
+    ]
   },
   "listRecognitions": {
     "method": "GET",
     "path": "/recognitions",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listRedemptions": {
     "method": "GET",
     "path": "/redemptions",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listRewardRedemptions": {
     "method": "GET",
     "path": "/rewards/:rewardId/redemptions",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listRewards": {
     "method": "GET",
     "path": "/rewards",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listSlackIntegrations": {
     "method": "GET",
@@ -618,12 +799,16 @@
   "listSurveyItemResponseOptions": {
     "method": "GET",
     "path": "/survey_items/:surveyItemId/survey_item_response_options",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listSurveyItems": {
     "method": "GET",
     "path": "/surveys/:surveyId/survey_items",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listSurveyResults": {
     "method": "GET",
@@ -636,12 +821,16 @@
   "listSurveys": {
     "method": "GET",
     "path": "/surveys",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listUserAnalytics": {
     "method": "GET",
     "path": "/analytics/users",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listUserAttendedEvents": {
     "method": "GET",
@@ -650,17 +839,23 @@
   "listUserHostedEvents": {
     "method": "GET",
     "path": "/users/:userId/hosted_events",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listUserRecognitions": {
     "method": "GET",
     "path": "/users/:userId/recognitions",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "listUsers": {
     "method": "GET",
     "path": "/users",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page"
+    ]
   },
   "markEventAsSponsored": {
     "method": "POST",
@@ -669,7 +864,9 @@
   "messageEventGuests": {
     "method": "POST",
     "path": "/events/:eventId/event_notifications",
-    "expectedParams": ["body"]
+    "expectedParams": [
+      "body"
+    ]
   },
   "reactivateUser": {
     "method": "DELETE",
@@ -678,17 +875,25 @@
   "registerUser": {
     "method": "POST",
     "path": "/invites/:token/users",
-    "expectedParams": ["name", "password", "locationId"]
+    "expectedParams": [
+      "name",
+      "password",
+      "locationId"
+    ]
   },
   "requestPasswordReset": {
     "method": "POST",
     "path": "/password_resets",
-    "expectedParams": ["email"]
+    "expectedParams": [
+      "email"
+    ]
   },
   "resetPassword": {
     "method": "PATCH",
     "path": "/password_resets/:token",
-    "expectedParams": ["password"]
+    "expectedParams": [
+      "password"
+    ]
   },
   "reviewFeedback": {
     "method": "PATCH",
@@ -697,7 +902,9 @@
   "sendInvite": {
     "method": "POST",
     "path": "/invites",
-    "expectedParams": ["email"]
+    "expectedParams": [
+      "email"
+    ]
   },
   "subscribeToEventNotifications": {
     "method": "POST",
@@ -718,17 +925,25 @@
   "updateAnnouncement": {
     "method": "PATCH",
     "path": "/announcements/:announcementId",
-    "optionalParams": ["title", "body", "active"]
+    "optionalParams": [
+      "title",
+      "body",
+      "active"
+    ]
   },
   "updateComment": {
     "method": "PATCH",
     "path": "/events/:eventId/comments/:commentId",
-    "expectedParams": ["body"]
+    "expectedParams": [
+      "body"
+    ]
   },
   "updateDepartment": {
     "method": "PATCH",
     "path": "/departments/:departmentId",
-    "optionalParams": ["name"]
+    "optionalParams": [
+      "name"
+    ]
   },
   "updateEvent": {
     "method": "PATCH",
@@ -754,57 +969,86 @@
   "updateEventLeaderboardAttribute": {
     "method": "PATCH",
     "path": "/event_leaderboard_attributes/:eventLeaderboardAttributeId",
-    "optionalParams": ["title", "quantitative", "sortDescending"]
+    "optionalParams": [
+      "title",
+      "quantitative",
+      "sortDescending"
+    ]
   },
   "updateEventLeaderboardAttributeRsvp": {
     "method": "PATCH",
-    "path":
-      "/event_leaderboard_attribute_rsvps/:eventLeaderboardAttributeRsvpId",
-    "expectedParams": ["value"],
-    "optionalParams": ["rsvpId"]
+    "path": "/event_leaderboard_attribute_rsvps/:eventLeaderboardAttributeRsvpId",
+    "expectedParams": [
+      "value"
+    ],
+    "optionalParams": [
+      "rsvpId"
+    ]
   },
   "updateEventPhoto": {
     "method": "PATCH",
     "path": "/events/:eventId/photos/:photoId",
     "multipart": true,
-    "optionalParams": ["image", "caption"]
+    "optionalParams": [
+      "image",
+      "caption"
+    ]
   },
   "updateEventRsvp": {
     "method": "PATCH",
     "path": "/events/:eventId/rsvps/:rsvpId",
-    "expectedParams": ["responseType"],
-    "optionalParams": ["extra"]
+    "expectedParams": [
+      "responseType"
+    ],
+    "optionalParams": [
+      "extra"
+    ]
   },
   "updateEventSurveyUserItemResponse": {
     "method": "PATCH",
-    "path":
-      "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response",
-    "optionalParams": ["body", "surveyItemResponseOptionIds"]
+    "path": "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response",
+    "optionalParams": [
+      "body",
+      "surveyItemResponseOptionIds"
+    ]
   },
   "updateEventVote": {
     "method": "PATCH",
     "path": "/event_votes/:eventVoteId",
-    "optionalParams": ["title", "maxVotes"]
+    "optionalParams": [
+      "title",
+      "maxVotes"
+    ]
   },
   "updateEventVoteEntry": {
     "method": "PATCH",
     "path": "/event_vote_entries/:eventVoteEntryId",
-    "optionalParams": ["title", "image"]
+    "optionalParams": [
+      "title",
+      "image"
+    ]
   },
   "updateExpense": {
     "method": "PATCH",
     "path": "/events/:eventId/expenses/:expenseId",
-    "optionalParams": ["description", "amount"]
+    "optionalParams": [
+      "description",
+      "amount"
+    ]
   },
   "updateInterest": {
     "method": "PATCH",
     "path": "/interests/:interestId",
-    "expectedParams": ["name"]
+    "expectedParams": [
+      "name"
+    ]
   },
   "updateLocation": {
     "method": "PATCH",
     "path": "/locations/:locationId",
-    "expectedParams": ["name"]
+    "expectedParams": [
+      "name"
+    ]
   },
   "updateOrganization": {
     "method": "PATCH",
@@ -821,7 +1065,9 @@
   "updateOrganizationValue": {
     "method": "PATCH",
     "path": "/organization_values/:organizationValueId",
-    "expectedParams": ["name"]
+    "expectedParams": [
+      "name"
+    ]
   },
   "updatePointConfig": {
     "method": "PATCH",
@@ -853,14 +1099,23 @@
   "updateRecognition": {
     "method": "PATCH",
     "path": "/recognitions/:recognitionId",
-    "expectedParams": ["body"],
-    "optionalParams": ["userIds"]
+    "expectedParams": [
+      "body"
+    ],
+    "optionalParams": [
+      "userIds"
+    ]
   },
   "updateReward": {
     "method": "PATCH",
     "path": "/rewards/:rewardId",
     "multipart": true,
-    "optionalParams": ["name", "points", "description", "image"]
+    "optionalParams": [
+      "name",
+      "points",
+      "description",
+      "image"
+    ]
   },
   "updateRewardRedemption": {
     "method": "PATCH",
@@ -869,22 +1124,35 @@
   "updateSurvey": {
     "method": "PATCH",
     "path": "/surveys/:surveyId",
-    "optionalParams": ["title", "points"]
+    "optionalParams": [
+      "title",
+      "points"
+    ]
   },
   "updateSurveyItem": {
     "method": "PATCH",
     "path": "/survey_items/:surveyItemId",
-    "optionalParams": ["prompt", "itemType", "minRange", "maxRange"]
+    "optionalParams": [
+      "prompt",
+      "itemType",
+      "minRange",
+      "maxRange"
+    ]
   },
   "updateSurveyItemResponseOption": {
     "method": "PATCH",
     "path": "/survey_item_response_options/:surveyItemResponseOptionId",
-    "optionalParams": ["body"]
+    "optionalParams": [
+      "body"
+    ]
   },
   "updateSurveyUserItemResponse": {
     "method": "PATCH",
     "path": "/survey_items/:surveyItemId/survey_user_item_response",
-    "optionalParams": ["body", "surveyItemResponseOptionIds"]
+    "optionalParams": [
+      "body",
+      "surveyItemResponseOptionIds"
+    ]
   },
   "updateUser": {
     "method": "PATCH",
