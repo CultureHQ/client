@@ -21,7 +21,7 @@
   "changePassword": {
     "method": "PATCH",
     "path": "/password",
-    "expectedParams": ["password"]
+    "expectedParams": ["oldPassword", "newPassword"]
   },
   "checkInEventAttendee": {
     "method": "POST",
