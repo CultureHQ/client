@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - The `getInvite` call for checking if a token is valid.
 
+### Changed
+- The `changePassword` call now requires an `oldPassword` and `newPassword` parameter.
+
 ## [0.0.30] - 2017-11-03
 ### Changed
 - Full remove `async/await` calls to simplify dependencies.
