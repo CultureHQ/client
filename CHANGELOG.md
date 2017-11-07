@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.0.31] - 2017-11-07
 ### Added
 - The `getInvite` call for checking if a token is valid.
 - The `when` param to `listEvents` which can be `past`, `present`, or `future`.
@@ -266,7 +268,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.30...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.31...HEAD
+[0.0.31]: https://github.com/CultureHQ/client/compare/v0.0.30...v0.0.31
 [0.0.30]: https://github.com/CultureHQ/client/compare/v0.0.29...v0.0.30
 [0.0.29]: https://github.com/CultureHQ/client/compare/v0.0.28...v0.0.29
 [0.0.28]: https://github.com/CultureHQ/client/compare/v0.0.27...v0.0.28
