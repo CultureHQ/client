@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Added
 - The `getInvite` call for checking if a token is valid.
+- The `when` param to `listEvents` which can be `past`, `present`, or `future`.
 
 ### Changed
 - The `changePassword` call now requires an `oldPassword` and `newPassword` parameter.

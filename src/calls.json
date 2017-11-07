@@ -529,7 +529,7 @@
   "listEvents": {
     "method": "GET",
     "path": "/events",
-    "optionalParams": ["page", "range", "locationIds", "sort"]
+    "optionalParams": ["page", "range", "locationIds", "sort", "when"]
   },
   "listEventsByOrganization": {
     "method": "GET",
