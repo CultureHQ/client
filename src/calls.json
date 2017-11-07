@@ -682,7 +682,7 @@
   "registerUser": {
     "method": "POST",
     "path": "/invites/:token/users",
-    "expectedParams": ["name", "password", "locationId"]
+    "expectedParams": ["password"]
   },
   "requestPasswordReset": {
     "method": "POST",
@@ -701,7 +701,8 @@
   "sendInvite": {
     "method": "POST",
     "path": "/invites",
-    "expectedParams": ["email"]
+    "expectedParams": ["name", "email", "locationId"],
+    "optionalParams": ["departmentIds", "interests", "avatar", "title"]
   },
   "subscribeToEventNotifications": {
     "method": "POST",
