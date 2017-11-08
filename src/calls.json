@@ -32,7 +32,7 @@
   "createAnnouncement": {
     "method": "POST",
     "path": "/announcements",
-    "expectedParams": ["title", "body", "active"]
+    "expectedParams": ["title", "body", "active", "image"]
   },
   "createApiKey": {
     "method": "POST",
@@ -723,7 +723,7 @@
   "updateAnnouncement": {
     "method": "PATCH",
     "path": "/announcements/:announcementId",
-    "optionalParams": ["title", "body", "active"]
+    "optionalParams": ["title", "body", "active", "image"]
   },
   "updateComment": {
     "method": "PATCH",

@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Added
 - The `sendInvite` call now permits all of the same parameters as updating a user's profile, in order to set them at invite time.
+- The `image` param on creating and updating announcements.
 
 ### Removed
 - You can no longer pass `name` and `locationId` to the `registerUser` call. Instead, `password` is the only accepted parameter.
