@@ -16,8 +16,16 @@ class CultureHQ {
     });
   }
 
+  endUserSimulation() {
+    state.endSimulation();
+  }
+
   isSignedIn() {
     return state.isSignedIn();
+  }
+
+  isSimulating() {
+    return state.isSimulating();
   }
 
   signIn(params) {
@@ -30,6 +38,13 @@ class CultureHQ {
 
   signOut() {
     state.signOut();
+  }
+
+  startUserSimulation(params) {
+    return this.createSimulation(params).then(response => {
+      state.startSimulation(response.apiKey.token);
+      return response;
+    });
   }
 }
 
