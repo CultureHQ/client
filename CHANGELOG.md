@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.0.32] - 2017-11-08
 ### Added
 - The `sendInvite` call now permits all of the same parameters as updating a user's profile, in order to set them at invite time.
 - The `image` param on creating and updating announcements.
@@ -278,7 +280,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.31...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.32...HEAD
+[0.0.32]: https://github.com/CultureHQ/client/compare/v0.0.31...v0.0.32
 [0.0.31]: https://github.com/CultureHQ/client/compare/v0.0.30...v0.0.31
 [0.0.30]: https://github.com/CultureHQ/client/compare/v0.0.29...v0.0.30
 [0.0.29]: https://github.com/CultureHQ/client/compare/v0.0.28...v0.0.29
