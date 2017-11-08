@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - The `createBulkUserImport` and `getBulkUserImport` calls.
 - The `createSimulation` and associated `adminAutocompleteUsers` call.
 - The `startUserSimulation`, `endUserSimulation`, and `isSimulating` functions on the main client object.
+- The optional `timezone` param on the `createEvent` call.
 
 ### Removed
 - You can no longer pass `name` and `locationId` to the `registerUser` call. Instead, `password` is the only accepted parameter.

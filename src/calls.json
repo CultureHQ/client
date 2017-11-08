@@ -78,7 +78,8 @@
       "locationIds",
       "inviteOnly",
       "openInvites",
-      "inviteeIds"
+      "inviteeIds",
+      "timezone"
     ]
   },
   "createEventInvites": {
