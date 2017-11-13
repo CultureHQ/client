@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- The `interests` param on the `sendInvite`, `updateProfile`, and `updateUser` calls have all been updated to `interestNames`.
 
 ## [0.0.32] - 2017-11-08
 ### Added
