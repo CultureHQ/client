@@ -171,6 +171,10 @@
       "active"
     ]
   },
+  "createOrganizationBot": {
+    "method": "POST",
+    "path": "/admin/organizations/:organizationId/bots"
+  },
   "createOrganizationValue": {
     "method": "POST",
     "path": "/organization_values",
@@ -294,6 +298,10 @@
   "deleteOrganization": {
     "method": "DELETE",
     "path": "/admin/organizations/:organizationId"
+  },
+  "deleteOrganizationBot": {
+    "method": "DELETE",
+    "path": "/admin/organizations/:organizationId/bots/:botId"
   },
   "deleteOrganizationValue": {
     "method": "DELETE",
@@ -590,6 +598,10 @@
     "method": "GET",
     "path": "/locations",
     "optionalParams": ["page"]
+  },
+  "listOrganizationBots": {
+    "method": "GET",
+    "path": "/admin/organizations/:organizationId/bots"
   },
   "listOrganizationValueEvents": {
     "method": "GET",
@@ -929,7 +941,8 @@
       "interestNames",
       "avatar",
       "title",
-      "locationId"
+      "locationId",
+      "organizationAdmin"
     ]
   },
   "voteForEventVoteEntry": {
