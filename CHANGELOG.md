@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - The `includeDeactivated` param on the `listUsers`, `listInterestUsers`, and `listDepartmentUsers` calls (only accessible by admins).
 - The `createUserInvite` call for inviting a user explicitly after they have already been created but not yet claimed. This call will fail if the user is already claimed.
+- The `createOrganizationBot`, `deleteOrganizationBot`, and `listOrganizationBots` calls for managing organization bots.
+- The optional `organizationAdmin` parameter for the `updateUser` call (only functional if you yourself are an admin).
 
 ### Changed
 - The `interests` param on the `sendInvite`, `updateProfile`, and `updateUser` calls have all been updated to `interestNames`.
