@@ -229,6 +229,10 @@
     "path": "/survey_items/:surveyItemId/survey_user_item_response",
     "expectedParams": ["body", "surveyItemResponseOptionIds"]
   },
+  "createUserInvite": {
+    "method": "POST",
+    "path": "/users/:userId/invites"
+  },
   "deactivateSurvey": {
     "method": "DELETE",
     "path": "/surveys/:surveyId/survey_activation"
@@ -343,7 +347,7 @@
   },
   "getBulkUserImport": {
     "method": "GET",
-    "path": "/bulk_user_import/:bulkUserImportJobId"
+    "path": "/bulk_user_imports/:bulkUserImportJobId"
   },
   "getComment": {
     "method": "GET",
@@ -508,7 +512,7 @@
   "listDepartmentUsers": {
     "method": "GET",
     "path": "/departments/:departmentId/users",
-    "optionalParams": ["page"]
+    "optionalParams": ["page", "includeDeactivated"]
   },
   "listDepartments": {
     "method": "GET",
@@ -570,7 +574,7 @@
   "listInterestUsers": {
     "method": "GET",
     "path": "/interests/:interestId/users",
-    "optionalParams": ["page"]
+    "optionalParams": ["page", "includeDeactivated"]
   },
   "listInterests": {
     "method": "GET",
@@ -686,7 +690,7 @@
   "listUsers": {
     "method": "GET",
     "path": "/users",
-    "optionalParams": ["page"]
+    "optionalParams": ["page", "includeDeactivated"]
   },
   "markEventAsSponsored": {
     "method": "POST",
