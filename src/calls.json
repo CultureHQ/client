@@ -653,7 +653,7 @@
   },
   "listSurveyResults": {
     "method": "GET",
-    "path": "/surveys/:survey_id/survey_results"
+    "path": "/surveys/:surveyId/survey_results"
   },
   "listSurveySubmittedResponses": {
     "method": "GET",
