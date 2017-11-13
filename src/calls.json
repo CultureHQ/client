@@ -724,7 +724,7 @@
     "method": "POST",
     "path": "/invites",
     "expectedParams": ["name", "email", "locationId"],
-    "optionalParams": ["departmentIds", "interests", "avatar", "title"]
+    "optionalParams": ["departmentIds", "interestNames", "avatar", "title"]
   },
   "subscribeToEventNotifications": {
     "method": "POST",
@@ -872,7 +872,7 @@
       "name",
       "email",
       "departmentIds",
-      "interests",
+      "interestNames",
       "avatar",
       "title",
       "locationId"
@@ -922,7 +922,7 @@
       "name",
       "email",
       "departmentIds",
-      "interests",
+      "interestNames",
       "avatar",
       "title",
       "locationId"
