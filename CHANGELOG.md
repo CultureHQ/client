@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.0.33] - 2017-11-13
 ### Added
 - The `includeDeactivated` param on the `listUsers`, `listInterestUsers`, and `listDepartmentUsers` calls (only accessible by admins).
 - The `createUserInvite` call for inviting a user explicitly after they have already been created but not yet claimed. This call will fail if the user is already claimed.
@@ -288,7 +290,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.32...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.33...HEAD
+[0.0.33]: https://github.com/CultureHQ/client/compare/v0.0.32...v0.0.33
 [0.0.32]: https://github.com/CultureHQ/client/compare/v0.0.31...v0.0.32
 [0.0.31]: https://github.com/CultureHQ/client/compare/v0.0.30...v0.0.31
 [0.0.30]: https://github.com/CultureHQ/client/compare/v0.0.29...v0.0.30
