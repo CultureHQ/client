@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- The ability to specify arbitrary event tags on event create and update. Additionally provide a `listEventTag` call for getting the current created ones.
 
 ## [0.0.33] - 2017-11-13
 ### Added
