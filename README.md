@@ -12,11 +12,17 @@ Import the package into your `node` application like:
 import CultureHQ from "culturehq-client";
 ```
 
+You initialize a client with an object that contains information about how to connect to a valid CultureHQ server. For basic integration, use:
+
+```js
+const cultureHQ = new CultureHQ({ apiHost: "https://api.culturehq.net" });
+```
+
 Every function except `isSignedIn` and `signOut` returns a `Promise`. You can call them using normal `Promise` semantics, as in below:
 
 ```js
 const getProfile = () => {
-  CultureHQ.getProfile().then(response => {
+  cultureHQ.getProfile().then(response => {
     console.log(response);
   }).catch(error => {
     console.error(error);
@@ -29,7 +35,7 @@ or you can use `async`/`await` syntax, as in below:
 ```js
 const getProfile = async () => {
   try {
-    const response = await CultureHQ.getProfile();
+    const response = await cultureHQ.getProfile();
     console.log(response);
   } catch (error) {
     console.error(error);
@@ -40,15 +46,15 @@ const getProfile = async () => {
 Each function can be introspected to determine its `expectedParams` and `optionalParams`, as in:
 
 ```js
-const expectedParams = CultureHQ.createEvent.expectedParams;
-const optionalParams = CultureHQ.createEvent.optionalParams;
+const expectedParams = cultureHQ.createEvent.expectedParams;
+const optionalParams = cultureHQ.createEvent.optionalParams;
 ```
 
 If a function has `multipart = true` set on its config, it's because one or more of the attributes require a file object. In this case, a `File` object should be given for the value, as in:
 
 ```js
 const avatar = document.querySelector("#avatar").files[0];
-const response = await CultureHQ.updateUser({ userId: 12345, avatar });
+const response = await cultureHQ.updateUser({ userId: 12345, avatar });
 ```
 
 ## Development
@@ -57,7 +63,7 @@ First, install the dependencies with `yarn`.
 
 ### Styling
 
-Styling at the moment is handled through `prettier`. Run it with `yarn cleanup`.
+Styling is handled through `prettier`. Run it with `yarn cleanup`.
 
 ### Testing
 
