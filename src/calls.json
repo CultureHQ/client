@@ -350,6 +350,11 @@
     "expectedParams": ["startsAt"],
     "optionalParams": ["endsAt"]
   },
+  "eventAutocompleteRsvps": {
+    "method": "GET",
+    "path": "/events/:eventId/autocomplete/rsvps",
+    "expectedParams": ["query"]
+  },
   "getAnnouncement": {
     "method": "GET",
     "path": "/announcements/:announcementId"
