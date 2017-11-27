@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - The `eventAutocompleteRsvps` call, for searching for a specific RSVP on an event.
 
+### Changed
+- The `image` parameter should not be required for announcements.
+
 ### Removed
 - The `createOktaApiKey` call, which no longer exists in the API.
 

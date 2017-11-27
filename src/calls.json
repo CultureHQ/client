@@ -38,7 +38,8 @@
     "method": "POST",
     "path": "/announcements",
     "multipart": true,
-    "expectedParams": ["title", "body", "active", "image"]
+    "expectedParams": ["title", "body", "active"],
+    "optionalParams": ["image"]
   },
   "createApiKey": {
     "method": "POST",
