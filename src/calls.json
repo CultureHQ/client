@@ -506,7 +506,7 @@
   "listAnnouncements": {
     "method": "GET",
     "path": "/announcements",
-    "optionalParams": ["page"]
+    "optionalParams": ["page", "active"]
   },
   "listComments": {
     "method": "GET",
