@@ -737,6 +737,11 @@
     "path": "/invites/:token/users",
     "expectedParams": ["password"]
   },
+  "reorderWidgets": {
+    "method": "PATCH",
+    "path": "/widget_order",
+    "expectedParams": ["order"]
+  },
   "requestPasswordReset": {
     "method": "POST",
     "path": "/password_resets",
