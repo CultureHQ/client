@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.0.36] - 2017-11-28
 ### Added
 - The `reorderWidgets` call.
 
@@ -307,7 +309,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.35...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.36...HEAD
+[0.0.36]: https://github.com/CultureHQ/client/compare/v0.0.35...v0.0.36
 [0.0.35]: https://github.com/CultureHQ/client/compare/v0.0.34...v0.0.35
 [0.0.34]: https://github.com/CultureHQ/client/compare/v0.0.33...v0.0.34
 [0.0.33]: https://github.com/CultureHQ/client/compare/v0.0.32...v0.0.33

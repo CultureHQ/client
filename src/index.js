@@ -32,10 +32,6 @@ class CultureHQ {
     return this.createApiKey(params).then(signInCallback);
   }
 
-  signInWithOkta(params) {
-    return this.createOktaApiKey(params).then(signInCallback);
-  }
-
   signOut() {
     state.signOut();
   }
