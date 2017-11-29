@@ -700,10 +700,6 @@
     "path": "/analytics/users",
     "optionalParams": ["page"]
   },
-  "listUserAttendedEvents": {
-    "method": "GET",
-    "path": "/users/:userId/attended_events"
-  },
   "listUserHostedEvents": {
     "method": "GET",
     "path": "/users/:userId/hosted_events",
@@ -713,6 +709,11 @@
     "method": "GET",
     "path": "/users/:userId/recognitions",
     "optionalParams": ["page"]
+  },
+  "listUserRsvpdEvents": {
+    "method": "GET",
+    "path": "/users/:userId/rsvpd_events",
+    "optionalParams": ["when"]
   },
   "listUsers": {
     "method": "GET",

@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - The `active` status on the `listAnnouncements` call.
 
+### Changed
+- The `listUserAttendedEvents` call to `listUserRsvpdEvents` call.
+
 ## [0.0.36] - 2017-11-28
 ### Added
 - The `reorderWidgets` call.
