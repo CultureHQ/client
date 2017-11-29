@@ -713,7 +713,7 @@
   "listUserRsvpdEvents": {
     "method": "GET",
     "path": "/users/:userId/rsvpd_events",
-    "optionalParams": ["when"]
+    "optionalParams": ["when", "sort"]
   },
   "listUsers": {
     "method": "GET",
