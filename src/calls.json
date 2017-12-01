@@ -119,7 +119,7 @@
     "method": "POST",
     "path":
       "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response",
-    "expectedParams": ["body", "surveyItemResponseOptionIds"]
+    "optionalParams": ["body", "surveyItemResponseOptionIds"]
   },
   "createEventVote": {
     "method": "POST",

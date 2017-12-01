@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.39] - 2017-12-01
+### Changed
+- Make the `createEventSurveyUserItemResponse` parameters optional.
+
 ## [0.0.38] - 2017-12-01
 ### Added
 - The optional `sort` param on the `listUserRsvpdEvents` call.
@@ -323,7 +327,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.38...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.39...HEAD
+[0.0.39]: https://github.com/CultureHQ/client/compare/v0.0.38...v0.0.39
 [0.0.38]: https://github.com/CultureHQ/client/compare/v0.0.37...v0.0.38
 [0.0.37]: https://github.com/CultureHQ/client/compare/v0.0.36...v0.0.37
 [0.0.36]: https://github.com/CultureHQ/client/compare/v0.0.35...v0.0.36
