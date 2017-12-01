@@ -227,7 +227,7 @@
   "createSurveyUserItemResponse": {
     "method": "POST",
     "path": "/survey_items/:surveyItemId/survey_user_item_response",
-    "expectedParams": ["body", "surveyItemResponseOptionIds"]
+    "optionalParams": ["body", "surveyItemResponseOptionIds"]
   },
   "createUserInvite": {
     "method": "POST",
