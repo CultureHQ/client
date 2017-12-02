@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.40] - 2017-12-02
+### Added
+- The `confirmEventAttendance` and `denyEventAttendance` calls.
+
 ## [0.0.39] - 2017-12-01
 ### Changed
 - Make the `createEventSurveyUserItemResponse` parameters optional.

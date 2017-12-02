@@ -34,6 +34,10 @@
     "expectedParams": ["userId"],
     "optionalParams": ["extra"]
   },
+  "confirmEventAttendance": {
+    "method": "POST",
+    "path": "/events/:eventId/confirmation"
+  },
   "createAnnouncement": {
     "method": "POST",
     "path": "/announcements",
@@ -338,6 +342,10 @@
   "deleteSurveyUserItemResponse": {
     "method": "DELETE",
     "path": "/survey_items/:surveyItemId/survey_user_item_response"
+  },
+  "denyEventAttendance": {
+    "method": "DELETE",
+    "path": "/events/:eventId/confirmation"
   },
   "duplicateEvent": {
     "method": "POST",
