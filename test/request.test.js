@@ -44,3 +44,29 @@ test("properly handles multipart array parameters", async () => {
     server.close();
   }
 });
+
+test("properly handles multiparty empty array parameters", async () => {
+  const server = createServer({ status: 200, body: { foo: "bar" } });
+  const port = 1695;
+  server.listen(port);
+
+  try {
+    const url = new URL(`http://localhost:${port}`);
+    const response = await request("POST", url, {
+      params: { foo: [] },
+      multipart: true
+    });
+    expect(server.requests.length).toEqual(1);
+
+    const contentType = server.requests[0].headers["content-type"];
+    const parsedBody = parseMultipart(
+      server.requests[0].parsedBody,
+      contentType.split("boundary=")[1]
+    );
+
+    expect(parsedBody[0]).toEqual({ name: "foo[]", value: "" });
+  } finally {
+    server.close();
+  }
+});
+
