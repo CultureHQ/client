@@ -339,12 +339,14 @@ var buildRequest = function buildRequest(method, url, options) {
     var formData = new FormData();
 
     Object.keys(params).forEach(function (key) {
-      if (Array.isArray(params[key])) {
+      if (!Array.isArray(params[key])) {
+        formData.append(key, params[key]);
+      } else if (params[key].length) {
         params[key].forEach(function (nestedValue) {
           return formData.append(key + "[]", nestedValue);
         });
       } else {
-        formData.append(key, params[key]);
+        formData.append(key + "[]", "");
       }
     });
 
