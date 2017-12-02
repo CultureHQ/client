@@ -26,12 +26,14 @@ const buildRequest = (method, url, options) => {
     const formData = new FormData();
 
     Object.keys(params).forEach(key => {
-      if (Array.isArray(params[key])) {
+      if (!Array.isArray(params[key])) {
+        formData.append(key, params[key]);
+      } else if (params[key].length) {
         params[key].forEach(nestedValue =>
           formData.append(`${key}[]`, nestedValue)
         );
       } else {
-        formData.append(key, params[key]);
+        formData.append(`${key}[]`, "");
       }
     });
 
