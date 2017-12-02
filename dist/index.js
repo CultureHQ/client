@@ -315,7 +315,7 @@ __webpack_require__(6);
 var _stringCase = __webpack_require__(7);
 
 var buildHeaders = function buildHeaders(options) {
-  var headers = { "X-Client-Version": "0.0.40" };
+  var headers = { "X-Client-Version": "0.0.41" };
 
   if (!options.multipart) {
     headers["Content-Type"] = "application/json";
