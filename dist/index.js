@@ -315,7 +315,7 @@ __webpack_require__(6);
 var _stringCase = __webpack_require__(7);
 
 var buildHeaders = function buildHeaders(options) {
-  var headers = { "X-Client-Version": "0.0.41" };
+  var headers = { "X-Client-Version": "0.0.42" };
 
   if (!options.multipart) {
     headers["Content-Type"] = "application/json";
@@ -333,7 +333,13 @@ var buildRequest = function buildRequest(method, url, options) {
 
   if (method === "GET") {
     Object.keys(params).forEach(function (key) {
-      return url.searchParams.append(key, params[key]);
+      if (!Array.isArray(params[key])) {
+        url.searchParams.append(key, params[key]);
+      } else if (params[key].length) {
+        params[key].forEach(function (nestedValue) {
+          return url.searchParams.append(key + "[]", nestedValue);
+        });
+      }
     });
   } else if (options.multipart) {
     var formData = new FormData();

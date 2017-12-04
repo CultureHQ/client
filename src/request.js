@@ -19,9 +19,15 @@ const buildRequest = (method, url, options) => {
   const params = snakerize(options.params);
 
   if (method === "GET") {
-    Object.keys(params).forEach(key =>
-      url.searchParams.append(key, params[key])
-    );
+    Object.keys(params).forEach(key => {
+      if (!Array.isArray(params[key])) {
+        url.searchParams.append(key, params[key]);
+      } else if (params[key].length) {
+        params[key].forEach(nestedValue =>
+          url.searchParams.append(key + "[]", nestedValue)
+        );
+      }
+    });
   } else if (options.multipart) {
     const formData = new FormData();
 
