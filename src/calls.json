@@ -347,11 +347,21 @@
     "method": "DELETE",
     "path": "/events/:eventId/confirmation"
   },
+  "disableStaticWidget": {
+    "method": "DELETE",
+    "path": "/widgets",
+    "expectedParams": ["widget"]
+  },
   "duplicateEvent": {
     "method": "POST",
     "path": "/events/:eventId/event_duplicates",
     "expectedParams": ["startsAt"],
     "optionalParams": ["endsAt"]
+  },
+  "enableStaticWidget": {
+    "method": "POST",
+    "path": "/widgets",
+    "expectedParams": ["widget"]
   },
   "eventAutocompleteRsvps": {
     "method": "GET",
