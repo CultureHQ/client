@@ -162,6 +162,7 @@
   "createOrganization": {
     "method": "POST",
     "path": "/admin/organizations",
+    "multipart": true,
     "expectedParams": ["name"],
     "optionalParams": [
       "primaryColor",
@@ -778,6 +779,7 @@
   "sendInvite": {
     "method": "POST",
     "path": "/invites",
+    "multipart": true,
     "expectedParams": ["name", "email", "locationId"],
     "optionalParams": ["departmentIds", "interestNames", "avatar", "title"]
   },
@@ -816,6 +818,7 @@
   "updateEvent": {
     "method": "PATCH",
     "path": "/events/:eventId",
+    "multipart": true,
     "optionalParams": [
       "name",
       "details",
@@ -873,6 +876,7 @@
   "updateEventVoteEntry": {
     "method": "PATCH",
     "path": "/event_vote_entries/:eventVoteEntryId",
+    "multipart": true,
     "optionalParams": ["title", "image"]
   },
   "updateExpense": {
@@ -893,6 +897,7 @@
   "updateOrganization": {
     "method": "PATCH",
     "path": "/admin/organizations/:organizationId",
+    "multipart": true,
     "optionalParams": [
       "name",
       "primaryColor",
