@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.45] - 2017-12-04
+### Added
+- The `reorderSurveyItems` and `reorderSurveyItemResponseOptions` calls.
+
 ## [0.0.44] - 2017-12-06
 ### Changed
 - Added all appropriate `multipart: true` parameters to multipart calls.
@@ -347,7 +351,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.44...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.45...HEAD
+[0.0.45]: https://github.com/CultureHQ/client/compare/v0.0.44...v0.0.45
 [0.0.44]: https://github.com/CultureHQ/client/compare/v0.0.43...v0.0.44
 [0.0.43]: https://github.com/CultureHQ/client/compare/v0.0.42...v0.0.43
 [0.0.42]: https://github.com/CultureHQ/client/compare/v0.0.41...v0.0.42

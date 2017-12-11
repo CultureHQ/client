@@ -757,6 +757,16 @@
     "path": "/invites/:token/users",
     "expectedParams": ["password"]
   },
+  "reorderSurveyItemResponseOptions": {
+    "method": "PATCH",
+    "path": "/survey_items/:surveyItemId/survey_item_response_option_order",
+    "expectedParams": ["order"]
+  },
+  "reorderSurveyItems": {
+    "method": "PATCH",
+    "path": "/surveys/:surveyId/survey_item_order",
+    "expectedParams": ["order"]
+  },
   "reorderWidgets": {
     "method": "PATCH",
     "path": "/widget_order",
