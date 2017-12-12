@@ -19,6 +19,10 @@ const buildRequest = (method, url, options) => {
   const params = snakerize(options.params);
 
   if (method === "GET") {
+    // Enforce a JSON response by asking explicitly for the JSON endpoint. For
+    // some reason Edge and IE request HTML by default.
+    url.href = `${url.href}.json`;
+
     Object.keys(params).forEach(key => {
       if (!Array.isArray(params[key])) {
         url.searchParams.append(key, params[key]);
