@@ -332,6 +332,10 @@ var buildRequest = function buildRequest(method, url, options) {
   var params = (0, _stringCase.snakerize)(options.params);
 
   if (method === "GET") {
+    // Enforce a JSON response by asking explicitly for the JSON endpoint. For
+    // some reason Edge and IE request HTML by default.
+    url.href = url.href + ".json";
+
     Object.keys(params).forEach(function (key) {
       if (!Array.isArray(params[key])) {
         url.searchParams.append(key, params[key]);
