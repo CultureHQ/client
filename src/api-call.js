@@ -1,3 +1,4 @@
+import "url-polyfill";
 import request from "./request";
 import state from "./state";
 
