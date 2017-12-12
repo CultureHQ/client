@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("store/dist/store.modern"), require("isomorphic-fetch"));
+		module.exports = factory(require("store/dist/store.modern"), require("url-polyfill"), require("isomorphic-fetch"));
 	else if(typeof define === 'function' && define.amd)
-		define(["store/dist/store.modern", "isomorphic-fetch"], factory);
+		define(["store/dist/store.modern", "url-polyfill", "isomorphic-fetch"], factory);
 	else if(typeof exports === 'object')
-		exports["CultureHQ"] = factory(require("store/dist/store.modern"), require("isomorphic-fetch"));
+		exports["CultureHQ"] = factory(require("store/dist/store.modern"), require("url-polyfill"), require("isomorphic-fetch"));
 	else
-		root["CultureHQ"] = factory(root["store/dist/store.modern"], root["isomorphic-fetch"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_6__) {
+		root["CultureHQ"] = factory(root["store/dist/store.modern"], root["url-polyfill"], root["isomorphic-fetch"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_7__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -245,7 +245,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _request = __webpack_require__(5);
+__webpack_require__(5);
+
+var _request = __webpack_require__(6);
 
 var _request2 = _interopRequireDefault(_request);
 
@@ -301,6 +303,12 @@ exports.default = function (client, options) {
 
 /***/ }),
 /* 5 */
+/***/ (function(module, exports) {
+
+module.exports = require("url-polyfill");
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -310,9 +318,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-__webpack_require__(6);
+__webpack_require__(7);
 
-var _stringCase = __webpack_require__(7);
+var _stringCase = __webpack_require__(8);
 
 var buildHeaders = function buildHeaders(options) {
   var headers = { "X-Client-Version": "0.0.45" };
@@ -398,13 +406,13 @@ exports.default = function (method, url, options) {
 };
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 module.exports = require("isomorphic-fetch");
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
