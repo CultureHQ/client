@@ -3,7 +3,7 @@ import state from "./state";
 
 const ensureExpectedParams = (expectedParams, actualParams) => {
   expectedParams.forEach(param => {
-    if (!actualParams.hasOwnProperty(param)) {
+    if (!Object.prototype.hasOwnProperty.call(actualParams, param)) {
       throw new Error(`Expected parameter ${param} not given`);
     }
   });

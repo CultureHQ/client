@@ -257,7 +257,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var ensureExpectedParams = function ensureExpectedParams(expectedParams, actualParams) {
   expectedParams.forEach(function (param) {
-    if (!actualParams.hasOwnProperty(param)) {
+    if (!Object.prototype.hasOwnProperty.call(actualParams, param)) {
       throw new Error("Expected parameter " + param + " not given");
     }
   });
