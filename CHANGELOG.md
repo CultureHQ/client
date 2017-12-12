@@ -5,10 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.0.46] - 2017-12-12
 ### Changed
 - Switched out the URL polyfill `universal-url` for `url-polyfill`.
 
-## [0.0.45] - 2017-12-04
+## [0.0.45] - 2017-12-06
 ### Added
 - The `reorderSurveyItems` and `reorderSurveyItemResponseOptions` calls.
 
@@ -353,7 +355,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.45...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.46...HEAD
+[0.0.46]: https://github.com/CultureHQ/client/compare/v0.0.45...v0.0.46
 [0.0.45]: https://github.com/CultureHQ/client/compare/v0.0.44...v0.0.45
 [0.0.44]: https://github.com/CultureHQ/client/compare/v0.0.43...v0.0.44
 [0.0.43]: https://github.com/CultureHQ/client/compare/v0.0.42...v0.0.43
