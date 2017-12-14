@@ -462,6 +462,10 @@
     "method": "GET",
     "path": "/profile"
   },
+  "getProfileEmailSettings": {
+    "method": "GET",
+    "path": "/profile/email_settings"
+  },
   "getRecognition": {
     "method": "GET",
     "path": "/recognitions/:recognitionId"
@@ -947,6 +951,19 @@
       "avatar",
       "title",
       "locationId"
+    ]
+  },
+  "updateProfileEmailSettings": {
+    "method": "PATCH",
+    "path": "/profile/email_settings",
+    "optionalParams": [
+      "eventInvite",
+      "eventNotification",
+      "postEventSurvey",
+      "recognized",
+      "redemptionApproved",
+      "redemptionRequested",
+      "rsvpConfirmation"
     ]
   },
   "updateRecognition": {
