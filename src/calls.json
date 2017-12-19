@@ -8,6 +8,24 @@
     "path": "/admin/autocomplete/users",
     "expectedParams": ["query"]
   },
+  "adminListInvites": {
+    "method": "GET",
+    "path": "/admin/organizations/:organizationId/invites",
+    "optionalParams": ["page"]
+  },
+  "adminSendInvite": {
+    "method": "POST",
+    "path": "/admin/organizations/:organizationId/invites",
+    "multipart": true,
+    "expectedParams": ["name", "email"],
+    "optionalParams": [
+      "locationId",
+      "departmentIds",
+      "interestNames",
+      "avatar",
+      "title"
+    ]
+  },
   "approveEventVoteEntry": {
     "method": "POST",
     "path": "/event_vote_entries/:eventVoteEntryId/event_vote_entry_approval"
@@ -799,8 +817,14 @@
     "method": "POST",
     "path": "/invites",
     "multipart": true,
-    "expectedParams": ["name", "email", "locationId"],
-    "optionalParams": ["departmentIds", "interestNames", "avatar", "title"]
+    "expectedParams": ["name", "email"],
+    "optionalParams": [
+      "locationId",
+      "departmentIds",
+      "interestNames",
+      "avatar",
+      "title"
+    ]
   },
   "subscribeToEventNotifications": {
     "method": "POST",
