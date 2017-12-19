@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Added
 - The ability to create the first admin in an organization for a CultureHQ admin.
+- The optional `completed` parameter to the `listWidgetSurveys` call, for filtering between complete or incomplete widget surveys.
 
 ## [0.0.47] - 2017-12-19
 ### Added
