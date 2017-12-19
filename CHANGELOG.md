@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Added
 - The `getProfileEmailSettings` and `updateProfileEmailSettings` calls.
+- The `listWidgetSurveys` call.
 
 ## [0.0.46] - 2017-12-12
 ### Changed

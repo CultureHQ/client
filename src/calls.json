@@ -743,6 +743,11 @@
     "path": "/users",
     "optionalParams": ["page", "includeDeactivated"]
   },
+  "listWidgetSurveys": {
+    "method": "GET",
+    "path": "/widget_surveys",
+    "optionalParams": ["page"]
+  },
   "markEventAsSponsored": {
     "method": "POST",
     "path": "/events/:eventId/event_sponsorship"
