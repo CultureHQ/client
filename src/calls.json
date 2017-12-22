@@ -89,8 +89,9 @@
     "method": "POST",
     "path": "/events",
     "multipart": true,
-    "expectedParams": ["name", "details", "startsAt", "endsAt", "eventType"],
+    "expectedParams": ["name", "startsAt", "endsAt", "eventType"],
     "optionalParams": [
+      "details",
       "sponsored",
       "surveyId",
       "image",
