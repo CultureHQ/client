@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - The ability to create the first admin in an organization for a CultureHQ admin.
 - The optional `completed` parameter to the `listWidgetSurveys` call, for filtering between complete or incomplete widget surveys.
+- The `listProfilePointIncrements` for getting a history of all point increments that a user has received.
 
 ## [0.0.48] - 2017-12-22
 ### Changed

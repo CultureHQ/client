@@ -690,6 +690,11 @@
     "path": "/profile/event_surveys",
     "optionalParams": ["filter"]
   },
+  "listProfilePointIncrements": {
+    "method": "GET",
+    "path": "/profile/point_increments",
+    "optionalParams": ["page"]
+  },
   "listRecognitions": {
     "method": "GET",
     "path": "/recognitions",
