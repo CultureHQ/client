@@ -10,6 +10,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - The optional `completed` parameter to the `listWidgetSurveys` call, for filtering between complete or incomplete widget surveys.
 - The `listProfilePointIncrements` for getting a history of all point increments that a user has received.
 
+### Changed
+- The `createSurvey` call's `firstEventId` parameter has been changed to `eventId` to better reflect that it is just the one event that can be linked to a survey.
+
+### Removed
+- The `createEventSurveyUserItemResponse`, `deleteEventSurveyUserItemResponse`, `listEventSurveyResults`, `listEventSurveySubmittedResponses`, `getSurveyUserItemResponse`, and `updateEventSurveyUserItemResponse` calls, in favor of their "Survey" equivalents.
+- The `listActiveSurveys` call, in favor of `listWidgetSurveys` with the `active` flag set to true.
+
 ## [0.0.48] - 2017-12-22
 ### Changed
 - The `createEvent` call now lists `details` as optional.

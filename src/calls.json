@@ -138,12 +138,6 @@
     "expectedParams": ["responseType"],
     "optionalParams": ["extra"]
   },
-  "createEventSurveyUserItemResponse": {
-    "method": "POST",
-    "path":
-      "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response",
-    "optionalParams": ["body", "surveyItemResponseOptionIds"]
-  },
   "createEventVote": {
     "method": "POST",
     "path": "/events/:eventId/event_votes",
@@ -235,7 +229,7 @@
     "method": "POST",
     "path": "/surveys",
     "expectedParams": ["title"],
-    "optionalParams": ["points", "firstEventId"]
+    "optionalParams": ["points", "eventId"]
   },
   "createSurveyItem": {
     "method": "POST",
@@ -289,11 +283,6 @@
   "deleteEventPhoto": {
     "method": "DELETE",
     "path": "/events/:eventId/photos/:photoId"
-  },
-  "deleteEventSurveyUserItemResponse": {
-    "method": "DELETE",
-    "path":
-      "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response"
   },
   "deleteEventVote": {
     "method": "DELETE",
@@ -509,11 +498,6 @@
     "method": "GET",
     "path": "/survey_item_response_options/:surveyItemResponseOptionId"
   },
-  "getSurveyUserItemResponse": {
-    "method": "GET",
-    "path":
-      "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response"
-  },
   "getUser": {
     "method": "GET",
     "path": "/users/:userId"
@@ -538,11 +522,6 @@
   "listActiveAnnouncements": {
     "method": "GET",
     "path": "/active_announcements",
-    "optionalParams": ["page"]
-  },
-  "listActiveSurveys": {
-    "method": "GET",
-    "path": "/active_surveys",
     "optionalParams": ["page"]
   },
   "listAnnouncements": {
@@ -589,14 +568,6 @@
     "method": "GET",
     "path": "/events/:eventId/rsvps",
     "optionalParams": ["page", "responseType"]
-  },
-  "listEventSurveyResults": {
-    "method": "GET",
-    "path": "/events/:eventId/survey_results"
-  },
-  "listEventSurveySubmittedResponses": {
-    "method": "GET",
-    "path": "/events/:eventId/submitted_responses"
   },
   "listEventTags": {
     "method": "GET",
@@ -770,7 +741,7 @@
   "listWidgetSurveys": {
     "method": "GET",
     "path": "/widget_surveys",
-    "optionalParams": ["completed", "page"]
+    "optionalParams": ["active", "completed", "page"]
   },
   "markEventAsSponsored": {
     "method": "POST",
@@ -910,12 +881,6 @@
     "path": "/events/:eventId/rsvps/:rsvpId",
     "expectedParams": ["responseType"],
     "optionalParams": ["extra"]
-  },
-  "updateEventSurveyUserItemResponse": {
-    "method": "PATCH",
-    "path":
-      "/events/:eventId/survey_items/:surveyItemId/survey_user_item_response",
-    "optionalParams": ["body", "surveyItemResponseOptionIds"]
   },
   "updateEventVote": {
     "method": "PATCH",
