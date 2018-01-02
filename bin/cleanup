@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-find . | grep -v node_modules | grep -v '^./dist/' \
-  | grep '^.*js\(on\)\?$' | xargs $(npm bin)/prettier --write

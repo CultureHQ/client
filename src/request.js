@@ -14,6 +14,13 @@ const buildHeaders = options => {
   return headers;
 };
 
+const formDataValueFor = object => {
+  if (typeof object === "undefined" || object === null) {
+    return "";
+  }
+  return object;
+};
+
 const buildRequest = (method, url, options) => {
   let reqOptions = { headers: buildHeaders(options), method };
   const params = snakerize(options.params);
@@ -33,7 +40,7 @@ const buildRequest = (method, url, options) => {
 
     Object.keys(params).forEach(key => {
       if (!Array.isArray(params[key])) {
-        formData.append(key, params[key]);
+        formData.append(key, formDataValueFor(params[key]));
       } else if (params[key].length) {
         params[key].forEach(nestedValue =>
           formData.append(`${key}[]`, nestedValue)

@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --config webpack.config.babel.js --progress",
     "test": "jest",
-    "cleanup": "bin/cleanup"
+    "cleanup": "yarn prettier --write '**/*.{js,json}'"
   },
   "repository": {
     "type": "git",
