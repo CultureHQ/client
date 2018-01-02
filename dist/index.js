@@ -323,7 +323,7 @@ __webpack_require__(7);
 var _stringCase = __webpack_require__(8);
 
 var buildHeaders = function buildHeaders(options) {
-  var headers = { "X-Client-Version": "0.0.49" };
+  var headers = { "X-Client-Version": "0.0.50" };
 
   if (!options.multipart) {
     headers["Content-Type"] = "application/json";
@@ -333,6 +333,13 @@ var buildHeaders = function buildHeaders(options) {
   }
 
   return headers;
+};
+
+var formDataValueFor = function formDataValueFor(object) {
+  if (typeof object === "undefined" || object === null) {
+    return "";
+  }
+  return object;
 };
 
 var buildRequest = function buildRequest(method, url, options) {
@@ -354,7 +361,7 @@ var buildRequest = function buildRequest(method, url, options) {
 
     Object.keys(params).forEach(function (key) {
       if (!Array.isArray(params[key])) {
-        formData.append(key, params[key]);
+        formData.append(key, formDataValueFor(params[key]));
       } else if (params[key].length) {
         params[key].forEach(function (nestedValue) {
           return formData.append(key + "[]", nestedValue);
