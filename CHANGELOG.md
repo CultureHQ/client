@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.51] - 2018-01-04
+- The `listProfileRedemptions` call.
+
 ## [0.0.50] - 2018-01-02
 ### Changed
 - Multipart requests that have `null` values in their parameters now get serialized as empty strings (because FormData serialized them as the string `"null"`).
@@ -382,6 +385,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 
 [Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.50...HEAD
+[0.0.51]: https://github.com/CultureHQ/client/compare/v0.0.50...v0.0.51
 [0.0.50]: https://github.com/CultureHQ/client/compare/v0.0.49...v0.0.50
 [0.0.49]: https://github.com/CultureHQ/client/compare/v0.0.48...v0.0.49
 [0.0.48]: https://github.com/CultureHQ/client/compare/v0.0.47...v0.0.48

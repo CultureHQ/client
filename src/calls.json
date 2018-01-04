@@ -666,6 +666,11 @@
     "path": "/profile/point_increments",
     "optionalParams": ["page"]
   },
+  "listProfileRedemptions": {
+    "method": "GET",
+    "path": "/profile/redemptions",
+    "optionalParams": ["page"]
+  },
   "listRecognitions": {
     "method": "GET",
     "path": "/recognitions",
