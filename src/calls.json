@@ -110,7 +110,7 @@
   "createEventInvites": {
     "method": "POST",
     "path": "/events/:eventId/event_invites",
-    "expectedParams": ["userIds"]
+    "optionalParams": ["userIds", "locationIds", "interestIds", "departmentIds"]
   },
   "createEventLeaderboardAttribute": {
     "method": "POST",
