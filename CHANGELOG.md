@@ -5,8 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- The optional `locationIds`, `interestIds`, and `departmentIds` for the `createEventInvites` call.
 
 ## [0.0.51] - 2018-01-04
+### Added
 - The `listProfileRedemptions` call.
 
 ## [0.0.50] - 2018-01-02
