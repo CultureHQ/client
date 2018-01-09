@@ -323,7 +323,7 @@ __webpack_require__(7);
 var _stringCase = __webpack_require__(8);
 
 var buildHeaders = function buildHeaders(options) {
-  var headers = { "X-Client-Version": "0.0.53" };
+  var headers = { "X-Client-Version": "0.0.54" };
 
   if (!options.multipart) {
     headers["Content-Type"] = "application/json";
@@ -458,14 +458,24 @@ var shouldRecurse = function shouldRecurse(value) {
 };
 
 var modifyKeys = function modifyKeys(object, stringFunc) {
+  // If the node is not an object or is null, return the original object since
+  // we don't need to modify its keys.
   if ((typeof object === "undefined" ? "undefined" : _typeof(object)) !== "object" || object === null) {
     return object;
   }
 
+  // For arrays, loop through each elemenet and modify as necessary.
   if (Array.isArray(object)) {
     return object.map(function (element) {
       return modifyKeys(element, stringFunc);
     });
+  }
+
+  // For other objects, ensure they have at least one key returned from
+  // Object.keys. This (should) ensure that we're only processing objects that
+  // were constructed from object literals, as opposed to Blob or File objects.
+  if (!Object.keys(object).length) {
+    return object;
   }
 
   var modified = {};

@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.54] - 2018-01-09
+### Changed
+- Ensure that objects of File or Blob type passed in an array are appropriately handled.
+
 ## [0.0.53] - 2018-01-05
 ### Added
 - The `listProfilePointModifications` call.
@@ -393,7 +397,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.52...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.54...HEAD
+[0.0.54]: https://github.com/CultureHQ/client/compare/v0.0.53...v0.0.54
+[0.0.53]: https://github.com/CultureHQ/client/compare/v0.0.52...v0.0.53
 [0.0.52]: https://github.com/CultureHQ/client/compare/v0.0.51...v0.0.52
 [0.0.51]: https://github.com/CultureHQ/client/compare/v0.0.50...v0.0.51
 [0.0.50]: https://github.com/CultureHQ/client/compare/v0.0.49...v0.0.50
