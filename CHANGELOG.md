@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.55] - 2018-01-11
+### Added
+- The `eventAutocompleteInvites` call for autocompleting all of the entities that can be invites to an event, including the information about RSVPs that already exist.
+
 ## [0.0.54] - 2018-01-09
 ### Changed
 - Ensure that objects of File or Blob type passed in an array are appropriately handled.
@@ -397,7 +401,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.54...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.55...HEAD
+[0.0.55]: https://github.com/CultureHQ/client/compare/v0.0.54...v0.0.55
 [0.0.54]: https://github.com/CultureHQ/client/compare/v0.0.53...v0.0.54
 [0.0.53]: https://github.com/CultureHQ/client/compare/v0.0.52...v0.0.53
 [0.0.52]: https://github.com/CultureHQ/client/compare/v0.0.51...v0.0.52

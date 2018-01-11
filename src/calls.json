@@ -372,6 +372,11 @@
     "path": "/widgets",
     "expectedParams": ["widget"]
   },
+  "eventAutocompleteInvites": {
+    "method": "GET",
+    "path": "/events/:eventId/autocomplete/event_invites",
+    "expectedParams": ["query"]
+  },
   "eventAutocompleteRsvps": {
     "method": "GET",
     "path": "/events/:eventId/autocomplete/rsvps",
