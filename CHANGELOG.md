@@ -7,6 +7,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Added
 - The `createRecognitionComment`, `deleteRecognitionComment`, `getRecognitionComment`, `listRecognitionComments`, and `updateRecognitionComment` calls, for commenting on recognitions.
+- The `listEventCommentCheers`, `cheerEventComment`, and `uncheerEventComment` calls for cheering event comments.
+- The `listRecognitionCommentCheers`, `cheerRecognitionComment`, and `uncheerRecognitionComment` calls for cheering recognition comments.
+- The `listRecognitionCheers`, `cheerRecognition`, and `uncheerRecognition` calls for cheering recognitions.
 
 ### Changed
 - The `*Comment` calls have all been changed to their equivalent `*EventComment` names. All other semantics about the calls remain the same.

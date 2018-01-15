@@ -521,6 +521,50 @@
     "method": "GET",
     "path": "/users/:userId"
   },
+  "listEventCommentCheers": {
+    "method": "GET",
+    "path": "/events/:eventId/comments/:commentId/cheers",
+    "optionalParams": ["page"]
+  },
+  "listRecognitionCommentCheers": {
+    "method": "GET",
+    "path": "/recognitions/:recognitionId/comments/:commentId/cheers",
+    "optionalParams": ["page"]
+  },
+  "listRecognitionCheers": {
+    "method": "GET",
+    "path": "/recognitions/:recognitionId/cheers",
+    "optionalParams": ["page"]
+  },
+  "cheerEventComment": {
+    "method": "POST",
+    "path": "/events/:eventId/comments/:commentId/cheers"
+  },
+  "cheerRecognitionComment": {
+    "method": "POST",
+    "path": "/recognitions/:recognitionId/comments/:commentId/cheers"
+  },
+  "cheerRecognition": {
+    "method": "POST",
+    "path": "/recognitions/:recognitionId/cheers"
+  },
+  "uncheerEventComment": {
+    "method": "DELETE",
+    "path": "/events/:eventId/comments/:commentId/cheers"
+  },
+  "uncheerRecognitionComment": {
+    "method": "DELETE",
+    "path": "/recognitions/:recognitionId/comments/:commentId/cheers"
+  },
+  "uncheerRecognition": {
+    "method": "DELETE",
+    "path": "/recognitions/:recognitionId/cheers"
+  },
+  "listEventCommentCheers": {
+    "method": "GET",
+    "path": "/events/:event_id/comments/:comment_id/cheers",
+    "optionalParams": ["page"]
+  },
   "getUserEventTypeBreakdown": {
     "method": "GET",
     "path": "/users/:userId/event_type_breakdown"
