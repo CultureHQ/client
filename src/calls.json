@@ -74,9 +74,15 @@
     "multipart": true,
     "expectedParams": ["csvFile"]
   },
-  "createComment": {
+  "createEventComment": {
     "method": "POST",
     "path": "/events/:eventId/comments",
+    "expectedParams": ["body"],
+    "optionalParams": ["parentCommentId"]
+  },
+  "createRecognitionComment": {
+    "method": "POST",
+    "path": "/recognitions/:recognitionId/comments",
     "expectedParams": ["body"],
     "optionalParams": ["parentCommentId"]
   },
@@ -263,9 +269,13 @@
     "method": "DELETE",
     "path": "/announcements/:announcementId"
   },
-  "deleteComment": {
+  "deleteEventComment": {
     "method": "DELETE",
     "path": "/events/:eventId/comments/:commentId"
+  },
+  "deleteRecognitionComment": {
+    "method": "DELETE",
+    "path": "/recognitions/:recognitionId/comments/:commentId"
   },
   "deleteDepartment": {
     "method": "DELETE",
@@ -390,9 +400,13 @@
     "method": "GET",
     "path": "/bulk_user_imports/:bulkUserImportJobId"
   },
-  "getComment": {
+  "getEventComment": {
     "method": "GET",
     "path": "/events/:eventId/comments/:commentId"
+  },
+  "getRecognitionComment": {
+    "method": "GET",
+    "path": "/recognitions/:recognitionId/comments/:commentId"
   },
   "getDepartment": {
     "method": "GET",
@@ -534,9 +548,14 @@
     "path": "/announcements",
     "optionalParams": ["page", "active"]
   },
-  "listComments": {
+  "listEventComments": {
     "method": "GET",
     "path": "/events/:eventId/comments",
+    "optionalParams": ["page"]
+  },
+  "listRecognitionComments": {
+    "method": "GET",
+    "path": "/recognitions/:recognitionId/comments",
     "optionalParams": ["page"]
   },
   "listDepartmentAnalytics": {
@@ -840,9 +859,14 @@
     "multipart": true,
     "optionalParams": ["title", "body", "active", "image"]
   },
-  "updateComment": {
+  "updateEventComment": {
     "method": "PATCH",
     "path": "/events/:eventId/comments/:commentId",
+    "expectedParams": ["body"]
+  },
+  "updateRecognitionComment": {
+    "method": "PATCH",
+    "path": "/recognitions/:recognitionId/comments/:commentId",
     "expectedParams": ["body"]
   },
   "updateDepartment": {
