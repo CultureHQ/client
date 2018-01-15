@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.0.56] - 2018-01-15
 ### Added
 - The `createRecognitionComment`, `deleteRecognitionComment`, `getRecognitionComment`, `listRecognitionComments`, and `updateRecognitionComment` calls, for commenting on recognitions.
 - The `listEventCommentCheers`, `cheerEventComment`, and `uncheerEventComment` calls for cheering event comments.
@@ -409,7 +411,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.55...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.56...HEAD
+[0.0.56]: https://github.com/CultureHQ/client/compare/v0.0.55...v0.0.56
 [0.0.55]: https://github.com/CultureHQ/client/compare/v0.0.54...v0.0.55
 [0.0.54]: https://github.com/CultureHQ/client/compare/v0.0.53...v0.0.54
 [0.0.53]: https://github.com/CultureHQ/client/compare/v0.0.52...v0.0.53
