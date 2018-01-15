@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- The `createRecognitionComment`, `deleteRecognitionComment`, `getRecognitionComment`, `listRecognitionComments`, and `updateRecognitionComment` calls, for commenting on recognitions.
+
+### Changed
+- The `*Comment` calls have all been changed to their equivalent `*EventComment` names. All other semantics about the calls remain the same.
 
 ## [0.0.55] - 2018-01-11
 ### Added
