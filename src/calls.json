@@ -188,7 +188,8 @@
       "secondaryColor",
       "gamificationEnabled",
       "logo",
-      "active"
+      "active",
+      "mode"
     ]
   },
   "createOrganizationBot": {
@@ -1001,7 +1002,8 @@
       "secondaryColor",
       "gamificationEnabled",
       "logo",
-      "active"
+      "active",
+      "mode"
     ]
   },
   "updateOrganizationValue": {
