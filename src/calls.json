@@ -807,7 +807,13 @@
   "listUsers": {
     "method": "GET",
     "path": "/users",
-    "optionalParams": ["page", "includeDeactivated"]
+    "optionalParams": [
+      "page",
+      "includeDeactivated",
+      "departmentId",
+      "interestId",
+      "locationId"
+    ]
   },
   "listWidgetSurveys": {
     "method": "GET",
