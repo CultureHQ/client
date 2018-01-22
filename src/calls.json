@@ -52,6 +52,22 @@
     "expectedParams": ["userId"],
     "optionalParams": ["extra"]
   },
+  "cheerEventComment": {
+    "method": "POST",
+    "path": "/events/:eventId/comments/:commentId/cheers"
+  },
+  "cheerRecognition": {
+    "method": "POST",
+    "path": "/recognitions/:recognitionId/cheers"
+  },
+  "cheerRecognitionComment": {
+    "method": "POST",
+    "path": "/recognitions/:recognitionId/comments/:commentId/cheers"
+  },
+  "clearContentModerationEvent": {
+    "method": "DELETE",
+    "path": "/content_moderation_events/:contentModerationEventId"
+  },
   "confirmEventAttendance": {
     "method": "POST",
     "path": "/events/:eventId/confirmation"
@@ -73,18 +89,6 @@
     "path": "/bulk_user_imports",
     "multipart": true,
     "expectedParams": ["csvFile"]
-  },
-  "createEventComment": {
-    "method": "POST",
-    "path": "/events/:eventId/comments",
-    "expectedParams": ["body"],
-    "optionalParams": ["parentCommentId"]
-  },
-  "createRecognitionComment": {
-    "method": "POST",
-    "path": "/recognitions/:recognitionId/comments",
-    "expectedParams": ["body"],
-    "optionalParams": ["parentCommentId"]
   },
   "createDepartment": {
     "method": "POST",
@@ -112,6 +116,12 @@
       "timezone",
       "eventTagNames"
     ]
+  },
+  "createEventComment": {
+    "method": "POST",
+    "path": "/events/:eventId/comments",
+    "expectedParams": ["body"],
+    "optionalParams": ["parentCommentId"]
   },
   "createEventInvites": {
     "method": "POST",
@@ -211,6 +221,12 @@
     "path": "/recognitions",
     "expectedParams": ["body", "userIds"]
   },
+  "createRecognitionComment": {
+    "method": "POST",
+    "path": "/recognitions/:recognitionId/comments",
+    "expectedParams": ["body"],
+    "optionalParams": ["parentCommentId"]
+  },
   "createReward": {
     "method": "POST",
     "path": "/rewards",
@@ -270,17 +286,13 @@
     "method": "DELETE",
     "path": "/announcements/:announcementId"
   },
-  "deleteEventComment": {
-    "method": "DELETE",
-    "path": "/events/:eventId/comments/:commentId"
-  },
-  "deleteRecognitionComment": {
-    "method": "DELETE",
-    "path": "/recognitions/:recognitionId/comments/:commentId"
-  },
   "deleteDepartment": {
     "method": "DELETE",
     "path": "/departments/:departmentId"
+  },
+  "deleteEventComment": {
+    "method": "DELETE",
+    "path": "/events/:eventId/comments/:commentId"
   },
   "deleteEventLeaderboardAttribute": {
     "method": "DELETE",
@@ -334,6 +346,10 @@
   "deleteRecognition": {
     "method": "DELETE",
     "path": "/recognitions/:recognitionId"
+  },
+  "deleteRecognitionComment": {
+    "method": "DELETE",
+    "path": "/recognitions/:recognitionId/comments/:commentId"
   },
   "deleteReward": {
     "method": "DELETE",
@@ -401,14 +417,6 @@
     "method": "GET",
     "path": "/bulk_user_imports/:bulkUserImportJobId"
   },
-  "getEventComment": {
-    "method": "GET",
-    "path": "/events/:eventId/comments/:commentId"
-  },
-  "getRecognitionComment": {
-    "method": "GET",
-    "path": "/recognitions/:recognitionId/comments/:commentId"
-  },
   "getDepartment": {
     "method": "GET",
     "path": "/departments/:departmentId"
@@ -424,6 +432,10 @@
   "getEventAnalytics": {
     "method": "GET",
     "path": "/analytics/events/:eventId"
+  },
+  "getEventComment": {
+    "method": "GET",
+    "path": "/events/:eventId/comments/:commentId"
   },
   "getEventLeaderboardAttribute": {
     "method": "GET",
@@ -498,6 +510,10 @@
     "method": "GET",
     "path": "/recognitions/:recognitionId"
   },
+  "getRecognitionComment": {
+    "method": "GET",
+    "path": "/recognitions/:recognitionId/comments/:commentId"
+  },
   "getReward": {
     "method": "GET",
     "path": "/rewards/:rewardId"
@@ -521,50 +537,6 @@
   "getUser": {
     "method": "GET",
     "path": "/users/:userId"
-  },
-  "listEventCommentCheers": {
-    "method": "GET",
-    "path": "/events/:eventId/comments/:commentId/cheers",
-    "optionalParams": ["page"]
-  },
-  "listRecognitionCommentCheers": {
-    "method": "GET",
-    "path": "/recognitions/:recognitionId/comments/:commentId/cheers",
-    "optionalParams": ["page"]
-  },
-  "listRecognitionCheers": {
-    "method": "GET",
-    "path": "/recognitions/:recognitionId/cheers",
-    "optionalParams": ["page"]
-  },
-  "cheerEventComment": {
-    "method": "POST",
-    "path": "/events/:eventId/comments/:commentId/cheers"
-  },
-  "cheerRecognitionComment": {
-    "method": "POST",
-    "path": "/recognitions/:recognitionId/comments/:commentId/cheers"
-  },
-  "cheerRecognition": {
-    "method": "POST",
-    "path": "/recognitions/:recognitionId/cheers"
-  },
-  "uncheerEventComment": {
-    "method": "DELETE",
-    "path": "/events/:eventId/comments/:commentId/cheers"
-  },
-  "uncheerRecognitionComment": {
-    "method": "DELETE",
-    "path": "/recognitions/:recognitionId/comments/:commentId/cheers"
-  },
-  "uncheerRecognition": {
-    "method": "DELETE",
-    "path": "/recognitions/:recognitionId/cheers"
-  },
-  "listEventCommentCheers": {
-    "method": "GET",
-    "path": "/events/:event_id/comments/:comment_id/cheers",
-    "optionalParams": ["page"]
   },
   "getUserEventTypeBreakdown": {
     "method": "GET",
@@ -593,14 +565,9 @@
     "path": "/announcements",
     "optionalParams": ["page", "active"]
   },
-  "listEventComments": {
+  "listContentModerationEvents": {
     "method": "GET",
-    "path": "/events/:eventId/comments",
-    "optionalParams": ["page"]
-  },
-  "listRecognitionComments": {
-    "method": "GET",
-    "path": "/recognitions/:recognitionId/comments",
+    "path": "/content_moderation_events",
     "optionalParams": ["page"]
   },
   "listDepartmentAnalytics": {
@@ -621,6 +588,16 @@
   "listEventAnalytics": {
     "method": "GET",
     "path": "/analytics/events",
+    "optionalParams": ["page"]
+  },
+  "listEventCommentCheers": {
+    "method": "GET",
+    "path": "/events/:event_id/comments/:comment_id/cheers",
+    "optionalParams": ["page"]
+  },
+  "listEventComments": {
+    "method": "GET",
+    "path": "/events/:eventId/comments",
     "optionalParams": ["page"]
   },
   "listEventLeaderboardAttributes": {
@@ -743,6 +720,21 @@
   "listProfileRedemptions": {
     "method": "GET",
     "path": "/profile/redemptions",
+    "optionalParams": ["page"]
+  },
+  "listRecognitionCheers": {
+    "method": "GET",
+    "path": "/recognitions/:recognitionId/cheers",
+    "optionalParams": ["page"]
+  },
+  "listRecognitionCommentCheers": {
+    "method": "GET",
+    "path": "/recognitions/:recognitionId/comments/:commentId/cheers",
+    "optionalParams": ["page"]
+  },
+  "listRecognitionComments": {
+    "method": "GET",
+    "path": "/recognitions/:recognitionId/comments",
     "optionalParams": ["page"]
   },
   "listRecognitions": {
@@ -890,6 +882,18 @@
     "method": "DELETE",
     "path": "/event_vote_entries/:eventVoteEntryId/event_vote_entry_approval"
   },
+  "uncheerEventComment": {
+    "method": "DELETE",
+    "path": "/events/:eventId/comments/:commentId/cheers"
+  },
+  "uncheerRecognition": {
+    "method": "DELETE",
+    "path": "/recognitions/:recognitionId/cheers"
+  },
+  "uncheerRecognitionComment": {
+    "method": "DELETE",
+    "path": "/recognitions/:recognitionId/comments/:commentId/cheers"
+  },
   "unsubscribeFromEventNotifications": {
     "method": "DELETE",
     "path": "/events/:eventId/event_notification_subscription"
@@ -903,16 +907,6 @@
     "path": "/announcements/:announcementId",
     "multipart": true,
     "optionalParams": ["title", "body", "active", "image"]
-  },
-  "updateEventComment": {
-    "method": "PATCH",
-    "path": "/events/:eventId/comments/:commentId",
-    "expectedParams": ["body"]
-  },
-  "updateRecognitionComment": {
-    "method": "PATCH",
-    "path": "/recognitions/:recognitionId/comments/:commentId",
-    "expectedParams": ["body"]
   },
   "updateDepartment": {
     "method": "PATCH",
@@ -941,6 +935,11 @@
       "openInvites",
       "eventTagNames"
     ]
+  },
+  "updateEventComment": {
+    "method": "PATCH",
+    "path": "/events/:eventId/comments/:commentId",
+    "expectedParams": ["body"]
   },
   "updateEventLeaderboardAttribute": {
     "method": "PATCH",
@@ -1056,6 +1055,11 @@
     "path": "/recognitions/:recognitionId",
     "expectedParams": ["body"],
     "optionalParams": ["userIds"]
+  },
+  "updateRecognitionComment": {
+    "method": "PATCH",
+    "path": "/recognitions/:recognitionId/comments/:commentId",
+    "expectedParams": ["body"]
   },
   "updateReward": {
     "method": "PATCH",

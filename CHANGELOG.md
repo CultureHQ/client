@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Added
 - The optional "mode" param on the `createOrganization` and `updateOrganization` calls. Can currently be set to `"admin_mode"` or `"user_mode"`.
+- The `listContentModerationEvents` and `clearContentModerationEvent` calls.
 
 ## [0.0.56] - 2018-01-15
 ### Added
