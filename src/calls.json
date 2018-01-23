@@ -41,6 +41,11 @@
     "multipart": true,
     "expectedParams": ["images"]
   },
+  "cancelEvent": {
+    "method": "POST",
+    "path": "/events/:eventId/event_cancellations",
+    "optionalParams": ["message"]
+  },
   "changePassword": {
     "method": "PATCH",
     "path": "/password",
@@ -290,6 +295,11 @@
     "method": "DELETE",
     "path": "/departments/:departmentId"
   },
+  "deleteEvent": {
+    "method": "DELETE",
+    "path": "/events/:eventId",
+    "optionalParams": ["message"]
+  },
   "deleteEventComment": {
     "method": "DELETE",
     "path": "/events/:eventId/comments/:commentId"
@@ -408,6 +418,10 @@
     "method": "GET",
     "path": "/events/:eventId/autocomplete/rsvps",
     "expectedParams": ["query"]
+  },
+  "exportEvents": {
+    "method": "POST",
+    "path": "/exports/event_export"
   },
   "getAnnouncement": {
     "method": "GET",

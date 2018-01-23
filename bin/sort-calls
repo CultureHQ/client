@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const fs = require("fs");
+const prettier = require("prettier");
 
 const content = JSON.parse(fs.readFileSync("src/calls.json"));
 const modified = {};
@@ -11,4 +12,7 @@ Object.keys(content)
     modified[key] = content[key];
   });
 
-fs.writeFileSync("src/calls.json", JSON.stringify(modified, null, 2) + "\n");
+const sorted = JSON.stringify(modified, null, 2);
+const formatted = prettier.format(sorted, { parser: "json" });
+
+fs.writeFileSync("src/calls.json", formatted);

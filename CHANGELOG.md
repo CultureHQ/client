@@ -9,6 +9,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - The optional `mode` param on the `createOrganization` and `updateOrganization` calls. Can currently be set to `"admin_mode"` or `"user_mode"`.
 - The `listContentModerationEvents` and `clearContentModerationEvent` calls.
 - The optional `departmentId`, `interestId`, and `locationId` params on the `listUsers` call.
+- The `cancelEvent` call, with an optional `message` parameter for messaging attendees.
+- The `deleteEvent` call, with an optional `message` parameter for messaging attendees.
+- The `exportEvent` call, for sending an email to the user with exported event data.
 
 ## [0.0.56] - 2018-01-15
 ### Added
