@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.0.57] - 2018-01-23
 ### Added
 - The optional `mode` param on the `createOrganization` and `updateOrganization` calls. Can currently be set to `"admin_mode"` or `"user_mode"`.
 - The `listContentModerationEvents` and `clearContentModerationEvent` calls.
@@ -418,7 +420,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.56...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.57...HEAD
+[0.0.57]: https://github.com/CultureHQ/client/compare/v0.0.56...v0.0.57
 [0.0.56]: https://github.com/CultureHQ/client/compare/v0.0.55...v0.0.56
 [0.0.55]: https://github.com/CultureHQ/client/compare/v0.0.54...v0.0.55
 [0.0.54]: https://github.com/CultureHQ/client/compare/v0.0.53...v0.0.54
