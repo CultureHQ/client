@@ -28,6 +28,10 @@ class CultureHQ {
     return state.isSimulating();
   }
 
+  setToken(token) {
+    state.signIn(token);
+  }
+
   signIn(params) {
     return this.createApiKey(params).then(signInCallback);
   }

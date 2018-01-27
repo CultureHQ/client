@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.59] - 2018-01-27
+### Added
+- Add the `setToken` function on the main client.
+
 ## [0.0.58] - 2018-01-27
 ### Added
 - The `createSession` call for determining whether or not a password field should be shown.

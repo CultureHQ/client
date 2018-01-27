@@ -196,6 +196,11 @@ var CultureHQ = function () {
       return _state2.default.isSimulating();
     }
   }, {
+    key: "setToken",
+    value: function setToken(token) {
+      _state2.default.signIn(token);
+    }
+  }, {
     key: "signIn",
     value: function signIn(params) {
       return this.createApiKey(params).then(signInCallback);
@@ -323,7 +328,7 @@ __webpack_require__(7);
 var _stringCase = __webpack_require__(8);
 
 var buildHeaders = function buildHeaders(options) {
-  var headers = { "X-Client-Version": "0.0.58" };
+  var headers = { "X-Client-Version": "0.0.59" };
 
   if (!options.multipart) {
     headers["Content-Type"] = "application/json";
