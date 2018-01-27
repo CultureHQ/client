@@ -243,6 +243,11 @@
     "method": "POST",
     "path": "/rewards/:rewardId/redemptions"
   },
+  "createSession": {
+    "method": "POST",
+    "path": "/sessions",
+    "expectedParams": ["email"]
+  },
   "createSimulation": {
     "method": "POST",
     "path": "/admin/simulation",

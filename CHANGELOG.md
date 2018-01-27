@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.58] - 2018-01-27
+### Added
+- The `createSession` call for determining whether or not a password field should be shown.
+
 ## [0.0.57] - 2018-01-23
 ### Added
 - The optional `mode` param on the `createOrganization` and `updateOrganization` calls. Can currently be set to `"admin_mode"` or `"user_mode"`.
@@ -420,7 +424,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.57...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.58...HEAD
+[0.0.58]: https://github.com/CultureHQ/client/compare/v0.0.57...v0.0.58
 [0.0.57]: https://github.com/CultureHQ/client/compare/v0.0.56...v0.0.57
 [0.0.56]: https://github.com/CultureHQ/client/compare/v0.0.55...v0.0.56
 [0.0.55]: https://github.com/CultureHQ/client/compare/v0.0.54...v0.0.55
