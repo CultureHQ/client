@@ -15,7 +15,7 @@ import CultureHQ from "culturehq-client";
 You initialize a client with an object that contains information about how to connect to a valid CultureHQ server. For basic integration, use:
 
 ```js
-const cultureHQ = new CultureHQ({ apiHost: "https://api.culturehq.net" });
+const cultureHQ = new CultureHQ({ apiHost: "https://api.culturehq.com" });
 ```
 
 Every function except `isSignedIn` and `signOut` returns a `Promise`. You can call them using normal `Promise` semantics, as in below:
