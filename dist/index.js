@@ -295,6 +295,8 @@ var CultureHQ = function () {
         }
       });
     };
+
+    return this;
   }
 
   _createClass(CultureHQ, [{
