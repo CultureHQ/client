@@ -286,20 +286,38 @@ var CultureHQ = function () {
     value: function isSimulating() {
       return _state2.default.isSimulating();
     }
+
+    /**
+     * Builds and returns a subscription object that listens to profile updates
+     * from the API. When new data is received, it transforms the data as it would
+     * for regular responses and calls the callback.
+     *
+     * In order to avoid leaking memory, it's important to ensure that when you're
+     * done with the subscription (for instance when the component containing it
+     * is unmounted) that you call `unsubscribe` on the subscription object. An
+     * example with React of using this function is below:
+     *
+     *     class MyComponent {
+     *       state = { profile: this.props.profile };
+     *
+     *       componentDidMount() {
+     *         this.subscription = client.onProfileUpdated(profile => {
+     *           this.setState({ profile });
+     *         });
+     *       }
+     *
+     *       componentWillUnmount() {
+     *         if (this.subscription) {
+     *           this.subscription.unsubscribe();
+     *         }
+     *       }
+     *     }
+     */
+
   }, {
     key: "onProfileUpdated",
     value: function onProfileUpdated(callback) {
-      var _apiHost$split = this.apiHost.split("://"),
-          _apiHost$split2 = _slicedToArray(_apiHost$split, 2),
-          protocol = _apiHost$split2[0],
-          host = _apiHost$split2[1];
-
-      var wsProtocol = protocol === "https" ? "wss" : "ws";
-
-      var endpoint = wsProtocol + "://" + host + "/cable/" + _state2.default.getToken();
-      var consumer = _actioncable2.default.createConsumer(endpoint);
-
-      consumer.subscriptions.create("ProfileChannel", {
+      this._ensureConsumer().subscriptions.create("ProfileChannel", {
         received: function received(profile) {
           return callback((0, _stringCase.camelize)(profile));
         }
@@ -327,6 +345,24 @@ var CultureHQ = function () {
         _state2.default.startSimulation(response.apiKey.token);
         return response;
       });
+    }
+  }, {
+    key: "_ensureConsumer",
+    value: function _ensureConsumer() {
+      if (this._consumer) {
+        return this._consumer;
+      }
+
+      var _apiHost$split = this.apiHost.split("://"),
+          _apiHost$split2 = _slicedToArray(_apiHost$split, 2),
+          protocol = _apiHost$split2[0],
+          host = _apiHost$split2[1];
+
+      var wsProtocol = protocol === "https" ? "wss" : "ws";
+
+      var endpoint = wsProtocol + "://" + host + "/cable/" + _state2.default.getToken();
+      this._consumer = _actioncable2.default.createConsumer(endpoint);
+      return this._consumer;
     }
   }]);
 
@@ -444,7 +480,7 @@ __webpack_require__(9);
 var _stringCase = __webpack_require__(1);
 
 var buildHeaders = function buildHeaders(options) {
-  var headers = { "X-Client-Version": "0.0.59" };
+  var headers = { "X-Client-Version": "0.0.60" };
 
   if (!options.multipart) {
     headers["Content-Type"] = "application/json";
