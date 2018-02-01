@@ -18,10 +18,15 @@ class CultureHQ {
       this[callName] = apiCall(this, calls[callName]);
     });
 
-    this.onProfileUpdated = this.onProfileUpdated.bind(this);
-    this._ensureConsumer = this._ensureConsumer.bind(this);
+    this._ensureConsumer = () => {
+      const [protocol, host] = this.apiHost.split("://");
+      const wsProtocol = protocol === "https" ? "wss" : "ws";
 
-    console.log(this);
+      const endpoint = `${wsProtocol}://${host}/cable/${state.getToken()}`;
+      this._consumer = ActionCable.createConsumer(endpoint);
+
+      return this._consumer;
+    };
   }
 
   endUserSimulation() {
@@ -64,16 +69,6 @@ class CultureHQ {
       return response;
     });
   }
-
-  _ensureConsumer() {
-    const [protocol, host] = this.apiHost.split("://");
-    const wsProtocol = protocol === "https" ? "wss" : "ws";
-
-    const endpoint = `${wsProtocol}://${host}/cable/${state.getToken()}`;
-    this._consumer = ActionCable.createConsumer(endpoint);
-
-    return this._consumer;
-  };
 }
 
 export default CultureHQ;
