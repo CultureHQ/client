@@ -270,7 +270,7 @@ var CultureHQ = function () {
       _this[callName] = (0, _apiCall2.default)(_this, _calls2.default[callName]);
     });
 
-    this._ensureConsumer = function () {
+    this.onProfileUpdated = function (callback) {
       var _apiHost$split = _this.apiHost.split("://"),
           _apiHost$split2 = _slicedToArray(_apiHost$split, 2),
           protocol = _apiHost$split2[0],
@@ -279,24 +279,14 @@ var CultureHQ = function () {
       var wsProtocol = protocol === "https" ? "wss" : "ws";
 
       var endpoint = wsProtocol + "://" + host + "/cable/" + _state2.default.getToken();
-      _this._consumer = _actioncable2.default.createConsumer(endpoint);
+      var consumer = _actioncable2.default.createConsumer(endpoint);
 
-      return _this._consumer;
-    };
-
-    this.onProfileUpdated = function (callback) {
-      if (!_this.isSignedIn()) {
-        return;
-      }
-
-      _this._ensureConsumer().subscriptions.create("ProfileChannel", {
+      consumer.subscriptions.create("ProfileChannel", {
         received: function received(profile) {
           return callback((0, _stringCase.camelize)(profile));
         }
       });
     };
-
-    return this;
   }
 
   _createClass(CultureHQ, [{
