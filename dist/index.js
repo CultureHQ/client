@@ -269,24 +269,6 @@ var CultureHQ = function () {
     Object.keys(_calls2.default).forEach(function (callName) {
       _this[callName] = (0, _apiCall2.default)(_this, _calls2.default[callName]);
     });
-
-    this.onProfileUpdated = function (callback) {
-      var _apiHost$split = _this.apiHost.split("://"),
-          _apiHost$split2 = _slicedToArray(_apiHost$split, 2),
-          protocol = _apiHost$split2[0],
-          host = _apiHost$split2[1];
-
-      var wsProtocol = protocol === "https" ? "wss" : "ws";
-
-      var endpoint = wsProtocol + "://" + host + "/cable/" + _state2.default.getToken();
-      var consumer = _actioncable2.default.createConsumer(endpoint);
-
-      consumer.subscriptions.create("ProfileChannel", {
-        received: function received(profile) {
-          return callback((0, _stringCase.camelize)(profile));
-        }
-      });
-    };
   }
 
   _createClass(CultureHQ, [{
@@ -303,6 +285,25 @@ var CultureHQ = function () {
     key: "isSimulating",
     value: function isSimulating() {
       return _state2.default.isSimulating();
+    }
+  }, {
+    key: "onProfileUpdated",
+    value: function onProfileUpdated(callback) {
+      var _apiHost$split = this.apiHost.split("://"),
+          _apiHost$split2 = _slicedToArray(_apiHost$split, 2),
+          protocol = _apiHost$split2[0],
+          host = _apiHost$split2[1];
+
+      var wsProtocol = protocol === "https" ? "wss" : "ws";
+
+      var endpoint = wsProtocol + "://" + host + "/cable/" + _state2.default.getToken();
+      var consumer = _actioncable2.default.createConsumer(endpoint);
+
+      consumer.subscriptions.create("ProfileChannel", {
+        received: function received(profile) {
+          return callback((0, _stringCase.camelize)(profile));
+        }
+      });
     }
   }, {
     key: "setToken",
