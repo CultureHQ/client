@@ -283,6 +283,18 @@ var CultureHQ = function () {
 
       return _this._consumer;
     };
+
+    this.onProfileUpdated = function (callback) {
+      if (!_this.isSignedIn()) {
+        return;
+      }
+
+      _this._ensureConsumer().subscriptions.create("ProfileChannel", {
+        received: function received(profile) {
+          return callback((0, _stringCase.camelize)(profile));
+        }
+      });
+    };
   }
 
   _createClass(CultureHQ, [{
@@ -299,19 +311,6 @@ var CultureHQ = function () {
     key: "isSimulating",
     value: function isSimulating() {
       return _state2.default.isSimulating();
-    }
-  }, {
-    key: "onProfileUpdated",
-    value: function onProfileUpdated(callback) {
-      if (!this.isSignedIn()) {
-        return;
-      }
-
-      this._ensureConsumer().subscriptions.create("ProfileChannel", {
-        received: function received(profile) {
-          return callback((0, _stringCase.camelize)(profile));
-        }
-      });
     }
   }, {
     key: "setToken",
