@@ -17,6 +17,9 @@ class CultureHQ {
     Object.keys(calls).forEach(callName => {
       this[callName] = apiCall(this, calls[callName]);
     });
+
+    this.onProfileUpdated = this.onProfileUpdated.bind(this);
+    this._ensureConsumer = this._ensureConsumer.bind(this);
   }
 
   endUserSimulation() {
@@ -32,6 +35,10 @@ class CultureHQ {
   }
 
   onProfileUpdated(callback) {
+    if (!this.isSignedIn()) {
+      return;
+    }
+
     this._ensureConsumer().subscriptions.create("ProfileChannel", {
       received: profile => callback(camelize(profile))
     });
@@ -57,10 +64,6 @@ class CultureHQ {
   }
 
   _ensureConsumer() {
-    if (!this.isSignedIn()) {
-      return;
-    }
-
     const [protocol, host] = this.apiHost.split("://");
     const wsProtocol = protocol === "https" ? "wss" : "ws";
 
@@ -68,7 +71,7 @@ class CultureHQ {
     this._consumer = ActionCable.createConsumer(endpoint);
 
     return this._consumer;
-  }
+  };
 }
 
 export default CultureHQ;

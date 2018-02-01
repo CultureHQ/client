@@ -269,6 +269,9 @@ var CultureHQ = function () {
     Object.keys(_calls2.default).forEach(function (callName) {
       _this[callName] = (0, _apiCall2.default)(_this, _calls2.default[callName]);
     });
+
+    this.onProfileUpdated = this.onProfileUpdated.bind(this);
+    this._ensureConsumer = this._ensureConsumer.bind(this);
   }
 
   _createClass(CultureHQ, [{
@@ -289,6 +292,10 @@ var CultureHQ = function () {
   }, {
     key: "onProfileUpdated",
     value: function onProfileUpdated(callback) {
+      if (!this.isSignedIn()) {
+        return;
+      }
+
       this._ensureConsumer().subscriptions.create("ProfileChannel", {
         received: function received(profile) {
           return callback((0, _stringCase.camelize)(profile));
@@ -321,10 +328,6 @@ var CultureHQ = function () {
   }, {
     key: "_ensureConsumer",
     value: function _ensureConsumer() {
-      if (!this.isSignedIn()) {
-        return;
-      }
-
       var _apiHost$split = this.apiHost.split("://"),
           _apiHost$split2 = _slicedToArray(_apiHost$split, 2),
           protocol = _apiHost$split2[0],
