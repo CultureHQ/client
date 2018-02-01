@@ -27,6 +27,16 @@ class CultureHQ {
 
       return this._consumer;
     };
+
+    this.onProfileUpdated = callback => {
+      if (!this.isSignedIn()) {
+        return;
+      }
+
+      this._ensureConsumer().subscriptions.create("ProfileChannel", {
+        received: profile => callback(camelize(profile))
+      });
+    };
   }
 
   endUserSimulation() {
@@ -39,16 +49,6 @@ class CultureHQ {
 
   isSimulating() {
     return state.isSimulating();
-  }
-
-  onProfileUpdated(callback) {
-    if (!this.isSignedIn()) {
-      return;
-    }
-
-    this._ensureConsumer().subscriptions.create("ProfileChannel", {
-      received: profile => callback(camelize(profile))
-    });
   }
 
   setToken(token) {
