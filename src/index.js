@@ -20,6 +20,8 @@ class CultureHQ {
 
     this.onProfileUpdated = this.onProfileUpdated.bind(this);
     this._ensureConsumer = this._ensureConsumer.bind(this);
+
+    console.log(this);
   }
 
   endUserSimulation() {
