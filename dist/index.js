@@ -270,10 +270,19 @@ var CultureHQ = function () {
       _this[callName] = (0, _apiCall2.default)(_this, _calls2.default[callName]);
     });
 
-    this.onProfileUpdated = this.onProfileUpdated.bind(this);
-    this._ensureConsumer = this._ensureConsumer.bind(this);
+    this._ensureConsumer = function () {
+      var _apiHost$split = _this.apiHost.split("://"),
+          _apiHost$split2 = _slicedToArray(_apiHost$split, 2),
+          protocol = _apiHost$split2[0],
+          host = _apiHost$split2[1];
 
-    console.log(this);
+      var wsProtocol = protocol === "https" ? "wss" : "ws";
+
+      var endpoint = wsProtocol + "://" + host + "/cable/" + _state2.default.getToken();
+      _this._consumer = _actioncable2.default.createConsumer(endpoint);
+
+      return _this._consumer;
+    };
   }
 
   _createClass(CultureHQ, [{
@@ -326,21 +335,6 @@ var CultureHQ = function () {
         _state2.default.startSimulation(response.apiKey.token);
         return response;
       });
-    }
-  }, {
-    key: "_ensureConsumer",
-    value: function _ensureConsumer() {
-      var _apiHost$split = this.apiHost.split("://"),
-          _apiHost$split2 = _slicedToArray(_apiHost$split, 2),
-          protocol = _apiHost$split2[0],
-          host = _apiHost$split2[1];
-
-      var wsProtocol = protocol === "https" ? "wss" : "ws";
-
-      var endpoint = wsProtocol + "://" + host + "/cable/" + _state2.default.getToken();
-      this._consumer = _actioncable2.default.createConsumer(endpoint);
-
-      return this._consumer;
     }
   }]);
 
