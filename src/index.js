@@ -37,6 +37,8 @@ class CultureHQ {
         received: profile => callback(camelize(profile))
       });
     };
+
+    return this;
   }
 
   endUserSimulation() {
