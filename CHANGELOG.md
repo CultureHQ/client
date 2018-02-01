@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.60] - 2018-02-01
+### Added
+- The `onProfileUpdated` function to the main client for listening through websockets to profile updates.
+
 ## [0.0.59] - 2018-01-27
 ### Added
 - Add the `setToken` function on the main client.
