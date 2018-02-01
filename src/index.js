@@ -31,6 +31,32 @@ class CultureHQ {
     return state.isSimulating();
   }
 
+  /**
+   * Builds and returns a subscription object that listens to profile updates
+   * from the API. When new data is received, it transforms the data as it would
+   * for regular responses and calls the callback.
+   *
+   * In order to avoid leaking memory, it's important to ensure that when you're
+   * done with the subscription (for instance when the component containing it
+   * is unmounted) that you call `unsubscribe` on the subscription object. An
+   * example with React of using this function is below:
+   *
+   *     class MyComponent {
+   *       state = { profile: this.props.profile };
+   *
+   *       componentDidMount() {
+   *         this.subscription = client.onProfileUpdated(profile => {
+   *           this.setState({ profile });
+   *         });
+   *       }
+   *
+   *       componentWillUnmount() {
+   *         if (this.subscription) {
+   *           this.subscription.unsubscribe();
+   *         }
+   *       }
+   *     }
+   */
   onProfileUpdated(callback) {
     this._ensureConsumer().subscriptions.create("ProfileChannel", {
       received: profile => callback(camelize(profile))
