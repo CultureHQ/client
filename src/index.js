@@ -18,27 +18,17 @@ class CultureHQ {
       this[callName] = apiCall(this, calls[callName]);
     });
 
-    this._ensureConsumer = () => {
+    this.onProfileUpdated = callback => {
       const [protocol, host] = this.apiHost.split("://");
       const wsProtocol = protocol === "https" ? "wss" : "ws";
 
       const endpoint = `${wsProtocol}://${host}/cable/${state.getToken()}`;
-      this._consumer = ActionCable.createConsumer(endpoint);
+      const consumer = ActionCable.createConsumer(endpoint);
 
-      return this._consumer;
-    };
-
-    this.onProfileUpdated = callback => {
-      if (!this.isSignedIn()) {
-        return;
-      }
-
-      this._ensureConsumer().subscriptions.create("ProfileChannel", {
+      consumer.subscriptions.create("ProfileChannel", {
         received: profile => callback(camelize(profile))
       });
     };
-
-    return this;
   }
 
   endUserSimulation() {
