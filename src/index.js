@@ -1,6 +1,9 @@
+import ActionCable from "actioncable";
+
 import state from "./state";
 import calls from "./calls";
 import apiCall from "./api-call";
+import { camelize } from "./string-case";
 
 const signInCallback = response => {
   state.signIn(response.apiKey.token);
@@ -28,6 +31,12 @@ class CultureHQ {
     return state.isSimulating();
   }
 
+  onProfileUpdated(callback) {
+    this._ensureConsumer().subscriptions.create("ProfileChannel", {
+      received: profile => callback(camelize(profile))
+    });
+  }
+
   setToken(token) {
     state.signIn(token);
   }
@@ -45,6 +54,20 @@ class CultureHQ {
       state.startSimulation(response.apiKey.token);
       return response;
     });
+  }
+
+  _ensureConsumer() {
+    if (!this.isSignedIn()) {
+      return;
+    }
+
+    const [protocol, host] = this.apiHost.split("://");
+    const wsProtocol = protocol === "https" ? "wss" : "ws";
+
+    const endpoint = `${wsProtocol}://${host}/cable/${state.getToken()}`;
+    this._consumer = ActionCable.createConsumer(endpoint);
+
+    return this._consumer;
   }
 }
 
