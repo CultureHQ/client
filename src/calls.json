@@ -61,6 +61,14 @@
     "method": "POST",
     "path": "/events/:eventId/comments/:commentId/cheers"
   },
+  "cheerEventPhoto": {
+    "method": "POST",
+    "path": "/events/:eventId/photos/:photoId/cheers"
+  },
+  "cheerEventPhotoComment": {
+    "method": "POST",
+    "path": "/events/:eventId/photos/:photoId/comments/:commentId/cheers"
+  },
   "cheerRecognition": {
     "method": "POST",
     "path": "/recognitions/:recognitionId/cheers"
@@ -160,6 +168,12 @@
     "multipart": true,
     "expectedParams": ["image"],
     "optionalParams": ["caption"]
+  },
+  "createEventPhotoComment": {
+    "method": "POST",
+    "path": "/events/:eventId/photos/:photoId/comments",
+    "expectedParams": ["body"],
+    "optionalParams": ["parentCommentId"]
   },
   "createEventRsvp": {
     "method": "POST",
@@ -336,6 +350,10 @@
     "method": "DELETE",
     "path": "/events/:eventId/photos/:photoId"
   },
+  "deleteEventPhotoComment": {
+    "method": "DELETE",
+    "path": "/events/:eventId/photos/:photoId/comments/:commentId"
+  },
   "deleteEventVote": {
     "method": "DELETE",
     "path": "/event_votes/:eventVoteId"
@@ -482,6 +500,10 @@
     "method": "GET",
     "path": "/events/:eventId/photos/:photoId"
   },
+  "getEventPhotoComment": {
+    "method": "GET",
+    "path": "/events/:eventId/photos/:photoId/comments/:commentId"
+  },
   "getEventRsvp": {
     "method": "GET",
     "path": "/events/:eventId/rsvps/:rsvpId"
@@ -567,6 +589,10 @@
     "method": "GET",
     "path": "/survey_item_response_options/:surveyItemResponseOptionId"
   },
+  "getSurveyUserItemResponse": {
+    "method": "GET",
+    "path": "/survey_items/:surveyItemId/survey_user_item_response"
+  },
   "getUser": {
     "method": "GET",
     "path": "/users/:userId"
@@ -640,6 +666,21 @@
   "listEventLeaderboardAttributes": {
     "method": "GET",
     "path": "/events/:eventId/event_leaderboard_attributes",
+    "optionalParams": ["page"]
+  },
+  "listEventPhotoCheers": {
+    "method": "GET",
+    "path": "/events/:eventId/photos/:photoId/cheers",
+    "optionalParams": ["page"]
+  },
+  "listEventPhotoCommentCheers": {
+    "method": "GET",
+    "path": "/events/:eventId/photos/:photoId/comments/:commentId/cheers",
+    "optionalParams": ["page"]
+  },
+  "listEventPhotoComments": {
+    "method": "GET",
+    "path": "/events/:eventId/photos/:photoId/comments",
     "optionalParams": ["page"]
   },
   "listEventPhotos": {
@@ -949,6 +990,14 @@
     "method": "DELETE",
     "path": "/events/:eventId/comments/:commentId/cheers"
   },
+  "uncheerEventPhoto": {
+    "method": "DELETE",
+    "path": "/events/:eventId/photos/:photoId/cheers"
+  },
+  "uncheerEventPhotoComment": {
+    "method": "DELETE",
+    "path": "/events/:eventId/photos/:photoId/comments/:commentId/cheers"
+  },
   "uncheerRecognition": {
     "method": "DELETE",
     "path": "/recognitions/:recognitionId/cheers"
@@ -1029,6 +1078,11 @@
     "path": "/events/:eventId/photos/:photoId",
     "multipart": true,
     "optionalParams": ["image", "caption"]
+  },
+  "updateEventPhotoComment": {
+    "method": "PATCH",
+    "path": "/events/:eventId/photos/:photoId/comments/:commentId",
+    "expectedParams": ["body"]
   },
   "updateEventRsvp": {
     "method": "PATCH",

@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.62] - 2018-02-02
+### Added
+- The comment and cheer calls for event photos.
+- The apparently missing `getSurveyUserItemResponse` call, which is not in use but is implemented in the API.
+
 ## [0.0.61] - 2018-02-02
 ### Added
 - The `listUserActivities` call for fetching the activity feed.
@@ -442,7 +447,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.58...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.62...HEAD
+[0.0.62]: https://github.com/CultureHQ/client/compare/v0.0.61...v0.0.62
+[0.0.61]: https://github.com/CultureHQ/client/compare/v0.0.60...v0.0.61
+[0.0.60]: https://github.com/CultureHQ/client/compare/v0.0.59...v0.0.60
+[0.0.59]: https://github.com/CultureHQ/client/compare/v0.0.58...v0.0.59
 [0.0.58]: https://github.com/CultureHQ/client/compare/v0.0.57...v0.0.58
 [0.0.57]: https://github.com/CultureHQ/client/compare/v0.0.56...v0.0.57
 [0.0.56]: https://github.com/CultureHQ/client/compare/v0.0.55...v0.0.56
