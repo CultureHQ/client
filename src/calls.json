@@ -69,6 +69,14 @@
     "method": "POST",
     "path": "/recognitions/:recognitionId/comments/:commentId/cheers"
   },
+  "cheerUserActivity": {
+    "method": "POST",
+    "path": "/user_activities/:userActivityId/cheers"
+  },
+  "cheerUserActivityComment": {
+    "method": "POST",
+    "path": "/user_activities/:userActivityId/comments/:commentId/cheers"
+  },
   "clearContentModerationEvent": {
     "method": "DELETE",
     "path": "/content_moderation_events/:contentModerationEventId"
@@ -280,6 +288,12 @@
     "path": "/survey_items/:surveyItemId/survey_user_item_response",
     "optionalParams": ["body", "surveyItemResponseOptionIds"]
   },
+  "createUserActivityComment": {
+    "method": "POST",
+    "path": "/user_activities/:userActivityId/comments",
+    "expectedParams": ["body"],
+    "optionalParams": ["parentCommentId"]
+  },
   "createUserInvite": {
     "method": "POST",
     "path": "/users/:userId/invites"
@@ -393,6 +407,10 @@
   "deleteSurveyUserItemResponse": {
     "method": "DELETE",
     "path": "/survey_items/:surveyItemId/survey_user_item_response"
+  },
+  "deleteUserActivityComment": {
+    "method": "DELETE",
+    "path": "/user_activities/:userActivityId/comments/:commentId"
   },
   "denyEventAttendance": {
     "method": "DELETE",
@@ -509,10 +527,6 @@
     "path": "/gallery",
     "optionalParams": ["page", "range"]
   },
-  "getPointConfig": {
-    "method": "GET",
-    "path": "/point_config"
-  },
   "getPointLeaderboard": {
     "method": "GET",
     "path": "/leaderboard/points"
@@ -556,6 +570,10 @@
   "getUser": {
     "method": "GET",
     "path": "/users/:userId"
+  },
+  "getUserActivityComment": {
+    "method": "GET",
+    "path": "/user_activities/:userActivityId/comments/:commentId"
   },
   "getUserEventTypeBreakdown": {
     "method": "GET",
@@ -803,6 +821,26 @@
     "path": "/surveys",
     "optionalParams": ["page"]
   },
+  "listUserActivities": {
+    "method": "GET",
+    "path": "/user_activities",
+    "optionalParams": ["page"]
+  },
+  "listUserActivityCheers": {
+    "method": "GET",
+    "path": "/user_activities/:userActivityId/cheers",
+    "optionalParams": ["page"]
+  },
+  "listUserActivityCommentCheers": {
+    "method": "GET",
+    "path": "/user_activities/:userActivityId/comments/:commentId/cheers",
+    "optionalParams": ["page"]
+  },
+  "listUserActivityComments": {
+    "method": "GET",
+    "path": "/user_activities/:userActivityId/comments",
+    "optionalParams": ["page"]
+  },
   "listUserAnalytics": {
     "method": "GET",
     "path": "/analytics/users",
@@ -918,6 +956,14 @@
   "uncheerRecognitionComment": {
     "method": "DELETE",
     "path": "/recognitions/:recognitionId/comments/:commentId/cheers"
+  },
+  "uncheerUserActivity": {
+    "method": "DELETE",
+    "path": "/user_activities/:userActivityId/cheers"
+  },
+  "uncheerUserActivityComment": {
+    "method": "DELETE",
+    "path": "/user_activities/:userActivityId/comments/:commentId/cheers"
   },
   "unsubscribeFromEventNotifications": {
     "method": "DELETE",
@@ -1035,19 +1081,6 @@
     "path": "/organization_values/:organizationValueId",
     "expectedParams": ["name"]
   },
-  "updatePointConfig": {
-    "method": "PATCH",
-    "path": "/point_config",
-    "optionalParams": [
-      "firstPublicEvent",
-      "eventWithTwoNew",
-      "avatar",
-      "interests",
-      "widgetSurvey",
-      "eventSurvey",
-      "recognition"
-    ]
-  },
   "updateProfile": {
     "method": "PATCH",
     "path": "/profile",
@@ -1130,6 +1163,11 @@
       "locationId",
       "organizationAdmin"
     ]
+  },
+  "updateUserActivityComment": {
+    "method": "PATCH",
+    "path": "/user_activities/:userActivityId/comments/:commentId",
+    "expectedParams": ["body"]
   },
   "voteForEventVoteEntry": {
     "method": "POST",

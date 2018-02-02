@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.61] - 2018-02-02
+### Added
+- The `listUserActivities` call for fetching the activity feed.
+- The `listUserActivityCheers`, `cheerUserActivity`, and `uncheerUserActivity` calls for cheering user activities.
+- The `listUserActivityComments`, `getUserActivityComment`, `createUserActivityComment`, `updateUserActivityComment`, and `deleteUserActivityComment` calls for commenting on user activities.
+- The `listUserActivityCommentCheers`, `cheerUserActivityComment`, and `uncheerUserActivityComment` calls for cheering user activity comments.
+
+### Removed
+- The `getPointConfig` and `updatePointConfig` calls.
+
 ## [0.0.60] - 2018-02-01
 ### Added
 - The `onProfileUpdated` function to the main client for listening through websockets to profile updates.
