@@ -239,15 +239,10 @@ var fishbowl = {
   started: false
 };
 
-var swim = function swim(_ref) {
-  var method = _ref.method,
-      url = _ref.url,
-      options = _ref.options;
-
-  if (!fishbowl.started) {
-    return;
+var swim = function swim(message) {
+  if (fishbowl.started) {
+    fishbowl.queue.push(message);
   }
-  fishbowl.queue.push(method + " " + url.toString() + " " + JSON.stringify(options));
 };
 
 var startSwimming = function startSwimming(fishbowlHost) {
@@ -259,7 +254,7 @@ var startSwimming = function startSwimming(fishbowlHost) {
     if (body) {
       fetch(url, { method: "POST", body: body, mode: "no-cors" });
     }
-  }, 250);
+  }, 200);
 };
 
 exports.swim = swim;
@@ -540,7 +535,7 @@ var _stringCase = __webpack_require__(2);
 var _fishbowl = __webpack_require__(3);
 
 var buildHeaders = function buildHeaders(options) {
-  var headers = { "X-Client-Version": "0.0.63" };
+  var headers = { "X-Client-Version": "0.0.64" };
 
   if (!options.multipart) {
     headers["Content-Type"] = "application/json";
@@ -598,10 +593,11 @@ var buildRequest = function buildRequest(method, url, options) {
 
 exports.default = function (method, url, options) {
   var request = buildRequest(method, url, options);
-  (0, _fishbowl.swim)({ method: method, url: url, options: options });
+  (0, _fishbowl.swim)("[\u2191] " + method + " " + url.toString() + " " + JSON.stringify(options));
 
   return new Promise(function (resolve, reject) {
     fetch(request.url, request.options).then(function (response) {
+      (0, _fishbowl.swim)("[\u2193] " + method + " " + url.toString() + "\n          " + response.status + " " + response.headers.get("content-type"));
       var success = Math.round(response.status / 200) === 1;
 
       if (response.status === 204) {

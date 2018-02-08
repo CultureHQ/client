@@ -61,11 +61,15 @@ const buildRequest = (method, url, options) => {
 
 export default (method, url, options) => {
   const request = buildRequest(method, url, options);
-  swim({ method, url, options });
+  swim(`[↑] ${method} ${url.toString()} ${JSON.stringify(options)}`);
 
   return new Promise((resolve, reject) => {
     fetch(request.url, request.options)
       .then(response => {
+        swim(
+          `[↓] ${method} ${url.toString()}
+          ${response.status} ${response.headers.get("content-type")}`
+        );
         const success = Math.round(response.status / 200) === 1;
 
         if (response.status === 204) {

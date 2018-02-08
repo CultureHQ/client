@@ -5,11 +5,10 @@ const fishbowl = {
   started: false
 };
 
-const swim = ({ method, url, options }) => {
-  if (!fishbowl.started) {
-    return;
+const swim = message => {
+  if (fishbowl.started) {
+    fishbowl.queue.push(message);
   }
-  fishbowl.queue.push(`${method} ${url.toString()} ${JSON.stringify(options)}`);
 };
 
 const startSwimming = fishbowlHost => {
@@ -21,7 +20,7 @@ const startSwimming = fishbowlHost => {
     if (body) {
       fetch(url, { method: "POST", body, mode: "no-cors" });
     }
-  }, 250);
+  }, 200);
 };
 
 export { swim, startSwimming };
