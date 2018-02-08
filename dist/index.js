@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("actioncable"), require("store/dist/store.modern"), require("url-polyfill"), require("isomorphic-fetch"));
+		module.exports = factory(require("isomorphic-fetch"), require("actioncable"), require("store/dist/store.modern"), require("url-polyfill"));
 	else if(typeof define === 'function' && define.amd)
-		define(["actioncable", "store/dist/store.modern", "url-polyfill", "isomorphic-fetch"], factory);
+		define(["isomorphic-fetch", "actioncable", "store/dist/store.modern", "url-polyfill"], factory);
 	else if(typeof exports === 'object')
-		exports["CultureHQ"] = factory(require("actioncable"), require("store/dist/store.modern"), require("url-polyfill"), require("isomorphic-fetch"));
+		exports["CultureHQ"] = factory(require("isomorphic-fetch"), require("actioncable"), require("store/dist/store.modern"), require("url-polyfill"));
 	else
-		root["CultureHQ"] = factory(root["actioncable"], root["store/dist/store.modern"], root["url-polyfill"], root["isomorphic-fetch"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_9__) {
+		root["CultureHQ"] = factory(root["isomorphic-fetch"], root["actioncable"], root["store/dist/store.modern"], root["url-polyfill"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_9__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -84,7 +84,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _store = __webpack_require__(4);
+var _store = __webpack_require__(6);
 
 var _store2 = _interopRequireDefault(_store);
 
@@ -133,6 +133,12 @@ exports.default = state;
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports) {
+
+module.exports = require("isomorphic-fetch");
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -215,7 +221,52 @@ exports.camelize = camelize;
 exports.snakerize = snakerize;
 
 /***/ }),
-/* 2 */
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.startSwimming = exports.swim = undefined;
+
+__webpack_require__(1);
+
+var fishbowl = {
+  queue: [],
+  started: false
+};
+
+var swim = function swim(_ref) {
+  var method = _ref.method,
+      url = _ref.url,
+      options = _ref.options;
+
+  if (!fishbowl.started) {
+    return;
+  }
+  fishbowl.queue.push(method + " " + url.toString() + " " + JSON.stringify(options));
+};
+
+var startSwimming = function startSwimming(fishbowlHost) {
+  fishbowl.started = true;
+  var url = fishbowlHost + "/events";
+
+  setInterval(function () {
+    var body = fishbowl.queue.shift();
+    if (body) {
+      fetch(url, { method: "POST", body: body, mode: "no-cors" });
+    }
+  }, 250);
+};
+
+exports.swim = swim;
+exports.startSwimming = startSwimming;
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -229,7 +280,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _actioncable = __webpack_require__(3);
+var _actioncable = __webpack_require__(5);
 
 var _actioncable2 = _interopRequireDefault(_actioncable);
 
@@ -237,15 +288,17 @@ var _state = __webpack_require__(0);
 
 var _state2 = _interopRequireDefault(_state);
 
-var _calls = __webpack_require__(5);
+var _calls = __webpack_require__(7);
 
 var _calls2 = _interopRequireDefault(_calls);
 
-var _apiCall = __webpack_require__(6);
+var _apiCall = __webpack_require__(8);
 
 var _apiCall2 = _interopRequireDefault(_apiCall);
 
-var _stringCase = __webpack_require__(1);
+var _stringCase = __webpack_require__(2);
+
+var _fishbowl = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -265,6 +318,11 @@ var CultureHQ = function () {
     _classCallCheck(this, CultureHQ);
 
     this.apiHost = options.apiHost;
+
+    this.fishbowlHost = options.fishbowlHost;
+    if (this.fishbowlHost) {
+      (0, _fishbowl.startSwimming)(this.fishbowlHost);
+    }
 
     Object.keys(_calls2.default).forEach(function (callName) {
       _this[callName] = (0, _apiCall2.default)(_this, _calls2.default[callName]);
@@ -372,25 +430,25 @@ var CultureHQ = function () {
 exports.default = CultureHQ;
 
 /***/ }),
-/* 3 */
+/* 5 */
 /***/ (function(module, exports) {
 
 module.exports = require("actioncable");
 
 /***/ }),
-/* 4 */
+/* 6 */
 /***/ (function(module, exports) {
 
 module.exports = require("store/dist/store.modern");
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ (function(module, exports) {
 
 module.exports = {"activateSurvey":{"method":"POST","path":"/surveys/:surveyId/survey_activation"},"adminAutocompleteUsers":{"method":"GET","path":"/admin/autocomplete/users","expectedParams":["query"]},"adminListInvites":{"method":"GET","path":"/admin/organizations/:organizationId/invites","optionalParams":["page"]},"adminSendInvite":{"method":"POST","path":"/admin/organizations/:organizationId/invites","multipart":true,"expectedParams":["name","email"],"optionalParams":["locationId","departmentIds","interestNames","avatar","title"]},"approveEventVoteEntry":{"method":"POST","path":"/event_vote_entries/:eventVoteEntryId/event_vote_entry_approval"},"autocompleteUsers":{"method":"GET","path":"/autocomplete/users","expectedParams":["query"]},"bulkCreateEventPhotos":{"method":"POST","path":"/events/:eventId/albums","multipart":true,"expectedParams":["images"]},"cancelEvent":{"method":"POST","path":"/events/:eventId/event_cancellations","optionalParams":["message"]},"changePassword":{"method":"PATCH","path":"/password","expectedParams":["oldPassword","newPassword"]},"checkInEventAttendee":{"method":"POST","path":"/events/:eventId/check_ins","expectedParams":["userId"],"optionalParams":["extra"]},"cheerEventComment":{"method":"POST","path":"/events/:eventId/comments/:commentId/cheers"},"cheerEventPhoto":{"method":"POST","path":"/events/:eventId/photos/:photoId/cheers"},"cheerEventPhotoComment":{"method":"POST","path":"/events/:eventId/photos/:photoId/comments/:commentId/cheers"},"cheerRecognition":{"method":"POST","path":"/recognitions/:recognitionId/cheers"},"cheerRecognitionComment":{"method":"POST","path":"/recognitions/:recognitionId/comments/:commentId/cheers"},"cheerUserActivity":{"method":"POST","path":"/user_activities/:userActivityId/cheers"},"cheerUserActivityComment":{"method":"POST","path":"/user_activities/:userActivityId/comments/:commentId/cheers"},"clearContentModerationEvent":{"method":"DELETE","path":"/content_moderation_events/:contentModerationEventId"},"confirmEventAttendance":{"method":"POST","path":"/events/:eventId/confirmation"},"createAnnouncement":{"method":"POST","path":"/announcements","multipart":true,"expectedParams":["title","body","active"],"optionalParams":["image"]},"createApiKey":{"method":"POST","path":"/api_keys","expectedParams":["email","password"]},"createBulkUserImport":{"method":"POST","path":"/bulk_user_imports","multipart":true,"expectedParams":["csvFile"]},"createDepartment":{"method":"POST","path":"/departments","expectedParams":["name"]},"createEvent":{"method":"POST","path":"/events","multipart":true,"expectedParams":["name","startsAt","endsAt","eventType"],"optionalParams":["details","sponsored","surveyId","image","organizationValueIds","location","visibility","cap","locationIds","inviteOnly","openInvites","inviteeIds","timezone","eventTagNames"]},"createEventComment":{"method":"POST","path":"/events/:eventId/comments","expectedParams":["body"],"optionalParams":["parentCommentId"]},"createEventInvites":{"method":"POST","path":"/events/:eventId/event_invites","optionalParams":["userIds","locationIds","interestIds","departmentIds"]},"createEventLeaderboardAttribute":{"method":"POST","path":"/events/:eventId/event_leaderboard_attributes","expectedParams":["title"],"optionalParams":["quantitative","sortDescending"]},"createEventLeaderboardAttributeRsvp":{"method":"POST","path":"/event_leaderboard_attributes/:eventLeaderboardAttributeId/event_leaderboard_attribute_rsvps","expectedParams":["value"],"optionalParams":["rsvpId"]},"createEventPhoto":{"method":"POST","path":"/events/:eventId/photos","multipart":true,"expectedParams":["image"],"optionalParams":["caption"]},"createEventPhotoComment":{"method":"POST","path":"/events/:eventId/photos/:photoId/comments","expectedParams":["body"],"optionalParams":["parentCommentId"]},"createEventRsvp":{"method":"POST","path":"/events/:eventId/rsvps","expectedParams":["responseType"],"optionalParams":["extra"]},"createEventVote":{"method":"POST","path":"/events/:eventId/event_votes","expectedParams":["title"],"optionalParams":["maxVotes"]},"createEventVoteEntry":{"method":"POST","path":"/event_votes/:eventVoteId/event_vote_entries","multipart":true,"expectedParams":["title"],"optionalParams":["image"]},"createExpense":{"method":"POST","path":"/events/:eventId/expenses","expectedParams":["description","amount"]},"createFeedback":{"method":"POST","path":"/feedbacks","expectedParams":["body"],"optionalParams":["anonymous"]},"createInterest":{"method":"POST","path":"/interests","expectedParams":["name"]},"createLocation":{"method":"POST","path":"/locations","expectedParams":["name"]},"createOrganization":{"method":"POST","path":"/admin/organizations","multipart":true,"expectedParams":["name"],"optionalParams":["primaryColor","secondaryColor","gamificationEnabled","logo","active","mode"]},"createOrganizationBot":{"method":"POST","path":"/admin/organizations/:organizationId/bots"},"createOrganizationValue":{"method":"POST","path":"/organization_values","expectedParams":["name"]},"createPhotoTag":{"method":"POST","path":"/photos/:photoId/photo_tags","expectedParams":["userId"]},"createRecognition":{"method":"POST","path":"/recognitions","expectedParams":["body","userIds"]},"createRecognitionComment":{"method":"POST","path":"/recognitions/:recognitionId/comments","expectedParams":["body"],"optionalParams":["parentCommentId"]},"createReward":{"method":"POST","path":"/rewards","multipart":true,"expectedParams":["name","points"],"optionalParams":["description","image"]},"createRewardRedemption":{"method":"POST","path":"/rewards/:rewardId/redemptions"},"createSession":{"method":"POST","path":"/sessions","expectedParams":["email"]},"createSimulation":{"method":"POST","path":"/admin/simulation","expectedParams":["userId"]},"createSlackIntegration":{"method":"POST","path":"/slack_integrations","expectedParams":["code"]},"createSurvey":{"method":"POST","path":"/surveys","expectedParams":["title"],"optionalParams":["points","eventId"]},"createSurveyItem":{"method":"POST","path":"/surveys/:surveyId/survey_items","expectedParams":["prompt","itemType"],"optionalParams":["minRange","maxRange"]},"createSurveyItemResponseOption":{"method":"POST","path":"/survey_items/:surveyItemId/survey_item_response_options","expectedParams":["body"]},"createSurveyUserItemResponse":{"method":"POST","path":"/survey_items/:surveyItemId/survey_user_item_response","optionalParams":["body","surveyItemResponseOptionIds"]},"createUserActivityComment":{"method":"POST","path":"/user_activities/:userActivityId/comments","expectedParams":["body"],"optionalParams":["parentCommentId"]},"createUserInvite":{"method":"POST","path":"/users/:userId/invites"},"deactivateSurvey":{"method":"DELETE","path":"/surveys/:surveyId/survey_activation"},"deactivateUser":{"method":"POST","path":"/users/:userId/deactivation"},"deleteAnnouncement":{"method":"DELETE","path":"/announcements/:announcementId"},"deleteDepartment":{"method":"DELETE","path":"/departments/:departmentId"},"deleteEvent":{"method":"DELETE","path":"/events/:eventId","optionalParams":["message"]},"deleteEventComment":{"method":"DELETE","path":"/events/:eventId/comments/:commentId"},"deleteEventLeaderboardAttribute":{"method":"DELETE","path":"/event_leaderboard_attributes/:eventLeaderboardAttributeId"},"deleteEventLeaderboardAttributeRsvp":{"method":"DELETE","path":"/event_leaderboard_attribute_rsvps/:eventLeaderboardAttributeRsvpId"},"deleteEventPhoto":{"method":"DELETE","path":"/events/:eventId/photos/:photoId"},"deleteEventPhotoComment":{"method":"DELETE","path":"/events/:eventId/photos/:photoId/comments/:commentId"},"deleteEventVote":{"method":"DELETE","path":"/event_votes/:eventVoteId"},"deleteEventVoteEntry":{"method":"DELETE","path":"/event_vote_entries/:eventVoteEntryId"},"deleteExpense":{"method":"DELETE","path":"/events/:eventId/expenses/:expenseId"},"deleteInterest":{"method":"DELETE","path":"/interests/:interestId"},"deleteLocation":{"method":"DELETE","path":"/locations/:locationId"},"deleteOrganization":{"method":"DELETE","path":"/admin/organizations/:organizationId"},"deleteOrganizationBot":{"method":"DELETE","path":"/admin/organizations/:organizationId/bots/:botId"},"deleteOrganizationValue":{"method":"DELETE","path":"/organization_values/:organizationValueId"},"deletePhotoTag":{"method":"DELETE","path":"/photos/:photoId/photo_tags/:photoTagId"},"deleteRecognition":{"method":"DELETE","path":"/recognitions/:recognitionId"},"deleteRecognitionComment":{"method":"DELETE","path":"/recognitions/:recognitionId/comments/:commentId"},"deleteReward":{"method":"DELETE","path":"/rewards/:rewardId"},"deleteRewardRedemption":{"method":"DELETE","path":"/rewards/:rewardId/redemptions/:redemptionId"},"deleteSlackIntegration":{"method":"DELETE","path":"/slack_integrations/:slackIntegrationId"},"deleteSurvey":{"method":"DELETE","path":"/surveys/:surveyId"},"deleteSurveyItem":{"method":"DELETE","path":"/survey_items/:surveyItemId"},"deleteSurveyItemResponseOption":{"method":"DELETE","path":"/survey_item_response_options/:surveyItemResponseOptionId"},"deleteSurveyUserItemResponse":{"method":"DELETE","path":"/survey_items/:surveyItemId/survey_user_item_response"},"deleteUserActivityComment":{"method":"DELETE","path":"/user_activities/:userActivityId/comments/:commentId"},"denyEventAttendance":{"method":"DELETE","path":"/events/:eventId/confirmation"},"disableStaticWidget":{"method":"DELETE","path":"/widgets","expectedParams":["widget"]},"duplicateEvent":{"method":"POST","path":"/events/:eventId/event_duplicates","expectedParams":["startsAt"],"optionalParams":["endsAt"]},"enableStaticWidget":{"method":"POST","path":"/widgets","expectedParams":["widget"]},"eventAutocompleteInvites":{"method":"GET","path":"/events/:eventId/autocomplete/event_invites","expectedParams":["query"]},"eventAutocompleteRsvps":{"method":"GET","path":"/events/:eventId/autocomplete/rsvps","expectedParams":["query"]},"exportEvents":{"method":"POST","path":"/exports/event_export"},"getAnnouncement":{"method":"GET","path":"/announcements/:announcementId"},"getBulkUserImport":{"method":"GET","path":"/bulk_user_imports/:bulkUserImportJobId"},"getDepartment":{"method":"GET","path":"/departments/:departmentId"},"getDepartmentEventParticipation":{"method":"GET","path":"/events/:eventId/department_event_participation"},"getEvent":{"method":"GET","path":"/events/:eventId"},"getEventAnalytics":{"method":"GET","path":"/analytics/events/:eventId"},"getEventComment":{"method":"GET","path":"/events/:eventId/comments/:commentId"},"getEventLeaderboardAttribute":{"method":"GET","path":"/event_leaderboard_attributes/:eventLeaderboardAttributeId"},"getEventPhoto":{"method":"GET","path":"/events/:eventId/photos/:photoId"},"getEventPhotoComment":{"method":"GET","path":"/events/:eventId/photos/:photoId/comments/:commentId"},"getEventRsvp":{"method":"GET","path":"/events/:eventId/rsvps/:rsvpId"},"getEventVote":{"method":"GET","path":"/event_votes/:eventVoteId"},"getExpense":{"method":"GET","path":"/events/:eventId/expenses/:expenseId"},"getFeedback":{"method":"GET","path":"/feedbacks/:feedbackId"},"getInterest":{"method":"GET","path":"/interests/:interestId"},"getInvite":{"method":"GET","path":"/invites/:token"},"getLocation":{"method":"GET","path":"/locations/:locationId"},"getOrganization":{"method":"GET","path":"/admin/organizations/:organizationId"},"getOrganizationValue":{"method":"GET","path":"/organization_values/:organizationValueId"},"getOrganizationValueLeaderboard":{"method":"GET","path":"/leaderboard/organization_values"},"getPhotoGallery":{"method":"GET","path":"/gallery","optionalParams":["page","range"]},"getPointLeaderboard":{"method":"GET","path":"/leaderboard/points"},"getProfile":{"method":"GET","path":"/profile"},"getProfileEmailSettings":{"method":"GET","path":"/profile/email_settings"},"getRecognition":{"method":"GET","path":"/recognitions/:recognitionId"},"getRecognitionComment":{"method":"GET","path":"/recognitions/:recognitionId/comments/:commentId"},"getReward":{"method":"GET","path":"/rewards/:rewardId"},"getRewardRedemption":{"method":"GET","path":"/rewards/:rewardId/redemptions/:redemptionId"},"getSurvey":{"method":"GET","path":"/surveys/:surveyId"},"getSurveyItem":{"method":"GET","path":"/survey_items/:surveyItemId"},"getSurveyItemResponseOption":{"method":"GET","path":"/survey_item_response_options/:surveyItemResponseOptionId"},"getSurveyUserItemResponse":{"method":"GET","path":"/survey_items/:surveyItemId/survey_user_item_response"},"getUser":{"method":"GET","path":"/users/:userId"},"getUserActivityComment":{"method":"GET","path":"/user_activities/:userActivityId/comments/:commentId"},"getUserEventTypeBreakdown":{"method":"GET","path":"/users/:userId/event_type_breakdown"},"getUserPointBreakdown":{"method":"GET","path":"/users/:userId/point_breakdown"},"getUserRecognitionLeaderboard":{"method":"GET","path":"/leaderboard/user_recognitions"},"incrementUserPoints":{"method":"POST","path":"/users/:userId/point_increments","expectedParams":["points"]},"listActiveAnnouncements":{"method":"GET","path":"/active_announcements","optionalParams":["page"]},"listAnnouncements":{"method":"GET","path":"/announcements","optionalParams":["page","active"]},"listContentModerationEvents":{"method":"GET","path":"/content_moderation_events","optionalParams":["page"]},"listDepartmentAnalytics":{"method":"GET","path":"/analytics/departments","optionalParams":["page"]},"listDepartmentUsers":{"method":"GET","path":"/departments/:departmentId/users","optionalParams":["page","includeDeactivated"]},"listDepartments":{"method":"GET","path":"/departments","optionalParams":["page"]},"listEventAnalytics":{"method":"GET","path":"/analytics/events","optionalParams":["page"]},"listEventCommentCheers":{"method":"GET","path":"/events/:event_id/comments/:comment_id/cheers","optionalParams":["page"]},"listEventComments":{"method":"GET","path":"/events/:eventId/comments","optionalParams":["page"]},"listEventLeaderboardAttributes":{"method":"GET","path":"/events/:eventId/event_leaderboard_attributes","optionalParams":["page"]},"listEventPhotoCheers":{"method":"GET","path":"/events/:eventId/photos/:photoId/cheers","optionalParams":["page"]},"listEventPhotoCommentCheers":{"method":"GET","path":"/events/:eventId/photos/:photoId/comments/:commentId/cheers","optionalParams":["page"]},"listEventPhotoComments":{"method":"GET","path":"/events/:eventId/photos/:photoId/comments","optionalParams":["page"]},"listEventPhotos":{"method":"GET","path":"/events/:eventId/photos","optionalParams":["page"]},"listEventRsvps":{"method":"GET","path":"/events/:eventId/rsvps","optionalParams":["page","responseType"]},"listEventTags":{"method":"GET","path":"/event_tags","optionalParams":["page"]},"listEventVotes":{"method":"GET","path":"/events/:eventId/event_votes","optionalParams":["page"]},"listEvents":{"method":"GET","path":"/events","optionalParams":["page","range","locationIds","sort","when","organizationValueIds","eventType","sponsored"]},"listEventsByOrganization":{"method":"GET","path":"/admin/events"},"listExpenses":{"method":"GET","path":"/events/:eventId/expenses","optionalParams":["page"]},"listFeedbacks":{"method":"GET","path":"/feedbacks","optionalParams":["page","reviewed"]},"listInterestUsers":{"method":"GET","path":"/interests/:interestId/users","optionalParams":["page","includeDeactivated"]},"listInterests":{"method":"GET","path":"/interests","optionalParams":["page"]},"listInvites":{"method":"GET","path":"/invites","optionalParams":["page"]},"listLocations":{"method":"GET","path":"/locations","optionalParams":["page"]},"listOrganizationBots":{"method":"GET","path":"/admin/organizations/:organizationId/bots"},"listOrganizationValueEvents":{"method":"GET","path":"/organization_values/:organizationValueId/events","optionalParams":["page"]},"listOrganizationValueRecognitions":{"method":"GET","path":"/organization_values/:organizationValueId/recognitions","optionalParams":["page"]},"listOrganizationValues":{"method":"GET","path":"/organization_values","optionalParams":["page"]},"listOrganizations":{"method":"GET","path":"/admin/organizations","optionalParams":["page"]},"listPhotoTags":{"method":"GET","path":"/photos/:photoId/photo_tags","optionalParams":["page"]},"listProfileEventSurveys":{"method":"GET","path":"/profile/event_surveys","optionalParams":["filter"]},"listProfilePointIncrements":{"method":"GET","path":"/profile/point_increments","optionalParams":["page"]},"listProfilePointModifications":{"method":"GET","path":"/profile/point_modifications","optionalParams":["page"]},"listProfileRedemptions":{"method":"GET","path":"/profile/redemptions","optionalParams":["page"]},"listRecognitionCheers":{"method":"GET","path":"/recognitions/:recognitionId/cheers","optionalParams":["page"]},"listRecognitionCommentCheers":{"method":"GET","path":"/recognitions/:recognitionId/comments/:commentId/cheers","optionalParams":["page"]},"listRecognitionComments":{"method":"GET","path":"/recognitions/:recognitionId/comments","optionalParams":["page"]},"listRecognitions":{"method":"GET","path":"/recognitions","optionalParams":["page"]},"listRedemptions":{"method":"GET","path":"/redemptions","optionalParams":["page"]},"listRewardRedemptions":{"method":"GET","path":"/rewards/:rewardId/redemptions","optionalParams":["page"]},"listRewards":{"method":"GET","path":"/rewards","optionalParams":["page"]},"listSlackIntegrations":{"method":"GET","path":"/slack_integrations"},"listSurveyItemResponseOptions":{"method":"GET","path":"/survey_items/:surveyItemId/survey_item_response_options","optionalParams":["page"]},"listSurveyItems":{"method":"GET","path":"/surveys/:surveyId/survey_items","optionalParams":["page"]},"listSurveyResults":{"method":"GET","path":"/surveys/:surveyId/survey_results"},"listSurveySubmittedResponses":{"method":"GET","path":"/surveys/:surveyId/submitted_responses"},"listSurveys":{"method":"GET","path":"/surveys","optionalParams":["page"]},"listUserActivities":{"method":"GET","path":"/user_activities","optionalParams":["page"]},"listUserActivityCheers":{"method":"GET","path":"/user_activities/:userActivityId/cheers","optionalParams":["page"]},"listUserActivityCommentCheers":{"method":"GET","path":"/user_activities/:userActivityId/comments/:commentId/cheers","optionalParams":["page"]},"listUserActivityComments":{"method":"GET","path":"/user_activities/:userActivityId/comments","optionalParams":["page"]},"listUserAnalytics":{"method":"GET","path":"/analytics/users","optionalParams":["page"]},"listUserHostedEvents":{"method":"GET","path":"/users/:userId/hosted_events","optionalParams":["page"]},"listUserRecognitions":{"method":"GET","path":"/users/:userId/recognitions","optionalParams":["page"]},"listUserRsvpdEvents":{"method":"GET","path":"/users/:userId/rsvpd_events","optionalParams":["when","sort"]},"listUsers":{"method":"GET","path":"/users","optionalParams":["page","includeDeactivated","departmentId","interestId","locationId"]},"listWidgetSurveys":{"method":"GET","path":"/widget_surveys","optionalParams":["active","completed","page"]},"markEventAsSponsored":{"method":"POST","path":"/events/:eventId/event_sponsorship"},"messageEventGuests":{"method":"POST","path":"/events/:eventId/event_notifications","expectedParams":["body"]},"reactivateUser":{"method":"DELETE","path":"/users/:userId/deactivation"},"registerUser":{"method":"POST","path":"/invites/:token/users","expectedParams":["password"]},"reorderSurveyItemResponseOptions":{"method":"PATCH","path":"/survey_items/:surveyItemId/survey_item_response_option_order","expectedParams":["order"]},"reorderSurveyItems":{"method":"PATCH","path":"/surveys/:surveyId/survey_item_order","expectedParams":["order"]},"reorderWidgets":{"method":"PATCH","path":"/widget_order","expectedParams":["order"]},"requestPasswordReset":{"method":"POST","path":"/password_resets","expectedParams":["email"]},"resetPassword":{"method":"PATCH","path":"/password_resets/:token","expectedParams":["password"]},"reviewFeedback":{"method":"PATCH","path":"/feedbacks/:feedbackId"},"sendInvite":{"method":"POST","path":"/invites","multipart":true,"expectedParams":["name","email"],"optionalParams":["locationId","departmentIds","interestNames","avatar","title"]},"subscribeToEventNotifications":{"method":"POST","path":"/events/:eventId/event_notification_subscription"},"unapproveEventVoteEntry":{"method":"DELETE","path":"/event_vote_entries/:eventVoteEntryId/event_vote_entry_approval"},"uncheerEventComment":{"method":"DELETE","path":"/events/:eventId/comments/:commentId/cheers"},"uncheerEventPhoto":{"method":"DELETE","path":"/events/:eventId/photos/:photoId/cheers"},"uncheerEventPhotoComment":{"method":"DELETE","path":"/events/:eventId/photos/:photoId/comments/:commentId/cheers"},"uncheerRecognition":{"method":"DELETE","path":"/recognitions/:recognitionId/cheers"},"uncheerRecognitionComment":{"method":"DELETE","path":"/recognitions/:recognitionId/comments/:commentId/cheers"},"uncheerUserActivity":{"method":"DELETE","path":"/user_activities/:userActivityId/cheers"},"uncheerUserActivityComment":{"method":"DELETE","path":"/user_activities/:userActivityId/comments/:commentId/cheers"},"unsubscribeFromEventNotifications":{"method":"DELETE","path":"/events/:eventId/event_notification_subscription"},"unvoteForEventVoteEntry":{"method":"DELETE","path":"/event_vote_entries/:eventVoteEntryId/event_vote_entry_rsvp"},"updateAnnouncement":{"method":"PATCH","path":"/announcements/:announcementId","multipart":true,"optionalParams":["title","body","active","image"]},"updateDepartment":{"method":"PATCH","path":"/departments/:departmentId","optionalParams":["name"]},"updateEvent":{"method":"PATCH","path":"/events/:eventId","multipart":true,"optionalParams":["name","details","startsAt","endsAt","eventType","sponsored","surveyId","image","organizationValueIds","location","visibility","cap","locationIds","inviteOnly","openInvites","eventTagNames"]},"updateEventComment":{"method":"PATCH","path":"/events/:eventId/comments/:commentId","expectedParams":["body"]},"updateEventLeaderboardAttribute":{"method":"PATCH","path":"/event_leaderboard_attributes/:eventLeaderboardAttributeId","optionalParams":["title","quantitative","sortDescending"]},"updateEventLeaderboardAttributeRsvp":{"method":"PATCH","path":"/event_leaderboard_attribute_rsvps/:eventLeaderboardAttributeRsvpId","expectedParams":["value"],"optionalParams":["rsvpId"]},"updateEventPhoto":{"method":"PATCH","path":"/events/:eventId/photos/:photoId","multipart":true,"optionalParams":["image","caption"]},"updateEventPhotoComment":{"method":"PATCH","path":"/events/:eventId/photos/:photoId/comments/:commentId","expectedParams":["body"]},"updateEventRsvp":{"method":"PATCH","path":"/events/:eventId/rsvps/:rsvpId","expectedParams":["responseType"],"optionalParams":["extra"]},"updateEventVote":{"method":"PATCH","path":"/event_votes/:eventVoteId","optionalParams":["title","maxVotes"]},"updateEventVoteEntry":{"method":"PATCH","path":"/event_vote_entries/:eventVoteEntryId","multipart":true,"optionalParams":["title","image"]},"updateExpense":{"method":"PATCH","path":"/events/:eventId/expenses/:expenseId","optionalParams":["description","amount"]},"updateInterest":{"method":"PATCH","path":"/interests/:interestId","expectedParams":["name"]},"updateLocation":{"method":"PATCH","path":"/locations/:locationId","expectedParams":["name"]},"updateOrganization":{"method":"PATCH","path":"/admin/organizations/:organizationId","multipart":true,"optionalParams":["name","primaryColor","secondaryColor","gamificationEnabled","logo","active","mode"]},"updateOrganizationValue":{"method":"PATCH","path":"/organization_values/:organizationValueId","expectedParams":["name"]},"updateProfile":{"method":"PATCH","path":"/profile","multipart":true,"optionalParams":["name","email","departmentIds","interestNames","avatar","title","locationId"]},"updateProfileEmailSettings":{"method":"PATCH","path":"/profile/email_settings","optionalParams":["eventInvite","eventNotification","postEventSurvey","recognized","redemptionApproved","redemptionRequested","rsvpConfirmation"]},"updateRecognition":{"method":"PATCH","path":"/recognitions/:recognitionId","expectedParams":["body"],"optionalParams":["userIds"]},"updateRecognitionComment":{"method":"PATCH","path":"/recognitions/:recognitionId/comments/:commentId","expectedParams":["body"]},"updateReward":{"method":"PATCH","path":"/rewards/:rewardId","multipart":true,"optionalParams":["name","points","description","image"]},"updateRewardRedemption":{"method":"PATCH","path":"/rewards/:rewardId/redemptions/:redemptionId"},"updateSurvey":{"method":"PATCH","path":"/surveys/:surveyId","optionalParams":["title","points"]},"updateSurveyItem":{"method":"PATCH","path":"/survey_items/:surveyItemId","optionalParams":["prompt","itemType","minRange","maxRange"]},"updateSurveyItemResponseOption":{"method":"PATCH","path":"/survey_item_response_options/:surveyItemResponseOptionId","optionalParams":["body"]},"updateSurveyUserItemResponse":{"method":"PATCH","path":"/survey_items/:surveyItemId/survey_user_item_response","optionalParams":["body","surveyItemResponseOptionIds"]},"updateUser":{"method":"PATCH","path":"/users/:userId","multipart":true,"optionalParams":["name","email","departmentIds","interestNames","avatar","title","locationId","organizationAdmin"]},"updateUserActivityComment":{"method":"PATCH","path":"/user_activities/:userActivityId/comments/:commentId","expectedParams":["body"]},"voteForEventVoteEntry":{"method":"POST","path":"/event_vote_entries/:eventVoteEntryId/event_vote_entry_rsvp"}}
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -402,9 +460,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-__webpack_require__(7);
+__webpack_require__(9);
 
-var _request = __webpack_require__(8);
+var _request = __webpack_require__(10);
 
 var _request2 = _interopRequireDefault(_request);
 
@@ -459,13 +517,13 @@ exports.default = function (client, options) {
 };
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports) {
 
 module.exports = require("url-polyfill");
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -475,12 +533,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-__webpack_require__(9);
+__webpack_require__(1);
 
-var _stringCase = __webpack_require__(1);
+var _stringCase = __webpack_require__(2);
+
+var _fishbowl = __webpack_require__(3);
 
 var buildHeaders = function buildHeaders(options) {
-  var headers = { "X-Client-Version": "0.0.62" };
+  var headers = { "X-Client-Version": "0.0.63" };
 
   if (!options.multipart) {
     headers["Content-Type"] = "application/json";
@@ -538,6 +598,7 @@ var buildRequest = function buildRequest(method, url, options) {
 
 exports.default = function (method, url, options) {
   var request = buildRequest(method, url, options);
+  (0, _fishbowl.swim)({ method: method, url: url, options: options });
 
   return new Promise(function (resolve, reject) {
     fetch(request.url, request.options).then(function (response) {
@@ -568,12 +629,6 @@ exports.default = function (method, url, options) {
     });
   });
 };
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-module.exports = require("isomorphic-fetch");
 
 /***/ })
 /******/ ]);

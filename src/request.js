@@ -1,5 +1,6 @@
 import "isomorphic-fetch";
 import { camelize, snakerize } from "./string-case";
+import { swim } from "./fishbowl";
 
 const buildHeaders = options => {
   let headers = { "X-Client-Version": CLIENT_VERSION };
@@ -60,6 +61,7 @@ const buildRequest = (method, url, options) => {
 
 export default (method, url, options) => {
   const request = buildRequest(method, url, options);
+  swim({ method, url, options });
 
   return new Promise((resolve, reject) => {
     fetch(request.url, request.options)

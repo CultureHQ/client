@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.63] - 2018-02-08
+### Added
+- Added support to send reports to fishbowl.
+
 ## [0.0.62] - 2018-02-02
 ### Added
 - The comment and cheer calls for event photos.

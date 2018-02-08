@@ -4,6 +4,7 @@ import state from "./state";
 import calls from "./calls";
 import apiCall from "./api-call";
 import { camelize } from "./string-case";
+import { startSwimming } from "./fishbowl";
 
 const signInCallback = response => {
   state.signIn(response.apiKey.token);
@@ -13,6 +14,11 @@ const signInCallback = response => {
 class CultureHQ {
   constructor(options = {}) {
     this.apiHost = options.apiHost;
+
+    this.fishbowlHost = options.fishbowlHost;
+    if (this.fishbowlHost) {
+      startSwimming(this.fishbowlHost);
+    }
 
     Object.keys(calls).forEach(callName => {
       this[callName] = apiCall(this, calls[callName]);
