@@ -2,7 +2,8 @@ import "isomorphic-fetch";
 
 const fishbowl = {
   queue: [],
-  started: false
+  started: false,
+  interval: null
 };
 
 const swim = message => {
@@ -12,13 +13,16 @@ const swim = message => {
 };
 
 const startSwimming = fishbowlHost => {
-  fishbowl.started = true;
   const url = `${fishbowlHost}/events`;
+  fishbowl.started = true;
 
-  setInterval(() => {
+  fishbowl.interval = setInterval(() => {
     let body = fishbowl.queue.shift();
     if (body) {
-      fetch(url, { method: "POST", body, mode: "no-cors" });
+      fetch(url, { method: "POST", body, mode: "no-cors" }).catch(() => {
+        fishbowl.started = false;
+        clearInterval(fishbowl.interval);
+      });
     }
   }, 200);
 };

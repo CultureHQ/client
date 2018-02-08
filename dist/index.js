@@ -236,7 +236,8 @@ __webpack_require__(1);
 
 var fishbowl = {
   queue: [],
-  started: false
+  started: false,
+  interval: null
 };
 
 var swim = function swim(message) {
@@ -246,13 +247,16 @@ var swim = function swim(message) {
 };
 
 var startSwimming = function startSwimming(fishbowlHost) {
-  fishbowl.started = true;
   var url = fishbowlHost + "/events";
+  fishbowl.started = true;
 
-  setInterval(function () {
+  fishbowl.interval = setInterval(function () {
     var body = fishbowl.queue.shift();
     if (body) {
-      fetch(url, { method: "POST", body: body, mode: "no-cors" });
+      fetch(url, { method: "POST", body: body, mode: "no-cors" }).catch(function () {
+        fishbowl.started = false;
+        clearInterval(fishbowl.interval);
+      });
     }
   }, 200);
 };
@@ -535,7 +539,7 @@ var _stringCase = __webpack_require__(2);
 var _fishbowl = __webpack_require__(3);
 
 var buildHeaders = function buildHeaders(options) {
-  var headers = { "X-Client-Version": "0.0.64" };
+  var headers = { "X-Client-Version": "0.0.65" };
 
   if (!options.multipart) {
     headers["Content-Type"] = "application/json";
