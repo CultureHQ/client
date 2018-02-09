@@ -48,11 +48,11 @@ class CultureHQ {
    * example with React of using this function is below:
    *
    *     class MyComponent {
-   *       state = { profile: this.props.profile };
+   *       state = { pointIncrement: null };
    *
    *       componentDidMount() {
-   *         this.subscription = client.onProfileUpdated(profile => {
-   *           this.setState({ profile });
+   *         this.subscription = client.onPointsIncremented(pointIncrement => {
+   *           this.setState({ pointIncrement });
    *         });
    *       }
    *
@@ -63,9 +63,9 @@ class CultureHQ {
    *       }
    *     }
    */
-  onProfileUpdated(callback) {
-    this._ensureConsumer().subscriptions.create("ProfileChannel", {
-      received: profile => callback(camelize(profile))
+  onPointsIncremented(callback) {
+    this._ensureConsumer().subscriptions.create("PointIncrementChannel", {
+      received: pointIncrement => callback(camelize(pointIncrement))
     });
   }
 

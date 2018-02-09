@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.66] - 2018-02-08
+### Added
+- The `onPointsIncremented` function for listening to when points are incremented, which includes the profile of the user.
+
+### Removed
+- The `onProfileUpdated` function for listening to profile changes.
+
 ## [0.0.65] - 2018-02-08
 ### Added
 - Fail gracefully when fishbowl goes down.

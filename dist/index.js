@@ -355,11 +355,11 @@ var CultureHQ = function () {
      * example with React of using this function is below:
      *
      *     class MyComponent {
-     *       state = { profile: this.props.profile };
+     *       state = { pointIncrement: null };
      *
      *       componentDidMount() {
-     *         this.subscription = client.onProfileUpdated(profile => {
-     *           this.setState({ profile });
+     *         this.subscription = client.onPointsIncremented(pointIncrement => {
+     *           this.setState({ pointIncrement });
      *         });
      *       }
      *
@@ -372,11 +372,11 @@ var CultureHQ = function () {
      */
 
   }, {
-    key: "onProfileUpdated",
-    value: function onProfileUpdated(callback) {
-      this._ensureConsumer().subscriptions.create("ProfileChannel", {
-        received: function received(profile) {
-          return callback((0, _stringCase.camelize)(profile));
+    key: "onPointsIncremented",
+    value: function onPointsIncremented(callback) {
+      this._ensureConsumer().subscriptions.create("PointIncrementChannel", {
+        received: function received(pointIncrement) {
+          return callback((0, _stringCase.camelize)(pointIncrement));
         }
       });
     }
@@ -539,7 +539,7 @@ var _stringCase = __webpack_require__(2);
 var _fishbowl = __webpack_require__(3);
 
 var buildHeaders = function buildHeaders(options) {
-  var headers = { "X-Client-Version": "0.0.65" };
+  var headers = { "X-Client-Version": "0.0.66" };
 
   if (!options.multipart) {
     headers["Content-Type"] = "application/json";
