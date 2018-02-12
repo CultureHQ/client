@@ -26,10 +26,6 @@
       "title"
     ]
   },
-  "approveEventVoteEntry": {
-    "method": "POST",
-    "path": "/event_vote_entries/:eventVoteEntryId/event_vote_entry_approval"
-  },
   "autocompleteUsers": {
     "method": "GET",
     "path": "/autocomplete/users",
@@ -178,19 +174,6 @@
     "method": "POST",
     "path": "/events/:eventId/rsvps",
     "expectedParams": ["responseType"]
-  },
-  "createEventVote": {
-    "method": "POST",
-    "path": "/events/:eventId/event_votes",
-    "expectedParams": ["title"],
-    "optionalParams": ["maxVotes"]
-  },
-  "createEventVoteEntry": {
-    "method": "POST",
-    "path": "/event_votes/:eventVoteId/event_vote_entries",
-    "multipart": true,
-    "expectedParams": ["title"],
-    "optionalParams": ["image"]
   },
   "createExpense": {
     "method": "POST",
@@ -352,14 +335,6 @@
     "method": "DELETE",
     "path": "/events/:eventId/photos/:photoId/comments/:commentId"
   },
-  "deleteEventVote": {
-    "method": "DELETE",
-    "path": "/event_votes/:eventVoteId"
-  },
-  "deleteEventVoteEntry": {
-    "method": "DELETE",
-    "path": "/event_vote_entries/:eventVoteEntryId"
-  },
   "deleteExpense": {
     "method": "DELETE",
     "path": "/events/:eventId/expenses/:expenseId"
@@ -505,10 +480,6 @@
   "getEventRsvp": {
     "method": "GET",
     "path": "/events/:eventId/rsvps/:rsvpId"
-  },
-  "getEventVote": {
-    "method": "GET",
-    "path": "/event_votes/:eventVoteId"
   },
   "getExpense": {
     "method": "GET",
@@ -694,11 +665,6 @@
   "listEventTags": {
     "method": "GET",
     "path": "/event_tags",
-    "optionalParams": ["page"]
-  },
-  "listEventVotes": {
-    "method": "GET",
-    "path": "/events/:eventId/event_votes",
     "optionalParams": ["page"]
   },
   "listEvents": {
@@ -980,10 +946,6 @@
     "method": "POST",
     "path": "/events/:eventId/event_notification_subscription"
   },
-  "unapproveEventVoteEntry": {
-    "method": "DELETE",
-    "path": "/event_vote_entries/:eventVoteEntryId/event_vote_entry_approval"
-  },
   "uncheerEventComment": {
     "method": "DELETE",
     "path": "/events/:eventId/comments/:commentId/cheers"
@@ -1015,10 +977,6 @@
   "unsubscribeFromEventNotifications": {
     "method": "DELETE",
     "path": "/events/:eventId/event_notification_subscription"
-  },
-  "unvoteForEventVoteEntry": {
-    "method": "DELETE",
-    "path": "/event_vote_entries/:eventVoteEntryId/event_vote_entry_rsvp"
   },
   "updateAnnouncement": {
     "method": "PATCH",
@@ -1086,17 +1044,6 @@
     "method": "PATCH",
     "path": "/events/:eventId/rsvps/:rsvpId",
     "expectedParams": ["responseType"]
-  },
-  "updateEventVote": {
-    "method": "PATCH",
-    "path": "/event_votes/:eventVoteId",
-    "optionalParams": ["title", "maxVotes"]
-  },
-  "updateEventVoteEntry": {
-    "method": "PATCH",
-    "path": "/event_vote_entries/:eventVoteEntryId",
-    "multipart": true,
-    "optionalParams": ["title", "image"]
   },
   "updateExpense": {
     "method": "PATCH",
@@ -1219,9 +1166,5 @@
     "method": "PATCH",
     "path": "/user_activities/:userActivityId/comments/:commentId",
     "expectedParams": ["body"]
-  },
-  "voteForEventVoteEntry": {
-    "method": "POST",
-    "path": "/event_vote_entries/:eventVoteEntryId/event_vote_entry_rsvp"
   }
 }
