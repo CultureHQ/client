@@ -696,11 +696,6 @@
     "path": "/profile/point_increments",
     "optionalParams": ["page"]
   },
-  "listProfilePointModifications": {
-    "method": "GET",
-    "path": "/profile/point_modifications",
-    "optionalParams": ["page"]
-  },
   "listRecognitionCheers": {
     "method": "GET",
     "path": "/recognitions/:recognitionId/cheers",

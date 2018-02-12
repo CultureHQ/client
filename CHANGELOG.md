@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Everything to do with event votes.
 - Everything to do with event leaderboards.
 - Everything to do with rewards.
+- The `listProfilePointModifications` call in favor of the `listProfilePointIncrements` call (since redemptions are now gone).
 
 ## [0.0.67] - 2018-02-12
 ### Changed
