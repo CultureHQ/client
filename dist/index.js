@@ -539,7 +539,7 @@ var _stringCase = __webpack_require__(2);
 var _fishbowl = __webpack_require__(3);
 
 var buildHeaders = function buildHeaders(options) {
-  var headers = { "X-Client-Version": "0.0.66" };
+  var headers = { "X-Client-Version": "0.0.67" };
 
   if (!options.multipart) {
     headers["Content-Type"] = "application/json";
@@ -595,9 +595,18 @@ var buildRequest = function buildRequest(method, url, options) {
   return { url: url.href, options: reqOptions };
 };
 
+var logToFishBowl = function logToFishBowl(method, url, options) {
+  var modifiedOptions = Object.assign({}, options);
+  if (modifiedOptions.params && modifiedOptions.params.password) {
+    modifiedOptions.params.password = "******";
+  }
+
+  (0, _fishbowl.swim)("[\u2191] " + method + " " + url.toString() + " " + JSON.stringify(modifiedOptions));
+};
+
 exports.default = function (method, url, options) {
   var request = buildRequest(method, url, options);
-  (0, _fishbowl.swim)("[\u2191] " + method + " " + url.toString() + " " + JSON.stringify(options));
+  logToFishBowl(method, url, options);
 
   return new Promise(function (resolve, reject) {
     fetch(request.url, request.options).then(function (response) {
