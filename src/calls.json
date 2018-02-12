@@ -144,19 +144,6 @@
     "path": "/events/:eventId/event_invites",
     "optionalParams": ["userIds", "locationIds", "interestIds", "departmentIds"]
   },
-  "createEventLeaderboardAttribute": {
-    "method": "POST",
-    "path": "/events/:eventId/event_leaderboard_attributes",
-    "expectedParams": ["title"],
-    "optionalParams": ["quantitative", "sortDescending"]
-  },
-  "createEventLeaderboardAttributeRsvp": {
-    "method": "POST",
-    "path":
-      "/event_leaderboard_attributes/:eventLeaderboardAttributeId/event_leaderboard_attribute_rsvps",
-    "expectedParams": ["value"],
-    "optionalParams": ["rsvpId"]
-  },
   "createEventPhoto": {
     "method": "POST",
     "path": "/events/:eventId/photos",
@@ -318,15 +305,6 @@
     "method": "DELETE",
     "path": "/events/:eventId/comments/:commentId"
   },
-  "deleteEventLeaderboardAttribute": {
-    "method": "DELETE",
-    "path": "/event_leaderboard_attributes/:eventLeaderboardAttributeId"
-  },
-  "deleteEventLeaderboardAttributeRsvp": {
-    "method": "DELETE",
-    "path":
-      "/event_leaderboard_attribute_rsvps/:eventLeaderboardAttributeRsvpId"
-  },
   "deleteEventPhoto": {
     "method": "DELETE",
     "path": "/events/:eventId/photos/:photoId"
@@ -464,10 +442,6 @@
   "getEventComment": {
     "method": "GET",
     "path": "/events/:eventId/comments/:commentId"
-  },
-  "getEventLeaderboardAttribute": {
-    "method": "GET",
-    "path": "/event_leaderboard_attributes/:eventLeaderboardAttributeId"
   },
   "getEventPhoto": {
     "method": "GET",
@@ -630,11 +604,6 @@
   "listEventComments": {
     "method": "GET",
     "path": "/events/:eventId/comments",
-    "optionalParams": ["page"]
-  },
-  "listEventLeaderboardAttributes": {
-    "method": "GET",
-    "path": "/events/:eventId/event_leaderboard_attributes",
     "optionalParams": ["page"]
   },
   "listEventPhotoCheers": {
@@ -1016,18 +985,6 @@
     "method": "PATCH",
     "path": "/events/:eventId/comments/:commentId",
     "expectedParams": ["body"]
-  },
-  "updateEventLeaderboardAttribute": {
-    "method": "PATCH",
-    "path": "/event_leaderboard_attributes/:eventLeaderboardAttributeId",
-    "optionalParams": ["title", "quantitative", "sortDescending"]
-  },
-  "updateEventLeaderboardAttributeRsvp": {
-    "method": "PATCH",
-    "path":
-      "/event_leaderboard_attribute_rsvps/:eventLeaderboardAttributeRsvpId",
-    "expectedParams": ["value"],
-    "optionalParams": ["rsvpId"]
   },
   "updateEventPhoto": {
     "method": "PATCH",

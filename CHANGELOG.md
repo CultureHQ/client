@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Removed
 - The "extra" value from RSVP calls.
 - Everything to do with event votes.
+- Everything to do with event leaderboards.
 
 ## [0.0.67] - 2018-02-12
 ### Changed
