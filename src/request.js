@@ -59,9 +59,18 @@ const buildRequest = (method, url, options) => {
   return { url: url.href, options: reqOptions };
 };
 
+const logToFishBowl = (method, url, options) => {
+  const modifiedOptions = Object.assign({}, options);
+  if (modifiedOptions.params && modifiedOptions.params.password) {
+    modifiedOptions.params.password = "******";
+  }
+
+  swim(`[↑] ${method} ${url.toString()} ${JSON.stringify(modifiedOptions)}`);
+};
+
 export default (method, url, options) => {
   const request = buildRequest(method, url, options);
-  swim(`[↑] ${method} ${url.toString()} ${JSON.stringify(options)}`);
+  logToFishBowl(method, url, options);
 
   return new Promise((resolve, reject) => {
     fetch(request.url, request.options)
