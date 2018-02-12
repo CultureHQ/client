@@ -222,17 +222,6 @@
     "expectedParams": ["body"],
     "optionalParams": ["parentCommentId"]
   },
-  "createReward": {
-    "method": "POST",
-    "path": "/rewards",
-    "multipart": true,
-    "expectedParams": ["name", "points"],
-    "optionalParams": ["description", "image"]
-  },
-  "createRewardRedemption": {
-    "method": "POST",
-    "path": "/rewards/:rewardId/redemptions"
-  },
   "createSession": {
     "method": "POST",
     "path": "/sessions",
@@ -348,14 +337,6 @@
   "deleteRecognitionComment": {
     "method": "DELETE",
     "path": "/recognitions/:recognitionId/comments/:commentId"
-  },
-  "deleteReward": {
-    "method": "DELETE",
-    "path": "/rewards/:rewardId"
-  },
-  "deleteRewardRedemption": {
-    "method": "DELETE",
-    "path": "/rewards/:rewardId/redemptions/:redemptionId"
   },
   "deleteSlackIntegration": {
     "method": "DELETE",
@@ -511,14 +492,6 @@
   "getRecognitionComment": {
     "method": "GET",
     "path": "/recognitions/:recognitionId/comments/:commentId"
-  },
-  "getReward": {
-    "method": "GET",
-    "path": "/rewards/:rewardId"
-  },
-  "getRewardRedemption": {
-    "method": "GET",
-    "path": "/rewards/:rewardId/redemptions/:redemptionId"
   },
   "getSurvey": {
     "method": "GET",
@@ -728,11 +701,6 @@
     "path": "/profile/point_modifications",
     "optionalParams": ["page"]
   },
-  "listProfileRedemptions": {
-    "method": "GET",
-    "path": "/profile/redemptions",
-    "optionalParams": ["page"]
-  },
   "listRecognitionCheers": {
     "method": "GET",
     "path": "/recognitions/:recognitionId/cheers",
@@ -751,21 +719,6 @@
   "listRecognitions": {
     "method": "GET",
     "path": "/recognitions",
-    "optionalParams": ["page"]
-  },
-  "listRedemptions": {
-    "method": "GET",
-    "path": "/redemptions",
-    "optionalParams": ["page"]
-  },
-  "listRewardRedemptions": {
-    "method": "GET",
-    "path": "/rewards/:rewardId/redemptions",
-    "optionalParams": ["page"]
-  },
-  "listRewards": {
-    "method": "GET",
-    "path": "/rewards",
     "optionalParams": ["page"]
   },
   "listSlackIntegrations": {
@@ -1073,16 +1026,6 @@
     "method": "PATCH",
     "path": "/recognitions/:recognitionId/comments/:commentId",
     "expectedParams": ["body"]
-  },
-  "updateReward": {
-    "method": "PATCH",
-    "path": "/rewards/:rewardId",
-    "multipart": true,
-    "optionalParams": ["name", "points", "description", "image"]
-  },
-  "updateRewardRedemption": {
-    "method": "PATCH",
-    "path": "/rewards/:rewardId/redemptions/:redemptionId"
   },
   "updateSurvey": {
     "method": "PATCH",
