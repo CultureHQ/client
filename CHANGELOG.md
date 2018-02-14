@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.0.68] - 2018-02-14
 ### Added
 - All of the `flag*` calls for flagging various content around the platform.
 - The `listFlags` call with an optional `reviewed` parameter.
@@ -482,7 +484,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.62...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.68...HEAD
+[0.0.68]: https://github.com/CultureHQ/client/compare/v0.0.67...v0.0.68
+[0.0.67]: https://github.com/CultureHQ/client/compare/v0.0.66...v0.0.67
+[0.0.66]: https://github.com/CultureHQ/client/compare/v0.0.65...v0.0.66
+[0.0.65]: https://github.com/CultureHQ/client/compare/v0.0.64...v0.0.65
+[0.0.64]: https://github.com/CultureHQ/client/compare/v0.0.63...v0.0.64
+[0.0.63]: https://github.com/CultureHQ/client/compare/v0.0.62...v0.0.63
 [0.0.62]: https://github.com/CultureHQ/client/compare/v0.0.61...v0.0.62
 [0.0.61]: https://github.com/CultureHQ/client/compare/v0.0.60...v0.0.61
 [0.0.60]: https://github.com/CultureHQ/client/compare/v0.0.59...v0.0.60
