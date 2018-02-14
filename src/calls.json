@@ -80,10 +80,6 @@
     "method": "POST",
     "path": "/user_activities/:userActivityId/comments/:commentId/cheers"
   },
-  "clearContentModerationEvent": {
-    "method": "DELETE",
-    "path": "/content_moderation_events/:contentModerationEventId"
-  },
   "confirmEventAttendance": {
     "method": "POST",
     "path": "/events/:eventId/confirmation"
@@ -396,6 +392,46 @@
     "method": "POST",
     "path": "/exports/event_export"
   },
+  "flagAvatar": {
+    "method": "POST",
+    "path": "/users/:userId/flags",
+    "optionalParams": ["message"]
+  },
+  "flagComment": {
+    "method": "POST",
+    "path": "/comments/:commentId/flags",
+    "optionalParams": ["message"]
+  },
+  "flagDepartment": {
+    "method": "POST",
+    "path": "/departments/:departmentId/flags",
+    "optionalParams": ["message"]
+  },
+  "flagEvent": {
+    "method": "POST",
+    "path": "/events/:eventId/flags",
+    "optionalParams": ["message"]
+  },
+  "flagInterest": {
+    "method": "POST",
+    "path": "/interests/:interestId/flags",
+    "optionalParams": ["message"]
+  },
+  "flagLocation": {
+    "method": "POST",
+    "path": "/locations/:locationId/flags",
+    "optionalParams": ["message"]
+  },
+  "flagPhoto": {
+    "method": "POST",
+    "path": "/photos/:photoId/flags",
+    "optionalParams": ["message"]
+  },
+  "flagRecognition": {
+    "method": "POST",
+    "path": "/recognitions/:recognitionId/flags",
+    "optionalParams": ["message"]
+  },
   "getAnnouncement": {
     "method": "GET",
     "path": "/announcements/:announcementId"
@@ -544,11 +580,6 @@
     "path": "/announcements",
     "optionalParams": ["page", "active"]
   },
-  "listContentModerationEvents": {
-    "method": "GET",
-    "path": "/content_moderation_events",
-    "optionalParams": ["page"]
-  },
   "listDepartmentAnalytics": {
     "method": "GET",
     "path": "/analytics/departments",
@@ -635,6 +666,11 @@
   "listFeedbacks": {
     "method": "GET",
     "path": "/feedbacks",
+    "optionalParams": ["page", "reviewed"]
+  },
+  "listFlags": {
+    "method": "GET",
+    "path": "/flags",
     "optionalParams": ["page", "reviewed"]
   },
   "listInterestUsers": {
@@ -954,6 +990,11 @@
     "method": "PATCH",
     "path": "/events/:eventId/expenses/:expenseId",
     "optionalParams": ["description", "amount"]
+  },
+  "updateFlag": {
+    "method": "PATCH",
+    "path": "/flags/:flagId",
+    "expectedParams": ["reviewed"]
   },
   "updateInterest": {
     "method": "PATCH",

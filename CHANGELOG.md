@@ -5,12 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- All of the `flag*` calls for flagging various content around the platform.
+- The `listFlags` call with an optional `reviewed` parameter.
+- The `updateFlag` call to mark something as `reviewed` or not.
+
 ### Removed
 - The "extra" value from RSVP calls.
 - Everything to do with event votes.
 - Everything to do with event leaderboards.
 - Everything to do with rewards.
 - The `listProfilePointModifications` call in favor of the `listProfilePointIncrements` call (since redemptions are now gone).
+- Everything to do with content moderation events.
 
 ## [0.0.67] - 2018-02-12
 ### Changed
