@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.69] - 2018-02-15
+### Changed
+- The `adminSendInvite`, `sendInvite`, `updateProfile`, `updateUser` calls all changed from having the optional `departmentIds` and `locationId` parameters to having the optional `departmentNames` and `locationName` parameters. This will create one on the fly if the name is missing, allowing users to type in their own without having to go through the admin.
+
 ## [0.0.68] - 2018-02-14
 ### Added
 - All of the `flag*` calls for flagging various content around the platform.

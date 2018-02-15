@@ -19,8 +19,8 @@
     "multipart": true,
     "expectedParams": ["name", "email"],
     "optionalParams": [
-      "locationId",
-      "departmentIds",
+      "locationName",
+      "departmentNames",
       "interestNames",
       "avatar",
       "title"
@@ -888,8 +888,8 @@
     "multipart": true,
     "expectedParams": ["name", "email"],
     "optionalParams": [
-      "locationId",
-      "departmentIds",
+      "locationName",
+      "departmentNames",
       "interestNames",
       "avatar",
       "title"
@@ -1032,11 +1032,11 @@
     "optionalParams": [
       "name",
       "email",
-      "departmentIds",
+      "departmentNames",
       "interestNames",
       "avatar",
       "title",
-      "locationId"
+      "locationName"
     ]
   },
   "updateProfileEmailSettings": {
@@ -1090,11 +1090,11 @@
     "optionalParams": [
       "name",
       "email",
-      "departmentIds",
+      "departmentNames",
       "interestNames",
       "avatar",
       "title",
-      "locationId",
+      "locationName",
       "organizationAdmin"
     ]
   },
