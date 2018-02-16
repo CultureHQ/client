@@ -161,7 +161,8 @@
   "createExpense": {
     "method": "POST",
     "path": "/events/:eventId/expenses",
-    "expectedParams": ["description", "amount"]
+    "expectedParams": ["description", "amount"],
+    "optionalParams": ["incurredAt"]
   },
   "createFeedback": {
     "method": "POST",
@@ -989,7 +990,7 @@
   "updateExpense": {
     "method": "PATCH",
     "path": "/events/:eventId/expenses/:expenseId",
-    "optionalParams": ["description", "amount"]
+    "optionalParams": ["description", "amount", "incurredAt"]
   },
   "updateFlag": {
     "method": "PATCH",
