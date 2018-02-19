@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Added
 - The `incurredAt` optional parameter to the `createExpense` and `updateExpense` calls.
+- The optional `interestNames` parameter to the `createEvent` and `updateEvent` calls.
+
+### Removed
+- Event tags and all references to them.
 
 ## [0.0.69] - 2018-02-15
 ### Changed
