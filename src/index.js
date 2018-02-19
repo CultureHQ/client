@@ -6,11 +6,60 @@ import apiCall from "./api-call";
 import { camelize } from "./string-case";
 import { startSwimming } from "./fishbowl";
 
-const signInCallback = response => {
-  state.signIn(response.apiKey.token);
-  return response;
-};
-
+/**
+ * A class for handling the connection to and querying of the CultureHQ API.
+ * Mostly everything is represented in the `calls.json` file, as every call
+ * listed in that file represents a member function on this class.
+ *
+ * == API call semantics ==
+ *
+ * Every API call function returns a `Promise` object. You can call them with
+ * normal `Promise` semantics, as in below:
+ *
+ *     const getProfile = () => {
+ *       cultureHQ.getProfile().then(response => {
+ *         console.log(response);
+ *       }).catch(error => {
+ *         console.error(error);
+ *       });
+ *     };
+ *
+ * or you can use `async`/`await` syntax, as in below:
+ *
+ *     const getProfile = async () => {
+ *       try {
+ *         const response = await cultureHQ.getProfile();
+ *         console.log(response);
+ *       } catch (error) {
+ *         console.error(error);
+ *       }
+ *     };
+ *
+ * == WebSocket connection semantics ==
+ *
+ * There are a few functions on the client that will establish a WebSocket
+ * connection and call a callback function when data is received. For these
+ * functions, in order to avoid leaking memory, it's important to ensure that 
+ * when you're done with the subscription (for instance when the component
+ * containing it is unmounted) that you call `unsubscribe` on the subscription
+ * object. An example with React of using these functions is below:
+ *
+ *     class MyComponent {
+ *       state = { notification: null };
+ *
+ *       componentDidMount() {
+ *         this.subscription = client.onNotificationReceived(notification => {
+ *           this.setState({ notification });
+ *         });
+ *       }
+ *
+ *       componentWillUnmount() {
+ *         if (this.subscription) {
+ *           this.subscription.unsubscribe();
+ *         }
+ *       }
+ *     }
+ */
 class CultureHQ {
   constructor(options = {}) {
     this.apiHost = options.apiHost;
@@ -37,36 +86,12 @@ class CultureHQ {
     return state.isSimulating();
   }
 
-  /**
-   * Builds and returns a subscription object that listens to profile updates
-   * from the API. When new data is received, it transforms the data as it would
-   * for regular responses and calls the callback.
-   *
-   * In order to avoid leaking memory, it's important to ensure that when you're
-   * done with the subscription (for instance when the component containing it
-   * is unmounted) that you call `unsubscribe` on the subscription object. An
-   * example with React of using this function is below:
-   *
-   *     class MyComponent {
-   *       state = { pointIncrement: null };
-   *
-   *       componentDidMount() {
-   *         this.subscription = client.onPointsIncremented(pointIncrement => {
-   *           this.setState({ pointIncrement });
-   *         });
-   *       }
-   *
-   *       componentWillUnmount() {
-   *         if (this.subscription) {
-   *           this.subscription.unsubscribe();
-   *         }
-   *       }
-   *     }
-   */
+  onNotificationReceived(callback) {
+    return this._subscribeToChannel("NotificationChannel");
+  }
+
   onPointsIncremented(callback) {
-    this._ensureConsumer().subscriptions.create("PointIncrementChannel", {
-      received: pointIncrement => callback(camelize(pointIncrement))
-    });
+    return this._subscribeToChannel("PointIncrementChannel");
   }
 
   setToken(token) {
@@ -74,7 +99,10 @@ class CultureHQ {
   }
 
   signIn(params) {
-    return this.createApiKey(params).then(signInCallback);
+    return this.createApiKey(params).then(response => {
+      state.signIn(response.apiKey.token);
+      return response;
+    });
   }
 
   signOut() {
@@ -99,6 +127,12 @@ class CultureHQ {
     const endpoint = `${wsProtocol}://${host}/cable/${state.getToken()}`;
     this._consumer = ActionCable.createConsumer(endpoint);
     return this._consumer;
+  }
+
+  _subscribeToChannel(channel) {
+    return this._ensureConsumer().subscriptions.create(channel, {
+      received: data => callback(camelize(data))
+    });
   }
 }
 

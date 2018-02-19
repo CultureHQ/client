@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - The `incurredAt` optional parameter to the `createExpense` and `updateExpense` calls.
 - The optional `interestNames` parameter to the `createEvent` and `updateEvent` calls.
+- The `onNotificationReceived` WebSocket connection function.
 
 ### Removed
 - Event tags and all references to them.

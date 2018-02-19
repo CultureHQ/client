@@ -18,7 +18,7 @@ You initialize a client with an object that contains information about how to co
 const cultureHQ = new CultureHQ({ apiHost: "https://api.culturehq.com" });
 ```
 
-Every function except `isSignedIn` and `signOut` returns a `Promise`. You can call them using normal `Promise` semantics, as in below:
+Every API call function returns a `Promise`. You can call them using normal `Promise` semantics, as in below:
 
 ```js
 const getProfile = () => {
