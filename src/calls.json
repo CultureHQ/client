@@ -126,7 +126,7 @@
       "openInvites",
       "inviteeIds",
       "timezone",
-      "eventTagNames"
+      "interestNames"
     ]
   },
   "createEventComment": {
@@ -636,11 +636,6 @@
     "path": "/events/:eventId/rsvps",
     "optionalParams": ["page", "responseType"]
   },
-  "listEventTags": {
-    "method": "GET",
-    "path": "/event_tags",
-    "optionalParams": ["page"]
-  },
   "listEvents": {
     "method": "GET",
     "path": "/events",
@@ -963,7 +958,7 @@
       "locationIds",
       "inviteOnly",
       "openInvites",
-      "eventTagNames"
+      "interestNames"
     ]
   },
   "updateEventComment": {
