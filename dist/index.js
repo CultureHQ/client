@@ -395,12 +395,12 @@ var CultureHQ = function () {
   }, {
     key: "onNotificationReceived",
     value: function onNotificationReceived(callback) {
-      return this._subscribeToChannel("NotificationChannel");
+      return this._subscribeToChannel("NotificationChannel", callback);
     }
   }, {
     key: "onPointsIncremented",
     value: function onPointsIncremented(callback) {
-      return this._subscribeToChannel("PointIncrementChannel");
+      return this._subscribeToChannel("PointIncrementChannel", callback);
     }
   }, {
     key: "setToken",
@@ -448,7 +448,7 @@ var CultureHQ = function () {
     }
   }, {
     key: "_subscribeToChannel",
-    value: function _subscribeToChannel(channel) {
+    value: function _subscribeToChannel(channel, callback) {
       return this._ensureConsumer().subscriptions.create(channel, {
         received: function received(data) {
           return callback((0, _stringCase.camelize)(data));
@@ -573,7 +573,7 @@ var _stringCase = __webpack_require__(2);
 var _fishbowl = __webpack_require__(3);
 
 var buildHeaders = function buildHeaders(options) {
-  var headers = { "X-Client-Version": "0.0.70" };
+  var headers = { "X-Client-Version": "0.0.71" };
 
   if (!options.multipart) {
     headers["Content-Type"] = "application/json";

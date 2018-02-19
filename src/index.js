@@ -87,11 +87,11 @@ class CultureHQ {
   }
 
   onNotificationReceived(callback) {
-    return this._subscribeToChannel("NotificationChannel");
+    return this._subscribeToChannel("NotificationChannel", callback);
   }
 
   onPointsIncremented(callback) {
-    return this._subscribeToChannel("PointIncrementChannel");
+    return this._subscribeToChannel("PointIncrementChannel", callback);
   }
 
   setToken(token) {
@@ -129,7 +129,7 @@ class CultureHQ {
     return this._consumer;
   }
 
-  _subscribeToChannel(channel) {
+  _subscribeToChannel(channel, callback) {
     return this._ensureConsumer().subscriptions.create(channel, {
       received: data => callback(camelize(data))
     });
