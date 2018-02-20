@@ -208,6 +208,10 @@
     "path": "/photos/:photoId/photo_tags",
     "expectedParams": ["userId"]
   },
+  "createProfileNotificationView": {
+    "method": "POST",
+    "path": "/profile/notification_views"
+  },
   "createRecognition": {
     "method": "POST",
     "path": "/recognitions",
@@ -722,6 +726,11 @@
     "method": "GET",
     "path": "/profile/event_surveys",
     "optionalParams": ["filter"]
+  },
+  "listProfileNotifications": {
+    "method": "GET",
+    "path": "/profile/notifications",
+    "optionalParams": ["seen", "page"]
   },
   "listProfilePointIncrements": {
     "method": "GET",

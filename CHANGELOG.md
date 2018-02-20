@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.72] - 2018-02-20
+### Added
+- The `listProfileNotifications` and `createProfileNotificationView` calls.
+
 ## [0.0.71] - 2018-02-19
 ### Changed
 - Fixed the method in which channels are subscribed.
