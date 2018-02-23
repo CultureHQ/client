@@ -4,13 +4,12 @@ import fs from "fs";
 import createServer from "./create-server";
 import CultureHQ from "../src/index";
 import calls from "../src/calls";
+import state from "../src/state";
 
 const port = 1693;
 const client = new CultureHQ({ apiHost: `http://localhost:${port}` });
 
-afterEach(() => {
-  client.signOut();
-});
+afterEach(() => state.signOut());
 
 test("starts signed out", () => {
   expect(client.isSignedIn()).toBe(false);
