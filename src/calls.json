@@ -331,6 +331,10 @@
     "method": "DELETE",
     "path": "/recognitions/:recognitionId/comments/:commentId"
   },
+  "deleteSession": {
+    "method": "DELETE",
+    "path": "/session"
+  },
   "deleteSlackIntegration": {
     "method": "DELETE",
     "path": "/slack_integrations/:slackIntegrationId"
