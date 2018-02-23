@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Removed
 - The `onPointsIncremented` function, as it has been made obsolete by the `onNotificationReceived` function.
+- The `createOrganizationBot`, `deleteOrganizationBot`, and `listOrganizationBots` calls, as they're no longer necessary.
 
 ## [0.0.72] - 2018-02-20
 ### Added
