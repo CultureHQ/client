@@ -102,7 +102,10 @@ class CultureHQ {
   }
 
   signOut() {
-    state.signOut();
+    return this.deleteSession().then(response => {
+      state.signOut();
+      return response;
+    });
   }
 
   startUserSimulation(params) {

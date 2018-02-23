@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.74] - 2018-02-23
+### Changed
+- Make the API call to delete the session when logging out.
+
 ## [0.0.73] - 2018-02-23
 ### Added
 - The `deleteSession` call to invalidate API keys on sign out.

@@ -413,7 +413,10 @@ var CultureHQ = function () {
   }, {
     key: "signOut",
     value: function signOut() {
-      _state2.default.signOut();
+      return this.deleteSession().then(function (response) {
+        _state2.default.signOut();
+        return response;
+      });
     }
   }, {
     key: "startUserSimulation",
@@ -568,7 +571,7 @@ var _stringCase = __webpack_require__(2);
 var _fishbowl = __webpack_require__(3);
 
 var buildHeaders = function buildHeaders(options) {
-  var headers = { "X-Client-Version": "0.0.73" };
+  var headers = { "X-Client-Version": "0.0.74" };
 
   if (!options.multipart) {
     headers["Content-Type"] = "application/json";
