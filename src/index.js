@@ -90,10 +90,6 @@ class CultureHQ {
     return this._subscribeToChannel("NotificationChannel", callback);
   }
 
-  onPointsIncremented(callback) {
-    return this._subscribeToChannel("PointIncrementChannel", callback);
-  }
-
   setToken(token) {
     state.signIn(token);
   }
