@@ -186,8 +186,6 @@
     "multipart": true,
     "expectedParams": ["name"],
     "optionalParams": [
-      "primaryColor",
-      "secondaryColor",
       "gamificationEnabled",
       "logo",
       "active",
@@ -1013,8 +1011,6 @@
     "multipart": true,
     "optionalParams": [
       "name",
-      "primaryColor",
-      "secondaryColor",
       "gamificationEnabled",
       "logo",
       "active",
