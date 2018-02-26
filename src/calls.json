@@ -219,6 +219,10 @@
     "expectedParams": ["body"],
     "optionalParams": ["parentCommentId"]
   },
+  "createSamlAgreement": {
+    "method": "POST",
+    "path": "/saml/agreement"
+  },
   "createSession": {
     "method": "POST",
     "path": "/sessions",

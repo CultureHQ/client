@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.76] - 2018-02-26
+### Added
+- The `createSamlAgreement` call.
+
 ## [0.0.75] - 2018-02-23
 ### Changed
 - Do not require body on the `createAnnouncement` or `updateAnnouncement` calls.
