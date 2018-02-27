@@ -185,12 +185,7 @@
     "path": "/admin/organizations",
     "multipart": true,
     "expectedParams": ["name"],
-    "optionalParams": [
-      "gamificationEnabled",
-      "logo",
-      "active",
-      "mode"
-    ]
+    "optionalParams": ["gamificationEnabled", "logo", "active", "mode"]
   },
   "createOrganizationValue": {
     "method": "POST",
@@ -573,6 +568,10 @@
     "path": "/users/:userId/point_increments",
     "expectedParams": ["points"]
   },
+  "invalidateOtherApiKeys": {
+    "method": "DELETE",
+    "path": "/api_keys"
+  },
   "listActiveAnnouncements": {
     "method": "GET",
     "path": "/active_announcements",
@@ -582,6 +581,10 @@
     "method": "GET",
     "path": "/announcements",
     "optionalParams": ["page", "active"]
+  },
+  "listApiKeys": {
+    "method": "GET",
+    "path": "/api_keys"
   },
   "listDepartmentAnalytics": {
     "method": "GET",
@@ -1009,13 +1012,7 @@
     "method": "PATCH",
     "path": "/admin/organizations/:organizationId",
     "multipart": true,
-    "optionalParams": [
-      "name",
-      "gamificationEnabled",
-      "logo",
-      "active",
-      "mode"
-    ]
+    "optionalParams": ["name", "gamificationEnabled", "logo", "active", "mode"]
   },
   "updateOrganizationValue": {
     "method": "PATCH",
