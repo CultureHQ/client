@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.78] - 2018-03-01
+### Added
+- Send along the token of the simulated user as well.
+
 ## [0.0.77] - 2018-02-27
 ### Added
 - The `invalidateOtherApiKeys` and `listApiKeys` calls.

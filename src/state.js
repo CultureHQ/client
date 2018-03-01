@@ -9,6 +9,8 @@ const state = {
     store.remove(simulationKey);
   },
 
+  getSimulationToken: () => store.get(simulationKey),
+
   getToken: () => store.get(tokenKey),
 
   isSignedIn: () => {

@@ -99,6 +99,10 @@ var state = {
     _store2.default.remove(simulationKey);
   },
 
+  getSimulationToken: function getSimulationToken() {
+    return _store2.default.get(simulationKey);
+  },
+
   getToken: function getToken() {
     return _store2.default.get(tokenKey);
   },
@@ -538,13 +542,13 @@ exports.default = function (client, options) {
 
     return (0, _request2.default)(options.method, new URL("" + client.apiHost + callPath), {
       token: _state2.default.getToken(),
+      simulation: _state2.default.getSimulationToken(),
       params: actualParams,
       multipart: options.multipart || false
     });
   };
 
-  Object.assign(apiCall, options);
-  return apiCall;
+  return Object.assign(apiCall, options);
 };
 
 /***/ }),
@@ -570,14 +574,21 @@ var _stringCase = __webpack_require__(2);
 
 var _fishbowl = __webpack_require__(3);
 
-var buildHeaders = function buildHeaders(options) {
-  var headers = { "X-Client-Version": "0.0.77" };
+var buildHeaders = function buildHeaders(_ref) {
+  var multipart = _ref.multipart,
+      token = _ref.token,
+      simulation = _ref.simulation;
 
-  if (!options.multipart) {
+  var headers = { "X-Client-Version": "0.0.78" };
+
+  if (!multipart) {
     headers["Content-Type"] = "application/json";
   }
-  if (typeof options.token === "string" && options.token.length) {
-    headers["Authorization"] = "token " + options.token;
+  if (typeof token === "string" && token.length) {
+    headers["Authorization"] = "token " + token;
+  }
+  if (typeof simulation === "string" && simulation.length) {
+    headers["X-Client-Simulation"] = simulation;
   }
 
   return headers;

@@ -2,14 +2,17 @@ import "isomorphic-fetch";
 import { camelize, snakerize } from "./string-case";
 import { swim } from "./fishbowl";
 
-const buildHeaders = options => {
+const buildHeaders = ({ multipart, token, simulation }) => {
   let headers = { "X-Client-Version": CLIENT_VERSION };
 
-  if (!options.multipart) {
+  if (!multipart) {
     headers["Content-Type"] = "application/json";
   }
-  if (typeof options.token === "string" && options.token.length) {
-    headers["Authorization"] = `token ${options.token}`;
+  if (typeof token === "string" && token.length) {
+    headers["Authorization"] = `token ${token}`;
+  }
+  if (typeof simulation === "string" && simulation.length) {
+    headers["X-Client-Simulation"] = simulation;
   }
 
   return headers;

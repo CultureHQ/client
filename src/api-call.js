@@ -37,11 +37,11 @@ export default (client, options) => {
 
     return request(options.method, new URL(`${client.apiHost}${callPath}`), {
       token: state.getToken(),
+      simulation: state.getSimulationToken(),
       params: actualParams,
       multipart: options.multipart || false
     });
   };
 
-  Object.assign(apiCall, options);
-  return apiCall;
+  return Object.assign(apiCall, options);
 };
