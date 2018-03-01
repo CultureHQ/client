@@ -36,6 +36,7 @@ export default (client, options) => {
     const callPath = substitutePath(options.path, actualParams);
 
     return request(options.method, new URL(`${client.apiHost}${callPath}`), {
+      client,
       token: state.getToken(),
       simulation: state.getSimulationToken(),
       params: actualParams,

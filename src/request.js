@@ -82,28 +82,34 @@ export default (method, url, options) => {
           `[↓] ${method} ${url.toString()}
           ${response.status} ${response.headers.get("content-type")}`
         );
+
         const success = Math.round(response.status / 200) === 1;
 
-        if (response.status === 204) {
-          resolve(null);
-        } else if (response.headers.get("content-type") === "text/html") {
-          if (success) {
-            response
-              .text()
-              .then(text => resolve({ response, text }))
-              .catch(error => reject(error));
+        options.client.recordResponse(response.status).then(() => {
+          if (response.status === 204) {
+            resolve(null);
+          } else if (response.headers.get("content-type") === "text/html") {
+            if (success) {
+              response
+                .text()
+                .then(text => resolve({ response, text }))
+                .catch(error => reject(error));
+            } else {
+              reject({ response, error: response.statusText });
+            }
           } else {
-            reject({ response, error: response.statusText });
+            response
+              .json()
+              .then(json => {
+                const fullResponse = Object.assign(
+                  { response },
+                  camelize(json)
+                );
+                success ? resolve(fullResponse) : reject(fullResponse);
+              })
+              .catch(error => reject(error));
           }
-        } else {
-          response
-            .json()
-            .then(json => {
-              const fullResponse = Object.assign({ response }, camelize(json));
-              success ? resolve(fullResponse) : reject(fullResponse);
-            })
-            .catch(error => reject(error));
-        }
+        });
       })
       .catch(error => reject(error));
   });

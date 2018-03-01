@@ -369,6 +369,8 @@ var CultureHQ = function () {
 
     _classCallCheck(this, CultureHQ);
 
+    this.rejectedRequests = 0;
+
     this.apiHost = options.apiHost;
 
     this.fishbowlHost = options.fishbowlHost;
@@ -382,6 +384,25 @@ var CultureHQ = function () {
   }
 
   _createClass(CultureHQ, [{
+    key: "recordResponse",
+    value: function recordResponse(status) {
+      var _this2 = this;
+
+      if (status === 403) {
+        this.rejectedRequests += 1;
+
+        if (this.rejectedRequests === 5) {
+          return this.signOut().then(function () {
+            return _this2.rejectedRequests = 0;
+          });
+        }
+      } else {
+        this.rejectedRequests = 0;
+      }
+
+      return Promise.resolve();
+    }
+  }, {
     key: "endUserSimulation",
     value: function endUserSimulation() {
       _state2.default.endSimulation();
@@ -541,6 +562,7 @@ exports.default = function (client, options) {
     var callPath = substitutePath(options.path, actualParams);
 
     return (0, _request2.default)(options.method, new URL("" + client.apiHost + callPath), {
+      client: client,
       token: _state2.default.getToken(),
       simulation: _state2.default.getSimulationToken(),
       params: actualParams,
@@ -579,7 +601,7 @@ var buildHeaders = function buildHeaders(_ref) {
       token = _ref.token,
       simulation = _ref.simulation;
 
-  var headers = { "X-Client-Version": "0.0.78" };
+  var headers = { "X-Client-Version": "0.0.79" };
 
   if (!multipart) {
     headers["Content-Type"] = "application/json";
@@ -654,28 +676,31 @@ exports.default = function (method, url, options) {
   return new Promise(function (resolve, reject) {
     fetch(request.url, request.options).then(function (response) {
       (0, _fishbowl.swim)("[\u2193] " + method + " " + url.toString() + "\n          " + response.status + " " + response.headers.get("content-type"));
+
       var success = Math.round(response.status / 200) === 1;
 
-      if (response.status === 204) {
-        resolve(null);
-      } else if (response.headers.get("content-type") === "text/html") {
-        if (success) {
-          response.text().then(function (text) {
-            return resolve({ response: response, text: text });
+      options.client.recordResponse(response.status).then(function () {
+        if (response.status === 204) {
+          resolve(null);
+        } else if (response.headers.get("content-type") === "text/html") {
+          if (success) {
+            response.text().then(function (text) {
+              return resolve({ response: response, text: text });
+            }).catch(function (error) {
+              return reject(error);
+            });
+          } else {
+            reject({ response: response, error: response.statusText });
+          }
+        } else {
+          response.json().then(function (json) {
+            var fullResponse = Object.assign({ response: response }, (0, _stringCase.camelize)(json));
+            success ? resolve(fullResponse) : reject(fullResponse);
           }).catch(function (error) {
             return reject(error);
           });
-        } else {
-          reject({ response: response, error: response.statusText });
         }
-      } else {
-        response.json().then(function (json) {
-          var fullResponse = Object.assign({ response: response }, (0, _stringCase.camelize)(json));
-          success ? resolve(fullResponse) : reject(fullResponse);
-        }).catch(function (error) {
-          return reject(error);
-        });
-      }
+      });
     }).catch(function (error) {
       return reject(error);
     });

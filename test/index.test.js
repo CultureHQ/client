@@ -1,4 +1,5 @@
 import "url-polyfill";
+import store from "store/dist/store.modern";
 import fs from "fs";
 
 import createServer from "./create-server";
@@ -26,6 +27,34 @@ test("signs in and reports signed in status correctly", async () => {
     const response = await client.signIn({ email: "foo", password: "bar" });
     expect(response.apiKey.token).toEqual("baz");
     expect(client.isSignedIn()).toBe(true);
+  } finally {
+    server.close();
+  }
+});
+
+test.only("auto signs out you hit 5 403s in a row", async () => {
+  const server = createServer([
+    { status: 200, body: { apiKey: { token: "baz" } } },
+    { status: 403, body: { error: "foo" } },
+    { status: 403, body: { error: "foo" } },
+    { status: 403, body: { error: "foo" } },
+    { status: 403, body: { error: "foo" } },
+    { status: 403, body: { error: "foo" } },
+    { status: 204, body: { foo: "bar" } }
+  ]);
+  server.listen(1700);
+
+  try {
+    const autoClient = new CultureHQ({ apiHost: "http://localhost:1700" });
+    await autoClient.signIn({ email: "foo", password: "bar" });
+
+    for (let idx = 0; idx < 5; idx += 1) {
+      try {
+        await autoClient.getProfile();
+      } catch (error) {}
+    }
+
+    expect(autoClient.isSignedIn()).toBe(false);
   } finally {
     server.close();
   }

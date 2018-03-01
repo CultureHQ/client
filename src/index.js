@@ -62,6 +62,8 @@ import { startSwimming } from "./fishbowl";
  */
 class CultureHQ {
   constructor(options = {}) {
+    this.rejectedRequests = 0;
+
     this.apiHost = options.apiHost;
 
     this.fishbowlHost = options.fishbowlHost;
@@ -72,6 +74,20 @@ class CultureHQ {
     Object.keys(calls).forEach(callName => {
       this[callName] = apiCall(this, calls[callName]);
     });
+  }
+
+  recordResponse(status) {
+    if (status === 403) {
+      this.rejectedRequests += 1;
+
+      if (this.rejectedRequests === 5) {
+        return this.signOut().then(() => (this.rejectedRequests = 0));
+      }
+    } else {
+      this.rejectedRequests = 0;
+    }
+
+    return Promise.resolve();
   }
 
   endUserSimulation() {
