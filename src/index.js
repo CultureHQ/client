@@ -80,7 +80,8 @@ class CultureHQ {
     if (status === 403) {
       this.rejectedRequests += 1;
 
-      if (this.rejectedRequests === 5) {
+      // After 3 403s in a row, automatically sign out.
+      if (this.rejectedRequests === 3) {
         return this.signOut().then(() => (this.rejectedRequests = 0));
       }
     } else {

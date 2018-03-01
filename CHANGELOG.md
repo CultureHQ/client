@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.80] - 2018-03-01
+### Changed
+- Auto signout after 3 403 responses.
+
 ## [0.0.79] - 2018-03-01
 ### Added
 - Auto signout after 5 403 responses.

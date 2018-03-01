@@ -391,7 +391,8 @@ var CultureHQ = function () {
       if (status === 403) {
         this.rejectedRequests += 1;
 
-        if (this.rejectedRequests === 5) {
+        // After 3 403s in a row, automatically sign out.
+        if (this.rejectedRequests === 3) {
           return this.signOut().then(function () {
             return _this2.rejectedRequests = 0;
           });
@@ -601,7 +602,7 @@ var buildHeaders = function buildHeaders(_ref) {
       token = _ref.token,
       simulation = _ref.simulation;
 
-  var headers = { "X-Client-Version": "0.0.79" };
+  var headers = { "X-Client-Version": "0.0.80" };
 
   if (!multipart) {
     headers["Content-Type"] = "application/json";
