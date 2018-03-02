@@ -38,8 +38,6 @@ test.only("auto signs out you hit 5 403s in a row", async () => {
     { status: 403, body: { error: "foo" } },
     { status: 403, body: { error: "foo" } },
     { status: 403, body: { error: "foo" } },
-    { status: 403, body: { error: "foo" } },
-    { status: 403, body: { error: "foo" } },
     { status: 204, body: { foo: "bar" } }
   ]);
   server.listen(1700);
@@ -48,7 +46,7 @@ test.only("auto signs out you hit 5 403s in a row", async () => {
     const autoClient = new CultureHQ({ apiHost: "http://localhost:1700" });
     await autoClient.signIn({ email: "foo", password: "bar" });
 
-    for (let idx = 0; idx < 5; idx += 1) {
+    for (let idx = 0; idx < 3; idx += 1) {
       try {
         await autoClient.getProfile();
       } catch (error) {}
