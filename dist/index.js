@@ -424,6 +424,16 @@ var CultureHQ = function () {
       return this._subscribeToChannel("NotificationChannel", callback);
     }
   }, {
+    key: "onRecognitionCreated",
+    value: function onRecognitionCreated(callback) {
+      return this._subscribeToChannel("RecognitionChannel", callback);
+    }
+  }, {
+    key: "onUserActivityCreated",
+    value: function onUserActivityCreated(callback) {
+      return this._subscribeToChannel("UserActivityChannel", callback);
+    }
+  }, {
     key: "setToken",
     value: function setToken(token) {
       _state2.default.signIn(token);
@@ -602,7 +612,7 @@ var buildHeaders = function buildHeaders(_ref) {
       token = _ref.token,
       simulation = _ref.simulation;
 
-  var headers = { "X-Client-Version": "0.0.80" };
+  var headers = { "X-Client-Version": "0.0.81" };
 
   if (!multipart) {
     headers["Content-Type"] = "application/json";

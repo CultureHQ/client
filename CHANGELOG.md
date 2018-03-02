@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.0.81] - 2018-03-02
 ### Added
 - The `onRecognitionCreated` and `onUserActivityCreated` functions for subscribing to the recognition and user activity creation channels.
 
@@ -546,7 +548,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.68...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.81...HEAD
+[0.0.81]: https://github.com/CultureHQ/client/compare/v0.0.80...v0.0.81
+[0.0.80]: https://github.com/CultureHQ/client/compare/v0.0.79...v0.0.80
+[0.0.79]: https://github.com/CultureHQ/client/compare/v0.0.78...v0.0.79
+[0.0.78]: https://github.com/CultureHQ/client/compare/v0.0.77...v0.0.78
+[0.0.77]: https://github.com/CultureHQ/client/compare/v0.0.76...v0.0.77
+[0.0.76]: https://github.com/CultureHQ/client/compare/v0.0.75...v0.0.76
+[0.0.75]: https://github.com/CultureHQ/client/compare/v0.0.74...v0.0.75
+[0.0.74]: https://github.com/CultureHQ/client/compare/v0.0.73...v0.0.74
+[0.0.73]: https://github.com/CultureHQ/client/compare/v0.0.72...v0.0.73
+[0.0.72]: https://github.com/CultureHQ/client/compare/v0.0.71...v0.0.72
+[0.0.71]: https://github.com/CultureHQ/client/compare/v0.0.70...v0.0.71
+[0.0.70]: https://github.com/CultureHQ/client/compare/v0.0.69...v0.0.70
+[0.0.69]: https://github.com/CultureHQ/client/compare/v0.0.68...v0.0.69
 [0.0.68]: https://github.com/CultureHQ/client/compare/v0.0.67...v0.0.68
 [0.0.67]: https://github.com/CultureHQ/client/compare/v0.0.66...v0.0.67
 [0.0.66]: https://github.com/CultureHQ/client/compare/v0.0.65...v0.0.66
