@@ -64,6 +64,8 @@ const buildRequest = (method, url, options) => {
 
 const logToFishBowl = (method, url, options) => {
   const modifiedOptions = Object.assign({}, options);
+  delete modifiedOptions.client;
+
   if (modifiedOptions.params && modifiedOptions.params.password) {
     modifiedOptions.params.password = "******";
   }

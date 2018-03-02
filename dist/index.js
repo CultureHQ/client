@@ -673,6 +673,8 @@ var buildRequest = function buildRequest(method, url, options) {
 
 var logToFishBowl = function logToFishBowl(method, url, options) {
   var modifiedOptions = Object.assign({}, options);
+  delete modifiedOptions.client;
+
   if (modifiedOptions.params && modifiedOptions.params.password) {
     modifiedOptions.params.password = "******";
   }

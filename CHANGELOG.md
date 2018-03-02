@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.82] - 2018-03-02
+### Changed
+- Do not break logging to fishbowl with new client option.
+
 ## [0.0.81] - 2018-03-02
 ### Added
 - The `onRecognitionCreated` and `onUserActivityCreated` functions for subscribing to the recognition and user activity creation channels.
