@@ -107,6 +107,14 @@ class CultureHQ {
     return this._subscribeToChannel("NotificationChannel", callback);
   }
 
+  onRecognitionCreated(callback) {
+    return this._subscribeToChannel("RecognitionChannel", callback);
+  }
+
+  onUserActivityCreated(callback) {
+    return this._subscribeToChannel("UserActivityChannel", callback);
+  }
+
   setToken(token) {
     state.signIn(token);
   }
