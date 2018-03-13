@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.83] - 2018-03-13
+### Added
+- The optional `active` parameter to the `listUsers` call, which when given `true` or `false` will filter down to those users matching that criteria.
+- The optional `inviteStatus` parameter on the `listUsers` call, which when given `"pending"` or `"expired"` will filter down to those users matching that criteria.
+
 ## [0.0.82] - 2018-03-02
 ### Changed
 - Do not break logging to fishbowl with new client option.

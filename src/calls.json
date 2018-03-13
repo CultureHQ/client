@@ -829,7 +829,9 @@
       "includeDeactivated",
       "departmentId",
       "interestId",
-      "locationId"
+      "locationId",
+      "active",
+      "inviteStatus"
     ]
   },
   "listWidgetSurveys": {
