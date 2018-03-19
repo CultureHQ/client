@@ -126,7 +126,8 @@
       "openInvites",
       "inviteeIds",
       "timezone",
-      "interestNames"
+      "interestNames",
+      "allLocations"
     ]
   },
   "createEventComment": {
@@ -970,7 +971,8 @@
       "locationIds",
       "inviteOnly",
       "openInvites",
-      "interestNames"
+      "interestNames",
+      "allLocations"
     ]
   },
   "updateEventComment": {

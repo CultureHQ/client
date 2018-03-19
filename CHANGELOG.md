@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Added
 - The `getUserActivity` call for fetching an individual feed item.
+- The optional `allLocations` param for the `createEvent` and `updateEvent` calls.
 
 ## [0.0.83] - 2018-03-13
 ### Added
