@@ -569,6 +569,11 @@
     "method": "GET",
     "path": "/users/:userId/point_breakdown"
   },
+  "getUserPointIncrements": {
+    "method": "GET",
+    "path": "/users/:userId/point_increments",
+    "optionalParams": ["page"]
+  },
   "getUserRecognitionLeaderboard": {
     "method": "GET",
     "path": "/leaderboard/user_recognitions"

@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - The `getUserActivity` call for fetching an individual feed item.
 - The optional `allLocations` param for the `createEvent` and `updateEvent` calls.
 - The `createMeeting` call for the "Meet Someone New" feature.
+- The `getUserPointIncrements` call for listing the points awarded to a particular user.
 
 ## [0.0.83] - 2018-03-13
 ### Added
