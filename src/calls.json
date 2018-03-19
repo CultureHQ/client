@@ -181,6 +181,11 @@
     "path": "/locations",
     "expectedParams": ["name"]
   },
+  "createMeeting": {
+    "method": "POST",
+    "path": "/meetings",
+    "optionalParams": ["departmentIds", "interestIds", "locationIds"]
+  },
   "createOrganization": {
     "method": "POST",
     "path": "/admin/organizations",
