@@ -39,7 +39,7 @@ import { startSwimming } from "./fishbowl";
  *
  * There are a few functions on the client that will establish a WebSocket
  * connection and call a callback function when data is received. For these
- * functions, in order to avoid leaking memory, it's important to ensure that 
+ * functions, in order to avoid leaking memory, it's important to ensure that
  * when you're done with the subscription (for instance when the component
  * containing it is unmounted) that you call `unsubscribe` on the subscription
  * object. An example with React of using these functions is below:

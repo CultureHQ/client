@@ -1,6 +1,6 @@
 {
   "name": "culturehq-client",
-  "version": "0.0.83",
+  "version": "0.0.84",
   "description": "A JavaScript client that wraps the CultureHQ API",
   "main": "dist/index.js",
   "scripts": {
@@ -19,21 +19,21 @@
   },
   "homepage": "https://github.com/CultureHQ/client#readme",
   "dependencies": {
-    "actioncable": "^5.1.4",
+    "actioncable": "^5.1.5",
     "isomorphic-fetch": "^2.2.1",
     "store": "^2.0.12",
-    "url-polyfill": "^1.0.9"
+    "url-polyfill": "^1.0.11"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
+    "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
     "isomorphic-form-data": "^1.0.0",
-    "jest": "^20.0.4",
+    "jest": "^22.4.2",
     "json-loader": "^0.5.7",
     "packfiles": "^0.0.2",
-    "prettier": "^1.6.1",
-    "webpack": "^3.5.5",
+    "prettier": "^1.11.1",
+    "webpack": "^4.1.1",
     "webpack-node-externals": "^1.6.0"
   }
 }

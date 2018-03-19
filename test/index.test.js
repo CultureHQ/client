@@ -32,7 +32,7 @@ test("signs in and reports signed in status correctly", async () => {
   }
 });
 
-test.only("auto signs out you hit 5 403s in a row", async () => {
+test("auto signs out you hit 5 403s in a row", async () => {
   const server = createServer([
     { status: 200, body: { apiKey: { token: "baz" } } },
     { status: 403, body: { error: "foo" } },
