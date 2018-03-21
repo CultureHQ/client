@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.85] - 2018-03-21
+### Changed
+- Rename `createSamlAgreement` to `createSSOAgreement`, as it's now being used by the new managed password mode as well.
+
 ## [0.0.84] - 2018-03-19
 ### Added
 - The `getUserActivity` call for fetching an individual feed item.
