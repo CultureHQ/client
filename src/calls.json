@@ -218,9 +218,9 @@
     "expectedParams": ["body"],
     "optionalParams": ["parentCommentId"]
   },
-  "createSamlAgreement": {
+  "createSSOAgreement": {
     "method": "POST",
-    "path": "/saml/agreement"
+    "path": "/sso/agreement"
   },
   "createSession": {
     "method": "POST",
