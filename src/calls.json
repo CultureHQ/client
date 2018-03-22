@@ -553,10 +553,6 @@
     "method": "GET",
     "path": "/users/:userId"
   },
-  "getUserActivity": {
-    "method": "GET",
-    "path": "/user_activities/:userActivityId"
-  },
   "getUserActivityComment": {
     "method": "GET",
     "path": "/user_activities/:userActivityId/comments/:commentId"
