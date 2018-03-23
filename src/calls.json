@@ -8,11 +8,6 @@
     "path": "/admin/autocomplete/users",
     "expectedParams": ["query"]
   },
-  "adminListInvites": {
-    "method": "GET",
-    "path": "/admin/organizations/:organizationId/invites",
-    "optionalParams": ["page"]
-  },
   "adminSendInvite": {
     "method": "POST",
     "path": "/admin/organizations/:organizationId/invites",
@@ -95,12 +90,6 @@
     "method": "POST",
     "path": "/api_keys",
     "expectedParams": ["email", "password"]
-  },
-  "createBulkUserImport": {
-    "method": "POST",
-    "path": "/bulk_user_imports",
-    "multipart": true,
-    "expectedParams": ["csvFile"]
   },
   "createDepartment": {
     "method": "POST",
@@ -440,10 +429,6 @@
     "method": "GET",
     "path": "/announcements/:announcementId"
   },
-  "getBulkUserImport": {
-    "method": "GET",
-    "path": "/bulk_user_imports/:bulkUserImportJobId"
-  },
   "getDepartment": {
     "method": "GET",
     "path": "/departments/:departmentId"
@@ -460,17 +445,9 @@
     "method": "GET",
     "path": "/analytics/events/:eventId"
   },
-  "getEventComment": {
-    "method": "GET",
-    "path": "/events/:eventId/comments/:commentId"
-  },
   "getEventPhoto": {
     "method": "GET",
     "path": "/events/:eventId/photos/:photoId"
-  },
-  "getEventPhotoComment": {
-    "method": "GET",
-    "path": "/events/:eventId/photos/:photoId/comments/:commentId"
   },
   "getEventRsvp": {
     "method": "GET",
@@ -529,10 +506,6 @@
     "method": "GET",
     "path": "/recognitions/:recognitionId"
   },
-  "getRecognitionComment": {
-    "method": "GET",
-    "path": "/recognitions/:recognitionId/comments/:commentId"
-  },
   "getSurvey": {
     "method": "GET",
     "path": "/surveys/:surveyId"
@@ -552,10 +525,6 @@
   "getUser": {
     "method": "GET",
     "path": "/users/:userId"
-  },
-  "getUserActivityComment": {
-    "method": "GET",
-    "path": "/user_activities/:userActivityId/comments/:commentId"
   },
   "getUserEventTypeBreakdown": {
     "method": "GET",
@@ -601,11 +570,6 @@
     "method": "GET",
     "path": "/analytics/departments",
     "optionalParams": ["page"]
-  },
-  "listDepartmentUsers": {
-    "method": "GET",
-    "path": "/departments/:departmentId/users",
-    "optionalParams": ["page", "includeDeactivated"]
   },
   "listDepartments": {
     "method": "GET",
@@ -685,19 +649,9 @@
     "path": "/flags",
     "optionalParams": ["page", "reviewed"]
   },
-  "listInterestUsers": {
-    "method": "GET",
-    "path": "/interests/:interestId/users",
-    "optionalParams": ["page", "includeDeactivated"]
-  },
   "listInterests": {
     "method": "GET",
     "path": "/interests",
-    "optionalParams": ["page"]
-  },
-  "listInvites": {
-    "method": "GET",
-    "path": "/invites",
     "optionalParams": ["page"]
   },
   "listLocations": {
@@ -739,11 +693,6 @@
     "method": "GET",
     "path": "/profile/notifications",
     "optionalParams": ["seen", "page"]
-  },
-  "listProfilePointIncrements": {
-    "method": "GET",
-    "path": "/profile/point_increments",
-    "optionalParams": ["page"]
   },
   "listRecognitionCheers": {
     "method": "GET",
@@ -849,10 +798,6 @@
     "method": "GET",
     "path": "/widget_surveys",
     "optionalParams": ["active", "completed", "page"]
-  },
-  "markEventAsSponsored": {
-    "method": "POST",
-    "path": "/events/:eventId/event_sponsorship"
   },
   "messageEventGuests": {
     "method": "POST",
