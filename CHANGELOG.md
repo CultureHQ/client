@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.0.87] - 2018-03-26
+### Added
+- The `listProfilePointNotifications` call for listing exclusively point notifications.
+- The `createProfilePointNotificationView` call for marking all point notifications as viewed.
+
 ### Removed
 - A bunch of calls were removed that are either no longer being used or were never used, including: `adminListInvites`, `createBulkUserImport`, `getBulkUserImport`, `get*Comment`, `list*Users`, `listInvites`, `listProfilePointIncrements`, and `markEventAsSponsored`.
 

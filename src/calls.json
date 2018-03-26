@@ -196,6 +196,10 @@
     "method": "POST",
     "path": "/profile/notification_views"
   },
+  "createProfilePointNotificationView": {
+    "method": "POST",
+    "path": "/profile/point_notification_views"
+  },
   "createRecognition": {
     "method": "POST",
     "path": "/recognitions",
@@ -692,6 +696,11 @@
   "listProfileNotifications": {
     "method": "GET",
     "path": "/profile/notifications",
+    "optionalParams": ["seen", "page"]
+  },
+  "listProfilePointNotifications": {
+    "method": "GET",
+    "path": "/profile/point_notifications",
     "optionalParams": ["seen", "page"]
   },
   "listRecognitionCheers": {
