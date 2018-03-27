@@ -4,7 +4,8 @@
   "description": "A JavaScript client that wraps the CultureHQ API",
   "main": "dist/main.js",
   "scripts": {
-    "build": "webpack --config webpack.config.babel.js --mode production --progress",
+    "build":
+      "webpack --config webpack.config.babel.js --mode production --progress",
     "test": "jest",
     "cleanup": "yarn prettier --write '**/*.{js,json}'"
   },
@@ -27,6 +28,7 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "isomorphic-form-data": "^1.0.0",
     "jest": "^22.4.3",
