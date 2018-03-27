@@ -5,6 +5,7 @@ import calls from "./calls";
 import apiCall from "./api-call";
 import { camelize } from "./string-case";
 import { startSwimming } from "./fishbowl";
+import AutoPaginator from "./auto-paginator";
 
 /**
  * A class for handling the connection to and querying of the CultureHQ API.
@@ -34,6 +35,24 @@ import { startSwimming } from "./fishbowl";
  *         console.error(error);
  *       }
  *     };
+ *
+ * == Pagination ==
+ *
+ * Almost every one of the `list*` events is paginated, and will result
+ * pagination metadata along with the actual data of the call. The `pagination`
+ * object will look like:
+ *
+ *     { currentPage, totalPages, totalCount }
+ *
+ * You can handle this pagination manually, e.g., links on the bottom of the
+ * page. Alternatively, you can use the client's built-in automatic pagination
+ * capabilities. You prefix your API call with a call to `autoPaginate`, as in
+ * the following example:
+ *
+ *     const { events } = await client.autoPaginate("events").listEvents();
+ *
+ * This will return the pagination information as normal, but the events will
+ * be concatenated together.
  *
  * == WebSocket connection semantics ==
  *
@@ -138,6 +157,10 @@ class CultureHQ {
       state.startSimulation(response.apiKey.token);
       return response;
     });
+  }
+
+  autoPaginate(dataType) {
+    return new AutoPaginator(this, dataType);
   }
 
   _ensureConsumer() {
