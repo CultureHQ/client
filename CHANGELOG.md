@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.88] - 2018-03-27
+### Added
+- The `AutoPaginator` class, for automatically concatenating data across multiple pages of results.
+
 ## [0.0.87] - 2018-03-26
 ### Added
 - The `listProfilePointNotifications` call for listing exclusively point notifications.
