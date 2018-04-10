@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.89] - 2018-04-10
+### Added
+- The `listTrendingEvents` call for listing the top events with the most activity.
+
 ## [0.0.88] - 2018-03-27
 ### Added
 - The `AutoPaginator` class, for automatically concatenating data across multiple pages of results.

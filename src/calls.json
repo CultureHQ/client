@@ -750,6 +750,10 @@
     "path": "/surveys",
     "optionalParams": ["page"]
   },
+  "listTrendingEvents": {
+    "method": "GET",
+    "path": "/trending_events"
+  },
   "listUserActivities": {
     "method": "GET",
     "path": "/user_activities",
