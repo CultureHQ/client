@@ -180,7 +180,13 @@
     "path": "/admin/organizations",
     "multipart": true,
     "expectedParams": ["name"],
-    "optionalParams": ["gamificationEnabled", "logo", "active", "mode"]
+    "optionalParams": [
+      "gamificationEnabled",
+      "logo",
+      "active",
+      "mode",
+      "googleSigninEnabled"
+    ]
   },
   "createOrganizationValue": {
     "method": "POST",
@@ -595,6 +601,11 @@
     "path": "/events/:eventId/comments",
     "optionalParams": ["page"]
   },
+  "listEventInterests": {
+    "method": "GET",
+    "path": "/events/interests",
+    "optionalParams": ["page"]
+  },
   "listEventPhotoCheers": {
     "method": "GET",
     "path": "/events/:eventId/photos/:photoId/cheers",
@@ -984,7 +995,14 @@
     "method": "PATCH",
     "path": "/admin/organizations/:organizationId",
     "multipart": true,
-    "optionalParams": ["name", "gamificationEnabled", "logo", "active", "mode"]
+    "optionalParams": [
+      "name",
+      "gamificationEnabled",
+      "logo",
+      "active",
+      "mode",
+      "googleSigninEnabled"
+    ]
   },
   "updateOrganizationValue": {
     "method": "PATCH",

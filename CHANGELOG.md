@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.90] - 2018-04-12
+### Added
+- The `listEventInterests` call for listing the top interests with the most events attached to them.
+- The optional `googleSigninEnabled` to the `createOrganization` and `updateOrganization` calls.
+
 ## [0.0.89] - 2018-04-10
 ### Added
 - The `listTrendingEvents` call for listing the top events with the most activity.
