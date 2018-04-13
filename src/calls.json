@@ -512,6 +512,10 @@
     "method": "GET",
     "path": "/profile/email_settings"
   },
+  "getProfilePointStanding": {
+    "method": "GET",
+    "path": "/profile/point_standing"
+  },
   "getRecognition": {
     "method": "GET",
     "path": "/recognitions/:recognitionId"

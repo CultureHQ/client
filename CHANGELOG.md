@@ -9,6 +9,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - The optional `interestIds` parameters to the `listEvents` call.
 - The optional `allLocations` parameter to the `listEvents` call.
 - The optional `userRelation` parameter on the `listEvents` call, valid values include "host", "responded", and "invited".
+- The `onLeaderboardUpdated` function for listening to leaderboard changes.
+- The `getProfilePointStanding` call for fetching the current standing of the user in terms of points.
 
 ## [0.0.90] - 2018-04-12
 ### Added

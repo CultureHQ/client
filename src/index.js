@@ -122,6 +122,10 @@ class CultureHQ {
     return state.isSimulating();
   }
 
+  onLeaderboardUpdated(callback) {
+    return this._subscribeToChannel("LeaderboardChannel", callback);
+  }
+
   onNotificationReceived(callback) {
     return this._subscribeToChannel("NotificationChannel", callback);
   }
