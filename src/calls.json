@@ -642,7 +642,8 @@
       "when",
       "organizationValueIds",
       "eventType",
-      "sponsored"
+      "sponsored",
+      "interestIds"
     ]
   },
   "listEventsByOrganization": {
