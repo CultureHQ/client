@@ -644,7 +644,8 @@
       "eventType",
       "sponsored",
       "interestIds",
-      "allLocations"
+      "allLocations",
+      "userRelation"
     ]
   },
   "listEventsByOrganization": {
