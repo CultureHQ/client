@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Added
 - The optional `interestIds` parameters to the `listEvents` call.
+- The optional `allLocations` parameter to the `listEvents` call.
 
 ## [0.0.90] - 2018-04-12
 ### Added

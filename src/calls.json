@@ -643,7 +643,8 @@
       "organizationValueIds",
       "eventType",
       "sponsored",
-      "interestIds"
+      "interestIds",
+      "allLocations"
     ]
   },
   "listEventsByOrganization": {
