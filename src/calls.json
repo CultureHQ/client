@@ -645,7 +645,7 @@
       "sort",
       "when",
       "organizationValueIds",
-      "eventType",
+      "eventTypes",
       "sponsored",
       "interestIds",
       "allLocations",

@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.92] - 2018-04-18
+### Changed
+- Rename the `eventType` parameter on the `listEvents` call to be `eventTypes`, which is now a scalar that will filter with an "or" condition.
+
 ## [0.0.91] - 2018-04-17
 ### Added
 - The optional `interestIds` parameters to the `listEvents` call.
