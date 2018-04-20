@@ -112,6 +112,7 @@ class CultureHQ {
 
   endUserSimulation() {
     state.endSimulation();
+    this._disconnectConsumer();
   }
 
   isSignedIn() {
@@ -152,6 +153,7 @@ class CultureHQ {
   signOut() {
     return this.deleteSession().then(response => {
       state.signOut();
+      this._disconnectConsumer();
       return response;
     });
   }
@@ -159,12 +161,19 @@ class CultureHQ {
   startUserSimulation(params) {
     return this.createSimulation(params).then(response => {
       state.startSimulation(response.apiKey.token);
+      this._disconnectConsumer();
       return response;
     });
   }
 
   autoPaginate(dataType) {
     return new AutoPaginator(this, dataType);
+  }
+
+  _disconnectConsumer() {
+    if (this._consumer) {
+      this._consumer.disconnect();
+    }
   }
 
   _ensureConsumer() {
