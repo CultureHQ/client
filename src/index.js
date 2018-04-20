@@ -173,6 +173,7 @@ class CultureHQ {
   _disconnectConsumer() {
     if (this._consumer) {
       this._consumer.disconnect();
+      this._consumer = null;
     }
   }
 

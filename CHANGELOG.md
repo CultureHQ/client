@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.94] - 2018-04-20
+### Changed
+- Remove previous consumer when the consumer has been disconnected.
+
 ## [0.0.93] - 2018-04-20
 ### Changed
 - Ensure that when creating the consumer for websockets the token hasn't changed out from underneath the client.
