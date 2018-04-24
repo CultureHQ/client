@@ -185,7 +185,12 @@
       "logo",
       "active",
       "mode",
-      "googleSigninEnabled"
+      "googleSigninEnabled",
+      "userCreatedSlackIntegrationsEnabled",
+      "userCreatedSurveysEnabled",
+      "feedbackEnabled",
+      "userCreatedInvitesEnabled",
+      "accountInfoEnabled"
     ]
   },
   "createOrganizationValue": {
@@ -1008,7 +1013,12 @@
       "logo",
       "active",
       "mode",
-      "googleSigninEnabled"
+      "googleSigninEnabled",
+      "userCreatedSlackIntegrationsEnabled",
+      "userCreatedSurveysEnabled",
+      "feedbackEnabled",
+      "userCreatedInvitesEnabled",
+      "accountInfoEnabled"
     ]
   },
   "updateOrganizationValue": {
