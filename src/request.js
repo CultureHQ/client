@@ -31,6 +31,10 @@ const buildRequest = (method, url, options) => {
 
   if (method === "GET") {
     Object.keys(params).forEach(key => {
+      if (params[key] === undefined || params[key] === null) {
+        return;
+      }
+
       if (!Array.isArray(params[key])) {
         url.searchParams.append(key, params[key]);
       } else if (params[key].length) {

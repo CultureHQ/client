@@ -5,8 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.0.95] - 2018-04-25
 ### Added
 - The optional `userCreatedSlackIntegrationsEnabled`, `userCreatedSurveysEnabled`, `feedbackEnabled`, `userCreatedInvitesEnabled`, and `accountInfoEnabled` parameters to the `createOrganization` and `updateOrganization` calls.
+
+### Changed
+- Don't pass up null or undefined values.
 
 ## [0.0.94] - 2018-04-20
 ### Changed
