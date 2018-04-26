@@ -245,7 +245,7 @@
     "method": "POST",
     "path": "/surveys",
     "expectedParams": ["title"],
-    "optionalParams": ["points", "eventId"]
+    "optionalParams": ["points", "eventId", "viewableResults"]
   },
   "createSurveyItem": {
     "method": "POST",
@@ -357,10 +357,6 @@
   "deleteSurveyItemResponseOption": {
     "method": "DELETE",
     "path": "/survey_item_response_options/:surveyItemResponseOptionId"
-  },
-  "deleteSurveyUserItemResponse": {
-    "method": "DELETE",
-    "path": "/survey_items/:surveyItemId/survey_user_item_response"
   },
   "deleteUserActivityComment": {
     "method": "DELETE",
@@ -713,8 +709,7 @@
   },
   "listProfileEventSurveys": {
     "method": "GET",
-    "path": "/profile/event_surveys",
-    "optionalParams": ["filter"]
+    "path": "/profile/event_surveys"
   },
   "listProfileNotifications": {
     "method": "GET",
@@ -767,11 +762,6 @@
   "listSurveySubmittedResponses": {
     "method": "GET",
     "path": "/surveys/:surveyId/submitted_responses"
-  },
-  "listSurveys": {
-    "method": "GET",
-    "path": "/surveys",
-    "optionalParams": ["page"]
   },
   "listTrendingEvents": {
     "method": "GET",
@@ -1067,7 +1057,7 @@
   "updateSurvey": {
     "method": "PATCH",
     "path": "/surveys/:surveyId",
-    "optionalParams": ["title", "points"]
+    "optionalParams": ["title", "points", "viewableResults"]
   },
   "updateSurveyItem": {
     "method": "PATCH",
