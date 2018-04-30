@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.97] - 2018-04-30
+### Added
+- The optional `listProfileManageableWidgetSurveys` call.
+
 ## [0.0.96] - 2018-04-26
 ### Added
 - The optional `viewableResults` parameter to the `createSurvey` and `updateSurvey` calls.

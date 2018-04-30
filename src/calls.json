@@ -721,6 +721,11 @@
     "method": "GET",
     "path": "/profile/event_surveys"
   },
+  "listProfileManageableWidgetSurveys": {
+    "method": "GET",
+    "path": "/profile/widget_surveys/manageable_surveys",
+    "optionalParams": ["page"]
+  },
   "listProfileNotifications": {
     "method": "GET",
     "path": "/profile/notifications",
