@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - The optional `departmentIds` scalar parameter to the `listRecognitions` call.
 - The optional `organizationValueIds` scalar parameter to the `listRecognitions` call.
 - The optional `type` string parameter to the `listRecognitions` call, can be `automatic` or `manual`.
+- The optional `includeDeactivated` boolean parameter to the `autocompleteUsers` call.
 
 ## [0.0.97] - 2018-04-30
 ### Added
