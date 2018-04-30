@@ -763,6 +763,18 @@
       "type"
     ]
   },
+  "listRecognitionsOrganizationValues": {
+    "method": "GET",
+    "path": "/recognitions/organization_values"
+  },
+  "listRecognitionsRecognizedUsers": {
+    "method": "GET",
+    "path": "/recognitions/recognized_users"
+  },
+  "listRecognitionsRecognizingUsers": {
+    "method": "GET",
+    "path": "/recognitions/recognizing_users"
+  },
   "listSlackIntegrations": {
     "method": "GET",
     "path": "/slack_integrations"

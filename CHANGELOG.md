@@ -5,12 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.0.98] - 2018-04-30
 ### Added
 - The optional `locationIds` scalar parameter to the `listRecognitions` call.
 - The optional `departmentIds` scalar parameter to the `listRecognitions` call.
 - The optional `organizationValueIds` scalar parameter to the `listRecognitions` call.
 - The optional `type` string parameter to the `listRecognitions` call, can be `automatic` or `manual`.
 - The optional `includeDeactivated` boolean parameter to the `autocompleteUsers` call.
+- The `listRecognitionsOrganizationValues` call.
+- The `listRecognitionsRecognizedUsers` call.
+- The `listRecognitionsRecognizingUsers` call.
 
 ## [0.0.97] - 2018-04-30
 ### Added
