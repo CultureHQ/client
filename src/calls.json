@@ -754,7 +754,13 @@
   "listRecognitions": {
     "method": "GET",
     "path": "/recognitions",
-    "optionalParams": ["page"]
+    "optionalParams": [
+      "page",
+      "locationIds",
+      "departmentIds",
+      "organizationValueIds",
+      "type"
+    ]
   },
   "listSlackIntegrations": {
     "method": "GET",
