@@ -599,7 +599,7 @@
   },
   "listEventCommentCheers": {
     "method": "GET",
-    "path": "/events/:event_id/comments/:comment_id/cheers",
+    "path": "/events/:eventId/comments/:commentId/cheers",
     "optionalParams": ["page"]
   },
   "listEventComments": {
