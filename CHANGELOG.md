@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.100] - 2018-05-03
+### Changed
+- The `password` parameter on the `resetPassword` call to be optional to support the new managed passwords flow.
+
 ## [0.0.99] - 2018-05-03
 ### Added
 - The optional `inviteStatus` parameter on the `autocompleteUsers` call.

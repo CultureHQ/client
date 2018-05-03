@@ -896,7 +896,7 @@
   "resetPassword": {
     "method": "PATCH",
     "path": "/password_resets/:token",
-    "expectedParams": ["password"]
+    "optionalParams": ["password"]
   },
   "reviewFeedback": {
     "method": "PATCH",
