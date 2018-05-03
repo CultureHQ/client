@@ -25,7 +25,7 @@
     "method": "GET",
     "path": "/autocomplete/users",
     "expectedParams": ["query"],
-    "optionalParams": ["includeDeactivated"]
+    "optionalParams": ["includeDeactivated", "inviteStatus"]
   },
   "bulkCreateEventPhotos": {
     "method": "POST",
