@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.99] - 2018-05-03
+### Changed
+- Fixes parameter name `eventId` and `commentId` for `listEventCommentCheers`
+
 ## [0.0.98] - 2018-04-30
 ### Added
 - The optional `locationIds` scalar parameter to the `listRecognitions` call.
