@@ -676,7 +676,7 @@
   "listInterests": {
     "method": "GET",
     "path": "/interests",
-    "optionalParams": ["page"]
+    "optionalParams": ["page", "by"]
   },
   "listLocations": {
     "method": "GET",
@@ -851,7 +851,10 @@
       "interestId",
       "locationId",
       "active",
-      "inviteStatus"
+      "inviteStatus",
+      "departmentIds",
+      "interestIds",
+      "locationIds"
     ]
   },
   "listWidgetSurveys": {

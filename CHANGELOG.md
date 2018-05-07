@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Added
 - The optional `active` parameter on the `autocompleteUsers` call.
+- The optional `by` parameter on the `listInterests` call (only available option is `most`).
+- The optional `locationIds` parameter to the `listUsers` call.
+- The optional `departmentIds` parameter to the `listUsers` call.
+- The optional `interestIds` parameter to the `listUsers` call.
 
 ## [0.0.100] - 2018-05-03
 ### Changed
