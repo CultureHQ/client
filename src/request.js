@@ -1,6 +1,5 @@
 import "isomorphic-fetch";
 import { camelize, snakerize } from "./string-case";
-import { swim } from "./fishbowl";
 
 const buildHeaders = ({ multipart, token, simulation }) => {
   let headers = { "X-Client-Version": CLIENT_VERSION };
@@ -66,33 +65,17 @@ const buildRequest = (method, url, options) => {
   return { url: url.href, options: reqOptions };
 };
 
-const logToFishBowl = (method, url, options) => {
-  const modifiedOptions = Object.assign({}, options);
-  delete modifiedOptions.client;
-
-  if (modifiedOptions.params && modifiedOptions.params.password) {
-    modifiedOptions.params.password = "******";
-  }
-
-  swim(`[↑] ${method} ${url.toString()} ${JSON.stringify(modifiedOptions)}`);
-};
-
 export default (method, url, options) => {
   const request = buildRequest(method, url, options);
-  logToFishBowl(method, url, options);
 
   return new Promise((resolve, reject) => {
     fetch(request.url, request.options)
       .then(response => {
-        swim(
-          `[↓] ${method} ${url.toString()}
-          ${response.status} ${response.headers.get("content-type")}`
-        );
-
-        const success = Math.round(response.status / 200) === 1;
+        const { status } = response;
+        const success = Math.round(status / 200) === 1;
 
         options.client.recordResponse(response).then(() => {
-          if (response.status === 204) {
+          if (status === 204) {
             resolve(null);
           } else if (response.headers.get("content-type") === "text/html") {
             if (success) {
@@ -101,7 +84,7 @@ export default (method, url, options) => {
                 .then(text => resolve({ response, text }))
                 .catch(error => reject(error));
             } else {
-              reject({ response, error: response.statusText });
+              reject({ response, error: response.statusText, status, url });
             }
           } else {
             response
@@ -117,6 +100,8 @@ export default (method, url, options) => {
           }
         });
       })
-      .catch(error => reject(error));
+      .catch(error => {
+        reject(error)
+      });
   });
 };
