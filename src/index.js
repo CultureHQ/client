@@ -95,12 +95,12 @@ class CultureHQ {
     });
   }
 
-  recordResponse(status) {
-    if (status === 403) {
+  recordResponse(response) {
+    if (response.status === 403) {
       this.rejectedRequests += 1;
 
-      // After 3 403s in a row, automatically sign out.
-      if (this.rejectedRequests === 3) {
+      // After a 403 on the profile or 3 403s in a row, automatically sign out.
+      if ((response.url === `${this.apiHost}/profile`) || this.rejectedRequests === 3) {
         return this.signOut().then(() => (this.rejectedRequests = 0));
       }
     } else {
