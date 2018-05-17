@@ -4,7 +4,6 @@ import state from "./state";
 import calls from "./calls";
 import apiCall from "./api-call";
 import { camelize } from "./string-case";
-import { startSwimming } from "./fishbowl";
 import AutoPaginator from "./auto-paginator";
 
 /**
@@ -82,13 +81,7 @@ import AutoPaginator from "./auto-paginator";
 class CultureHQ {
   constructor(options = {}) {
     this.rejectedRequests = 0;
-
     this.apiHost = options.apiHost;
-
-    this.fishbowlHost = options.fishbowlHost;
-    if (this.fishbowlHost) {
-      startSwimming(this.fishbowlHost);
-    }
 
     Object.keys(calls).forEach(callName => {
       this[callName] = apiCall(this, calls[callName]);
