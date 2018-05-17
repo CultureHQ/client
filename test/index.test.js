@@ -32,13 +32,13 @@ test("signs in and reports signed in status correctly", async () => {
   }
 });
 
-test("auto signs out you hit 5 403s in a row", async () => {
+test("auto signs out you hit 3 403s in a row", async () => {
   const server = createServer([
     { status: 200, body: { apiKey: { token: "baz" } } },
     { status: 403, body: { error: "foo" } },
     { status: 403, body: { error: "foo" } },
     { status: 403, body: { error: "foo" } },
-    { status: 204, body: { foo: "bar" } }
+    { status: 200, body: { foo: "bar" } }
   ]);
   server.listen(1700);
 
@@ -48,9 +48,31 @@ test("auto signs out you hit 5 403s in a row", async () => {
 
     for (let idx = 0; idx < 3; idx += 1) {
       try {
-        await autoClient.getProfile();
+        await autoClient.listInterests();
       } catch (error) {}
     }
+
+    expect(autoClient.isSignedIn()).toBe(false);
+  } finally {
+    server.close();
+  }
+});
+
+test("auto signs out you hit a 403 on the profile", async () => {
+  const server = createServer([
+    { status: 200, body: { apiKey: { token: "baz" } } },
+    { status: 403, body: { error: "foo" } },
+    { status: 200, body: { foo: "bar" } }
+  ]);
+  server.listen(1701);
+
+  try {
+    const autoClient = new CultureHQ({ apiHost: "http://localhost:1701" });
+    await autoClient.signIn({ email: "foo", password: "bar" });
+
+    try {
+      await autoClient.getProfile();
+    } catch (error) {}
 
     expect(autoClient.isSignedIn()).toBe(false);
   } finally {
