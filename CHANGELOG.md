@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.102] - 2018-05-17
+### Changed
+- Don't rely on `url` off the response, use the explicit request instead.
+
 ## [0.0.101] - 2018-05-17
 ### Added
 - The optional `active` parameter on the `autocompleteUsers` call.

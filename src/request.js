@@ -74,7 +74,7 @@ export default (method, url, options) => {
         const { status } = response;
         const success = Math.round(status / 200) === 1;
 
-        options.client.recordResponse(response).then(() => {
+        options.client.recordResponse(request, response).then(() => {
           if (status === 204) {
             resolve(null);
           } else if (response.headers.get("content-type") === "text/html") {
