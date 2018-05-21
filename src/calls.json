@@ -117,7 +117,8 @@
       "inviteeIds",
       "timezone",
       "interestNames",
-      "allLocations"
+      "allLocations",
+      "createSurvey"
     ]
   },
   "createEventComment": {
