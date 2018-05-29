@@ -8,19 +8,6 @@
     "path": "/admin/autocomplete/users",
     "expectedParams": ["query"]
   },
-  "adminSendInvite": {
-    "method": "POST",
-    "path": "/admin/organizations/:organizationId/invites",
-    "multipart": true,
-    "expectedParams": ["name", "email"],
-    "optionalParams": [
-      "locationName",
-      "departmentNames",
-      "interestNames",
-      "avatar",
-      "title"
-    ]
-  },
   "autocompleteUsers": {
     "method": "GET",
     "path": "/autocomplete/users",
@@ -857,11 +844,6 @@
       "interestIds",
       "locationIds"
     ]
-  },
-  "listWidgetSurveys": {
-    "method": "GET",
-    "path": "/widget_surveys",
-    "optionalParams": ["active", "completed", "page"]
   },
   "messageEventGuests": {
     "method": "POST",

@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - The optional `createSurvey` parameter to the `createEvent` call.
 
+### Removed
+- The `adminSendInvite` call.
+- The `listWidgetSurveys` call.
+
 ## [0.0.102] - 2018-05-17
 ### Changed
 - Don't rely on `url` off the response, use the explicit request instead.
