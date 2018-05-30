@@ -1,7 +1,10 @@
+/.babelrc
 /.travis.yml
 /.prettierignore
+/webpack.config.babel.js
 /bin
 /jest.config.js
+/src
 /test
 /yarn.lock
 /yarn-error.log

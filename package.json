@@ -1,11 +1,11 @@
 {
   "name": "culturehq-client",
-  "version": "0.1.0",
+  "version": "0.0.103",
   "description": "A JavaScript client that wraps the CultureHQ API",
   "main": "dist/main.js",
   "scripts": {
+    "build": "webpack --config webpack.config.babel.js --mode production --progress",
     "test": "jest",
-    "prepare": "webpack --config webpack.config.babel.js --mode production --progress",
     "prettier": "prettier --write '**/*.{js,json}'"
   },
   "repository": {
