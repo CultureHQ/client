@@ -385,6 +385,10 @@
     "method": "POST",
     "path": "/exports/event_export"
   },
+  "exportFeedback": {
+    "method": "POST",
+    "path": "/exports/feedback_export"
+  },
   "flagAvatar": {
     "method": "POST",
     "path": "/users/:userId/flags",

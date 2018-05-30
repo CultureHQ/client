@@ -101,7 +101,7 @@ export default (method, url, options) => {
         });
       })
       .catch(error => {
-        reject(error)
+        reject(error);
       });
   });
 };
