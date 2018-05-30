@@ -1,7 +1,5 @@
-/.babelrc
 /.travis.yml
 /.prettierignore
-/webpack.config.babel.js
 /bin
 /jest.config.js
 /test
