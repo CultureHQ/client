@@ -389,6 +389,10 @@
     "method": "POST",
     "path": "/exports/feedback_export"
   },
+  "exportSurvey": {
+    "method": "POST",
+    "path": "/exports/surveys/:surveyId/survey_export"
+  },
   "flagAvatar": {
     "method": "POST",
     "path": "/users/:userId/flags",

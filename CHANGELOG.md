@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [1.1.0] - 2018-05-31
+### Added
+- The `exportSurvey` call.
+
 ## [1.0.0] - 2018-05-30
 ### Added
 - The optional `createSurvey` parameter to the `createEvent` call.
