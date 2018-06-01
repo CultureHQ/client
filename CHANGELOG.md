@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [1.2.0] - 2018-06-01
+### Added
+- The `search` call.
+
 ## [1.1.0] - 2018-05-31
 ### Added
 - The `exportSurvey` call.

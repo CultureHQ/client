@@ -896,6 +896,11 @@
     "method": "PATCH",
     "path": "/feedbacks/:feedbackId"
   },
+  "search": {
+    "method": "GET",
+    "path": "/search",
+    "expectedParams": ["query"]
+  },
   "sendInvite": {
     "method": "POST",
     "path": "/invites",
