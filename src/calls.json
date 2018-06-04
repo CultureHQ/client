@@ -437,6 +437,10 @@
     "method": "GET",
     "path": "/announcements/:announcementId"
   },
+  "getAutoRecognitionSettings": {
+    "method": "GET",
+    "path": "/recognitions/auto_recognition_settings"
+  },
   "getDepartment": {
     "method": "GET",
     "path": "/departments/:departmentId"
@@ -955,6 +959,18 @@
     "path": "/announcements/:announcementId",
     "multipart": true,
     "optionalParams": ["title", "body", "active", "image"]
+  },
+  "updateAutoRecognitionSettings": {
+    "method": "PATCH",
+    "path": "/recognitions/auto_recognition_settings",
+    "optionalParams": [
+      "allDepartments",
+      "eventCreation",
+      "newAttendees",
+      "didRecognize",
+      "wasRecognized",
+      "inviteCreation"
+    ]
   },
   "updateDepartment": {
     "method": "PATCH",
