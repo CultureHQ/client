@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [1.4.0] - 2018-06-05
+### Added
+- The `reorderProfileInterests` call.
+
 ## [1.3.0] - 2018-06-04
 ### Added
 - The `getAutoRecognitionSettings` call.

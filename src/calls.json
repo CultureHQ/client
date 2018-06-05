@@ -871,6 +871,11 @@
     "path": "/invites/:token/users",
     "expectedParams": ["password"]
   },
+  "reorderProfileInterests": {
+    "method": "PATCH",
+    "path": "/profile/interest_order",
+    "expectedParams": ["order"]
+  },
   "reorderSurveyItemResponseOptions": {
     "method": "PATCH",
     "path": "/survey_items/:surveyItemId/survey_item_response_option_order",
