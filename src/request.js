@@ -1,5 +1,7 @@
 import "isomorphic-fetch";
+
 import { camelize, snakerize } from "./string-case";
+import formData from "./form-data";
 
 const buildHeaders = ({ multipart, token, simulation }) => {
   let headers = { "X-Client-Version": CLIENT_VERSION };
@@ -15,13 +17,6 @@ const buildHeaders = ({ multipart, token, simulation }) => {
   }
 
   return headers;
-};
-
-const formDataValueFor = object => {
-  if (typeof object === "undefined" || object === null) {
-    return "";
-  }
-  return object;
 };
 
 const buildRequest = (method, url, options) => {
@@ -43,21 +38,7 @@ const buildRequest = (method, url, options) => {
       }
     });
   } else if (options.multipart) {
-    const formData = new FormData();
-
-    Object.keys(params).forEach(key => {
-      if (!Array.isArray(params[key])) {
-        formData.append(key, formDataValueFor(params[key]));
-      } else if (params[key].length) {
-        params[key].forEach(nestedValue =>
-          formData.append(`${key}[]`, nestedValue)
-        );
-      } else {
-        formData.append(`${key}[]`, "");
-      }
-    });
-
-    reqOptions.body = formData;
+    reqOptions.body = formData(params);
   } else {
     reqOptions.body = JSON.stringify(params);
   }

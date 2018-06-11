@@ -5,6 +5,14 @@ import calls from "./calls";
 import apiCall from "./api-call";
 import { camelize } from "./string-case";
 import AutoPaginator from "./auto-paginator";
+import signUpload from "./sign-upload";
+
+const CONFIG = {
+  apiHost: "http://localhost:3000",
+  awsAccessKeyId: "AKIAIPWT257FWZ5I4ZGQ",
+  signerUrl: "http://localhost:3001",
+  uploadBucket: "https://culturehq-direct-uploads.s3-us-west-2.amazonaws.com/"
+};
 
 /**
  * A class for handling the connection to and querying of the CultureHQ API.
@@ -81,7 +89,10 @@ import AutoPaginator from "./auto-paginator";
 class CultureHQ {
   constructor(options = {}) {
     this.rejectedRequests = 0;
-    this.apiHost = options.apiHost;
+
+    Object.keys(CONFIG).forEach(key => {
+      this[key] = options[key] || CONFIG[key];
+    });
 
     Object.keys(calls).forEach(callName => {
       this[callName] = apiCall(this, calls[callName]);
@@ -149,6 +160,10 @@ class CultureHQ {
       this._disconnectConsumer();
       return response;
     });
+  }
+
+  signUpload(file, onProgress) {
+    return signUpload(this, file, onProgress);
   }
 
   startUserSimulation(params) {
