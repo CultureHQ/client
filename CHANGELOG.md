@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [1.5.1] - 2018-06-11
+### Changed
+- Removed the usage of `async`/`await` so that users don't have to polyfill.
+
 ## [1.5.0] - 2018-06-11
 ### Added
 - Handle signing and uploading images through the `signUpload` function.
