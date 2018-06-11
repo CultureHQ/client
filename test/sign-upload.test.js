@@ -37,12 +37,12 @@ test("signs and uploads files to S3", async () => {
     const client = {
       awsAccessKeyId: "access-key-id",
       signerUrl: "http://localhost:8080",
-      uploadBucket: "http://localhost:8081/"
+      uploadBucket: "http://localhost:8081"
     };
 
     const response = await signUpload(client, fs.createReadStream(__filename));
 
-    expect(response).toEqual(`${client.uploadBucket}key`);
+    expect(response).toEqual(`${client.uploadBucket}/key`);
   } finally {
     signerServer.close();
     s3Server.close();

@@ -8,13 +8,13 @@ const signUpload = async (client, file, onProgress) => {
 
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", client.uploadBucket);
+    xhr.open("POST", `${client.uploadBucket}/`);
 
     xhr.addEventListener("load", event => {
       if (event.type === "error") {
         reject(event);
       } else {
-        resolve(`${client.uploadBucket}${key}`);
+        resolve(`${client.uploadBucket}/${key}`);
       }
     });
 

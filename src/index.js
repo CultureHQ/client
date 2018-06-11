@@ -9,9 +9,9 @@ import signUpload from "./sign-upload";
 
 const CONFIG = {
   apiHost: "http://localhost:3000",
-  awsAccessKeyId: "AKIAIPWT257FWZ5I4ZGQ",
+  awsAccessKeyId: null,
   signerUrl: "http://localhost:3001",
-  uploadBucket: "https://culturehq-direct-uploads.s3-us-west-2.amazonaws.com/"
+  uploadBucket: "http://localhost:3001"
 };
 
 /**
