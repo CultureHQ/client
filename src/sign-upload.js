@@ -8,7 +8,7 @@ const signUpload = (client, file, onProgress) => (
       const xhr = new XMLHttpRequest();
       xhr.open("POST", `${client.uploadBucket}/`);
 
-      xhr.addEventListener("load", event => {
+      xhr.upload.addEventListener("load", event => {
         if (event.type === "error") {
           reject(event);
         } else {
@@ -16,10 +16,10 @@ const signUpload = (client, file, onProgress) => (
         }
       });
 
-      xhr.addEventListener("error", reject);
+      xhr.upload.addEventListener("error", reject);
 
       if (onProgress) {
-        xhr.addEventListener("progress", event => {
+        xhr.upload.addEventListener("progress", event => {
           onProgress(Math.ceil((event.loaded / event.total) * 100));
         });
       }
