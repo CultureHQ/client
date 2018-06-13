@@ -72,7 +72,7 @@
     "path": "/announcements",
     "multipart": true,
     "expectedParams": ["title", "active"],
-    "optionalParams": ["body", "image"]
+    "optionalParams": ["body", "imageUrl"]
   },
   "createApiKey": {
     "method": "POST",
@@ -963,7 +963,7 @@
     "method": "PATCH",
     "path": "/announcements/:announcementId",
     "multipart": true,
-    "optionalParams": ["title", "body", "active", "image"]
+    "optionalParams": ["title", "body", "active", "imageUrl"]
   },
   "updateAutoRecognitionSettings": {
     "method": "PATCH",
