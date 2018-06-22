@@ -8,6 +8,10 @@
     "path": "/admin/autocomplete/users",
     "expectedParams": ["query"]
   },
+  "approveRecognition": {
+    "method": "POST",
+    "path": "/recognitions/:recognitionId/recognition_approval"
+  },
   "autocompleteUsers": {
     "method": "GET",
     "path": "/autocomplete/users",
@@ -211,6 +215,12 @@
     "expectedParams": ["body"],
     "optionalParams": ["parentCommentId"]
   },
+  "createRecognitionType": {
+    "method": "POST",
+    "path": "/recognitions/recognition_types",
+    "expectedParams": ["name", "approval", "imageUrl"],
+    "optionalParams": ["points"]
+  },
   "createSSOAgreement": {
     "method": "POST",
     "path": "/sso/agreement"
@@ -327,6 +337,10 @@
     "method": "DELETE",
     "path": "/recognitions/:recognitionId/comments/:commentId"
   },
+  "deleteRecognitionType": {
+    "method": "DELETE",
+    "path": "/recognitions/recognition_types/:recognitionTypeId"
+  },
   "deleteSession": {
     "method": "DELETE",
     "path": "/session"
@@ -388,6 +402,10 @@
   "exportFeedback": {
     "method": "POST",
     "path": "/exports/feedback_export"
+  },
+  "exportRecognitions": {
+    "method": "POST",
+    "path": "/exports/recognition_export"
   },
   "exportSurvey": {
     "method": "POST",
@@ -703,6 +721,11 @@
     "path": "/admin/organizations",
     "optionalParams": ["page"]
   },
+  "listPendingRecognitions": {
+    "method": "GET",
+    "path": "/recognitions/pending_recognitions",
+    "optionalParams": ["page"]
+  },
   "listPhotoTags": {
     "method": "GET",
     "path": "/photos/:photoId/photo_tags",
@@ -750,6 +773,11 @@
   "listRecognitionComments": {
     "method": "GET",
     "path": "/recognitions/:recognitionId/comments",
+    "optionalParams": ["page"]
+  },
+  "listRecognitionTypes": {
+    "method": "GET",
+    "path": "/recognitions/recognition_types",
     "optionalParams": ["page"]
   },
   "listRecognitions": {
@@ -1107,6 +1135,11 @@
     "method": "PATCH",
     "path": "/recognitions/:recognitionId/comments/:commentId",
     "expectedParams": ["body"]
+  },
+  "updateRecognitionType": {
+    "method": "PATCH",
+    "path": "/recognitions/recognition_types/:recognitionTypeId",
+    "optionalParams": ["name", "approval", "points", "imageUrl"]
   },
   "updateSurvey": {
     "method": "PATCH",

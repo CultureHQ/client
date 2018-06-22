@@ -7,6 +7,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Added
 - The optional `imageUrl` parameter to the `createAnnouncement` and `updateAnnouncement` calls.
+- The `approveRecognition` call.
+- The `createRecognitionType` call.
+- The `deleteRecognitionType` call.
+- The `exportRecognitions` call.
+- The `listPendingRecognitions` call.
+- The `listRecognitionTypes` call.
+- The `updateRecognitionType` call.
 
 ### Removed
 - The optional `image` parameter from the `createAnnouncement` and `updateAnnouncement` calls.
