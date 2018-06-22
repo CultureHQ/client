@@ -540,6 +540,10 @@
     "method": "GET",
     "path": "/recognitions/:recognitionId"
   },
+  "getRecognitionType": {
+    "method": "GET",
+    "path": "/recognitions/recognition_types/:recognitionTypeId"
+  },
   "getSurvey": {
     "method": "GET",
     "path": "/surveys/:surveyId"
