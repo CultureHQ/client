@@ -403,6 +403,10 @@
     "method": "POST",
     "path": "/exports/feedback_export"
   },
+  "exportInterests": {
+    "method": "POST",
+    "path": "/exports/interest_export"
+  },
   "exportRecognitions": {
     "method": "POST",
     "path": "/exports/recognition_export"
