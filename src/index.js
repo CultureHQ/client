@@ -103,9 +103,13 @@ class CultureHQ {
     if (response.status === 403) {
       this.rejectedRequests += 1;
 
-      // After a 403 on the profile or 3 403s in a row, automatically sign out.
+      // After a 403 on the profile or 3 403s in a row, automatically sign out
+      // and redirect to the login page.
       if (request.url === `${this.apiHost}/profile` || this.rejectedRequests === 3) {
-        return this.signOut().then(() => (this.rejectedRequests = 0));
+        return this.signOut().then(() => {
+          this.rejectedRequests = 0;
+          window.location.replace("https://platform.culturehq.com/login");
+        });
       }
     } else {
       this.rejectedRequests = 0;

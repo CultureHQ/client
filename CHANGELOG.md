@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [1.8.1] - 2018-07-02
+### Changed
+- When automatically logging out, redirect to the login page.
+
 ## [1.8.0] - 2018-07-02
 ### Added
 - The `exportInterests` call.
