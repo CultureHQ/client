@@ -175,7 +175,7 @@
     "expectedParams": ["name"],
     "optionalParams": [
       "gamificationEnabled",
-      "logo",
+      "logoUrl",
       "active",
       "mode",
       "googleSigninEnabled",
@@ -1090,7 +1090,7 @@
     "optionalParams": [
       "name",
       "gamificationEnabled",
-      "logo",
+      "logoUrl",
       "active",
       "mode",
       "googleSigninEnabled",
