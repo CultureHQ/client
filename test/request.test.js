@@ -1,8 +1,6 @@
 import createServer from "./create-server";
 import request from "../src/request";
 
-const clientDouble = { recordResponse: () => Promise.resolve() };
-
 const parseMultipart = request => {
   const contentType = request.headers["content-type"];
   const boundary = contentType.split("boundary=")[1];
@@ -29,8 +27,7 @@ test("passes nulls through as empty strings on multipart", async () => {
     const url = new URL(`http://localhost:${port}`);
     const response = await request("POST", url, {
       params: { foo: null },
-      multipart: true,
-      client: clientDouble
+      multipart: true
     });
     expect(server.requests.length).toEqual(1);
 
@@ -50,8 +47,7 @@ test("properly handles multipart array parameters", async () => {
     const url = new URL(`http://localhost:${port}`);
     const response = await request("POST", url, {
       params: { foo: [1, 2, 3] },
-      multipart: true,
-      client: clientDouble
+      multipart: true
     });
     expect(server.requests.length).toEqual(1);
 
@@ -76,8 +72,7 @@ test("properly handles multiparty empty array parameters", async () => {
     const url = new URL(`http://localhost:${port}`);
     const response = await request("POST", url, {
       params: { foo: [] },
-      multipart: true,
-      client: clientDouble
+      multipart: true
     });
     expect(server.requests.length).toEqual(1);
 
