@@ -14,6 +14,7 @@ const substitutePath = (path, params) => {
 
   Object.keys(params).forEach(param => {
     const needle = `:${param}`;
+
     if (substitutedPath.indexOf(needle) !== -1) {
       substitutedPath = substitutedPath.replace(needle, params[param]);
       delete params[param];

@@ -50,17 +50,18 @@ test("can call getProfile after logged in", async () => {
 });
 
 test("cannot call createApiKey without expected parameters", () => {
-  const server = createServer({
-    status: 200,
-    body: { apiKey: { token: "baz" } }
-  });
+  const pattern = new RegExp("parameter email");
 
+  expect(client.createApiKey).toThrow(pattern);
+});
+
+test("substitutes values into the request path", async () => {
+  const server = createServer({ status: 200, body: {} });
   server.listen(port);
 
   try {
-    const pattern = new RegExp("parameter email");
-
-    expect(done => { client.createApiKey().then(done) }).toThrow(pattern);
+    const { response } = await client.getUser({ userId: 42 });
+    expect(response.url.endsWith("/users/42")).toBe(true);
   } finally {
     server.close();
   }
