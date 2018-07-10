@@ -46,43 +46,30 @@ const buildRequest = (method, url, options) => {
   return { url: url.href, options: reqOptions };
 };
 
-export default (method, url, options) => {
+const performRequest = (method, url, options) => {
   const request = buildRequest(method, url, options);
 
   return new Promise((resolve, reject) => {
-    fetch(request.url, request.options)
-      .then(response => {
-        const { status } = response;
-        const success = Math.round(status / 200) === 1;
+    fetch(request.url, request.options).then(response => {
+      const { status } = response;
+      const success = Math.round(status / 200) === 1;
 
-        options.client.recordResponse(request, response).then(() => {
-          if (status === 204) {
-            resolve(null);
-          } else if (response.headers.get("content-type") === "text/html") {
-            if (success) {
-              response
-                .text()
-                .then(text => resolve({ response, text }))
-                .catch(error => reject(error));
-            } else {
-              reject({ response, error: response.statusText, status, url });
-            }
-          } else {
-            response
-              .json()
-              .then(json => {
-                const fullResponse = Object.assign(
-                  { response },
-                  camelize(json)
-                );
-                success ? resolve(fullResponse) : reject(fullResponse);
-              })
-              .catch(error => reject(error));
-          }
-        });
-      })
-      .catch(error => {
-        reject(error);
-      });
+      if (status === 204) {
+        resolve(null);
+      } else if (response.headers.get("content-type") === "text/html") {
+        if (success) {
+          response.text().then(text => resolve({ response, text })).catch(reject);
+        } else {
+          reject({ response, error: response.statusText, status, url });
+        }
+      } else {
+        response.json().then(json => {
+          const fullResponse = Object.assign({ response }, camelize(json));
+          success ? resolve(fullResponse) : reject(fullResponse);
+        }).catch(reject);
+      }
+    }).catch(reject);
   });
 };
+
+export default performRequest;

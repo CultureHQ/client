@@ -88,8 +88,6 @@ const CONFIG = {
  */
 class CultureHQ {
   constructor(options = {}) {
-    this.rejectedRequests = 0;
-
     Object.keys(CONFIG).forEach(key => {
       this[key] = options[key] || CONFIG[key];
     });
@@ -97,25 +95,6 @@ class CultureHQ {
     Object.keys(calls).forEach(callName => {
       this[callName] = apiCall(this, calls[callName]);
     });
-  }
-
-  recordResponse(request, response) {
-    if (response.status === 403) {
-      this.rejectedRequests += 1;
-
-      // After a 403 on the profile or 3 403s in a row, automatically sign out
-      // and redirect to the login page.
-      if (request.url === `${this.apiHost}/profile` || this.rejectedRequests === 3) {
-        return this.signOut().then(() => {
-          this.rejectedRequests = 0;
-          window.location.replace("https://platform.culturehq.com/login");
-        });
-      }
-    } else {
-      this.rejectedRequests = 0;
-    }
-
-    return Promise.resolve();
   }
 
   endUserSimulation() {
