@@ -1,13 +1,13 @@
 import { camelize } from "./string-case";
 
-const processJSONResponse = response => json => new Promise((resolve, reject) => {
+const jsonResponse = response => json => new Promise((resolve, reject) => {
   const { status } = response;
-  const decorated = { ...camelize(json), response, status };
+  const callback = Math.round(status / 100) === 2 ? resolve : reject;
 
-  return Math.round(status / 100) === 2 ? resolve(decorated) : reject(decorated);
+  callback({ ...camelize(json), response, status });
 });
 
-const processTextResponse = response => text => new Promise((resolve, reject) => {
+const textResponse = response => text => new Promise((resolve, reject) => {
   const { status, statusText } = response;
 
   if (Math.round(status / 100) === 2) {
@@ -21,12 +21,15 @@ const processResponse = response => {
   const { status } = response;
 
   if (status === 204) {
-    return null;
-  } else if (response.headers.get("content-type") === "text/html") {
-    return response.text().then(processTextResponse(response));
-  } else {
-    return response.json().then(processJSONResponse(response));
+    return Promise.resolve(null);
   }
+
+  const contentType = response.headers.get("content-type");
+  if (contentType.startsWith("text/html") || contentType.startsWith("text/plain")) {
+    return response.text().then(textResponse(response));
+  }
+
+  return response.json().then(jsonResponse(response));
 };
 
 export default processResponse;
