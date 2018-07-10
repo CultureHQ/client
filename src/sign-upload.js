@@ -1,5 +1,3 @@
-import "isomorphic-fetch";
-
 import formData from "./form-data";
 
 const signUpload = (client, file, onProgress) => (

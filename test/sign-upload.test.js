@@ -1,4 +1,3 @@
-import "isomorphic-form-data";
 import fs from "fs";
 import http from "http";
 

@@ -1,4 +1,3 @@
-import "isomorphic-form-data";
 import http from "http";
 
 const parsedBody = request => {
