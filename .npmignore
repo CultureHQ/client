@@ -3,6 +3,7 @@
 /.prettierignore
 /webpack.config.babel.js
 /bin
+/coverage/
 /jest.config.js
 /src
 /test

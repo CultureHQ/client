@@ -1,20 +1,18 @@
 import http from "http";
 
-const parsedBody = request => {
-  return new Promise((resolve, reject) => {
-    let chunks = [];
+const parsedBody = request => new Promise((resolve, reject) => {
+  let chunks = [];
 
-    request.on("data", chunk => chunks.push(chunk)).on("end", () => {
-      resolve(Buffer.concat(chunks).toString());
-    });
+  request.on("data", chunk => chunks.push(chunk)).on("end", () => {
+    resolve(Buffer.concat(chunks).toString());
   });
-};
+});
 
 const createServer = mockConfig => {
   let mocks;
+
   if (typeof mockConfig.forEach === "undefined") {
-    // it's an object
-    mocks = [mockConfig];
+    mocks = [mockConfig]; // it's an object
   } else {
     mocks = mockConfig;
   }
@@ -23,20 +21,12 @@ const createServer = mockConfig => {
   server.requests = [];
 
   server.on("request", async (request, response) => {
-    try {
-      request.parsedBody = await parsedBody(request);
-      server.requests.push(request);
-    } catch (error) {
-      console.error(error);
-    }
+    request.parsedBody = await parsedBody(request);
+    server.requests.push(request);
 
-    if (mocks.length) {
-      const mock = mocks.shift();
-      response.writeHead(mock.status, { "Content-Type": "application/json" });
-      response.write(JSON.stringify(mock.body));
-    } else {
-      response.writeHead(404);
-    }
+    const { status, body } = mocks.shift();
+    response.writeHead(status, { "Content-Type": "application/json" });
+    response.write(JSON.stringify(body));
     response.end();
   });
 

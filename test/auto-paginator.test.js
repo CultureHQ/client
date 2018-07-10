@@ -7,7 +7,14 @@ for (let idx = 0; idx < 18; idx += 1) {
   EVENTS.push({ idx, name: `Event ${idx}` });
 }
 
-const client = {
+const singlePageClient = {
+  listEvents: ({ page }) => Promise.resolve({
+    events: EVENTS,
+    pagination: { currentPage: page, totalPages: 1, totalCount: EVENTS.length }
+  })
+};
+
+const multiplePageClient = {
   listEvents: ({ page }) => {
     const events = EVENTS.slice((page - 1) * PER_PAGE, page * PER_PAGE);
     const pagination = {
@@ -20,8 +27,15 @@ const client = {
   }
 };
 
+test("exits early if there's only one page of responses", async () => {
+  const paginator = new AutoPaginator(singlePageClient, "events");
+  const { events } = await paginator.listEvents();
+
+  expect(events.length).toEqual(EVENTS.length);
+});
+
 test("concatenates all results together", async () => {
-  const paginator = new AutoPaginator(client, "events");
+  const paginator = new AutoPaginator(multiplePageClient, "events");
   const { events } = await paginator.listEvents();
 
   expect(events.length).toEqual(EVENTS.length);
