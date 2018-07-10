@@ -1,5 +1,3 @@
-import "isomorphic-form-data";
-
 import formData from "../src/form-data";
 
 const serializeFormData = data => {

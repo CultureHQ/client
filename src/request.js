@@ -1,5 +1,3 @@
-import "isomorphic-fetch";
-
 import { snakerize } from "./string-case";
 import formData from "./form-data";
 import processResponse from "./response";

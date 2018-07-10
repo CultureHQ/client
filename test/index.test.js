@@ -1,4 +1,3 @@
-import "url-polyfill";
 import store from "store/dist/store.modern";
 import fs from "fs";
 
