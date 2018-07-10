@@ -32,104 +32,37 @@ test("signs in and reports signed in status correctly", async () => {
   }
 });
 
-test("auto signs out you hit 3 403s in a row", async () => {
+test("can call getProfile after logged in", async () => {
+  const number = Math.random();
   const server = createServer([
     { status: 200, body: { apiKey: { token: "baz" } } },
-    { status: 403, body: { error: "foo" } },
-    { status: 403, body: { error: "foo" } },
-    { status: 403, body: { error: "foo" } },
-    { status: 200, body: { foo: "bar" } }
+    { status: 200, body: { number } }
   ]);
-  server.listen(1700);
+
+  server.listen(port);
 
   try {
-    const autoClient = new CultureHQ({ apiHost: "http://localhost:1700" });
-    await autoClient.signIn({ email: "foo", password: "bar" });
-
-    for (let idx = 0; idx < 3; idx += 1) {
-      try {
-        await autoClient.listInterests();
-      } catch (error) {}
-    }
-
-    expect(autoClient.isSignedIn()).toBe(false);
+    await client.signIn({ email: "foo", password: "bar" });
+    const response = await client.getProfile();
+    expect(response.number).toEqual(number);
   } finally {
     server.close();
   }
 });
 
-test("auto signs out you hit a 403 on the profile", async () => {
-  const server = createServer([
-    { status: 200, body: { apiKey: { token: "baz" } } },
-    { status: 403, body: { error: "foo" } },
-    { status: 200, body: { foo: "bar" } }
-  ]);
-  server.listen(1701);
+test("cannot call createApiKey without expected parameters", () => {
+  const server = createServer({
+    status: 200,
+    body: { apiKey: { token: "baz" } }
+  });
+
+  server.listen(port);
 
   try {
-    const autoClient = new CultureHQ({ apiHost: "http://localhost:1701" });
-    await autoClient.signIn({ email: "foo", password: "bar" });
+    const pattern = new RegExp("parameter email");
 
-    try {
-      await autoClient.getProfile();
-    } catch (error) {}
-
-    expect(autoClient.isSignedIn()).toBe(false);
+    expect(done => { client.createApiKey().then(done) }).toThrow(pattern);
   } finally {
     server.close();
   }
-});
-
-describe("with a signed in user", () => {
-  Object.keys(calls).forEach(callName => {
-    const number = Math.random();
-    const server = createServer([
-      { status: 200, body: { apiKey: { token: "baz" } } },
-      { status: 200, body: { number } }
-    ]);
-
-    const params = {};
-    const apiCall = client[callName];
-
-    if (apiCall.expectedParams.length) {
-      apiCall.expectedParams.forEach(key => (params[key] = "foo"));
-    }
-
-    test(`can ${callName}`, async () => {
-      server.listen(port);
-
-      try {
-        await client.signIn({ email: "foo", password: "bar" });
-        const response = await client[callName](params);
-        expect(response.number).toEqual(number);
-      } finally {
-        server.close();
-      }
-    });
-  });
-});
-
-describe("with an action that expects parameters", () => {
-  Object.keys(calls).forEach(callName => {
-    const expectedParams = client[callName].expectedParams;
-
-    if (expectedParams.length) {
-      test(`cannot call ${callName} without expected parameters`, async () => {
-        const server = createServer({
-          status: 200,
-          body: { apiKey: { token: "baz" } }
-        });
-        server.listen(port);
-
-        try {
-          await client.signIn({ email: "foo", password: "bar" });
-        } finally {
-          server.close();
-        }
-
-        const pattern = new RegExp(`parameter ${expectedParams[0]}`);
-        expect(() => client[callName]({})).toThrow(pattern);
-      });
-    }
-  });
 });
