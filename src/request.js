@@ -1,7 +1,8 @@
 import "isomorphic-fetch";
 
-import { camelize, snakerize } from "./string-case";
+import { snakerize } from "./string-case";
 import formData from "./form-data";
+import processResponse from "./response";
 
 const buildHeaders = ({ multipart, token, simulation }) => {
   let headers = { "X-Client-Version": CLIENT_VERSION };
@@ -19,24 +20,28 @@ const buildHeaders = ({ multipart, token, simulation }) => {
   return headers;
 };
 
+const attachParams = (url, params) => {
+  Object.keys(params).forEach(key => {
+    if (params[key] === undefined || params[key] === null) {
+      return;
+    }
+
+    if (!Array.isArray(params[key])) {
+      url.searchParams.append(key, params[key]);
+    } else if (params[key].length) {
+      params[key].forEach(nestedValue =>
+        url.searchParams.append(key + "[]", nestedValue)
+      );
+    }
+  });
+};
+
 const buildRequest = (method, url, options) => {
-  let reqOptions = { headers: buildHeaders(options), method };
+  const reqOptions = { headers: buildHeaders(options), method };
   const params = snakerize(options.params);
 
   if (method === "GET") {
-    Object.keys(params).forEach(key => {
-      if (params[key] === undefined || params[key] === null) {
-        return;
-      }
-
-      if (!Array.isArray(params[key])) {
-        url.searchParams.append(key, params[key]);
-      } else if (params[key].length) {
-        params[key].forEach(nestedValue =>
-          url.searchParams.append(key + "[]", nestedValue)
-        );
-      }
-    });
+    attachParams(url, params);
   } else if (options.multipart) {
     reqOptions.body = formData(params);
   } else {
@@ -48,28 +53,7 @@ const buildRequest = (method, url, options) => {
 
 const performRequest = (method, url, options) => {
   const request = buildRequest(method, url, options);
-
-  return new Promise((resolve, reject) => {
-    fetch(request.url, request.options).then(response => {
-      const { status } = response;
-      const success = Math.round(status / 200) === 1;
-
-      if (status === 204) {
-        resolve(null);
-      } else if (response.headers.get("content-type") === "text/html") {
-        if (success) {
-          response.text().then(text => resolve({ response, text })).catch(reject);
-        } else {
-          reject({ response, error: response.statusText, status, url });
-        }
-      } else {
-        response.json().then(json => {
-          const fullResponse = Object.assign({ response }, camelize(json));
-          success ? resolve(fullResponse) : reject(fullResponse);
-        }).catch(reject);
-      }
-    }).catch(reject);
-  });
+  return fetch(request.url, request.options).then(processResponse);
 };
 
 export default performRequest;
