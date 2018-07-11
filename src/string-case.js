@@ -1,27 +1,36 @@
 // Convert from lower_snake_case to lowerCamelCase
 const camelizeString = string => {
   const pattern = /_([a-z])/;
-  let match;
 
-  while ((match = pattern.exec(string)) !== null) {
-    string = string.replace(match[0], match[1].toUpperCase());
+  let camelized = string;
+  let match = pattern.exec(camelized);
+
+  while (match !== null) {
+    camelized = camelized.replace(match[0], match[1].toUpperCase());
+    match = pattern.exec(camelized);
   }
-  return string;
+
+  return camelized;
 };
 
 // Convert from lowerCamelCase to lower_snake_case
 const snakerizeString = string => {
   const pattern = /([A-Z])/;
-  let match;
 
-  while ((match = pattern.exec(string)) !== null) {
-    string = string.replace(match[0], `_${match[1].toLowerCase()}`);
+  let snakerized = string;
+  let match = pattern.exec(snakerized);
+
+  while (match !== null) {
+    snakerized = string.replace(match[0], `_${match[1].toLowerCase()}`);
+    match = pattern.exec(snakerized);
   }
-  return string;
+
+  return snakerized;
 };
 
-const shouldRecurse = value =>
-  value && (value.toString() === "[object Object]" || Array.isArray(value));
+const shouldRecurse = value => (
+  value && (value.toString() === "[object Object]" || Array.isArray(value))
+);
 
 const modifyKeys = (object, stringFunc) => {
   // If the node is not an object or is null, return the original object since
@@ -42,7 +51,7 @@ const modifyKeys = (object, stringFunc) => {
     return object;
   }
 
-  let modified = {};
+  const modified = {};
   let value;
 
   Object.keys(object).forEach(key => {
@@ -58,4 +67,5 @@ const modifyKeys = (object, stringFunc) => {
 
 const camelize = object => modifyKeys(object, camelizeString);
 const snakerize = object => modifyKeys(object, snakerizeString);
+
 export { camelize, snakerize };
