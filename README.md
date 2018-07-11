@@ -43,11 +43,10 @@ const getProfile = async () => {
 };
 ```
 
-Each function can be introspected to determine its `expectedParams` and `optionalParams`, as in:
+Each function can be introspected to determine its expected parameters (`exp`) and optional parameters (`opt`), as in:
 
 ```js
-const expectedParams = cultureHQ.createEvent.expectedParams;
-const optionalParams = cultureHQ.createEvent.optionalParams;
+const { exp, opt } = cultureHQ.createEvent;
 ```
 
 If a function has `multipart = true` set on its config, it's because one or more of the attributes require a file object. In this case, a `File` object should be given for the value, as in:
