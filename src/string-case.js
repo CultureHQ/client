@@ -21,7 +21,7 @@ const snakerizeString = string => {
   let match = pattern.exec(snakerized);
 
   while (match !== null) {
-    snakerized = string.replace(match[0], `_${match[1].toLowerCase()}`);
+    snakerized = snakerized.replace(match[0], `_${match[1].toLowerCase()}`);
     match = pattern.exec(snakerized);
   }
 
