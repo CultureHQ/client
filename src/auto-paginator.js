@@ -21,7 +21,7 @@ class AutoPaginator {
       }
 
       let page;
-      let promises = [];
+      const promises = [];
 
       for (page = 2; page <= totalPages; page += 1) {
         promises.push(this.client[callName]({ ...options, page }));
@@ -29,12 +29,12 @@ class AutoPaginator {
 
       // Wait for every API call to resolve before proceeding (this allows all
       // of the requests to be executed in parallel)
-      return Promise.all(promises).then(promises => {
+      return Promise.all(promises).then(responses => {
         // Pull the data from the first request and all the rest of the requests
         // into one list
         let data = [...response[this.dataType]];
         for (page = 0; page <= totalPages - 2; page += 1) {
-          data = [...data, ...promises[page][this.dataType]];
+          data = [...data, ...responses[page][this.dataType]];
         }
 
         const aggregated = { ...response };

@@ -9,7 +9,7 @@ const buildHeaders = ({ multipart, token, simulation }) => {
     headers["Content-Type"] = "application/json";
   }
   if (typeof token === "string" && token.length) {
-    headers["Authorization"] = `token ${token}`;
+    headers.Authorization = `token ${token}`;
   }
   if (typeof simulation === "string" && simulation.length) {
     headers["X-Client-Simulation"] = simulation;
@@ -27,9 +27,9 @@ const attachGetParams = (url, params) => {
     if (!Array.isArray(params[key])) {
       url.searchParams.append(key, params[key]);
     } else if (params[key].length) {
-      params[key].forEach(nestedValue =>
-        url.searchParams.append(key + "[]", nestedValue)
-      );
+      params[key].forEach(nestedValue => (
+        url.searchParams.append(`${key}[]`, nestedValue)
+      ));
     }
   });
 };

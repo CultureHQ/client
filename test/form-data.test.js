@@ -7,7 +7,7 @@ const serializeFormData = data => {
     const field = data._streams[idx];
 
     serialized.push({
-      key: field.slice(field.indexOf('name="') + 6, field.lastIndexOf('"')),
+      key: field.slice(field.indexOf("name=\"") + 6, field.lastIndexOf("\"")),
       value: data._streams[idx + 1]
     });
   }

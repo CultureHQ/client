@@ -13,21 +13,13 @@ const state = {
 
   getToken: () => store.get(tokenKey),
 
-  isSignedIn: () => {
-    return state.getToken() !== undefined;
-  },
+  isSignedIn: () => state.getToken() !== undefined,
 
-  isSimulating: () => {
-    return store.get(simulationKey) !== undefined;
-  },
+  isSimulating: () => store.get(simulationKey) !== undefined,
 
-  signIn: token => {
-    store.set(tokenKey, token);
-  },
+  signIn: token => store.set(tokenKey, token),
 
-  signOut: () => {
-    store.clearAll();
-  },
+  signOut: () => store.clearAll(),
 
   startSimulation: token => {
     if (!state.isSignedIn()) {

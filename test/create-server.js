@@ -1,7 +1,7 @@
 import http from "http";
 
-const parsedBody = request => new Promise((resolve, reject) => {
-  let chunks = [];
+const parsedBody = request => new Promise(resolve => {
+  const chunks = [];
 
   request.on("data", chunk => chunks.push(chunk)).on("end", () => {
     resolve(Buffer.concat(chunks).toString());
