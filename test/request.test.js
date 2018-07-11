@@ -18,11 +18,19 @@ const parseMultipart = request => {
   return values;
 };
 
-test("attaches GET params directly to the query string", async () => {
-  const server = createServer({ status: 200, body: {} });
+const withServer = async callback => {
+  const server = createServer({ status: 200, body: { foo: "bar" } });
   server.listen(1693);
 
   try {
+    await callback(server);
+  } finally {
+    server.close();
+  }
+};
+
+test("attaches GET params directly to the query string", () => (
+  withServer(async () => {
     const { response } = await request("GET", new URL("http://localhost:1693"), {
       params: { one: "one", two: [], three: [1, 2, 3], four: null, five: undefined }
     });
@@ -43,72 +51,75 @@ test("attaches GET params directly to the query string", async () => {
       expect(actualKey).toEqual(expectedKey);
       expect(actualValue).toEqual(expectedValue);
     }
-  } finally {
-    server.close();
-  }
-});
+  })
+));
 
-test("passes nulls through as empty strings on multipart", async () => {
-  const server = createServer({ status: 200, body: { foo: "bar" } });
-  const port = 1694;
-  server.listen(port);
-
-  try {
-    const url = new URL(`http://localhost:${port}`);
-    const response = await request("POST", url, {
+test("passes nulls through as empty strings on multipart", () => (
+  withServer(async server => {
+    const response = await request("POST", new URL("http://localhost:1693"), {
       params: { foo: null },
       multipart: true
     });
+
     expect(server.requests.length).toEqual(1);
 
     const parsedBody = parseMultipart(server.requests[0]);
     expect(parsedBody[0]).toEqual({ name: "foo", value: "" });
-  } finally {
-    server.close();
-  }
-});
+  })
+));
 
-test("properly handles multipart array parameters", async () => {
-  const server = createServer({ status: 200, body: { foo: "bar" } });
-  const port = 1695;
-  server.listen(port);
-
-  try {
-    const url = new URL(`http://localhost:${port}`);
-    const response = await request("POST", url, {
+test("properly handles multipart array parameters", () => (
+  withServer(async server => {
+    const response = await request("POST", new URL("http://localhost:1693"), {
       params: { foo: [1, 2, 3] },
       multipart: true
     });
+
     expect(server.requests.length).toEqual(1);
 
     const parsedBody = parseMultipart(server.requests[0]);
+
     for (let idx = 0; idx < 3; idx++) {
       expect(parsedBody[idx]).toEqual({
         name: "foo[]",
         value: (idx + 1).toString()
       });
     }
-  } finally {
-    server.close();
-  }
-});
+  })
+));
 
-test("properly handles multiparty empty array parameters", async () => {
-  const server = createServer({ status: 200, body: { foo: "bar" } });
-  const port = 1696;
-  server.listen(port);
-
-  try {
-    const url = new URL(`http://localhost:${port}`);
-    const response = await request("POST", url, {
+test("properly handles multiparty empty array parameters", () => (
+  withServer(async server => {
+    const response = await request("POST", new URL("http://localhost:1693"), {
       params: { foo: [] },
       multipart: true
     });
+
     expect(server.requests.length).toEqual(1);
 
     const parsedBody = parseMultipart(server.requests[0]);
     expect(parsedBody[0]).toEqual({ name: "foo[]", value: "" });
-  } finally {
-    server.close();
-  }
-});
+  })
+));
+
+test("adds appropriate headers", () => (
+  withServer(async server => {
+    const { response } = await request("GET", new URL("http://localhost:1693"), {
+      params: {},
+      simulation: "simulation-token",
+      token: "regular-token"
+    });
+
+    const expected = {
+      "content-type": "application/json",
+      "authorization": "token regular-token",
+      "x-client-simulation": "simulation-token"
+    };
+
+    const { requests: [{ headers }] } = server;
+
+    Object.keys(expected).forEach(headerKey => {
+      expect(headers[headerKey]).toEqual(expected[headerKey]);
+    });
+  })
+));
