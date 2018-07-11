@@ -18,7 +18,7 @@ const buildHeaders = ({ multipart, token, simulation }) => {
   return headers;
 };
 
-const attachParams = (url, params) => {
+const attachGetParams = (url, params) => {
   Object.keys(params).forEach(key => {
     if (params[key] === undefined || params[key] === null) {
       return;
@@ -39,7 +39,7 @@ const buildRequest = (method, url, options) => {
   const params = snakerize(options.params);
 
   if (method === "GET") {
-    attachParams(url, params);
+    attachGetParams(url, params);
   } else if (options.multipart) {
     reqOptions.body = formData(params);
   } else {
