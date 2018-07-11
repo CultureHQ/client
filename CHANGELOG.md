@@ -11,7 +11,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - The optional `logo` parameter on the `createOrganization` and `updateOrganization` calls was changed to `logoUrl`.
 - Moved the `isomorphic-fetch` and `url-polyfill` packages in the `devDependencies` as they're only needed for testing.
 - Made the `createAnnouncement` and `updateAnnouncement` calls `application/json` instead of multipart.
-- Renamed the `expectedParams` to `exp` and `optionalParams` to `opt` to reduce bundle size.
+- Changed the configuration of `src/calls.json` to cut down on duplication and thereby reduce bundle size.
 
 ### Removed
 - The client will no longer track if the `/profile` endpoint returns a 403 or that multiple requests return 403s in a row. This responsibility is now on the end users to verify the integrity of the requests.

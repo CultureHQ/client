@@ -43,10 +43,10 @@ const getProfile = async () => {
 };
 ```
 
-Each function can be introspected to determine its expected parameters (`exp`) and optional parameters (`opt`), as in:
+Each function can be introspected to determine its expected parameters (`expectedParams`) and optional parameters (`optionalParams`), as in:
 
 ```js
-const { exp, opt } = cultureHQ.createEvent;
+const { expectedParams, optionalParams } = cultureHQ.createEvent;
 ```
 
 If a function has `multipart = true` set on its config, it's because one or more of the attributes require a file object. In this case, a `File` object should be given for the value, as in:
@@ -62,7 +62,7 @@ First, install the dependencies with `yarn`.
 
 ### Styling
 
-Styling is handled through `prettier`. Run it with `yarn cleanup`.
+Styling is handled through `prettier`. Run it with `yarn prettier`.
 
 ### Testing
 
@@ -70,4 +70,4 @@ Run `yarn test` to run the tests with `jest`.
 
 ### Releasing
 
-First, bump the version in [package.json](package.json). Then, build the client with `yarn build`. This will generate a new `dist/index.js`. Finally, modify [CHANGELOG.md](CHANGELOG.md) to include the new release.
+First, bump the version in [package.json](package.json). Then, build the client with `yarn build`. This will generate a new `dist/main.js`. Finally, modify [CHANGELOG.md](CHANGELOG.md) to include the new release.
