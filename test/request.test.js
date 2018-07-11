@@ -20,18 +20,20 @@ const parseMultipart = ({ headers, parsedBody }) => {
 
 const withServer = async callback => {
   const server = createServer({ status: 200, body: { foo: "bar" } });
-  server.listen(1693);
+  server.listen(withServer.currentPort += 1);
 
   try {
-    await callback(server);
+    await callback(server, new URL(`http://localhost:${server.address().port}`));
   } finally {
     server.close();
   }
 };
 
+withServer.currentPort = 1693;
+
 test("attaches GET params directly to the query string", () => (
-  withServer(async () => {
-    const { response } = await request("GET", new URL("http://localhost:1693"), {
+  withServer(async (server, url) => {
+    const { response } = await request("GET", url, {
       params: {
         one: "one",
         two: [],
@@ -61,8 +63,8 @@ test("attaches GET params directly to the query string", () => (
 ));
 
 test("passes nulls through as empty strings on multipart", () => (
-  withServer(async server => {
-    await request("POST", new URL("http://localhost:1693"), {
+  withServer(async (server, url) => {
+    await request("POST", url, {
       params: { foo: null },
       multipart: true
     });
@@ -75,8 +77,8 @@ test("passes nulls through as empty strings on multipart", () => (
 ));
 
 test("properly handles multipart array parameters", () => (
-  withServer(async server => {
-    await request("POST", new URL("http://localhost:1693"), {
+  withServer(async (server, url) => {
+    await request("POST", url, {
       params: { foo: [1, 2, 3] },
       multipart: true
     });
@@ -95,8 +97,8 @@ test("properly handles multipart array parameters", () => (
 ));
 
 test("properly handles multiparty empty array parameters", () => (
-  withServer(async server => {
-    await request("POST", new URL("http://localhost:1693"), {
+  withServer(async (server, url) => {
+    await request("POST", url, {
       params: { foo: [] },
       multipart: true
     });
@@ -109,8 +111,8 @@ test("properly handles multiparty empty array parameters", () => (
 ));
 
 test("adds appropriate headers", () => (
-  withServer(async server => {
-    await request("GET", new URL("http://localhost:1693"), {
+  withServer(async (server, url) => {
+    await request("GET", url, {
       params: {},
       simulation: "simulation-token",
       token: "regular-token"
