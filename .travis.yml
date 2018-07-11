@@ -3,8 +3,7 @@ node_js:
 - stable
 branches:
   only: master
-script:
-- yarn test
+script: yarn lint && yarn test
 cache: yarn
 notifications:
   slack:
