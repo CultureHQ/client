@@ -1,12 +1,12 @@
 import createServer from "./create-server";
 import request from "../src/request";
 
-const parseMultipart = request => {
-  const contentType = request.headers["content-type"];
+const parseMultipart = ({ headers, parsedBody }) => {
+  const contentType = headers["content-type"];
   const boundary = contentType.split("boundary=")[1];
 
   const values = [];
-  const parts = request.parsedBody.split(boundary);
+  const parts = parsedBody.split(boundary);
   const namePattern = /"(.+)"/;
 
   for (let idx = 1; idx < parts.length - 1; idx += 1) {
@@ -32,7 +32,13 @@ const withServer = async callback => {
 test("attaches GET params directly to the query string", () => (
   withServer(async () => {
     const { response } = await request("GET", new URL("http://localhost:1693"), {
-      params: { one: "one", two: [], three: [1, 2, 3], four: null, five: undefined }
+      params: {
+        one: "one",
+        two: [],
+        three: [1, 2, 3],
+        four: null,
+        five: undefined
+      }
     });
 
     const entries = new URL(response.url).searchParams.entries();
@@ -56,7 +62,7 @@ test("attaches GET params directly to the query string", () => (
 
 test("passes nulls through as empty strings on multipart", () => (
   withServer(async server => {
-    const response = await request("POST", new URL("http://localhost:1693"), {
+    await request("POST", new URL("http://localhost:1693"), {
       params: { foo: null },
       multipart: true
     });
@@ -70,7 +76,7 @@ test("passes nulls through as empty strings on multipart", () => (
 
 test("properly handles multipart array parameters", () => (
   withServer(async server => {
-    const response = await request("POST", new URL("http://localhost:1693"), {
+    await request("POST", new URL("http://localhost:1693"), {
       params: { foo: [1, 2, 3] },
       multipart: true
     });
@@ -90,7 +96,7 @@ test("properly handles multipart array parameters", () => (
 
 test("properly handles multiparty empty array parameters", () => (
   withServer(async server => {
-    const response = await request("POST", new URL("http://localhost:1693"), {
+    await request("POST", new URL("http://localhost:1693"), {
       params: { foo: [] },
       multipart: true
     });
@@ -104,7 +110,7 @@ test("properly handles multiparty empty array parameters", () => (
 
 test("adds appropriate headers", () => (
   withServer(async server => {
-    const { response } = await request("GET", new URL("http://localhost:1693"), {
+    await request("GET", new URL("http://localhost:1693"), {
       params: {},
       simulation: "simulation-token",
       token: "regular-token"
