@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [2.0.1] - 2018-07-11
+### Changed
+- Bring back `url-polyfill` into the bundle as it's needed for IE11.
+
 ## [2.0.0] - 2018-07-11
 ### Changed
 - The optional `logo` parameter on the `createOrganization` and `updateOrganization` calls was changed to `logoUrl`.
