@@ -1,6 +1,6 @@
 import formData from "../src/form-data";
 
-const serializeFormData = data => {
+const serializeFormData = data => { /* eslint-disable no-underscore-dangle */
   const serialized = [];
 
   for (let idx = 0; idx < data._streams.length; idx += 3) {

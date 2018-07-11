@@ -1,9 +1,11 @@
 import request from "./request";
 import state from "./state";
 
+const { hasOwnProperty } = Object.prototype;
+
 const ensureExpectedParams = (expectedParams, actualParams) => {
   expectedParams.forEach(param => {
-    if (!actualParams.hasOwnProperty(param)) {
+    if (!hasOwnProperty.call(actualParams, param)) {
       throw new Error(`Expected parameter ${param} not given`);
     }
   });
@@ -34,17 +36,15 @@ export default (client, options) => {
   ] = options;
 
   const apiCall = actualParams => {
-    if (typeof actualParams !== "object") {
-      actualParams = {};
-    }
+    const normalizedParams = typeof actualParams !== "object" ? {} : actualParams;
 
-    ensureExpectedParams(expectedParams, actualParams);
-    const callPath = substitutePath(path, actualParams);
+    ensureExpectedParams(expectedParams, normalizedParams);
+    const callPath = substitutePath(path, normalizedParams);
 
     return request(method, new URL(`${client.apiHost}${callPath}`), {
       token: state.getToken(),
       simulation: state.getSimulationToken(),
-      params: actualParams,
+      params: normalizedParams,
       multipart
     });
   };
