@@ -1,98 +1,61 @@
 {
-  "activateSurvey": {
-    "method": "POST",
-    "path": "/surveys/:surveyId/survey_activation"
-  },
-  "adminAutocompleteUsers": {
-    "method": "GET",
-    "path": "/admin/autocomplete/users",
-    "exp": ["query"]
-  },
-  "approveRecognition": {
-    "method": "POST",
-    "path": "/recognitions/:recognitionId/recognition_approval"
-  },
-  "autocompleteUsers": {
-    "method": "GET",
-    "path": "/autocomplete/users",
-    "exp": ["query"],
-    "opt": ["includeDeactivated", "inviteStatus", "active"]
-  },
-  "bulkCreateEventPhotos": {
-    "method": "POST",
-    "path": "/events/:eventId/albums",
-    "multipart": true,
-    "exp": ["images"]
-  },
-  "cancelEvent": {
-    "method": "POST",
-    "path": "/events/:eventId/event_cancellations",
-    "opt": ["message"]
-  },
-  "changePassword": {
-    "method": "PATCH",
-    "path": "/password",
-    "exp": ["oldPassword", "newPassword"]
-  },
-  "checkInEventAttendee": {
-    "method": "POST",
-    "path": "/events/:eventId/check_ins",
-    "exp": ["userId"]
-  },
-  "cheerEventComment": {
-    "method": "POST",
-    "path": "/events/:eventId/comments/:commentId/cheers"
-  },
-  "cheerEventPhoto": {
-    "method": "POST",
-    "path": "/events/:eventId/photos/:photoId/cheers"
-  },
-  "cheerEventPhotoComment": {
-    "method": "POST",
-    "path": "/events/:eventId/photos/:photoId/comments/:commentId/cheers"
-  },
-  "cheerRecognition": {
-    "method": "POST",
-    "path": "/recognitions/:recognitionId/cheers"
-  },
-  "cheerRecognitionComment": {
-    "method": "POST",
-    "path": "/recognitions/:recognitionId/comments/:commentId/cheers"
-  },
-  "cheerUserActivity": {
-    "method": "POST",
-    "path": "/user_activities/:userActivityId/cheers"
-  },
-  "cheerUserActivityComment": {
-    "method": "POST",
-    "path": "/user_activities/:userActivityId/comments/:commentId/cheers"
-  },
-  "confirmEventAttendance": {
-    "method": "POST",
-    "path": "/events/:eventId/confirmation"
-  },
-  "createAnnouncement": {
-    "method": "POST",
-    "path": "/announcements",
-    "exp": ["title", "active"],
-    "opt": ["body", "imageUrl"]
-  },
-  "createApiKey": {
-    "method": "POST",
-    "path": "/api_keys",
-    "exp": ["email", "password"]
-  },
-  "createDepartment": {
-    "method": "POST",
-    "path": "/departments",
-    "exp": ["name"]
-  },
-  "createEvent": {
-    "method": "POST",
-    "path": "/events",
-    "multipart": true,
-    "exp": ["name", "startsAt", "endsAt", "eventType"],
-    "opt": [
+  "activateSurvey": ["POST", "/surveys/:surveyId/survey_activation"],
+  "adminAutocompleteUsers": ["GET", "/admin/autocomplete/users", ["query"]],
+  "approveRecognition": [
+    "POST",
+    "/recognitions/:recognitionId/recognition_approval"
+  ],
+  "autocompleteUsers": [
+    "GET",
+    "/autocomplete/users",
+    ["query"],
+    ["includeDeactivated", "inviteStatus", "active"]
+  ],
+  "bulkCreateEventPhotos": [
+    "POST",
+    "/events/:eventId/albums",
+    ["images"],
+    [],
+    true
+  ],
+  "cancelEvent": [
+    "POST",
+    "/events/:eventId/event_cancellations",
+    [],
+    ["message"]
+  ],
+  "changePassword": ["PATCH", "/password", ["oldPassword", "newPassword"]],
+  "checkInEventAttendee": ["POST", "/events/:eventId/check_ins", ["userId"]],
+  "cheerEventComment": ["POST", "/events/:eventId/comments/:commentId/cheers"],
+  "cheerEventPhoto": ["POST", "/events/:eventId/photos/:photoId/cheers"],
+  "cheerEventPhotoComment": [
+    "POST",
+    "/events/:eventId/photos/:photoId/comments/:commentId/cheers"
+  ],
+  "cheerRecognition": ["POST", "/recognitions/:recognitionId/cheers"],
+  "cheerRecognitionComment": [
+    "POST",
+    "/recognitions/:recognitionId/comments/:commentId/cheers"
+  ],
+  "cheerUserActivity": ["POST", "/user_activities/:userActivityId/cheers"],
+  "cheerUserActivityComment": [
+    "POST",
+    "/user_activities/:userActivityId/comments/:commentId/cheers"
+  ],
+  "confirmEventAttendance": ["POST", "/events/:eventId/confirmation"],
+  "createAnnouncement": [
+    "POST",
+    "/announcements",
+    ["title", "active"],
+    ["body", "imageUrl"]
+  ],
+  "createApiKey": ["POST", "/api_keys", ["email", "password"]],
+  "createDepartment": ["POST", "/departments", ["name"]],
+  "createEvent": [
+    "POST",
+    "/events",
+    ["name", "startsAt", "endsAt", "eventType"],
+    [
       "details",
       "sponsored",
       "surveyId",
@@ -109,70 +72,55 @@
       "interestNames",
       "allLocations",
       "createSurvey"
-    ]
-  },
-  "createEventComment": {
-    "method": "POST",
-    "path": "/events/:eventId/comments",
-    "exp": ["body"],
-    "opt": ["parentCommentId"]
-  },
-  "createEventInvites": {
-    "method": "POST",
-    "path": "/events/:eventId/event_invites",
-    "opt": ["userIds", "locationIds", "interestIds", "departmentIds"]
-  },
-  "createEventPhoto": {
-    "method": "POST",
-    "path": "/events/:eventId/photos",
-    "multipart": true,
-    "exp": ["image"],
-    "opt": ["caption"]
-  },
-  "createEventPhotoComment": {
-    "method": "POST",
-    "path": "/events/:eventId/photos/:photoId/comments",
-    "exp": ["body"],
-    "opt": ["parentCommentId"]
-  },
-  "createEventRsvp": {
-    "method": "POST",
-    "path": "/events/:eventId/rsvps",
-    "exp": ["responseType"]
-  },
-  "createExpense": {
-    "method": "POST",
-    "path": "/events/:eventId/expenses",
-    "exp": ["description", "amount"],
-    "opt": ["incurredAt"]
-  },
-  "createFeedback": {
-    "method": "POST",
-    "path": "/feedbacks",
-    "exp": ["body"],
-    "opt": ["anonymous"]
-  },
-  "createInterest": {
-    "method": "POST",
-    "path": "/interests",
-    "exp": ["name"]
-  },
-  "createLocation": {
-    "method": "POST",
-    "path": "/locations",
-    "exp": ["name"]
-  },
-  "createMeeting": {
-    "method": "POST",
-    "path": "/meetings",
-    "opt": ["departmentIds", "interestIds", "locationIds"]
-  },
-  "createOrganization": {
-    "method": "POST",
-    "path": "/admin/organizations",
-    "multipart": true,
-    "exp": ["name"],
-    "opt": [
+    ],
+    true
+  ],
+  "createEventComment": [
+    "POST",
+    "/events/:eventId/comments",
+    ["body"],
+    ["parentCommentId"]
+  ],
+  "createEventInvites": [
+    "POST",
+    "/events/:eventId/event_invites",
+    [],
+    ["userIds", "locationIds", "interestIds", "departmentIds"]
+  ],
+  "createEventPhoto": [
+    "POST",
+    "/events/:eventId/photos",
+    ["image"],
+    ["caption"],
+    true
+  ],
+  "createEventPhotoComment": [
+    "POST",
+    "/events/:eventId/photos/:photoId/comments",
+    ["body"],
+    ["parentCommentId"]
+  ],
+  "createEventRsvp": ["POST", "/events/:eventId/rsvps", ["responseType"]],
+  "createExpense": [
+    "POST",
+    "/events/:eventId/expenses",
+    ["description", "amount"],
+    ["incurredAt"]
+  ],
+  "createFeedback": ["POST", "/feedbacks", ["body"], ["anonymous"]],
+  "createInterest": ["POST", "/interests", ["name"]],
+  "createLocation": ["POST", "/locations", ["name"]],
+  "createMeeting": [
+    "POST",
+    "/meetings",
+    [],
+    ["departmentIds", "interestIds", "locationIds"]
+  ],
+  "createOrganization": [
+    "POST",
+    "/admin/organizations",
+    ["name"],
+    [
       "gamificationEnabled",
       "logoUrl",
       "active",
@@ -183,489 +131,254 @@
       "feedbackEnabled",
       "userCreatedInvitesEnabled",
       "accountInfoEnabled"
-    ]
-  },
-  "createOrganizationValue": {
-    "method": "POST",
-    "path": "/organization_values",
-    "exp": ["name"]
-  },
-  "createPhotoTag": {
-    "method": "POST",
-    "path": "/photos/:photoId/photo_tags",
-    "exp": ["userId"]
-  },
-  "createProfileNotificationView": {
-    "method": "POST",
-    "path": "/profile/notification_views"
-  },
-  "createProfilePointNotificationView": {
-    "method": "POST",
-    "path": "/profile/point_notification_views"
-  },
-  "createRecognition": {
-    "method": "POST",
-    "path": "/recognitions",
-    "exp": ["body", "userIds"]
-  },
-  "createRecognitionComment": {
-    "method": "POST",
-    "path": "/recognitions/:recognitionId/comments",
-    "exp": ["body"],
-    "opt": ["parentCommentId"]
-  },
-  "createRecognitionType": {
-    "method": "POST",
-    "path": "/recognitions/recognition_types",
-    "exp": ["name", "approval", "imageUrl"],
-    "opt": ["points"]
-  },
-  "createSSOAgreement": {
-    "method": "POST",
-    "path": "/sso/agreement"
-  },
-  "createSession": {
-    "method": "POST",
-    "path": "/sessions",
-    "exp": ["email"]
-  },
-  "createSimulation": {
-    "method": "POST",
-    "path": "/admin/simulation",
-    "exp": ["userId"]
-  },
-  "createSlackIntegration": {
-    "method": "POST",
-    "path": "/slack_integrations",
-    "exp": ["code"]
-  },
-  "createSurvey": {
-    "method": "POST",
-    "path": "/surveys",
-    "exp": ["title"],
-    "opt": ["points", "eventId", "viewableResults"]
-  },
-  "createSurveyItem": {
-    "method": "POST",
-    "path": "/surveys/:surveyId/survey_items",
-    "exp": ["prompt", "itemType"],
-    "opt": ["minRange", "maxRange"]
-  },
-  "createSurveyItemResponseOption": {
-    "method": "POST",
-    "path": "/survey_items/:surveyItemId/survey_item_response_options",
-    "exp": ["body"]
-  },
-  "createSurveyUserItemResponse": {
-    "method": "POST",
-    "path": "/survey_items/:surveyItemId/survey_user_item_response",
-    "opt": ["body", "surveyItemResponseOptionIds"]
-  },
-  "createUserActivityComment": {
-    "method": "POST",
-    "path": "/user_activities/:userActivityId/comments",
-    "exp": ["body"],
-    "opt": ["parentCommentId"]
-  },
-  "createUserInvite": {
-    "method": "POST",
-    "path": "/users/:userId/invites"
-  },
-  "deactivateSurvey": {
-    "method": "DELETE",
-    "path": "/surveys/:surveyId/survey_activation"
-  },
-  "deactivateUser": {
-    "method": "POST",
-    "path": "/users/:userId/deactivation"
-  },
-  "deleteAnnouncement": {
-    "method": "DELETE",
-    "path": "/announcements/:announcementId"
-  },
-  "deleteDepartment": {
-    "method": "DELETE",
-    "path": "/departments/:departmentId"
-  },
-  "deleteEvent": {
-    "method": "DELETE",
-    "path": "/events/:eventId",
-    "opt": ["message"]
-  },
-  "deleteEventComment": {
-    "method": "DELETE",
-    "path": "/events/:eventId/comments/:commentId"
-  },
-  "deleteEventPhoto": {
-    "method": "DELETE",
-    "path": "/events/:eventId/photos/:photoId"
-  },
-  "deleteEventPhotoComment": {
-    "method": "DELETE",
-    "path": "/events/:eventId/photos/:photoId/comments/:commentId"
-  },
-  "deleteExpense": {
-    "method": "DELETE",
-    "path": "/events/:eventId/expenses/:expenseId"
-  },
-  "deleteInterest": {
-    "method": "DELETE",
-    "path": "/interests/:interestId"
-  },
-  "deleteLocation": {
-    "method": "DELETE",
-    "path": "/locations/:locationId"
-  },
-  "deleteOrganization": {
-    "method": "DELETE",
-    "path": "/admin/organizations/:organizationId"
-  },
-  "deleteOrganizationValue": {
-    "method": "DELETE",
-    "path": "/organization_values/:organizationValueId"
-  },
-  "deletePhotoTag": {
-    "method": "DELETE",
-    "path": "/photos/:photoId/photo_tags/:photoTagId"
-  },
-  "deleteRecognition": {
-    "method": "DELETE",
-    "path": "/recognitions/:recognitionId"
-  },
-  "deleteRecognitionComment": {
-    "method": "DELETE",
-    "path": "/recognitions/:recognitionId/comments/:commentId"
-  },
-  "deleteRecognitionType": {
-    "method": "DELETE",
-    "path": "/recognitions/recognition_types/:recognitionTypeId"
-  },
-  "deleteSession": {
-    "method": "DELETE",
-    "path": "/session"
-  },
-  "deleteSlackIntegration": {
-    "method": "DELETE",
-    "path": "/slack_integrations/:slackIntegrationId"
-  },
-  "deleteSurvey": {
-    "method": "DELETE",
-    "path": "/surveys/:surveyId"
-  },
-  "deleteSurveyItem": {
-    "method": "DELETE",
-    "path": "/survey_items/:surveyItemId"
-  },
-  "deleteSurveyItemResponseOption": {
-    "method": "DELETE",
-    "path": "/survey_item_response_options/:surveyItemResponseOptionId"
-  },
-  "deleteUserActivityComment": {
-    "method": "DELETE",
-    "path": "/user_activities/:userActivityId/comments/:commentId"
-  },
-  "denyEventAttendance": {
-    "method": "DELETE",
-    "path": "/events/:eventId/confirmation"
-  },
-  "disableStaticWidget": {
-    "method": "DELETE",
-    "path": "/widgets",
-    "exp": ["widget"]
-  },
-  "duplicateEvent": {
-    "method": "POST",
-    "path": "/events/:eventId/event_duplicates",
-    "exp": ["startsAt"],
-    "opt": ["endsAt"]
-  },
-  "enableStaticWidget": {
-    "method": "POST",
-    "path": "/widgets",
-    "exp": ["widget"]
-  },
-  "eventAutocompleteInvites": {
-    "method": "GET",
-    "path": "/events/:eventId/autocomplete/event_invites",
-    "exp": ["query"]
-  },
-  "eventAutocompleteRsvps": {
-    "method": "GET",
-    "path": "/events/:eventId/autocomplete/rsvps",
-    "exp": ["query"]
-  },
-  "exportEvents": {
-    "method": "POST",
-    "path": "/exports/event_export"
-  },
-  "exportFeedback": {
-    "method": "POST",
-    "path": "/exports/feedback_export"
-  },
-  "exportInterests": {
-    "method": "POST",
-    "path": "/exports/interest_export"
-  },
-  "exportRecognitions": {
-    "method": "POST",
-    "path": "/exports/recognition_export"
-  },
-  "exportSurvey": {
-    "method": "POST",
-    "path": "/exports/surveys/:surveyId/survey_export"
-  },
-  "flagAvatar": {
-    "method": "POST",
-    "path": "/users/:userId/flags",
-    "opt": ["message"]
-  },
-  "flagComment": {
-    "method": "POST",
-    "path": "/comments/:commentId/flags",
-    "opt": ["message"]
-  },
-  "flagDepartment": {
-    "method": "POST",
-    "path": "/departments/:departmentId/flags",
-    "opt": ["message"]
-  },
-  "flagEvent": {
-    "method": "POST",
-    "path": "/events/:eventId/flags",
-    "opt": ["message"]
-  },
-  "flagInterest": {
-    "method": "POST",
-    "path": "/interests/:interestId/flags",
-    "opt": ["message"]
-  },
-  "flagLocation": {
-    "method": "POST",
-    "path": "/locations/:locationId/flags",
-    "opt": ["message"]
-  },
-  "flagPhoto": {
-    "method": "POST",
-    "path": "/photos/:photoId/flags",
-    "opt": ["message"]
-  },
-  "flagRecognition": {
-    "method": "POST",
-    "path": "/recognitions/:recognitionId/flags",
-    "opt": ["message"]
-  },
-  "getAnnouncement": {
-    "method": "GET",
-    "path": "/announcements/:announcementId"
-  },
-  "getAutoRecognitionSettings": {
-    "method": "GET",
-    "path": "/recognitions/auto_recognition_settings"
-  },
-  "getDepartment": {
-    "method": "GET",
-    "path": "/departments/:departmentId"
-  },
-  "getDepartmentEventParticipation": {
-    "method": "GET",
-    "path": "/events/:eventId/department_event_participation"
-  },
-  "getEvent": {
-    "method": "GET",
-    "path": "/events/:eventId"
-  },
-  "getEventAnalytics": {
-    "method": "GET",
-    "path": "/analytics/events/:eventId"
-  },
-  "getEventPhoto": {
-    "method": "GET",
-    "path": "/events/:eventId/photos/:photoId"
-  },
-  "getEventRsvp": {
-    "method": "GET",
-    "path": "/events/:eventId/rsvps/:rsvpId"
-  },
-  "getExpense": {
-    "method": "GET",
-    "path": "/events/:eventId/expenses/:expenseId"
-  },
-  "getFeedback": {
-    "method": "GET",
-    "path": "/feedbacks/:feedbackId"
-  },
-  "getInterest": {
-    "method": "GET",
-    "path": "/interests/:interestId"
-  },
-  "getInvite": {
-    "method": "GET",
-    "path": "/invites/:token"
-  },
-  "getLocation": {
-    "method": "GET",
-    "path": "/locations/:locationId"
-  },
-  "getOrganization": {
-    "method": "GET",
-    "path": "/admin/organizations/:organizationId"
-  },
-  "getOrganizationValue": {
-    "method": "GET",
-    "path": "/organization_values/:organizationValueId"
-  },
-  "getOrganizationValueLeaderboard": {
-    "method": "GET",
-    "path": "/leaderboard/organization_values"
-  },
-  "getPhotoGallery": {
-    "method": "GET",
-    "path": "/gallery",
-    "opt": ["page", "range"]
-  },
-  "getPointLeaderboard": {
-    "method": "GET",
-    "path": "/leaderboard/points"
-  },
-  "getProfile": {
-    "method": "GET",
-    "path": "/profile"
-  },
-  "getProfileEmailSettings": {
-    "method": "GET",
-    "path": "/profile/email_settings"
-  },
-  "getProfilePointStanding": {
-    "method": "GET",
-    "path": "/profile/point_standing"
-  },
-  "getRecognition": {
-    "method": "GET",
-    "path": "/recognitions/:recognitionId"
-  },
-  "getRecognitionType": {
-    "method": "GET",
-    "path": "/recognitions/recognition_types/:recognitionTypeId"
-  },
-  "getSurvey": {
-    "method": "GET",
-    "path": "/surveys/:surveyId"
-  },
-  "getSurveyItem": {
-    "method": "GET",
-    "path": "/survey_items/:surveyItemId"
-  },
-  "getSurveyItemResponseOption": {
-    "method": "GET",
-    "path": "/survey_item_response_options/:surveyItemResponseOptionId"
-  },
-  "getSurveyUserItemResponse": {
-    "method": "GET",
-    "path": "/survey_items/:surveyItemId/survey_user_item_response"
-  },
-  "getUser": {
-    "method": "GET",
-    "path": "/users/:userId"
-  },
-  "getUserEventTypeBreakdown": {
-    "method": "GET",
-    "path": "/users/:userId/event_type_breakdown"
-  },
-  "getUserPointBreakdown": {
-    "method": "GET",
-    "path": "/users/:userId/point_breakdown"
-  },
-  "getUserPointIncrements": {
-    "method": "GET",
-    "path": "/users/:userId/point_increments",
-    "opt": ["page"]
-  },
-  "getUserRecognitionLeaderboard": {
-    "method": "GET",
-    "path": "/leaderboard/user_recognitions"
-  },
-  "incrementUserPoints": {
-    "method": "POST",
-    "path": "/users/:userId/point_increments",
-    "exp": ["points"]
-  },
-  "invalidateOtherApiKeys": {
-    "method": "DELETE",
-    "path": "/api_keys"
-  },
-  "listActiveAnnouncements": {
-    "method": "GET",
-    "path": "/active_announcements",
-    "opt": ["page"]
-  },
-  "listAnnouncements": {
-    "method": "GET",
-    "path": "/announcements",
-    "opt": ["page", "active"]
-  },
-  "listApiKeys": {
-    "method": "GET",
-    "path": "/api_keys"
-  },
-  "listDepartmentAnalytics": {
-    "method": "GET",
-    "path": "/analytics/departments",
-    "opt": ["page"]
-  },
-  "listDepartments": {
-    "method": "GET",
-    "path": "/departments",
-    "opt": ["page"]
-  },
-  "listEventAnalytics": {
-    "method": "GET",
-    "path": "/analytics/events",
-    "opt": ["page"]
-  },
-  "listEventCommentCheers": {
-    "method": "GET",
-    "path": "/events/:eventId/comments/:commentId/cheers",
-    "opt": ["page"]
-  },
-  "listEventComments": {
-    "method": "GET",
-    "path": "/events/:eventId/comments",
-    "opt": ["page"]
-  },
-  "listEventInterests": {
-    "method": "GET",
-    "path": "/events/interests",
-    "opt": ["page"]
-  },
-  "listEventPhotoCheers": {
-    "method": "GET",
-    "path": "/events/:eventId/photos/:photoId/cheers",
-    "opt": ["page"]
-  },
-  "listEventPhotoCommentCheers": {
-    "method": "GET",
-    "path": "/events/:eventId/photos/:photoId/comments/:commentId/cheers",
-    "opt": ["page"]
-  },
-  "listEventPhotoComments": {
-    "method": "GET",
-    "path": "/events/:eventId/photos/:photoId/comments",
-    "opt": ["page"]
-  },
-  "listEventPhotos": {
-    "method": "GET",
-    "path": "/events/:eventId/photos",
-    "opt": ["page"]
-  },
-  "listEventRsvps": {
-    "method": "GET",
-    "path": "/events/:eventId/rsvps",
-    "opt": ["page", "responseType"]
-  },
-  "listEvents": {
-    "method": "GET",
-    "path": "/events",
-    "opt": [
+    ],
+    true
+  ],
+  "createOrganizationValue": ["POST", "/organization_values", ["name"]],
+  "createPhotoTag": ["POST", "/photos/:photoId/photo_tags", ["userId"]],
+  "createProfileNotificationView": ["POST", "/profile/notification_views"],
+  "createProfilePointNotificationView": [
+    "POST",
+    "/profile/point_notification_views"
+  ],
+  "createRecognition": ["POST", "/recognitions", ["body", "userIds"]],
+  "createRecognitionComment": [
+    "POST",
+    "/recognitions/:recognitionId/comments",
+    ["body"],
+    ["parentCommentId"]
+  ],
+  "createRecognitionType": [
+    "POST",
+    "/recognitions/recognition_types",
+    ["name", "approval", "imageUrl"],
+    ["points"]
+  ],
+  "createSSOAgreement": ["POST", "/sso/agreement"],
+  "createSession": ["POST", "/sessions", ["email"]],
+  "createSimulation": ["POST", "/admin/simulation", ["userId"]],
+  "createSlackIntegration": ["POST", "/slack_integrations", ["code"]],
+  "createSurvey": [
+    "POST",
+    "/surveys",
+    ["title"],
+    ["points", "eventId", "viewableResults"]
+  ],
+  "createSurveyItem": [
+    "POST",
+    "/surveys/:surveyId/survey_items",
+    ["prompt", "itemType"],
+    ["minRange", "maxRange"]
+  ],
+  "createSurveyItemResponseOption": [
+    "POST",
+    "/survey_items/:surveyItemId/survey_item_response_options",
+    ["body"]
+  ],
+  "createSurveyUserItemResponse": [
+    "POST",
+    "/survey_items/:surveyItemId/survey_user_item_response",
+    [],
+    ["body", "surveyItemResponseOptionIds"]
+  ],
+  "createUserActivityComment": [
+    "POST",
+    "/user_activities/:userActivityId/comments",
+    ["body"],
+    ["parentCommentId"]
+  ],
+  "createUserInvite": ["POST", "/users/:userId/invites"],
+  "deactivateSurvey": ["DELETE", "/surveys/:surveyId/survey_activation"],
+  "deactivateUser": ["POST", "/users/:userId/deactivation"],
+  "deleteAnnouncement": ["DELETE", "/announcements/:announcementId"],
+  "deleteDepartment": ["DELETE", "/departments/:departmentId"],
+  "deleteEvent": ["DELETE", "/events/:eventId", [], ["message"]],
+  "deleteEventComment": ["DELETE", "/events/:eventId/comments/:commentId"],
+  "deleteEventPhoto": ["DELETE", "/events/:eventId/photos/:photoId"],
+  "deleteEventPhotoComment": [
+    "DELETE",
+    "/events/:eventId/photos/:photoId/comments/:commentId"
+  ],
+  "deleteExpense": ["DELETE", "/events/:eventId/expenses/:expenseId"],
+  "deleteInterest": ["DELETE", "/interests/:interestId"],
+  "deleteLocation": ["DELETE", "/locations/:locationId"],
+  "deleteOrganization": ["DELETE", "/admin/organizations/:organizationId"],
+  "deleteOrganizationValue": [
+    "DELETE",
+    "/organization_values/:organizationValueId"
+  ],
+  "deletePhotoTag": ["DELETE", "/photos/:photoId/photo_tags/:photoTagId"],
+  "deleteRecognition": ["DELETE", "/recognitions/:recognitionId"],
+  "deleteRecognitionComment": [
+    "DELETE",
+    "/recognitions/:recognitionId/comments/:commentId"
+  ],
+  "deleteRecognitionType": [
+    "DELETE",
+    "/recognitions/recognition_types/:recognitionTypeId"
+  ],
+  "deleteSession": ["DELETE", "/session"],
+  "deleteSlackIntegration": [
+    "DELETE",
+    "/slack_integrations/:slackIntegrationId"
+  ],
+  "deleteSurvey": ["DELETE", "/surveys/:surveyId"],
+  "deleteSurveyItem": ["DELETE", "/survey_items/:surveyItemId"],
+  "deleteSurveyItemResponseOption": [
+    "DELETE",
+    "/survey_item_response_options/:surveyItemResponseOptionId"
+  ],
+  "deleteUserActivityComment": [
+    "DELETE",
+    "/user_activities/:userActivityId/comments/:commentId"
+  ],
+  "denyEventAttendance": ["DELETE", "/events/:eventId/confirmation"],
+  "disableStaticWidget": ["DELETE", "/widgets", ["widget"]],
+  "duplicateEvent": [
+    "POST",
+    "/events/:eventId/event_duplicates",
+    ["startsAt"],
+    ["endsAt"]
+  ],
+  "enableStaticWidget": ["POST", "/widgets", ["widget"]],
+  "eventAutocompleteInvites": [
+    "GET",
+    "/events/:eventId/autocomplete/event_invites",
+    ["query"]
+  ],
+  "eventAutocompleteRsvps": [
+    "GET",
+    "/events/:eventId/autocomplete/rsvps",
+    ["query"]
+  ],
+  "exportEvents": ["POST", "/exports/event_export"],
+  "exportFeedback": ["POST", "/exports/feedback_export"],
+  "exportInterests": ["POST", "/exports/interest_export"],
+  "exportRecognitions": ["POST", "/exports/recognition_export"],
+  "exportSurvey": ["POST", "/exports/surveys/:surveyId/survey_export"],
+  "flagAvatar": ["POST", "/users/:userId/flags", [], ["message"]],
+  "flagComment": ["POST", "/comments/:commentId/flags", [], ["message"]],
+  "flagDepartment": [
+    "POST",
+    "/departments/:departmentId/flags",
+    [],
+    ["message"]
+  ],
+  "flagEvent": ["POST", "/events/:eventId/flags", [], ["message"]],
+  "flagInterest": ["POST", "/interests/:interestId/flags", [], ["message"]],
+  "flagLocation": ["POST", "/locations/:locationId/flags", [], ["message"]],
+  "flagPhoto": ["POST", "/photos/:photoId/flags", [], ["message"]],
+  "flagRecognition": [
+    "POST",
+    "/recognitions/:recognitionId/flags",
+    [],
+    ["message"]
+  ],
+  "getAnnouncement": ["GET", "/announcements/:announcementId"],
+  "getAutoRecognitionSettings": [
+    "GET",
+    "/recognitions/auto_recognition_settings"
+  ],
+  "getDepartment": ["GET", "/departments/:departmentId"],
+  "getDepartmentEventParticipation": [
+    "GET",
+    "/events/:eventId/department_event_participation"
+  ],
+  "getEvent": ["GET", "/events/:eventId"],
+  "getEventAnalytics": ["GET", "/analytics/events/:eventId"],
+  "getEventPhoto": ["GET", "/events/:eventId/photos/:photoId"],
+  "getEventRsvp": ["GET", "/events/:eventId/rsvps/:rsvpId"],
+  "getExpense": ["GET", "/events/:eventId/expenses/:expenseId"],
+  "getFeedback": ["GET", "/feedbacks/:feedbackId"],
+  "getInterest": ["GET", "/interests/:interestId"],
+  "getInvite": ["GET", "/invites/:token"],
+  "getLocation": ["GET", "/locations/:locationId"],
+  "getOrganization": ["GET", "/admin/organizations/:organizationId"],
+  "getOrganizationValue": ["GET", "/organization_values/:organizationValueId"],
+  "getOrganizationValueLeaderboard": [
+    "GET",
+    "/leaderboard/organization_values"
+  ],
+  "getPhotoGallery": ["GET", "/gallery", [], ["page", "range"]],
+  "getPointLeaderboard": ["GET", "/leaderboard/points"],
+  "getProfile": ["GET", "/profile"],
+  "getProfileEmailSettings": ["GET", "/profile/email_settings"],
+  "getProfilePointStanding": ["GET", "/profile/point_standing"],
+  "getRecognition": ["GET", "/recognitions/:recognitionId"],
+  "getRecognitionType": [
+    "GET",
+    "/recognitions/recognition_types/:recognitionTypeId"
+  ],
+  "getSurvey": ["GET", "/surveys/:surveyId"],
+  "getSurveyItem": ["GET", "/survey_items/:surveyItemId"],
+  "getSurveyItemResponseOption": [
+    "GET",
+    "/survey_item_response_options/:surveyItemResponseOptionId"
+  ],
+  "getSurveyUserItemResponse": [
+    "GET",
+    "/survey_items/:surveyItemId/survey_user_item_response"
+  ],
+  "getUser": ["GET", "/users/:userId"],
+  "getUserEventTypeBreakdown": ["GET", "/users/:userId/event_type_breakdown"],
+  "getUserPointBreakdown": ["GET", "/users/:userId/point_breakdown"],
+  "getUserPointIncrements": [
+    "GET",
+    "/users/:userId/point_increments",
+    [],
+    ["page"]
+  ],
+  "getUserRecognitionLeaderboard": ["GET", "/leaderboard/user_recognitions"],
+  "incrementUserPoints": [
+    "POST",
+    "/users/:userId/point_increments",
+    ["points"]
+  ],
+  "invalidateOtherApiKeys": ["DELETE", "/api_keys"],
+  "listActiveAnnouncements": ["GET", "/active_announcements", [], ["page"]],
+  "listAnnouncements": ["GET", "/announcements", [], ["page", "active"]],
+  "listApiKeys": ["GET", "/api_keys"],
+  "listDepartmentAnalytics": ["GET", "/analytics/departments", [], ["page"]],
+  "listDepartments": ["GET", "/departments", [], ["page"]],
+  "listEventAnalytics": ["GET", "/analytics/events", [], ["page"]],
+  "listEventCommentCheers": [
+    "GET",
+    "/events/:eventId/comments/:commentId/cheers",
+    [],
+    ["page"]
+  ],
+  "listEventComments": ["GET", "/events/:eventId/comments", [], ["page"]],
+  "listEventInterests": ["GET", "/events/interests", [], ["page"]],
+  "listEventPhotoCheers": [
+    "GET",
+    "/events/:eventId/photos/:photoId/cheers",
+    [],
+    ["page"]
+  ],
+  "listEventPhotoCommentCheers": [
+    "GET",
+    "/events/:eventId/photos/:photoId/comments/:commentId/cheers",
+    [],
+    ["page"]
+  ],
+  "listEventPhotoComments": [
+    "GET",
+    "/events/:eventId/photos/:photoId/comments",
+    [],
+    ["page"]
+  ],
+  "listEventPhotos": ["GET", "/events/:eventId/photos", [], ["page"]],
+  "listEventRsvps": [
+    "GET",
+    "/events/:eventId/rsvps",
+    [],
+    ["page", "responseType"]
+  ],
+  "listEvents": [
+    "GET",
+    "/events",
+    [],
+    [
       "page",
       "range",
       "locationIds",
@@ -678,208 +391,151 @@
       "allLocations",
       "userRelation"
     ]
-  },
-  "listEventsByOrganization": {
-    "method": "GET",
-    "path": "/admin/events"
-  },
-  "listExpenses": {
-    "method": "GET",
-    "path": "/events/:eventId/expenses",
-    "opt": ["page"]
-  },
-  "listFeedbacks": {
-    "method": "GET",
-    "path": "/feedbacks",
-    "opt": ["page", "reviewed"]
-  },
-  "listFlags": {
-    "method": "GET",
-    "path": "/flags",
-    "opt": ["page", "reviewed"]
-  },
-  "listInterests": {
-    "method": "GET",
-    "path": "/interests",
-    "opt": ["page", "by"]
-  },
-  "listLocations": {
-    "method": "GET",
-    "path": "/locations",
-    "opt": ["page"]
-  },
-  "listOrganizationValueEvents": {
-    "method": "GET",
-    "path": "/organization_values/:organizationValueId/events",
-    "opt": ["page"]
-  },
-  "listOrganizationValueRecognitions": {
-    "method": "GET",
-    "path": "/organization_values/:organizationValueId/recognitions",
-    "opt": ["page"]
-  },
-  "listOrganizationValues": {
-    "method": "GET",
-    "path": "/organization_values",
-    "opt": ["page"]
-  },
-  "listOrganizations": {
-    "method": "GET",
-    "path": "/admin/organizations",
-    "opt": ["page"]
-  },
-  "listPendingRecognitions": {
-    "method": "GET",
-    "path": "/recognitions/pending_recognitions",
-    "opt": ["page"]
-  },
-  "listPhotoTags": {
-    "method": "GET",
-    "path": "/photos/:photoId/photo_tags",
-    "opt": ["page"]
-  },
-  "listProfileAvailableWidgetSurveys": {
-    "method": "GET",
-    "path": "/profile/widget_surveys/available_surveys",
-    "opt": ["page"]
-  },
-  "listProfileCompletedWidgetSurveys": {
-    "method": "GET",
-    "path": "/profile/widget_surveys/completed_surveys",
-    "opt": ["page"]
-  },
-  "listProfileEventSurveys": {
-    "method": "GET",
-    "path": "/profile/event_surveys"
-  },
-  "listProfileManageableWidgetSurveys": {
-    "method": "GET",
-    "path": "/profile/widget_surveys/manageable_surveys",
-    "opt": ["page"]
-  },
-  "listProfileNotifications": {
-    "method": "GET",
-    "path": "/profile/notifications",
-    "opt": ["seen", "page"]
-  },
-  "listProfilePointNotifications": {
-    "method": "GET",
-    "path": "/profile/point_notifications",
-    "opt": ["seen", "page"]
-  },
-  "listRecognitionCheers": {
-    "method": "GET",
-    "path": "/recognitions/:recognitionId/cheers",
-    "opt": ["page"]
-  },
-  "listRecognitionCommentCheers": {
-    "method": "GET",
-    "path": "/recognitions/:recognitionId/comments/:commentId/cheers",
-    "opt": ["page"]
-  },
-  "listRecognitionComments": {
-    "method": "GET",
-    "path": "/recognitions/:recognitionId/comments",
-    "opt": ["page"]
-  },
-  "listRecognitionTypes": {
-    "method": "GET",
-    "path": "/recognitions/recognition_types",
-    "opt": ["page"]
-  },
-  "listRecognitions": {
-    "method": "GET",
-    "path": "/recognitions",
-    "opt": [
-      "page",
-      "locationIds",
-      "departmentIds",
-      "organizationValueIds",
-      "type"
-    ]
-  },
-  "listRecognitionsOrganizationValues": {
-    "method": "GET",
-    "path": "/recognitions/organization_values"
-  },
-  "listRecognitionsRecognizedUsers": {
-    "method": "GET",
-    "path": "/recognitions/recognized_users"
-  },
-  "listRecognitionsRecognizingUsers": {
-    "method": "GET",
-    "path": "/recognitions/recognizing_users"
-  },
-  "listSlackIntegrations": {
-    "method": "GET",
-    "path": "/slack_integrations"
-  },
-  "listSurveyItemResponseOptions": {
-    "method": "GET",
-    "path": "/survey_items/:surveyItemId/survey_item_response_options",
-    "opt": ["page"]
-  },
-  "listSurveyItems": {
-    "method": "GET",
-    "path": "/surveys/:surveyId/survey_items",
-    "opt": ["page"]
-  },
-  "listSurveyResults": {
-    "method": "GET",
-    "path": "/surveys/:surveyId/survey_results"
-  },
-  "listSurveySubmittedResponses": {
-    "method": "GET",
-    "path": "/surveys/:surveyId/submitted_responses"
-  },
-  "listTrendingEvents": {
-    "method": "GET",
-    "path": "/trending_events"
-  },
-  "listUserActivities": {
-    "method": "GET",
-    "path": "/user_activities",
-    "opt": ["page"]
-  },
-  "listUserActivityCheers": {
-    "method": "GET",
-    "path": "/user_activities/:userActivityId/cheers",
-    "opt": ["page"]
-  },
-  "listUserActivityCommentCheers": {
-    "method": "GET",
-    "path": "/user_activities/:userActivityId/comments/:commentId/cheers",
-    "opt": ["page"]
-  },
-  "listUserActivityComments": {
-    "method": "GET",
-    "path": "/user_activities/:userActivityId/comments",
-    "opt": ["page"]
-  },
-  "listUserAnalytics": {
-    "method": "GET",
-    "path": "/analytics/users",
-    "opt": ["page"]
-  },
-  "listUserHostedEvents": {
-    "method": "GET",
-    "path": "/users/:userId/hosted_events",
-    "opt": ["page"]
-  },
-  "listUserRecognitions": {
-    "method": "GET",
-    "path": "/users/:userId/recognitions",
-    "opt": ["page"]
-  },
-  "listUserRsvpdEvents": {
-    "method": "GET",
-    "path": "/users/:userId/rsvpd_events",
-    "opt": ["when", "sort"]
-  },
-  "listUsers": {
-    "method": "GET",
-    "path": "/users",
-    "opt": [
+  ],
+  "listEventsByOrganization": ["GET", "/admin/events"],
+  "listExpenses": ["GET", "/events/:eventId/expenses", [], ["page"]],
+  "listFeedbacks": ["GET", "/feedbacks", [], ["page", "reviewed"]],
+  "listFlags": ["GET", "/flags", [], ["page", "reviewed"]],
+  "listInterests": ["GET", "/interests", [], ["page", "by"]],
+  "listLocations": ["GET", "/locations", [], ["page"]],
+  "listOrganizationValueEvents": [
+    "GET",
+    "/organization_values/:organizationValueId/events",
+    [],
+    ["page"]
+  ],
+  "listOrganizationValueRecognitions": [
+    "GET",
+    "/organization_values/:organizationValueId/recognitions",
+    [],
+    ["page"]
+  ],
+  "listOrganizationValues": ["GET", "/organization_values", [], ["page"]],
+  "listOrganizations": ["GET", "/admin/organizations", [], ["page"]],
+  "listPendingRecognitions": [
+    "GET",
+    "/recognitions/pending_recognitions",
+    [],
+    ["page"]
+  ],
+  "listPhotoTags": ["GET", "/photos/:photoId/photo_tags", [], ["page"]],
+  "listProfileAvailableWidgetSurveys": [
+    "GET",
+    "/profile/widget_surveys/available_surveys",
+    [],
+    ["page"]
+  ],
+  "listProfileCompletedWidgetSurveys": [
+    "GET",
+    "/profile/widget_surveys/completed_surveys",
+    [],
+    ["page"]
+  ],
+  "listProfileEventSurveys": ["GET", "/profile/event_surveys"],
+  "listProfileManageableWidgetSurveys": [
+    "GET",
+    "/profile/widget_surveys/manageable_surveys",
+    [],
+    ["page"]
+  ],
+  "listProfileNotifications": [
+    "GET",
+    "/profile/notifications",
+    [],
+    ["seen", "page"]
+  ],
+  "listProfilePointNotifications": [
+    "GET",
+    "/profile/point_notifications",
+    [],
+    ["seen", "page"]
+  ],
+  "listRecognitionCheers": [
+    "GET",
+    "/recognitions/:recognitionId/cheers",
+    [],
+    ["page"]
+  ],
+  "listRecognitionCommentCheers": [
+    "GET",
+    "/recognitions/:recognitionId/comments/:commentId/cheers",
+    [],
+    ["page"]
+  ],
+  "listRecognitionComments": [
+    "GET",
+    "/recognitions/:recognitionId/comments",
+    [],
+    ["page"]
+  ],
+  "listRecognitionTypes": [
+    "GET",
+    "/recognitions/recognition_types",
+    [],
+    ["page"]
+  ],
+  "listRecognitions": [
+    "GET",
+    "/recognitions",
+    [],
+    ["page", "locationIds", "departmentIds", "organizationValueIds", "type"]
+  ],
+  "listRecognitionsOrganizationValues": [
+    "GET",
+    "/recognitions/organization_values"
+  ],
+  "listRecognitionsRecognizedUsers": ["GET", "/recognitions/recognized_users"],
+  "listRecognitionsRecognizingUsers": [
+    "GET",
+    "/recognitions/recognizing_users"
+  ],
+  "listSlackIntegrations": ["GET", "/slack_integrations"],
+  "listSurveyItemResponseOptions": [
+    "GET",
+    "/survey_items/:surveyItemId/survey_item_response_options",
+    [],
+    ["page"]
+  ],
+  "listSurveyItems": ["GET", "/surveys/:surveyId/survey_items", [], ["page"]],
+  "listSurveyResults": ["GET", "/surveys/:surveyId/survey_results"],
+  "listSurveySubmittedResponses": [
+    "GET",
+    "/surveys/:surveyId/submitted_responses"
+  ],
+  "listTrendingEvents": ["GET", "/trending_events"],
+  "listUserActivities": ["GET", "/user_activities", [], ["page"]],
+  "listUserActivityCheers": [
+    "GET",
+    "/user_activities/:userActivityId/cheers",
+    [],
+    ["page"]
+  ],
+  "listUserActivityCommentCheers": [
+    "GET",
+    "/user_activities/:userActivityId/comments/:commentId/cheers",
+    [],
+    ["page"]
+  ],
+  "listUserActivityComments": [
+    "GET",
+    "/user_activities/:userActivityId/comments",
+    [],
+    ["page"]
+  ],
+  "listUserAnalytics": ["GET", "/analytics/users", [], ["page"]],
+  "listUserHostedEvents": ["GET", "/users/:userId/hosted_events", [], ["page"]],
+  "listUserRecognitions": ["GET", "/users/:userId/recognitions", [], ["page"]],
+  "listUserRsvpdEvents": [
+    "GET",
+    "/users/:userId/rsvpd_events",
+    [],
+    ["when", "sort"]
+  ],
+  "listUsers": [
+    "GET",
+    "/users",
+    [],
+    [
       "page",
       "includeDeactivated",
       "departmentId",
@@ -891,118 +547,75 @@
       "interestIds",
       "locationIds"
     ]
-  },
-  "messageEventGuests": {
-    "method": "POST",
-    "path": "/events/:eventId/event_notifications",
-    "exp": ["body"]
-  },
-  "reactivateUser": {
-    "method": "DELETE",
-    "path": "/users/:userId/deactivation"
-  },
-  "registerUser": {
-    "method": "POST",
-    "path": "/invites/:token/users",
-    "exp": ["password"]
-  },
-  "reorderProfileInterests": {
-    "method": "PATCH",
-    "path": "/profile/interest_order",
-    "exp": ["order"]
-  },
-  "reorderSurveyItemResponseOptions": {
-    "method": "PATCH",
-    "path": "/survey_items/:surveyItemId/survey_item_response_option_order",
-    "exp": ["order"]
-  },
-  "reorderSurveyItems": {
-    "method": "PATCH",
-    "path": "/surveys/:surveyId/survey_item_order",
-    "exp": ["order"]
-  },
-  "reorderWidgets": {
-    "method": "PATCH",
-    "path": "/widget_order",
-    "exp": ["order"]
-  },
-  "requestPasswordReset": {
-    "method": "POST",
-    "path": "/password_resets",
-    "exp": ["email"]
-  },
-  "resetPassword": {
-    "method": "PATCH",
-    "path": "/password_resets/:token",
-    "opt": ["password"]
-  },
-  "reviewFeedback": {
-    "method": "PATCH",
-    "path": "/feedbacks/:feedbackId"
-  },
-  "search": {
-    "method": "GET",
-    "path": "/search",
-    "exp": ["query"]
-  },
-  "sendInvite": {
-    "method": "POST",
-    "path": "/invites",
-    "multipart": true,
-    "exp": ["name", "email"],
-    "opt": [
-      "locationName",
-      "departmentNames",
-      "interestNames",
-      "avatar",
-      "title"
-    ]
-  },
-  "subscribeToEventNotifications": {
-    "method": "POST",
-    "path": "/events/:eventId/event_notification_subscription"
-  },
-  "uncheerEventComment": {
-    "method": "DELETE",
-    "path": "/events/:eventId/comments/:commentId/cheers"
-  },
-  "uncheerEventPhoto": {
-    "method": "DELETE",
-    "path": "/events/:eventId/photos/:photoId/cheers"
-  },
-  "uncheerEventPhotoComment": {
-    "method": "DELETE",
-    "path": "/events/:eventId/photos/:photoId/comments/:commentId/cheers"
-  },
-  "uncheerRecognition": {
-    "method": "DELETE",
-    "path": "/recognitions/:recognitionId/cheers"
-  },
-  "uncheerRecognitionComment": {
-    "method": "DELETE",
-    "path": "/recognitions/:recognitionId/comments/:commentId/cheers"
-  },
-  "uncheerUserActivity": {
-    "method": "DELETE",
-    "path": "/user_activities/:userActivityId/cheers"
-  },
-  "uncheerUserActivityComment": {
-    "method": "DELETE",
-    "path": "/user_activities/:userActivityId/comments/:commentId/cheers"
-  },
-  "unsubscribeFromEventNotifications": {
-    "method": "DELETE",
-    "path": "/events/:eventId/event_notification_subscription"
-  },
-  "updateAnnouncement": {
-    "method": "PATCH",
-    "path": "/announcements/:announcementId",
-    "opt": ["title", "body", "active", "imageUrl"]
-  },
-  "updateAutoRecognitionSettings": {
-    "method": "PATCH",
-    "path": "/recognitions/auto_recognition_settings",
-    "opt": [
+  ],
+  "messageEventGuests": [
+    "POST",
+    "/events/:eventId/event_notifications",
+    ["body"]
+  ],
+  "reactivateUser": ["DELETE", "/users/:userId/deactivation"],
+  "registerUser": ["POST", "/invites/:token/users", ["password"]],
+  "reorderProfileInterests": ["PATCH", "/profile/interest_order", ["order"]],
+  "reorderSurveyItemResponseOptions": [
+    "PATCH",
+    "/survey_items/:surveyItemId/survey_item_response_option_order",
+    ["order"]
+  ],
+  "reorderSurveyItems": [
+    "PATCH",
+    "/surveys/:surveyId/survey_item_order",
+    ["order"]
+  ],
+  "reorderWidgets": ["PATCH", "/widget_order", ["order"]],
+  "requestPasswordReset": ["POST", "/password_resets", ["email"]],
+  "resetPassword": ["PATCH", "/password_resets/:token", [], ["password"]],
+  "reviewFeedback": ["PATCH", "/feedbacks/:feedbackId"],
+  "search": ["GET", "/search", ["query"]],
+  "sendInvite": [
+    "POST",
+    "/invites",
+    ["name", "email"],
+    ["locationName", "departmentNames", "interestNames", "avatar", "title"],
+    true
+  ],
+  "subscribeToEventNotifications": [
+    "POST",
+    "/events/:eventId/event_notification_subscription"
+  ],
+  "uncheerEventComment": [
+    "DELETE",
+    "/events/:eventId/comments/:commentId/cheers"
+  ],
+  "uncheerEventPhoto": ["DELETE", "/events/:eventId/photos/:photoId/cheers"],
+  "uncheerEventPhotoComment": [
+    "DELETE",
+    "/events/:eventId/photos/:photoId/comments/:commentId/cheers"
+  ],
+  "uncheerRecognition": ["DELETE", "/recognitions/:recognitionId/cheers"],
+  "uncheerRecognitionComment": [
+    "DELETE",
+    "/recognitions/:recognitionId/comments/:commentId/cheers"
+  ],
+  "uncheerUserActivity": ["DELETE", "/user_activities/:userActivityId/cheers"],
+  "uncheerUserActivityComment": [
+    "DELETE",
+    "/user_activities/:userActivityId/comments/:commentId/cheers"
+  ],
+  "unsubscribeFromEventNotifications": [
+    "DELETE",
+    "/events/:eventId/event_notification_subscription"
+  ],
+  "updateAnnouncement": [
+    "PATCH",
+    "/announcements/:announcementId",
+    [],
+    ["title", "body", "active", "imageUrl"]
+  ],
+  "updateAutoRecognitionSettings": [
+    "PATCH",
+    "/recognitions/auto_recognition_settings",
+    [],
+    [
       "allDepartments",
       "eventCreation",
       "newAttendees",
@@ -1010,17 +623,13 @@
       "wasRecognized",
       "inviteCreation"
     ]
-  },
-  "updateDepartment": {
-    "method": "PATCH",
-    "path": "/departments/:departmentId",
-    "opt": ["name"]
-  },
-  "updateEvent": {
-    "method": "PATCH",
-    "path": "/events/:eventId",
-    "multipart": true,
-    "opt": [
+  ],
+  "updateDepartment": ["PATCH", "/departments/:departmentId", [], ["name"]],
+  "updateEvent": [
+    "PATCH",
+    "/events/:eventId",
+    [],
+    [
       "name",
       "details",
       "startsAt",
@@ -1038,54 +647,45 @@
       "openInvites",
       "interestNames",
       "allLocations"
-    ]
-  },
-  "updateEventComment": {
-    "method": "PATCH",
-    "path": "/events/:eventId/comments/:commentId",
-    "exp": ["body"]
-  },
-  "updateEventPhoto": {
-    "method": "PATCH",
-    "path": "/events/:eventId/photos/:photoId",
-    "multipart": true,
-    "opt": ["image", "caption"]
-  },
-  "updateEventPhotoComment": {
-    "method": "PATCH",
-    "path": "/events/:eventId/photos/:photoId/comments/:commentId",
-    "exp": ["body"]
-  },
-  "updateEventRsvp": {
-    "method": "PATCH",
-    "path": "/events/:eventId/rsvps/:rsvpId",
-    "exp": ["responseType"]
-  },
-  "updateExpense": {
-    "method": "PATCH",
-    "path": "/events/:eventId/expenses/:expenseId",
-    "opt": ["description", "amount", "incurredAt"]
-  },
-  "updateFlag": {
-    "method": "PATCH",
-    "path": "/flags/:flagId",
-    "exp": ["reviewed"]
-  },
-  "updateInterest": {
-    "method": "PATCH",
-    "path": "/interests/:interestId",
-    "exp": ["name"]
-  },
-  "updateLocation": {
-    "method": "PATCH",
-    "path": "/locations/:locationId",
-    "exp": ["name"]
-  },
-  "updateOrganization": {
-    "method": "PATCH",
-    "path": "/admin/organizations/:organizationId",
-    "multipart": true,
-    "opt": [
+    ],
+    true
+  ],
+  "updateEventComment": [
+    "PATCH",
+    "/events/:eventId/comments/:commentId",
+    ["body"]
+  ],
+  "updateEventPhoto": [
+    "PATCH",
+    "/events/:eventId/photos/:photoId",
+    [],
+    ["image", "caption"],
+    true
+  ],
+  "updateEventPhotoComment": [
+    "PATCH",
+    "/events/:eventId/photos/:photoId/comments/:commentId",
+    ["body"]
+  ],
+  "updateEventRsvp": [
+    "PATCH",
+    "/events/:eventId/rsvps/:rsvpId",
+    ["responseType"]
+  ],
+  "updateExpense": [
+    "PATCH",
+    "/events/:eventId/expenses/:expenseId",
+    [],
+    ["description", "amount", "incurredAt"]
+  ],
+  "updateFlag": ["PATCH", "/flags/:flagId", ["reviewed"]],
+  "updateInterest": ["PATCH", "/interests/:interestId", ["name"]],
+  "updateLocation": ["PATCH", "/locations/:locationId", ["name"]],
+  "updateOrganization": [
+    "PATCH",
+    "/admin/organizations/:organizationId",
+    [],
+    [
       "name",
       "gamificationEnabled",
       "logoUrl",
@@ -1097,18 +697,19 @@
       "feedbackEnabled",
       "userCreatedInvitesEnabled",
       "accountInfoEnabled"
-    ]
-  },
-  "updateOrganizationValue": {
-    "method": "PATCH",
-    "path": "/organization_values/:organizationValueId",
-    "exp": ["name"]
-  },
-  "updateProfile": {
-    "method": "PATCH",
-    "path": "/profile",
-    "multipart": true,
-    "opt": [
+    ],
+    true
+  ],
+  "updateOrganizationValue": [
+    "PATCH",
+    "/organization_values/:organizationValueId",
+    ["name"]
+  ],
+  "updateProfile": [
+    "PATCH",
+    "/profile",
+    [],
+    [
       "name",
       "email",
       "departmentNames",
@@ -1116,12 +717,14 @@
       "avatar",
       "title",
       "locationName"
-    ]
-  },
-  "updateProfileEmailSettings": {
-    "method": "PATCH",
-    "path": "/profile/email_settings",
-    "opt": [
+    ],
+    true
+  ],
+  "updateProfileEmailSettings": [
+    "PATCH",
+    "/profile/email_settings",
+    [],
+    [
       "eventInvite",
       "eventNotification",
       "postEventSurvey",
@@ -1130,48 +733,53 @@
       "redemptionRequested",
       "rsvpConfirmation"
     ]
-  },
-  "updateRecognition": {
-    "method": "PATCH",
-    "path": "/recognitions/:recognitionId",
-    "exp": ["body"],
-    "opt": ["userIds"]
-  },
-  "updateRecognitionComment": {
-    "method": "PATCH",
-    "path": "/recognitions/:recognitionId/comments/:commentId",
-    "exp": ["body"]
-  },
-  "updateRecognitionType": {
-    "method": "PATCH",
-    "path": "/recognitions/recognition_types/:recognitionTypeId",
-    "opt": ["name", "approval", "points", "imageUrl"]
-  },
-  "updateSurvey": {
-    "method": "PATCH",
-    "path": "/surveys/:surveyId",
-    "opt": ["title", "points", "viewableResults"]
-  },
-  "updateSurveyItem": {
-    "method": "PATCH",
-    "path": "/survey_items/:surveyItemId",
-    "opt": ["prompt", "itemType", "minRange", "maxRange"]
-  },
-  "updateSurveyItemResponseOption": {
-    "method": "PATCH",
-    "path": "/survey_item_response_options/:surveyItemResponseOptionId",
-    "opt": ["body"]
-  },
-  "updateSurveyUserItemResponse": {
-    "method": "PATCH",
-    "path": "/survey_items/:surveyItemId/survey_user_item_response",
-    "opt": ["body", "surveyItemResponseOptionIds"]
-  },
-  "updateUser": {
-    "method": "PATCH",
-    "path": "/users/:userId",
-    "multipart": true,
-    "opt": [
+  ],
+  "updateRecognition": [
+    "PATCH",
+    "/recognitions/:recognitionId",
+    ["body"],
+    ["userIds"]
+  ],
+  "updateRecognitionComment": [
+    "PATCH",
+    "/recognitions/:recognitionId/comments/:commentId",
+    ["body"]
+  ],
+  "updateRecognitionType": [
+    "PATCH",
+    "/recognitions/recognition_types/:recognitionTypeId",
+    [],
+    ["name", "approval", "points", "imageUrl"]
+  ],
+  "updateSurvey": [
+    "PATCH",
+    "/surveys/:surveyId",
+    [],
+    ["title", "points", "viewableResults"]
+  ],
+  "updateSurveyItem": [
+    "PATCH",
+    "/survey_items/:surveyItemId",
+    [],
+    ["prompt", "itemType", "minRange", "maxRange"]
+  ],
+  "updateSurveyItemResponseOption": [
+    "PATCH",
+    "/survey_item_response_options/:surveyItemResponseOptionId",
+    [],
+    ["body"]
+  ],
+  "updateSurveyUserItemResponse": [
+    "PATCH",
+    "/survey_items/:surveyItemId/survey_user_item_response",
+    [],
+    ["body", "surveyItemResponseOptionIds"]
+  ],
+  "updateUser": [
+    "PATCH",
+    "/users/:userId",
+    [],
+    [
       "name",
       "email",
       "departmentNames",
@@ -1180,11 +788,12 @@
       "title",
       "locationName",
       "organizationAdmin"
-    ]
-  },
-  "updateUserActivityComment": {
-    "method": "PATCH",
-    "path": "/user_activities/:userActivityId/comments/:commentId",
-    "exp": ["body"]
-  }
+    ],
+    true
+  ],
+  "updateUserActivityComment": [
+    "PATCH",
+    "/user_activities/:userActivityId/comments/:commentId",
+    ["body"]
+  ]
 }
