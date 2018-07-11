@@ -1,9 +1,5 @@
-import store from "store/dist/store.modern";
-import fs from "fs";
-
 import createServer from "./create-server";
 import CultureHQ from "../src/index";
-import calls from "../src/calls";
 import state from "../src/state";
 
 const port = 1693;
