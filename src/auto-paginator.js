@@ -47,6 +47,7 @@ class AutoPaginator {
 }
 
 Object.keys(calls).forEach(callName => {
+  /* eslint-disable-next-line func-names */
   AutoPaginator.prototype[callName] = function (options) {
     return this.aggregate(callName, options);
   };

@@ -19,6 +19,8 @@ const substitutePath = (path, params) => {
 
     if (substitutedPath.indexOf(needle) !== -1) {
       substitutedPath = substitutedPath.replace(needle, params[param]);
+
+      /* eslint-disable-next-line no-param-reassign */
       delete params[param];
     }
   });
