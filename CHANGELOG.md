@@ -5,8 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.0.0] - 2018-07-11
 ### Changed
 - The optional `logo` parameter on the `createOrganization` and `updateOrganization` calls was changed to `logoUrl`.
+- Moved the `isomorphic-fetch` and `url-polyfill` packages in the `devDependencies` as they're only needed for testing.
+
+### Removed
+- The client will no longer track if the `/profile` endpoint returns a 403 or that multiple requests return 403s in a row. This responsibility is now on the end users to verify the integrity of the requests.
 
 ## [1.8.1] - 2018-07-02
 ### Changed
