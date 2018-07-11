@@ -3,7 +3,7 @@ import formData from "./form-data";
 import processResponse from "./response";
 
 const buildHeaders = ({ multipart, token, simulation }) => {
-  let headers = { "X-Client-Version": CLIENT_VERSION };
+  const headers = { "X-Client-Version": CLIENT_VERSION };
 
   if (!multipart) {
     headers["Content-Type"] = "application/json";

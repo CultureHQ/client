@@ -13,6 +13,7 @@ const textResponse = response => text => new Promise((resolve, reject) => {
   if (Math.round(status / 100) === 2) {
     resolve({ text, response, status });
   } else {
+    /* eslint-disable-next-line prefer-promise-reject-errors */
     reject({ error: statusText, response, status });
   }
 });

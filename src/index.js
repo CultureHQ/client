@@ -99,34 +99,34 @@ class CultureHQ {
 
   endUserSimulation() {
     state.endSimulation();
-    this._disconnectConsumer();
+    this.disconnectConsumer();
   }
 
-  isSignedIn() {
+  isSignedIn() { /* eslint-disable-line class-methods-use-this */
     return state.isSignedIn();
   }
 
-  isSimulating() {
+  isSimulating() { /* eslint-disable-line class-methods-use-this */
     return state.isSimulating();
   }
 
   onLeaderboardUpdated(callback) {
-    return this._subscribeToChannel("LeaderboardChannel", callback);
+    return this.subscribeToChannel("LeaderboardChannel", callback);
   }
 
   onNotificationReceived(callback) {
-    return this._subscribeToChannel("NotificationChannel", callback);
+    return this.subscribeToChannel("NotificationChannel", callback);
   }
 
   onRecognitionCreated(callback) {
-    return this._subscribeToChannel("RecognitionChannel", callback);
+    return this.subscribeToChannel("RecognitionChannel", callback);
   }
 
   onUserActivityCreated(callback) {
-    return this._subscribeToChannel("UserActivityChannel", callback);
+    return this.subscribeToChannel("UserActivityChannel", callback);
   }
 
-  setToken(token) {
+  setToken(token) { /* eslint-disable-line class-methods-use-this */
     state.signIn(token);
   }
 
@@ -140,7 +140,7 @@ class CultureHQ {
   signOut() {
     return this.deleteSession().then(response => {
       state.signOut();
-      this._disconnectConsumer();
+      this.disconnectConsumer();
       return response;
     });
   }
@@ -152,7 +152,7 @@ class CultureHQ {
   startUserSimulation(params) {
     return this.createSimulation(params).then(response => {
       state.startSimulation(response.apiKey.token);
-      this._disconnectConsumer();
+      this.disconnectConsumer();
       return response;
     });
   }
@@ -161,28 +161,28 @@ class CultureHQ {
     return new AutoPaginator(this, dataType);
   }
 
-  _disconnectConsumer() {
-    if (this._consumer) {
-      this._consumer.disconnect();
-      this._consumer = null;
+  disconnectConsumer() {
+    if (this.consumer) {
+      this.consumer.disconnect();
+      this.consumer = null;
     }
   }
 
-  _ensureConsumer() {
-    if (this._consumer) {
-      return this._consumer;
+  ensureConsumer() {
+    if (this.consumer) {
+      return this.consumer;
     }
 
     const [protocol, host] = this.apiHost.split("://");
     const wsProtocol = protocol === "https" ? "wss" : "ws";
 
     const endpoint = `${wsProtocol}://${host}/cable/${state.getToken()}`;
-    this._consumer = ActionCable.createConsumer(endpoint);
-    return this._consumer;
+    this.consumer = ActionCable.createConsumer(endpoint);
+    return this.consumer;
   }
 
-  _subscribeToChannel(channel, callback) {
-    return this._ensureConsumer().subscriptions.create(channel, {
+  subscribeToChannel(channel, callback) {
+    return this.ensureConsumer().subscriptions.create(channel, {
       received: data => callback(camelize(data))
     });
   }

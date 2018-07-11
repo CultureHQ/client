@@ -11,5 +11,8 @@
     "arrow-parens": [2, "as-needed"],
     "comma-dangle": 0,
     "quotes": [2, "double"]
+  },
+  "globals": {
+    "CLIENT_VERSION": "0.0.1"
   }
 }

@@ -47,7 +47,7 @@ class AutoPaginator {
 }
 
 Object.keys(calls).forEach(callName => {
-  AutoPaginator.prototype[callName] = function(options) {
+  AutoPaginator.prototype[callName] = function (options) {
     return this.aggregate(callName, options);
   };
 });
