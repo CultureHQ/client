@@ -74,7 +74,6 @@
   "createAnnouncement": {
     "method": "POST",
     "path": "/announcements",
-    "multipart": true,
     "expectedParams": ["title", "active"],
     "optionalParams": ["body", "imageUrl"]
   },
@@ -998,7 +997,6 @@
   "updateAnnouncement": {
     "method": "PATCH",
     "path": "/announcements/:announcementId",
-    "multipart": true,
     "optionalParams": ["title", "body", "active", "imageUrl"]
   },
   "updateAutoRecognitionSettings": {
