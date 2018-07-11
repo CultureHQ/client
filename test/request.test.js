@@ -9,7 +9,7 @@ const parseMultipart = request => {
   const parts = request.parsedBody.split(boundary);
   const namePattern = /"(.+)"/;
 
-  for (let idx = 1; idx < parts.length - 1; idx++) {
+  for (let idx = 1; idx < parts.length - 1; idx += 1) {
     const components = parts[idx].split("\r\n");
     const name = components[1].match(namePattern)[1];
     values.push({ name, value: components[3] });
@@ -79,7 +79,7 @@ test("properly handles multipart array parameters", () => (
 
     const parsedBody = parseMultipart(server.requests[0]);
 
-    for (let idx = 0; idx < 3; idx++) {
+    for (let idx = 0; idx < 3; idx += 1) {
       expect(parsedBody[idx]).toEqual({
         name: "foo[]",
         value: (idx + 1).toString()
@@ -112,7 +112,7 @@ test("adds appropriate headers", () => (
 
     const expected = {
       "content-type": "application/json",
-      "authorization": "token regular-token",
+      authorization: "token regular-token",
       "x-client-simulation": "simulation-token"
     };
 
