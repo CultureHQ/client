@@ -25,14 +25,14 @@ const substitutePath = (path, params) => {
 };
 
 export default (client, options) => {
-  options.expectedParams = options.expectedParams || [];
+  options.exp = options.exp || [];
 
   const apiCall = actualParams => {
     if (typeof actualParams !== "object") {
       actualParams = {};
     }
 
-    ensureExpectedParams(options.expectedParams, actualParams);
+    ensureExpectedParams(options.exp, actualParams);
     const callPath = substitutePath(options.path, actualParams);
 
     return request(options.method, new URL(`${client.apiHost}${callPath}`), {
