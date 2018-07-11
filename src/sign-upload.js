@@ -17,8 +17,8 @@ const signUpload = (client, file, onProgress) => (
       xhr.upload.addEventListener("error", reject);
 
       if (onProgress) {
-        xhr.upload.addEventListener("progress", event => {
-          onProgress(Math.ceil((event.loaded / event.total) * 100));
+        xhr.upload.addEventListener("progress", ({ loaded, total }) => {
+          onProgress(total === 0 ? 100 : Math.ceil((loaded / total) * 100));
         });
       }
 
