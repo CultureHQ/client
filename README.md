@@ -49,7 +49,7 @@ Each function can be introspected to determine its expected parameters (`expecte
 const { expectedParams, optionalParams } = cultureHQ.createEvent;
 ```
 
-If a function has `multipart = true` set on its config, it's because one or more of the attributes require a file object. In this case, a `File` object should be given for the value, as in:
+If a function has `multipart` set on its config, it's because one or more of the attributes require a file object. In this case, a `File` object should be given for the value, as in:
 
 ```js
 const avatar = document.querySelector("#avatar").files[0];
@@ -70,4 +70,10 @@ Run `yarn test` to run the tests with `jest`.
 
 ### Releasing
 
-First, bump the version in [package.json](package.json). Then, build the client with `yarn build`. This will generate a new `dist/main.js`. Finally, modify [CHANGELOG.md](CHANGELOG.md) to include the new release.
+Since we aren't yet publishing the package to `npm`, it has a bit of a custom release process:
+
+* Bump the version in [package.json](package.json)
+* Rebuild the client with `yarn build`
+* Modify [CHANGELOG.md](CHANGELOG.md) to include the new release
+* Check everything in, open a PR, and merge into master
+* Create a git tag for this release, as in `git tag v1.0.0 && git push --tags`
