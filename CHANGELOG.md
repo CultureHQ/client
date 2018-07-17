@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [2.1.1] - 2018-07-17
+### Changed
+- Removed the `module` spec from `package.json` so webpack won't freak out because I want to use the spread operator.
+
 ## [2.1.0] - 2018-07-17
 ### Changed
 - No longer using `webpack` to build the final distribution. Instead just use `babel` directly. Publish under both `src` (`node`) and `dist` (`CommonJS`).
