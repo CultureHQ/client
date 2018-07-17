@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [2.1.0] - 2018-07-17
+### Changed
+- No longer using `webpack` to build the final distribution. Instead just use `babel` directly. Publish under both `src` (`node`) and `dist` (`CommonJS`).
+
 ## [2.0.2] - 2018-07-11
 ### Changed
 - Fixed the `snakerize` function to not recurse infinitely.
