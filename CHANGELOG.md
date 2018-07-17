@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [2.1.2] - 2018-07-17
+### Changed
+- Actually add the `calls.json` file to `dist`.
+
 ## [2.1.1] - 2018-07-17
 ### Changed
 - Removed the `module` spec from `package.json` so webpack won't freak out because I want to use the spread operator.
