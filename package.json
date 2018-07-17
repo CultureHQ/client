@@ -4,7 +4,7 @@
   "description": "A JavaScript client that wraps the CultureHQ API",
   "main": "dist/index.js",
   "scripts": {
-    "build": "babel src --out-dir dist",
+    "build": "babel src --out-dir dist --copy-files",
     "lint": "eslint .",
     "test": "jest",
     "prettier": "prettier --write '**/*.{js,json}'"

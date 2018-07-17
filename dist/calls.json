@@ -1,0 +1,799 @@
+{
+  "activateSurvey": ["POST", "/surveys/:surveyId/survey_activation"],
+  "adminAutocompleteUsers": ["GET", "/admin/autocomplete/users", ["query"]],
+  "approveRecognition": [
+    "POST",
+    "/recognitions/:recognitionId/recognition_approval"
+  ],
+  "autocompleteUsers": [
+    "GET",
+    "/autocomplete/users",
+    ["query"],
+    ["includeDeactivated", "inviteStatus", "active"]
+  ],
+  "bulkCreateEventPhotos": [
+    "POST",
+    "/events/:eventId/albums",
+    ["images"],
+    [],
+    true
+  ],
+  "cancelEvent": [
+    "POST",
+    "/events/:eventId/event_cancellations",
+    [],
+    ["message"]
+  ],
+  "changePassword": ["PATCH", "/password", ["oldPassword", "newPassword"]],
+  "checkInEventAttendee": ["POST", "/events/:eventId/check_ins", ["userId"]],
+  "cheerEventComment": ["POST", "/events/:eventId/comments/:commentId/cheers"],
+  "cheerEventPhoto": ["POST", "/events/:eventId/photos/:photoId/cheers"],
+  "cheerEventPhotoComment": [
+    "POST",
+    "/events/:eventId/photos/:photoId/comments/:commentId/cheers"
+  ],
+  "cheerRecognition": ["POST", "/recognitions/:recognitionId/cheers"],
+  "cheerRecognitionComment": [
+    "POST",
+    "/recognitions/:recognitionId/comments/:commentId/cheers"
+  ],
+  "cheerUserActivity": ["POST", "/user_activities/:userActivityId/cheers"],
+  "cheerUserActivityComment": [
+    "POST",
+    "/user_activities/:userActivityId/comments/:commentId/cheers"
+  ],
+  "confirmEventAttendance": ["POST", "/events/:eventId/confirmation"],
+  "createAnnouncement": [
+    "POST",
+    "/announcements",
+    ["title", "active"],
+    ["body", "imageUrl"]
+  ],
+  "createApiKey": ["POST", "/api_keys", ["email", "password"]],
+  "createDepartment": ["POST", "/departments", ["name"]],
+  "createEvent": [
+    "POST",
+    "/events",
+    ["name", "startsAt", "endsAt", "eventType"],
+    [
+      "details",
+      "sponsored",
+      "surveyId",
+      "image",
+      "organizationValueIds",
+      "location",
+      "visibility",
+      "cap",
+      "locationIds",
+      "inviteOnly",
+      "openInvites",
+      "inviteeIds",
+      "timezone",
+      "interestNames",
+      "allLocations",
+      "createSurvey"
+    ],
+    true
+  ],
+  "createEventComment": [
+    "POST",
+    "/events/:eventId/comments",
+    ["body"],
+    ["parentCommentId"]
+  ],
+  "createEventInvites": [
+    "POST",
+    "/events/:eventId/event_invites",
+    [],
+    ["userIds", "locationIds", "interestIds", "departmentIds"]
+  ],
+  "createEventPhoto": [
+    "POST",
+    "/events/:eventId/photos",
+    ["image"],
+    ["caption"],
+    true
+  ],
+  "createEventPhotoComment": [
+    "POST",
+    "/events/:eventId/photos/:photoId/comments",
+    ["body"],
+    ["parentCommentId"]
+  ],
+  "createEventRsvp": ["POST", "/events/:eventId/rsvps", ["responseType"]],
+  "createExpense": [
+    "POST",
+    "/events/:eventId/expenses",
+    ["description", "amount"],
+    ["incurredAt"]
+  ],
+  "createFeedback": ["POST", "/feedbacks", ["body"], ["anonymous"]],
+  "createInterest": ["POST", "/interests", ["name"]],
+  "createLocation": ["POST", "/locations", ["name"]],
+  "createMeeting": [
+    "POST",
+    "/meetings",
+    [],
+    ["departmentIds", "interestIds", "locationIds"]
+  ],
+  "createOrganization": [
+    "POST",
+    "/admin/organizations",
+    ["name"],
+    [
+      "gamificationEnabled",
+      "logoUrl",
+      "active",
+      "mode",
+      "googleSigninEnabled",
+      "userCreatedSlackIntegrationsEnabled",
+      "userCreatedSurveysEnabled",
+      "feedbackEnabled",
+      "userCreatedInvitesEnabled",
+      "accountInfoEnabled"
+    ],
+    true
+  ],
+  "createOrganizationValue": ["POST", "/organization_values", ["name"]],
+  "createPhotoTag": ["POST", "/photos/:photoId/photo_tags", ["userId"]],
+  "createProfileNotificationView": ["POST", "/profile/notification_views"],
+  "createProfilePointNotificationView": [
+    "POST",
+    "/profile/point_notification_views"
+  ],
+  "createRecognition": ["POST", "/recognitions", ["body", "userIds"]],
+  "createRecognitionComment": [
+    "POST",
+    "/recognitions/:recognitionId/comments",
+    ["body"],
+    ["parentCommentId"]
+  ],
+  "createRecognitionType": [
+    "POST",
+    "/recognitions/recognition_types",
+    ["name", "approval", "imageUrl"],
+    ["points"]
+  ],
+  "createSSOAgreement": ["POST", "/sso/agreement"],
+  "createSession": ["POST", "/sessions", ["email"]],
+  "createSimulation": ["POST", "/admin/simulation", ["userId"]],
+  "createSlackIntegration": ["POST", "/slack_integrations", ["code"]],
+  "createSurvey": [
+    "POST",
+    "/surveys",
+    ["title"],
+    ["points", "eventId", "viewableResults"]
+  ],
+  "createSurveyItem": [
+    "POST",
+    "/surveys/:surveyId/survey_items",
+    ["prompt", "itemType"],
+    ["minRange", "maxRange"]
+  ],
+  "createSurveyItemResponseOption": [
+    "POST",
+    "/survey_items/:surveyItemId/survey_item_response_options",
+    ["body"]
+  ],
+  "createSurveyUserItemResponse": [
+    "POST",
+    "/survey_items/:surveyItemId/survey_user_item_response",
+    [],
+    ["body", "surveyItemResponseOptionIds"]
+  ],
+  "createUserActivityComment": [
+    "POST",
+    "/user_activities/:userActivityId/comments",
+    ["body"],
+    ["parentCommentId"]
+  ],
+  "createUserInvite": ["POST", "/users/:userId/invites"],
+  "deactivateSurvey": ["DELETE", "/surveys/:surveyId/survey_activation"],
+  "deactivateUser": ["POST", "/users/:userId/deactivation"],
+  "deleteAnnouncement": ["DELETE", "/announcements/:announcementId"],
+  "deleteDepartment": ["DELETE", "/departments/:departmentId"],
+  "deleteEvent": ["DELETE", "/events/:eventId", [], ["message"]],
+  "deleteEventComment": ["DELETE", "/events/:eventId/comments/:commentId"],
+  "deleteEventPhoto": ["DELETE", "/events/:eventId/photos/:photoId"],
+  "deleteEventPhotoComment": [
+    "DELETE",
+    "/events/:eventId/photos/:photoId/comments/:commentId"
+  ],
+  "deleteExpense": ["DELETE", "/events/:eventId/expenses/:expenseId"],
+  "deleteInterest": ["DELETE", "/interests/:interestId"],
+  "deleteLocation": ["DELETE", "/locations/:locationId"],
+  "deleteOrganization": ["DELETE", "/admin/organizations/:organizationId"],
+  "deleteOrganizationValue": [
+    "DELETE",
+    "/organization_values/:organizationValueId"
+  ],
+  "deletePhotoTag": ["DELETE", "/photos/:photoId/photo_tags/:photoTagId"],
+  "deleteRecognition": ["DELETE", "/recognitions/:recognitionId"],
+  "deleteRecognitionComment": [
+    "DELETE",
+    "/recognitions/:recognitionId/comments/:commentId"
+  ],
+  "deleteRecognitionType": [
+    "DELETE",
+    "/recognitions/recognition_types/:recognitionTypeId"
+  ],
+  "deleteSession": ["DELETE", "/session"],
+  "deleteSlackIntegration": [
+    "DELETE",
+    "/slack_integrations/:slackIntegrationId"
+  ],
+  "deleteSurvey": ["DELETE", "/surveys/:surveyId"],
+  "deleteSurveyItem": ["DELETE", "/survey_items/:surveyItemId"],
+  "deleteSurveyItemResponseOption": [
+    "DELETE",
+    "/survey_item_response_options/:surveyItemResponseOptionId"
+  ],
+  "deleteUserActivityComment": [
+    "DELETE",
+    "/user_activities/:userActivityId/comments/:commentId"
+  ],
+  "denyEventAttendance": ["DELETE", "/events/:eventId/confirmation"],
+  "disableStaticWidget": ["DELETE", "/widgets", ["widget"]],
+  "duplicateEvent": [
+    "POST",
+    "/events/:eventId/event_duplicates",
+    ["startsAt"],
+    ["endsAt"]
+  ],
+  "enableStaticWidget": ["POST", "/widgets", ["widget"]],
+  "eventAutocompleteInvites": [
+    "GET",
+    "/events/:eventId/autocomplete/event_invites",
+    ["query"]
+  ],
+  "eventAutocompleteRsvps": [
+    "GET",
+    "/events/:eventId/autocomplete/rsvps",
+    ["query"]
+  ],
+  "exportEvents": ["POST", "/exports/event_export"],
+  "exportFeedback": ["POST", "/exports/feedback_export"],
+  "exportInterests": ["POST", "/exports/interest_export"],
+  "exportRecognitions": ["POST", "/exports/recognition_export"],
+  "exportSurvey": ["POST", "/exports/surveys/:surveyId/survey_export"],
+  "flagAvatar": ["POST", "/users/:userId/flags", [], ["message"]],
+  "flagComment": ["POST", "/comments/:commentId/flags", [], ["message"]],
+  "flagDepartment": [
+    "POST",
+    "/departments/:departmentId/flags",
+    [],
+    ["message"]
+  ],
+  "flagEvent": ["POST", "/events/:eventId/flags", [], ["message"]],
+  "flagInterest": ["POST", "/interests/:interestId/flags", [], ["message"]],
+  "flagLocation": ["POST", "/locations/:locationId/flags", [], ["message"]],
+  "flagPhoto": ["POST", "/photos/:photoId/flags", [], ["message"]],
+  "flagRecognition": [
+    "POST",
+    "/recognitions/:recognitionId/flags",
+    [],
+    ["message"]
+  ],
+  "getAnnouncement": ["GET", "/announcements/:announcementId"],
+  "getAutoRecognitionSettings": [
+    "GET",
+    "/recognitions/auto_recognition_settings"
+  ],
+  "getDepartment": ["GET", "/departments/:departmentId"],
+  "getDepartmentEventParticipation": [
+    "GET",
+    "/events/:eventId/department_event_participation"
+  ],
+  "getEvent": ["GET", "/events/:eventId"],
+  "getEventAnalytics": ["GET", "/analytics/events/:eventId"],
+  "getEventPhoto": ["GET", "/events/:eventId/photos/:photoId"],
+  "getEventRsvp": ["GET", "/events/:eventId/rsvps/:rsvpId"],
+  "getExpense": ["GET", "/events/:eventId/expenses/:expenseId"],
+  "getFeedback": ["GET", "/feedbacks/:feedbackId"],
+  "getInterest": ["GET", "/interests/:interestId"],
+  "getInvite": ["GET", "/invites/:token"],
+  "getLocation": ["GET", "/locations/:locationId"],
+  "getOrganization": ["GET", "/admin/organizations/:organizationId"],
+  "getOrganizationValue": ["GET", "/organization_values/:organizationValueId"],
+  "getOrganizationValueLeaderboard": [
+    "GET",
+    "/leaderboard/organization_values"
+  ],
+  "getPhotoGallery": ["GET", "/gallery", [], ["page", "range"]],
+  "getPointLeaderboard": ["GET", "/leaderboard/points"],
+  "getProfile": ["GET", "/profile"],
+  "getProfileEmailSettings": ["GET", "/profile/email_settings"],
+  "getProfilePointStanding": ["GET", "/profile/point_standing"],
+  "getRecognition": ["GET", "/recognitions/:recognitionId"],
+  "getRecognitionType": [
+    "GET",
+    "/recognitions/recognition_types/:recognitionTypeId"
+  ],
+  "getSurvey": ["GET", "/surveys/:surveyId"],
+  "getSurveyItem": ["GET", "/survey_items/:surveyItemId"],
+  "getSurveyItemResponseOption": [
+    "GET",
+    "/survey_item_response_options/:surveyItemResponseOptionId"
+  ],
+  "getSurveyUserItemResponse": [
+    "GET",
+    "/survey_items/:surveyItemId/survey_user_item_response"
+  ],
+  "getUser": ["GET", "/users/:userId"],
+  "getUserEventTypeBreakdown": ["GET", "/users/:userId/event_type_breakdown"],
+  "getUserPointBreakdown": ["GET", "/users/:userId/point_breakdown"],
+  "getUserPointIncrements": [
+    "GET",
+    "/users/:userId/point_increments",
+    [],
+    ["page"]
+  ],
+  "getUserRecognitionLeaderboard": ["GET", "/leaderboard/user_recognitions"],
+  "incrementUserPoints": [
+    "POST",
+    "/users/:userId/point_increments",
+    ["points"]
+  ],
+  "invalidateOtherApiKeys": ["DELETE", "/api_keys"],
+  "listActiveAnnouncements": ["GET", "/active_announcements", [], ["page"]],
+  "listAnnouncements": ["GET", "/announcements", [], ["page", "active"]],
+  "listApiKeys": ["GET", "/api_keys"],
+  "listDepartmentAnalytics": ["GET", "/analytics/departments", [], ["page"]],
+  "listDepartments": ["GET", "/departments", [], ["page"]],
+  "listEventAnalytics": ["GET", "/analytics/events", [], ["page"]],
+  "listEventCommentCheers": [
+    "GET",
+    "/events/:eventId/comments/:commentId/cheers",
+    [],
+    ["page"]
+  ],
+  "listEventComments": ["GET", "/events/:eventId/comments", [], ["page"]],
+  "listEventInterests": ["GET", "/events/interests", [], ["page"]],
+  "listEventPhotoCheers": [
+    "GET",
+    "/events/:eventId/photos/:photoId/cheers",
+    [],
+    ["page"]
+  ],
+  "listEventPhotoCommentCheers": [
+    "GET",
+    "/events/:eventId/photos/:photoId/comments/:commentId/cheers",
+    [],
+    ["page"]
+  ],
+  "listEventPhotoComments": [
+    "GET",
+    "/events/:eventId/photos/:photoId/comments",
+    [],
+    ["page"]
+  ],
+  "listEventPhotos": ["GET", "/events/:eventId/photos", [], ["page"]],
+  "listEventRsvps": [
+    "GET",
+    "/events/:eventId/rsvps",
+    [],
+    ["page", "responseType"]
+  ],
+  "listEvents": [
+    "GET",
+    "/events",
+    [],
+    [
+      "page",
+      "range",
+      "locationIds",
+      "sort",
+      "when",
+      "organizationValueIds",
+      "eventTypes",
+      "sponsored",
+      "interestIds",
+      "allLocations",
+      "userRelation"
+    ]
+  ],
+  "listEventsByOrganization": ["GET", "/admin/events"],
+  "listExpenses": ["GET", "/events/:eventId/expenses", [], ["page"]],
+  "listFeedbacks": ["GET", "/feedbacks", [], ["page", "reviewed"]],
+  "listFlags": ["GET", "/flags", [], ["page", "reviewed"]],
+  "listInterests": ["GET", "/interests", [], ["page", "by"]],
+  "listLocations": ["GET", "/locations", [], ["page"]],
+  "listOrganizationValueEvents": [
+    "GET",
+    "/organization_values/:organizationValueId/events",
+    [],
+    ["page"]
+  ],
+  "listOrganizationValueRecognitions": [
+    "GET",
+    "/organization_values/:organizationValueId/recognitions",
+    [],
+    ["page"]
+  ],
+  "listOrganizationValues": ["GET", "/organization_values", [], ["page"]],
+  "listOrganizations": ["GET", "/admin/organizations", [], ["page"]],
+  "listPendingRecognitions": [
+    "GET",
+    "/recognitions/pending_recognitions",
+    [],
+    ["page"]
+  ],
+  "listPhotoTags": ["GET", "/photos/:photoId/photo_tags", [], ["page"]],
+  "listProfileAvailableWidgetSurveys": [
+    "GET",
+    "/profile/widget_surveys/available_surveys",
+    [],
+    ["page"]
+  ],
+  "listProfileCompletedWidgetSurveys": [
+    "GET",
+    "/profile/widget_surveys/completed_surveys",
+    [],
+    ["page"]
+  ],
+  "listProfileEventSurveys": ["GET", "/profile/event_surveys"],
+  "listProfileManageableWidgetSurveys": [
+    "GET",
+    "/profile/widget_surveys/manageable_surveys",
+    [],
+    ["page"]
+  ],
+  "listProfileNotifications": [
+    "GET",
+    "/profile/notifications",
+    [],
+    ["seen", "page"]
+  ],
+  "listProfilePointNotifications": [
+    "GET",
+    "/profile/point_notifications",
+    [],
+    ["seen", "page"]
+  ],
+  "listRecognitionCheers": [
+    "GET",
+    "/recognitions/:recognitionId/cheers",
+    [],
+    ["page"]
+  ],
+  "listRecognitionCommentCheers": [
+    "GET",
+    "/recognitions/:recognitionId/comments/:commentId/cheers",
+    [],
+    ["page"]
+  ],
+  "listRecognitionComments": [
+    "GET",
+    "/recognitions/:recognitionId/comments",
+    [],
+    ["page"]
+  ],
+  "listRecognitionTypes": [
+    "GET",
+    "/recognitions/recognition_types",
+    [],
+    ["page"]
+  ],
+  "listRecognitions": [
+    "GET",
+    "/recognitions",
+    [],
+    ["page", "locationIds", "departmentIds", "organizationValueIds", "type"]
+  ],
+  "listRecognitionsOrganizationValues": [
+    "GET",
+    "/recognitions/organization_values"
+  ],
+  "listRecognitionsRecognizedUsers": ["GET", "/recognitions/recognized_users"],
+  "listRecognitionsRecognizingUsers": [
+    "GET",
+    "/recognitions/recognizing_users"
+  ],
+  "listSlackIntegrations": ["GET", "/slack_integrations"],
+  "listSurveyItemResponseOptions": [
+    "GET",
+    "/survey_items/:surveyItemId/survey_item_response_options",
+    [],
+    ["page"]
+  ],
+  "listSurveyItems": ["GET", "/surveys/:surveyId/survey_items", [], ["page"]],
+  "listSurveyResults": ["GET", "/surveys/:surveyId/survey_results"],
+  "listSurveySubmittedResponses": [
+    "GET",
+    "/surveys/:surveyId/submitted_responses"
+  ],
+  "listTrendingEvents": ["GET", "/trending_events"],
+  "listUserActivities": ["GET", "/user_activities", [], ["page"]],
+  "listUserActivityCheers": [
+    "GET",
+    "/user_activities/:userActivityId/cheers",
+    [],
+    ["page"]
+  ],
+  "listUserActivityCommentCheers": [
+    "GET",
+    "/user_activities/:userActivityId/comments/:commentId/cheers",
+    [],
+    ["page"]
+  ],
+  "listUserActivityComments": [
+    "GET",
+    "/user_activities/:userActivityId/comments",
+    [],
+    ["page"]
+  ],
+  "listUserAnalytics": ["GET", "/analytics/users", [], ["page"]],
+  "listUserHostedEvents": ["GET", "/users/:userId/hosted_events", [], ["page"]],
+  "listUserRecognitions": ["GET", "/users/:userId/recognitions", [], ["page"]],
+  "listUserRsvpdEvents": [
+    "GET",
+    "/users/:userId/rsvpd_events",
+    [],
+    ["when", "sort"]
+  ],
+  "listUsers": [
+    "GET",
+    "/users",
+    [],
+    [
+      "page",
+      "includeDeactivated",
+      "departmentId",
+      "interestId",
+      "locationId",
+      "active",
+      "inviteStatus",
+      "departmentIds",
+      "interestIds",
+      "locationIds"
+    ]
+  ],
+  "messageEventGuests": [
+    "POST",
+    "/events/:eventId/event_notifications",
+    ["body"]
+  ],
+  "reactivateUser": ["DELETE", "/users/:userId/deactivation"],
+  "registerUser": ["POST", "/invites/:token/users", ["password"]],
+  "reorderProfileInterests": ["PATCH", "/profile/interest_order", ["order"]],
+  "reorderSurveyItemResponseOptions": [
+    "PATCH",
+    "/survey_items/:surveyItemId/survey_item_response_option_order",
+    ["order"]
+  ],
+  "reorderSurveyItems": [
+    "PATCH",
+    "/surveys/:surveyId/survey_item_order",
+    ["order"]
+  ],
+  "reorderWidgets": ["PATCH", "/widget_order", ["order"]],
+  "requestPasswordReset": ["POST", "/password_resets", ["email"]],
+  "resetPassword": ["PATCH", "/password_resets/:token", [], ["password"]],
+  "reviewFeedback": ["PATCH", "/feedbacks/:feedbackId"],
+  "search": ["GET", "/search", ["query"]],
+  "sendInvite": [
+    "POST",
+    "/invites",
+    ["name", "email"],
+    ["locationName", "departmentNames", "interestNames", "avatar", "title"],
+    true
+  ],
+  "subscribeToEventNotifications": [
+    "POST",
+    "/events/:eventId/event_notification_subscription"
+  ],
+  "uncheerEventComment": [
+    "DELETE",
+    "/events/:eventId/comments/:commentId/cheers"
+  ],
+  "uncheerEventPhoto": ["DELETE", "/events/:eventId/photos/:photoId/cheers"],
+  "uncheerEventPhotoComment": [
+    "DELETE",
+    "/events/:eventId/photos/:photoId/comments/:commentId/cheers"
+  ],
+  "uncheerRecognition": ["DELETE", "/recognitions/:recognitionId/cheers"],
+  "uncheerRecognitionComment": [
+    "DELETE",
+    "/recognitions/:recognitionId/comments/:commentId/cheers"
+  ],
+  "uncheerUserActivity": ["DELETE", "/user_activities/:userActivityId/cheers"],
+  "uncheerUserActivityComment": [
+    "DELETE",
+    "/user_activities/:userActivityId/comments/:commentId/cheers"
+  ],
+  "unsubscribeFromEventNotifications": [
+    "DELETE",
+    "/events/:eventId/event_notification_subscription"
+  ],
+  "updateAnnouncement": [
+    "PATCH",
+    "/announcements/:announcementId",
+    [],
+    ["title", "body", "active", "imageUrl"]
+  ],
+  "updateAutoRecognitionSettings": [
+    "PATCH",
+    "/recognitions/auto_recognition_settings",
+    [],
+    [
+      "allDepartments",
+      "eventCreation",
+      "newAttendees",
+      "didRecognize",
+      "wasRecognized",
+      "inviteCreation"
+    ]
+  ],
+  "updateDepartment": ["PATCH", "/departments/:departmentId", [], ["name"]],
+  "updateEvent": [
+    "PATCH",
+    "/events/:eventId",
+    [],
+    [
+      "name",
+      "details",
+      "startsAt",
+      "endsAt",
+      "eventType",
+      "sponsored",
+      "surveyId",
+      "image",
+      "organizationValueIds",
+      "location",
+      "visibility",
+      "cap",
+      "locationIds",
+      "inviteOnly",
+      "openInvites",
+      "interestNames",
+      "allLocations"
+    ],
+    true
+  ],
+  "updateEventComment": [
+    "PATCH",
+    "/events/:eventId/comments/:commentId",
+    ["body"]
+  ],
+  "updateEventPhoto": [
+    "PATCH",
+    "/events/:eventId/photos/:photoId",
+    [],
+    ["image", "caption"],
+    true
+  ],
+  "updateEventPhotoComment": [
+    "PATCH",
+    "/events/:eventId/photos/:photoId/comments/:commentId",
+    ["body"]
+  ],
+  "updateEventRsvp": [
+    "PATCH",
+    "/events/:eventId/rsvps/:rsvpId",
+    ["responseType"]
+  ],
+  "updateExpense": [
+    "PATCH",
+    "/events/:eventId/expenses/:expenseId",
+    [],
+    ["description", "amount", "incurredAt"]
+  ],
+  "updateFlag": ["PATCH", "/flags/:flagId", ["reviewed"]],
+  "updateInterest": ["PATCH", "/interests/:interestId", ["name"]],
+  "updateLocation": ["PATCH", "/locations/:locationId", ["name"]],
+  "updateOrganization": [
+    "PATCH",
+    "/admin/organizations/:organizationId",
+    [],
+    [
+      "name",
+      "gamificationEnabled",
+      "logoUrl",
+      "active",
+      "mode",
+      "googleSigninEnabled",
+      "userCreatedSlackIntegrationsEnabled",
+      "userCreatedSurveysEnabled",
+      "feedbackEnabled",
+      "userCreatedInvitesEnabled",
+      "accountInfoEnabled"
+    ],
+    true
+  ],
+  "updateOrganizationValue": [
+    "PATCH",
+    "/organization_values/:organizationValueId",
+    ["name"]
+  ],
+  "updateProfile": [
+    "PATCH",
+    "/profile",
+    [],
+    [
+      "name",
+      "email",
+      "departmentNames",
+      "interestNames",
+      "avatar",
+      "title",
+      "locationName"
+    ],
+    true
+  ],
+  "updateProfileEmailSettings": [
+    "PATCH",
+    "/profile/email_settings",
+    [],
+    [
+      "eventInvite",
+      "eventNotification",
+      "postEventSurvey",
+      "recognized",
+      "redemptionApproved",
+      "redemptionRequested",
+      "rsvpConfirmation"
+    ]
+  ],
+  "updateRecognition": [
+    "PATCH",
+    "/recognitions/:recognitionId",
+    ["body"],
+    ["userIds"]
+  ],
+  "updateRecognitionComment": [
+    "PATCH",
+    "/recognitions/:recognitionId/comments/:commentId",
+    ["body"]
+  ],
+  "updateRecognitionType": [
+    "PATCH",
+    "/recognitions/recognition_types/:recognitionTypeId",
+    [],
+    ["name", "approval", "points", "imageUrl"]
+  ],
+  "updateSurvey": [
+    "PATCH",
+    "/surveys/:surveyId",
+    [],
+    ["title", "points", "viewableResults"]
+  ],
+  "updateSurveyItem": [
+    "PATCH",
+    "/survey_items/:surveyItemId",
+    [],
+    ["prompt", "itemType", "minRange", "maxRange"]
+  ],
+  "updateSurveyItemResponseOption": [
+    "PATCH",
+    "/survey_item_response_options/:surveyItemResponseOptionId",
+    [],
+    ["body"]
+  ],
+  "updateSurveyUserItemResponse": [
+    "PATCH",
+    "/survey_items/:surveyItemId/survey_user_item_response",
+    [],
+    ["body", "surveyItemResponseOptionIds"]
+  ],
+  "updateUser": [
+    "PATCH",
+    "/users/:userId",
+    [],
+    [
+      "name",
+      "email",
+      "departmentNames",
+      "interestNames",
+      "avatar",
+      "title",
+      "locationName",
+      "organizationAdmin"
+    ],
+    true
+  ],
+  "updateUserActivityComment": [
+    "PATCH",
+    "/user_activities/:userActivityId/comments/:commentId",
+    ["body"]
+  ]
+}
