@@ -503,7 +503,7 @@
     "/surveys/:surveyId/submitted_responses"
   ],
   "listTrendingEvents": ["GET", "/trending_events"],
-  "listUserActivities": ["GET", "/user_activities", [], ["page"]],
+  "listUserActivities": ["GET", "/user_activities", [], ["type", "page"]],
   "listUserActivityCheers": [
     "GET",
     "/user_activities/:userActivityId/cheers",
