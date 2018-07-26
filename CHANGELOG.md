@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [2.3.1] - 2018-07-26
+### Changed
+- Don't require `body` on `createPost` call.
+
 ## [2.3.0] - 2018-07-26
 ### Added
 - The `createPost` call.

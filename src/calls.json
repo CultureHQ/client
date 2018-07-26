@@ -136,7 +136,7 @@
   ],
   "createOrganizationValue": ["POST", "/organization_values", ["name"]],
   "createPhotoTag": ["POST", "/photos/:photoId/photo_tags", ["userId"]],
-  "createPost": ["POST", "/posts", ["title", "body"], ["imageUrl"]],
+  "createPost": ["POST", "/posts", ["title"], ["body", "imageUrl"]],
   "createProfileNotificationView": ["POST", "/profile/notification_views"],
   "createProfilePointNotificationView": [
     "POST",
