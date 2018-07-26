@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Added
 - The optional `types` param to the `listUserActivities` call.
+- The `pinUserActivity` and `unpinUserActivity` calls.
 
 ## [2.1.2] - 2018-07-17
 ### Changed
