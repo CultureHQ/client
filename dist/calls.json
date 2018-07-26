@@ -503,7 +503,7 @@
     "/surveys/:surveyId/submitted_responses"
   ],
   "listTrendingEvents": ["GET", "/trending_events"],
-  "listUserActivities": ["GET", "/user_activities", [], ["page"]],
+  "listUserActivities": ["GET", "/user_activities", [], ["types", "page"]],
   "listUserActivityCheers": [
     "GET",
     "/user_activities/:userActivityId/cheers",
@@ -553,6 +553,7 @@
     "/events/:eventId/event_notifications",
     ["body"]
   ],
+  "pinUserActivity": ["POST", "/user_activities/:userActivityId/pin"],
   "reactivateUser": ["DELETE", "/users/:userId/deactivation"],
   "registerUser": ["POST", "/invites/:token/users", ["password"]],
   "reorderProfileInterests": ["PATCH", "/profile/interest_order", ["order"]],
@@ -601,6 +602,7 @@
     "DELETE",
     "/user_activities/:userActivityId/comments/:commentId/cheers"
   ],
+  "unpinUserActivity": ["DELETE", "/user_activities/:userActivityId/pin"],
   "unsubscribeFromEventNotifications": [
     "DELETE",
     "/events/:eventId/event_notification_subscription"
