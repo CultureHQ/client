@@ -45,7 +45,7 @@ const CONFIG = {
  *
  * == Pagination ==
  *
- * Almost every one of the `list*` events is paginated, and will result
+ * Almost every one of the `list*` events is paginated, and will return
  * pagination metadata along with the actual data of the call. The `pagination`
  * object will look like:
  *
@@ -71,11 +71,11 @@ const CONFIG = {
  * object. An example with React of using these functions is below:
  *
  *     class MyComponent {
- *       state = { notification: null };
+ *       state = { lastNotification: null };
  *
  *       componentDidMount() {
  *         this.subscription = client.onNotificationReceived(notification => {
- *           this.setState({ notification });
+ *           this.setState({ lastNotification: notification });
  *         });
  *       }
  *
@@ -83,6 +83,12 @@ const CONFIG = {
  *         if (this.subscription) {
  *           this.subscription.unsubscribe();
  *         }
+ *       }
+ *
+ *       render() {
+ *         const { lastNotification } = this.state;
+ *
+ *         return <span>{lastNotification}<span>;
  *       }
  *     }
  */
