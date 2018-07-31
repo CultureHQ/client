@@ -1,12 +1,11 @@
 import ActionCable from "actioncable";
 
+import API_CALLS from "./api-calls";
+import AutoPaginator from "./auto-paginator";
 import { API_HOST } from "./constants";
 import state from "./state";
-import calls from "./calls";
-import apiCall from "./api-call";
-import { camelize } from "./string-case";
-import AutoPaginator from "./auto-paginator";
 import signUpload from "./sign-upload";
+import { camelize } from "./string-case";
 
 /**
  * An object for handling the connection to and querying of the CultureHQ API.
@@ -159,11 +158,9 @@ const client = {
 
   subscribeToChannel: (channel, callback) => client.ensureConsumer().subscriptions.create(channel, {
     received: data => callback(camelize(data))
-  })
-};
+  }),
 
-Object.keys(calls).forEach(callName => {
-  client[callName] = apiCall(calls[callName]);
-});
+  ...API_CALLS
+};
 
 export default client;
