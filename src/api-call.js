@@ -25,12 +25,12 @@ const prepare = (expected, actual, template) => {
 };
 
 const apiCall = ([method, template, expected = [], optional = [], multipart = false]) => {
-  const call = actualParams => {
-    const { path, params } = prepare(expectedParams, actualParams, template);
+  const call = actual => {
+    const { path, params } = prepare(expected, actual, template);
 
     return request(method, new URL(`${API_HOST}${path}`), {
       token: state.getToken(),
-      simulation: state.getSimulation(),
+      simulation: state.getSimulationToken(),
       params,
       multipart
     });
