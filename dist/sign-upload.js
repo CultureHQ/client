@@ -4,15 +4,17 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _constants = require("./constants");
+
 var _formData = require("./form-data");
 
 var _formData2 = _interopRequireDefault(_formData);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var signUpload = function signUpload(client, file, onProgress) {
+var signUpload = function signUpload(file, onProgress) {
   return new Promise(function (resolve, reject) {
-    return fetch(client.signerUrl).then(function (response) {
+    return fetch(_constants.SIGNER_URL).then(function (response) {
       return response.json();
     }).then(function (_ref) {
       var policy = _ref.policy,
@@ -20,13 +22,13 @@ var signUpload = function signUpload(client, file, onProgress) {
           key = _ref.key;
 
       var xhr = new XMLHttpRequest();
-      xhr.open("POST", client.uploadBucket + "/");
+      xhr.open("POST", _constants.UPLOAD_BUCKET + "/");
 
       xhr.upload.addEventListener("load", function (event) {
         if (event.type === "error") {
           reject(event);
         } else {
-          resolve(client.uploadBucket + "/" + key);
+          resolve(_constants.UPLOAD_BUCKET + "/" + key);
         }
       });
 
@@ -43,7 +45,7 @@ var signUpload = function signUpload(client, file, onProgress) {
 
       xhr.send((0, _formData2.default)({
         key: key,
-        AWSAccessKeyId: client.awsAccessKeyId,
+        AWSAccessKeyId: _constants.AWS_ACCESS_KEY_ID,
         acl: "public-read",
         policy: policy,
         signature: signature,
