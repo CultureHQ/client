@@ -5,9 +5,23 @@ jest.mock("../src/state", () => ({
   getSimulationToken: () => "simulation"
 }));
 
-jest.mock("../src/request", () => (method, url, { token, simulation, params, multipart }) => ({
-  method, url, token, simulation, params, multipart
-}));
+jest.mock("../src/request", () => (method, url, options) => {
+  const {
+    token,
+    simulation,
+    params,
+    multipart
+  } = options;
+
+  return {
+    method,
+    url,
+    token,
+    simulation,
+    params,
+    multipart
+  };
+});
 
 test("builds api calls from options", () => {
   const call = apiCall(["GET", "/users/:userId"]);

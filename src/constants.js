@@ -19,7 +19,16 @@ const constants = {
   }
 };
 
-const { API_HOST, AWS_ACCESS_KEY_ID, SIGNER_URL, UPLOAD_BUCKET } =
-  constants[process.env.NODE_ENV || "development"];
+const {
+  API_HOST,
+  AWS_ACCESS_KEY_ID,
+  SIGNER_URL,
+  UPLOAD_BUCKET
+} = constants[process.env.NODE_ENV || "development"];
 
-export { API_HOST, AWS_ACCESS_KEY_ID, SIGNER_URL, UPLOAD_BUCKET };
+export {
+  API_HOST,
+  AWS_ACCESS_KEY_ID,
+  SIGNER_URL,
+  UPLOAD_BUCKET
+};
