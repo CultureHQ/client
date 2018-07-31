@@ -47,7 +47,7 @@ If a function has `multipart` set on its config, it's because one or more of the
 
 ```js
 const avatar = document.querySelector("#avatar").files[0];
-const response = await cultureHQ.updateUser({ userId: 12345, avatar });
+const response = await client.updateUser({ userId: 12345, avatar });
 ```
 
 ## Development
@@ -61,13 +61,3 @@ Styling is handled through `prettier`. Run it with `yarn prettier`.
 ### Testing
 
 Run `yarn test` to run the tests with `jest`.
-
-### Releasing
-
-Since we aren't yet publishing the package to `npm`, it has a bit of a custom release process:
-
-* Bump the version in [package.json](package.json)
-* Rebuild the client with `yarn build`
-* Modify [CHANGELOG.md](CHANGELOG.md) to include the new release
-* Check everything in, open a PR, and merge into master
-* Create a git tag for this release, as in `git tag v1.0.0 && git push --tags`
