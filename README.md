@@ -1,4 +1,4 @@
-# culturehq-client
+# @culturehq/client
 
 [![Build Status](https://travis-ci.com/CultureHQ/client.svg?token=kQUiABmGkzyHdJdMnCnv&branch=master)](https://travis-ci.com/CultureHQ/client)
 
@@ -9,7 +9,7 @@ A JavaScript client that wraps the CultureHQ API.
 Import the package into your `node` application like:
 
 ```js
-import client from "culturehq-client";
+import client from "@culturehq/client";
 ```
 
 Every API call function returns a `Promise`. You can call them using normal `Promise` semantics, as in below:
