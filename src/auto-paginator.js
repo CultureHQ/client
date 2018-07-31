@@ -1,5 +1,5 @@
+import API_CALLS from "./api-calls";
 import calls from "./calls";
-import client from "./client";
 
 /**
  * A class that wraps an API call and automatically concatenates the results
@@ -10,8 +10,8 @@ class AutoPaginator {
     this.dataType = dataType;
   }
 
-  aggregate(callName, options) {
-    return client[callName]({ ...options, page: 1 }).then(response => {
+  aggregate(call, options) {
+    return call({ ...options, page: 1 }).then(response => {
       const { pagination: { totalPages } } = response;
 
       // There's no need to make multiple calls if there is only one or zero
@@ -24,7 +24,7 @@ class AutoPaginator {
       const promises = [];
 
       for (page = 2; page <= totalPages; page += 1) {
-        promises.push(client[callName]({ ...options, page }));
+        promises.push(call({ ...options, page }));
       }
 
       // Wait for every API call to resolve before proceeding (this allows all
@@ -49,7 +49,7 @@ class AutoPaginator {
 Object.keys(calls).forEach(callName => {
   /* eslint-disable-next-line func-names */
   AutoPaginator.prototype[callName] = function (options) {
-    return this.aggregate(callName, options);
+    return this.aggregate(API_CALLS[callName], options);
   };
 });
 
