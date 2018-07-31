@@ -155,7 +155,7 @@ const client = {
 
     client.consumer = ActionCable.createConsumer(endpoint);
     return client.consumer;
-  }
+  },
 
   subscribeToChannel: (channel, callback) => client.ensureConsumer().subscriptions.create(channel, {
     received: data => callback(camelize(data))

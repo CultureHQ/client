@@ -1,9 +1,6 @@
 import createServer from "./create-server";
-import CultureHQ from "../src/index";
+import client from "../src/client";
 import state from "../src/state";
-
-const port = 1693;
-const client = new CultureHQ({ apiHost: `http://localhost:${port}` });
 
 afterEach(() => state.signOut());
 
@@ -16,7 +13,7 @@ test("signs in and reports signed in status correctly", async () => {
     status: 200,
     body: { apiKey: { token: "baz" } }
   });
-  server.listen(port);
+  server.listen(8080);
 
   try {
     const response = await client.signIn({ email: "foo", password: "bar" });
@@ -34,7 +31,7 @@ test("can call getProfile after logged in", async () => {
     { status: 200, body: { number } }
   ]);
 
-  server.listen(port);
+  server.listen(8080);
 
   try {
     await client.signIn({ email: "foo", password: "bar" });
@@ -53,7 +50,7 @@ test("cannot call createApiKey without expected parameters", () => {
 
 test("substitutes values into the request path", async () => {
   const server = createServer({ status: 200, body: {} });
-  server.listen(port);
+  server.listen(8080);
 
   try {
     const { response } = await client.getUser({ userId: 42 });

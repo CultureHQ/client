@@ -14,7 +14,5 @@ test("isSimulating returns true when simulation is occurring", () => {
 });
 
 test("startSimulation throws an error when you're not logged in", () => {
-  expect(() => {
-    state.startSimulation("foo");
-  }).toThrow();
+  expect(() => state.startSimulation("foo")).toThrow();
 });

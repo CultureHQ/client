@@ -29,25 +29,19 @@ test("signs and uploads files to S3", async () => {
     response.end();
   });
 
-  signerServer.listen(8080);
-  s3Server.listen(8081);
+  signerServer.listen(8081);
+  s3Server.listen(8082);
 
   try {
-    const client = {
-      awsAccessKeyId: "access-key-id",
-      signerUrl: "http://localhost:8080",
-      uploadBucket: "http://localhost:8081"
-    };
-
     const onProgress = () => {
       onProgress.called = true;
     };
     onProgress.called = false;
 
     const file = fs.createReadStream(__filename);
-    const response = await signUpload(client, file, onProgress);
+    const response = await signUpload(file, onProgress);
 
-    expect(response).toEqual(`${client.uploadBucket}/key`);
+    expect(response).toEqual("http://localhost:8082/key");
     expect(onProgress.called).toBe(true);
   } finally {
     signerServer.close();
