@@ -1,4 +1,4 @@
-const constants = {
+const CONSTANTS = {
   production: {
     API_HOST: "https://api.culturehq.com",
     AWS_ACCESS_KEY_ID: "AKIAIPWT257FWZ5I4ZGQ",
@@ -24,7 +24,7 @@ const {
   AWS_ACCESS_KEY_ID,
   SIGNER_URL,
   UPLOAD_BUCKET
-} = constants[process.env.NODE_ENV || "development"];
+} = CONSTANTS[process.env.NODE_ENV || "development"];
 
 export {
   API_HOST,
