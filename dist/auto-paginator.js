@@ -8,6 +8,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _apiCalls = require("./api-calls");
+
+var _apiCalls2 = _interopRequireDefault(_apiCalls);
+
 var _calls = require("./calls");
 
 var _calls2 = _interopRequireDefault(_calls);
@@ -23,19 +27,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * across multiple pages.
  */
 var AutoPaginator = function () {
-  function AutoPaginator(client, dataType) {
+  function AutoPaginator(dataType) {
     _classCallCheck(this, AutoPaginator);
 
-    this.client = client;
     this.dataType = dataType;
   }
 
   _createClass(AutoPaginator, [{
     key: "aggregate",
-    value: function aggregate(callName, options) {
+    value: function aggregate(call, options) {
       var _this = this;
 
-      return this.client[callName](_extends({}, options, { page: 1 })).then(function (response) {
+      return call(_extends({}, options, { page: 1 })).then(function (response) {
         var totalPages = response.pagination.totalPages;
 
         // There's no need to make multiple calls if there is only one or zero
@@ -49,7 +52,7 @@ var AutoPaginator = function () {
         var promises = [];
 
         for (page = 2; page <= totalPages; page += 1) {
-          promises.push(_this.client[callName](_extends({}, options, { page: page })));
+          promises.push(call(_extends({}, options, { page: page })));
         }
 
         // Wait for every API call to resolve before proceeding (this allows all
@@ -77,7 +80,7 @@ var AutoPaginator = function () {
 Object.keys(_calls2.default).forEach(function (callName) {
   /* eslint-disable-next-line func-names */
   AutoPaginator.prototype[callName] = function (options) {
-    return this.aggregate(callName, options);
+    return this.aggregate(_apiCalls2.default[callName], options);
   };
 });
 
