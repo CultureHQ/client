@@ -1,21 +1,25 @@
 import AutoPaginator from "../src/auto-paginator";
+import client from "../src/client";
+
+jest.mock("../src/client", () => ({ listEvents: jest.fn() }));
 
 const PER_PAGE = 5;
-const EVENTS = [];
+const EVENTS = [...Array(18)].map((empty, idx) => ({ idx, name: `Event ${idx}` }));
 
-for (let idx = 0; idx < 18; idx += 1) {
-  EVENTS.push({ idx, name: `Event ${idx}` });
-}
-
-const singlePageClient = {
-  listEvents: ({ page }) => Promise.resolve({
+test("exits early if there's only one page of responses", async () => {
+  client.listEvents.mockImplementation(({ page }) => Promise.resolve({
     events: EVENTS,
     pagination: { currentPage: page, totalPages: 1, totalCount: EVENTS.length }
-  })
-};
+  }));
 
-const multiplePageClient = {
-  listEvents: ({ page }) => {
+  const { events, pagination } = await new AutoPaginator("events").listEvents();
+
+  expect(events.length).toEqual(EVENTS.length);
+  expect(pagination.totalPages).toEqual(1);
+});
+
+test("concatenates all results together", async () => {
+  client.listEvents.mockImplementation(({ page }) => {
     const events = EVENTS.slice((page - 1) * PER_PAGE, page * PER_PAGE);
     const pagination = {
       currentPage: page,
@@ -24,19 +28,10 @@ const multiplePageClient = {
     };
 
     return Promise.resolve({ events, pagination });
-  }
-};
+  });
 
-test("exits early if there's only one page of responses", async () => {
-  const paginator = new AutoPaginator(singlePageClient, "events");
-  const { events } = await paginator.listEvents();
+  const { events, pagination } = await new AutoPaginator("events").listEvents();
 
   expect(events.length).toEqual(EVENTS.length);
-});
-
-test("concatenates all results together", async () => {
-  const paginator = new AutoPaginator(multiplePageClient, "events");
-  const { events } = await paginator.listEvents();
-
-  expect(events.length).toEqual(EVENTS.length);
+  expect(pagination.totalPages).toEqual(Math.ceil(EVENTS.length / PER_PAGE));
 });
