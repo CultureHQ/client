@@ -11,7 +11,7 @@ const signUpload = (file, onProgress) => (
         if (event.type === "error") {
           reject(event);
         } else {
-          resolve(`${client.uploadBucket}/${key}`);
+          resolve(`${UPLOAD_BUCKET}/${key}`);
         }
       });
 
