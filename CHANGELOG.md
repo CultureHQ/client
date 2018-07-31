@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
-## [3.0.0] - 2018-07-27
+## [3.0.0] - 2018-07-31
 ### Changed
 - The name of the package has been changed to `@culturehq/client`.
 - The main export is no longer a class, it's just a singleton JavaScript object. No need to instantiate it at all. As such the endpoints are no longer configurable, they're just constants now.
