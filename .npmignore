@@ -2,6 +2,7 @@
 /bin
 /coverage/
 /jest.config.js
+/src/
 /test
 /yarn.lock
 /yarn-error.log
