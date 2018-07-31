@@ -1,3 +1,4 @@
+import calls from "./calls";
 import { API_HOST } from "./constants";
 import request from "./request";
 import state from "./state";
@@ -24,7 +25,7 @@ const prepare = (expected, actual, template) => {
   return { path, params };
 };
 
-const apiCall = ([method, template, expected = [], optional = [], multipart = false]) => {
+const buildCall = ([method, template, expected = [], optional = [], multipart = false]) => {
   const call = actual => {
     const { path, params } = prepare(expected, actual, template);
 
@@ -45,4 +46,9 @@ const apiCall = ([method, template, expected = [], optional = [], multipart = fa
   });
 };
 
-export default apiCall;
+const API_CALLS = Object.keys(calls).reduce((accum, callName) => ({
+  ...accum,
+  [callName]: buildCall(calls[callName])
+}), {});
+
+export default API_CALLS;
