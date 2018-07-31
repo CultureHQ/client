@@ -1,10 +1,11 @@
+import { AWS_ACCESS_KEY_ID, SIGNER_URL, UPLOAD_BUCKET } from "./constants";
 import formData from "./form-data";
 
-const signUpload = (client, file, onProgress) => (
+const signUpload = (file, onProgress) => (
   new Promise((resolve, reject) => (
-    fetch(client.signerUrl).then(response => response.json()).then(({ policy, signature, key }) => {
+    fetch(SIGNER_URL).then(response => response.json()).then(({ policy, signature, key }) => {
       const xhr = new XMLHttpRequest();
-      xhr.open("POST", `${client.uploadBucket}/`);
+      xhr.open("POST", `${UPLOAD_BUCKET}/`);
 
       xhr.upload.addEventListener("load", event => {
         if (event.type === "error") {
@@ -25,7 +26,7 @@ const signUpload = (client, file, onProgress) => (
       xhr.send(
         formData({
           key,
-          AWSAccessKeyId: client.awsAccessKeyId,
+          AWSAccessKeyId: AWS_ACCESS_KEY_ID,
           acl: "public-read",
           policy,
           signature,

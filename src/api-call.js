@@ -1,59 +1,48 @@
-import "url-polyfill";
-
+import { API_HOST } from "./constants";
 import request from "./request";
 import state from "./state";
 
-const { hasOwnProperty } = Object.prototype;
+const prepare = (expected, actual, template) => {
+  const params = typeof actual !== "object" ? {} : actual;
+  let path = template;
 
-const ensureExpectedParams = (expectedParams, actualParams) => {
-  expectedParams.forEach(param => {
-    if (!hasOwnProperty.call(actualParams, param)) {
+  expected.forEach(param => {
+    if (!(param in params)) {
       throw new Error(`Expected parameter ${param} not given`);
     }
   });
-};
-
-const substitutePath = (path, params) => {
-  let substitutedPath = path;
 
   Object.keys(params).forEach(param => {
     const needle = `:${param}`;
 
-    if (substitutedPath.indexOf(needle) !== -1) {
-      substitutedPath = substitutedPath.replace(needle, params[param]);
-
-      /* eslint-disable-next-line no-param-reassign */
+    if (path.indexOf(needle) !== -1) {
+      path = path.replace(needle, params[param]);
       delete params[param];
     }
   });
 
-  return substitutedPath;
+  return { path, params };
 };
 
-export default (client, options) => {
-  const [
-    method,
-    path,
-    expectedParams = [],
-    optionalParams = [],
-    multipart = false
-  ] = options;
+const apiCall = ([method, template, expected = [], optional = [], multipart = false]) => {
+  const call = actualParams => {
+    const { path, params } = prepare(expectedParams, actualParams, template);
 
-  const apiCall = actualParams => {
-    const normalizedParams = typeof actualParams !== "object" ? {} : actualParams;
-
-    ensureExpectedParams(expectedParams, normalizedParams);
-    const callPath = substitutePath(path, normalizedParams);
-
-    return request(method, new URL(`${client.apiHost}${callPath}`), {
+    return request(method, new URL(`${API_HOST}${path}`), {
       token: state.getToken(),
-      simulation: state.getSimulationToken(),
-      params: normalizedParams,
+      simulation: state.getSimulation(),
+      params,
       multipart
     });
   };
 
-  return Object.assign(apiCall, {
-    method, path, expectedParams, optionalParams, multipart
+  return Object.assign(call, {
+    method,
+    path: template,
+    expectedParams: expected,
+    optionalParams: optional,
+    multipart
   });
 };
+
+export default apiCall;

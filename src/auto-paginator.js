@@ -1,17 +1,17 @@
 import calls from "./calls";
+import client from "./client";
 
 /**
  * A class that wraps an API call and automatically concatenates the results
  * across multiple pages.
  */
 class AutoPaginator {
-  constructor(client, dataType) {
-    this.client = client;
+  constructor(dataType) {
     this.dataType = dataType;
   }
 
   aggregate(callName, options) {
-    return this.client[callName]({ ...options, page: 1 }).then(response => {
+    return client[callName]({ ...options, page: 1 }).then(response => {
       const { pagination: { totalPages } } = response;
 
       // There's no need to make multiple calls if there is only one or zero
@@ -24,7 +24,7 @@ class AutoPaginator {
       const promises = [];
 
       for (page = 2; page <= totalPages; page += 1) {
-        promises.push(this.client[callName]({ ...options, page }));
+        promises.push(client[callName]({ ...options, page }));
       }
 
       // Wait for every API call to resolve before proceeding (this allows all

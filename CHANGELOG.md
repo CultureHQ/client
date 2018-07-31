@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [3.0.0] - 2018-07-27
+### Added
+- 
+
+### Changed
+- Renamed the package from `culturehq-client` to `@culturehq/client`.
+
 ## [2.3.1] - 2018-07-26
 ### Changed
 - Don't require `body` on `createPost` call.
@@ -784,7 +791,50 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v0.0.81...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v3.0.0...HEAD
+[3.0.0]: https://github.com/CultureHQ/client/compare/v2.3.1...v3.0.0
+[2.3.1]: https://github.com/CultureHQ/client/compare/v2.3.0...v2.3.1
+[2.3.0]: https://github.com/CultureHQ/client/compare/v2.2.0...v2.3.0
+[2.2.0]: https://github.com/CultureHQ/client/compare/v2.1.2...v2.2.0
+[2.1.2]: https://github.com/CultureHQ/client/compare/v2.1.1...v2.1.2
+[2.1.1]: https://github.com/CultureHQ/client/compare/v2.1.0...v2.1.1
+[2.1.0]: https://github.com/CultureHQ/client/compare/v2.0.2...v2.1.0
+[2.0.2]: https://github.com/CultureHQ/client/compare/v2.0.1...v2.0.2
+[2.0.1]: https://github.com/CultureHQ/client/compare/v2.0.0...v2.0.1
+[2.0.0]: https://github.com/CultureHQ/client/compare/v1.8.1...v2.0.0
+[1.8.1]: https://github.com/CultureHQ/client/compare/v1.8.0...v1.8.1
+[1.8.0]: https://github.com/CultureHQ/client/compare/v1.7.0...v1.8.0
+[1.7.0]: https://github.com/CultureHQ/client/compare/v1.6.0...v1.7.0
+[1.6.0]: https://github.com/CultureHQ/client/compare/v1.5.2...v1.6.0
+[1.5.2]: https://github.com/CultureHQ/client/compare/v1.5.1...v1.5.2
+[1.5.1]: https://github.com/CultureHQ/client/compare/v1.5.0...v1.5.1
+[1.5.0]: https://github.com/CultureHQ/client/compare/v1.4.0...v1.5.0
+[1.4.0]: https://github.com/CultureHQ/client/compare/v1.3.0...v1.4.0
+[1.3.0]: https://github.com/CultureHQ/client/compare/v1.2.0...v1.3.0
+[1.2.0]: https://github.com/CultureHQ/client/compare/v1.1.0...v1.2.0
+[1.1.0]: https://github.com/CultureHQ/client/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/CultureHQ/client/compare/v0.0.102...v1.0.0
+[0.0.102]: https://github.com/CultureHQ/client/compare/v0.0.101...v0.0.102
+[0.0.101]: https://github.com/CultureHQ/client/compare/v0.0.100...v0.0.101
+[0.0.100]: https://github.com/CultureHQ/client/compare/v0.0.99...v0.0.100
+[0.0.99]: https://github.com/CultureHQ/client/compare/v0.0.98...v0.0.99
+[0.0.98]: https://github.com/CultureHQ/client/compare/v0.0.97...v0.0.98
+[0.0.97]: https://github.com/CultureHQ/client/compare/v0.0.96...v0.0.97
+[0.0.96]: https://github.com/CultureHQ/client/compare/v0.0.95...v0.0.96
+[0.0.95]: https://github.com/CultureHQ/client/compare/v0.0.94...v0.0.95
+[0.0.94]: https://github.com/CultureHQ/client/compare/v0.0.93...v0.0.94
+[0.0.93]: https://github.com/CultureHQ/client/compare/v0.0.92...v0.0.93
+[0.0.92]: https://github.com/CultureHQ/client/compare/v0.0.91...v0.0.92
+[0.0.91]: https://github.com/CultureHQ/client/compare/v0.0.90...v0.0.91
+[0.0.90]: https://github.com/CultureHQ/client/compare/v0.0.89...v0.0.90
+[0.0.89]: https://github.com/CultureHQ/client/compare/v0.0.88...v0.0.89
+[0.0.88]: https://github.com/CultureHQ/client/compare/v0.0.87...v0.0.88
+[0.0.87]: https://github.com/CultureHQ/client/compare/v0.0.86...v0.0.87
+[0.0.86]: https://github.com/CultureHQ/client/compare/v0.0.85...v0.0.86
+[0.0.85]: https://github.com/CultureHQ/client/compare/v0.0.84...v0.0.85
+[0.0.84]: https://github.com/CultureHQ/client/compare/v0.0.83...v0.0.84
+[0.0.83]: https://github.com/CultureHQ/client/compare/v0.0.82...v0.0.83
+[0.0.82]: https://github.com/CultureHQ/client/compare/v0.0.81...v0.0.82
 [0.0.81]: https://github.com/CultureHQ/client/compare/v0.0.80...v0.0.81
 [0.0.80]: https://github.com/CultureHQ/client/compare/v0.0.79...v0.0.80
 [0.0.79]: https://github.com/CultureHQ/client/compare/v0.0.78...v0.0.79
