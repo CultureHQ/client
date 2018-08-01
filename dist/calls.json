@@ -295,6 +295,7 @@
   "getInterest": ["GET", "/interests/:interestId"],
   "getInvite": ["GET", "/invites/:token"],
   "getLocation": ["GET", "/locations/:locationId"],
+  "getMicrosoftIntegration": ["GET", "/microsoft/integration"],
   "getOrganization": ["GET", "/admin/organizations/:organizationId"],
   "getOrganizationValue": ["GET", "/organization_values/:organizationValueId"],
   "getOrganizationValueLeaderboard": [
