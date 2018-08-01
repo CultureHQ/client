@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [3.0.1] - 2018-07-31
+### Changed
+- Don't include `NODE_ENV` in the inlined environment variables.
+
 ## [3.0.0] - 2018-07-31
 ### Changed
 - The name of the package has been changed to `@culturehq/client`.

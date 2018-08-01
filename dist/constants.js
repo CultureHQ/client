@@ -24,7 +24,7 @@ var CONSTANTS = {
   }
 };
 
-var _CONSTANTS = CONSTANTS[undefined || "development"],
+var _CONSTANTS = CONSTANTS[process.env.NODE_ENV || "development"],
     API_HOST = _CONSTANTS.API_HOST,
     AWS_ACCESS_KEY_ID = _CONSTANTS.AWS_ACCESS_KEY_ID,
     SIGNER_URL = _CONSTANTS.SIGNER_URL,
