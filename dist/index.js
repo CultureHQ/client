@@ -4,8 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-require("url-polyfill");
-
 var _client = require("./client");
 
 var _client2 = _interopRequireDefault(_client);
