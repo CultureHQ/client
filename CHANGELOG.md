@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Changed
 - Moved the `url-polyfill` to dev dependencies. It's now the consumer's responsibility to load it.
 - Removed the `store` dependency, just using `localStorage` directly.
+- Removed the unnecessary `index.js` file, instead just using `client.js` as the main export.
 
 ## [3.1.0] - 2018-08-01
 ### Added
