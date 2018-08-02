@@ -3,44 +3,37 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _store = require("store/dist/store.modern");
-
-var _store2 = _interopRequireDefault(_store);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var tokenKey = "token";
-var simulationKey = "simulation";
+var TOKEN_KEY = "token";
+var SIMULATION_KEY = "simulation";
 
 var state = {
   endSimulation: function endSimulation() {
-    state.signIn(_store2.default.get(simulationKey));
-    _store2.default.remove(simulationKey);
+    state.signIn(localStorage.getItem(SIMULATION_KEY));
+    localStorage.removeItem(SIMULATION_KEY);
   },
 
   getSimulationToken: function getSimulationToken() {
-    return _store2.default.get(simulationKey);
+    return localStorage.getItem(SIMULATION_KEY);
   },
 
   getToken: function getToken() {
-    return _store2.default.get(tokenKey);
+    return localStorage.getItem(TOKEN_KEY);
   },
 
   isSignedIn: function isSignedIn() {
-    return state.getToken() !== undefined;
+    return state.getToken() !== null;
   },
 
   isSimulating: function isSimulating() {
-    return _store2.default.get(simulationKey) !== undefined;
+    return localStorage.getItem(SIMULATION_KEY) !== null;
   },
 
   signIn: function signIn(token) {
-    return _store2.default.set(tokenKey, token);
+    return localStorage.setItem(TOKEN_KEY, token);
   },
 
   signOut: function signOut() {
-    return _store2.default.clearAll();
+    return localStorage.clear();
   },
 
   startSimulation: function startSimulation(token) {
@@ -48,7 +41,7 @@ var state = {
       throw new Error("Cannot simulate unless you're already logged in.");
     }
 
-    _store2.default.set(simulationKey, state.getToken());
+    localStorage.setItem(SIMULATION_KEY, state.getToken());
     state.signIn(token);
   }
 };
