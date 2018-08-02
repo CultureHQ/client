@@ -1,32 +1,30 @@
-import store from "store/dist/store.modern";
-
-const tokenKey = "token";
-const simulationKey = "simulation";
+const TOKEN_KEY = "token";
+const SIMULATION_KEY = "simulation";
 
 const state = {
   endSimulation: () => {
-    state.signIn(store.get(simulationKey));
-    store.remove(simulationKey);
+    state.signIn(localStorage.getItem(SIMULATION_KEY));
+    localStorage.removeItem(SIMULATION_KEY);
   },
 
-  getSimulationToken: () => store.get(simulationKey),
+  getSimulationToken: () => localStorage.getItem(SIMULATION_KEY),
 
-  getToken: () => store.get(tokenKey),
+  getToken: () => localStorage.getItem(TOKEN_KEY),
 
-  isSignedIn: () => state.getToken() !== undefined,
+  isSignedIn: () => state.getToken() !== null,
 
-  isSimulating: () => store.get(simulationKey) !== undefined,
+  isSimulating: () => localStorage.getItem(SIMULATION_KEY) !== null,
 
-  signIn: token => store.set(tokenKey, token),
+  signIn: token => localStorage.setItem(TOKEN_KEY, token),
 
-  signOut: () => store.clearAll(),
+  signOut: () => localStorage.clear(),
 
   startSimulation: token => {
     if (!state.isSignedIn()) {
       throw new Error("Cannot simulate unless you're already logged in.");
     }
 
-    store.set(simulationKey, state.getToken());
+    localStorage.setItem(SIMULATION_KEY, state.getToken());
     state.signIn(token);
   }
 };
