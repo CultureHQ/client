@@ -22,6 +22,6 @@ class LocalStorage {
   removeItem(key) {
     delete this.store[key];
   }
-};
+}
 
 global.localStorage = new LocalStorage();
