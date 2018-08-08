@@ -1,6 +1,6 @@
 {
   "name": "@culturehq/client",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "A JavaScript client that wraps the CultureHQ API",
   "main": "dist/client.js",
   "scripts": {
@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/CultureHQ/client#readme",
   "dependencies": {
-    "actioncable": "^5.2.0"
+    "actioncable": "^5.2.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

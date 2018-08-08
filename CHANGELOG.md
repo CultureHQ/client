@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [4.0.1] - 2018-08-08
+### Changed
+- Bump `actioncable` dependency.
+
 ## [4.0.0] - 2018-08-02
 ### Changed
 - Moved the `url-polyfill` to dev dependencies. It's now the consumer's responsibility to load it.
