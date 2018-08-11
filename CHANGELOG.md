@@ -6,9 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 ### Changed
-- Internal change to move the WebSocket handling into `cable.js`.
 - Build an iframe and change the domain in order to avoid preflight checks.
-- (Breaking) Moved the WebSocket exports into their own named exports and out of the main client.
+- Moved the WebSocket exports into their own named exports and out of the main client.
 
 ## [4.1.0] - 2018-08-11
 ### Added
