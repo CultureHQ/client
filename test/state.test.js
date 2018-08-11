@@ -1,16 +1,16 @@
 import state from "../src/state";
 
 test("isSimulating returns true when simulation is occurring", () => {
-  state.signIn("foo");
+  state.setToken("foo");
   expect(state.isSimulating()).toBe(false);
 
-  state.startSimulation("bar");
+  state.setSimulationToken("bar");
   expect(state.isSimulating()).toBe(true);
 
-  state.endSimulation();
+  state.clearSimulationToken();
   expect(state.isSimulating()).toBe(false);
 
-  state.signOut();
+  state.clear();
 });
 
 test("startSimulation throws an error when you're not logged in", () => {
