@@ -6,17 +6,17 @@ import { camelize } from "./string-case";
 
 let consumer = null;
 
+const getEndpoint = () => {
+  const [protocol, host] = API_HOST.split("://");
+  const wsProtocol = protocol === "https" ? "wss" : "ws";
+  return `${wsProtocol}://${host}/cable/${state.getToken()}`;
+};
+
 const getConsumer = () => {
   if (!consumer) {
     consumer = ActionCable.createConsumer(getEndpoint());
   }
   return consumer;
-};
-
-const getEndpoint = () => {
-  const [protocol, host] = API_HOST.split("://");
-  const wsProtocol = protocol === "https" ? "wss" : "ws";
-  return `${wsProtocol}://${host}/cable/${state.getToken()}`;
 };
 
 export const disconnect = () => {
