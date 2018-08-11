@@ -1,6 +1,7 @@
-import { snakerize } from "./string-case";
+import fetcher from "./fetcher";
 import formData from "./form-data";
 import processResponse from "./response";
+import { snakerize } from "./string-case";
 
 const buildHeaders = ({ multipart, token, simulation }) => {
   const headers = { "X-Client-Version": process.env.npm_package_version };
@@ -51,7 +52,7 @@ const buildRequest = (method, url, options) => {
 
 const performRequest = (method, url, options) => {
   const request = buildRequest(method, url, options);
-  return fetch(request.url, request.options).then(processResponse);
+  return fetcher.fetch(request.url, request.options).then(processResponse);
 };
 
 export default performRequest;
