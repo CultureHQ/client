@@ -2,7 +2,6 @@ import apiCalls from "./api-calls";
 import { disconnect, subscribe } from "./cable";
 import state from "./state";
 
-const { clear, clearSimulationToken, isSignedIn, isSimulating, setSimulationToken, setToken } = state;
 const { createApiKey, createSimulation, deleteSession } = apiCalls;
 
 /**
@@ -44,15 +43,15 @@ export default apiCalls;
  * This is especially useful if the token is fixed in some context (as in most
  * integrations).
  */
-export { isSignedIn, setToken };
+export { isSignedIn: state.isSignedIn, setToken: state.setToken };
 
 export const signIn = params => createApiKey(params).then(response => {
-  setToken(response.apiKey.token);
+  state.setToken(response.apiKey.token);
   return response;
 });
 
 export const signOut = () => deleteSession().then(response => {
-  clear();
+  state.clear();
   disconnect();
   return response;
 });
@@ -85,16 +84,16 @@ export { default as signUpload } from "./sign-upload";
  * The corresponding end call is `endUserSimulation`, along with the check for
  * the current state which is `isSimulating`.
  */
-export { isSimulating };
+export { isSimulating: state.isSimulating };
 
 export const endUserSimulation = () => {
-  clearSimulationToken();
+  state.clearSimulationToken();
   disconnect();
 };
 
 export const startUserSimulation = params => (
   createSimulation(params).then(response => {
-    setSimulationToken(response.apiKey.token);
+    state.setSimulationToken(response.apiKey.token);
     disconnect();
     return response;
   })
