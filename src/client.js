@@ -32,28 +32,8 @@ import signUpload from "./sign-upload";
  *         console.error(error);
  *       }
  *     };
- *
- * == Pagination ==
- *
- * Almost every one of the `list*` events is paginated, and will return
- * pagination metadata along with the actual data of the call. The `pagination`
- * object will look like:
- *
- *     { currentPage, totalPages, totalCount }
- *
- * You can handle this pagination manually, e.g., links on the bottom of the
- * page. Alternatively, you can use the client's built-in automatic pagination
- * capabilities. You prefix your API call with a call to `autoPaginate`, as in
- * the following example:
- *
- *     const { events } = await client.autoPaginate("events").listEvents();
- *
- * This will return the pagination information as normal, but the events will
- * be concatenated together.
  */
 const client = {
-  autoPaginate: dataType => new AutoPaginator(dataType),
-
   endUserSimulation: () => {
     state.endSimulation();
     disconnect();
@@ -88,6 +68,28 @@ const client = {
 };
 
 export default client;
+
+/**
+ * == Pagination ==
+ *
+ * Almost every one of the `list*` events is paginated, and will return
+ * pagination metadata along with the actual data of the call. The `pagination`
+ * object will look like:
+ *
+ *     { currentPage, totalPages, totalCount }
+ *
+ * You can handle this pagination manually, e.g., links on the bottom of the
+ * page. You can also use the client's built-in automatic pagination
+ * capabilities by using the `autoPaginate` named export, as in the following
+ * example:
+ *
+ *     import { autoPaginate } from "@culturehq/client";
+ *     const { events } = await autoPaginate("events").listEvents();
+ *
+ * This will return the pagination information as normal, but the events will
+ * be concatenated together.
+ */
+export const autoPaginate = dataType => new AutoPaginator(dataType),
 
 /**
  * == WebSocket connection semantics ==
