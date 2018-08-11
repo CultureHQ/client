@@ -1,6 +1,6 @@
 import API_CALLS from "./api-calls";
 import AutoPaginator from "./auto-paginator";
-import Cable from "./cable";
+import { disconnect, subscribe } from "./cable";
 import state from "./state";
 import signUpload from "./sign-upload";
 
@@ -50,7 +50,46 @@ import signUpload from "./sign-upload";
  *
  * This will return the pagination information as normal, but the events will
  * be concatenated together.
- *
+ */
+const client = {
+  autoPaginate: dataType => new AutoPaginator(dataType),
+
+  endUserSimulation: () => {
+    state.endSimulation();
+    disconnect();
+  },
+
+  isSignedIn: state.isSignedIn,
+
+  isSimulating: state.isSimulating,
+
+  setToken: token => state.signIn(token),
+
+  signIn: params => client.createApiKey(params).then(response => {
+    state.signIn(response.apiKey.token);
+    return response;
+  }),
+
+  signOut: () => client.deleteSession().then(response => {
+    state.signOut();
+    disconnect();
+    return response;
+  }),
+
+  signUpload,
+
+  startUserSimulation: params => client.createSimulation(params).then(response => {
+    state.startSimulation(response.apiKey.token);
+    disconnect();
+    return response;
+  }),
+
+  ...API_CALLS
+};
+
+export default client;
+
+/**
  * == WebSocket connection semantics ==
  *
  * There are a few functions on the client that will establish a WebSocket
@@ -60,11 +99,13 @@ import signUpload from "./sign-upload";
  * containing it is unmounted) that you call `unsubscribe` on the subscription
  * object. An example with React of using these functions is below:
  *
+ *     import { onNotificationReceived } from "@culturehq/client";
+ *
  *     class MyComponent {
  *       state = { lastNotification: null };
  *
  *       componentDidMount() {
- *         this.subscription = client.onNotificationReceived(notification => {
+ *         this.subscription = onNotificationReceived(notification => {
  *           this.setState({ lastNotification: notification });
  *         });
  *       }
@@ -82,60 +123,12 @@ import signUpload from "./sign-upload";
  *       }
  *     }
  */
-const client = {
-  autoPaginate: dataType => new AutoPaginator(dataType),
+export const onEventStarting = subscribe("EventStartingChannel");
 
-  endUserSimulation: () => {
-    state.endSimulation();
-    Cable.disconnectConsumer();
-  },
+export const onLeaderboardUpdated = subscribe("LeaderboardChannel");
 
-  isSignedIn: () => state.isSignedIn(),
+export const onNotificationReceived = subscribe("NotificationChannel");
 
-  isSimulating: () => state.isSimulating(),
+export const onRecognitionCreated = subscribe("RecognitionChannel");
 
-  onEventStarting: callback => (
-    client.subscribeToChannel("EventStartingChannel", callback)
-  ),
-
-  onLeaderboardUpdated: callback => (
-    Cable.subscribeToChannel("LeaderboardChannel", callback)
-  ),
-
-  onNotificationReceived: callback => (
-    Cable.subscribeToChannel("NotificationChannel", callback)
-  ),
-
-  onRecognitionCreated: callback => (
-    Cable.subscribeToChannel("RecognitionChannel", callback)
-  ),
-
-  onUserActivityCreated: callback => (
-    Cable.subscribeToChannel("UserActivityChannel", callback)
-  ),
-
-  setToken: token => state.signIn(token),
-
-  signIn: params => client.createApiKey(params).then(response => {
-    state.signIn(response.apiKey.token);
-    return response;
-  }),
-
-  signOut: () => client.deleteSession().then(response => {
-    state.signOut();
-    Cable.disconnectConsumer();
-    return response;
-  }),
-
-  signUpload,
-
-  startUserSimulation: params => client.createSimulation(params).then(response => {
-    state.startSimulation(response.apiKey.token);
-    Cable.disconnectConsumer();
-    return response;
-  }),
-
-  ...API_CALLS
-};
-
-export default client;
+export const onUserActivityCreated = subscribe("UserActivityChannel");
