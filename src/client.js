@@ -1,14 +1,13 @@
-import API_CALLS from "./api-calls";
+import apiCalls from "./api-calls";
 import AutoPaginator from "./auto-paginator";
 import { disconnect, subscribe } from "./cable";
 import state from "./state";
 import signUpload from "./sign-upload";
 
+const { clear, clearSimulationToken, isSignedIn, isSimulating, setSimulationToken, setToken } = state;
+const { createApiKey, createSimulation, deleteSession } = apiCalls;
+
 /**
- * An object for handling the connection to and querying of the CultureHQ API.
- * Mostly everything is represented in the `calls.json` file, as every call
- * listed in that file represents a member function on this class.
- *
  * == API call semantics ==
  *
  * Every API call function returns a `Promise` object. You can call them with
@@ -33,41 +32,75 @@ import signUpload from "./sign-upload";
  *       }
  *     };
  */
-const client = {
-  endUserSimulation: () => {
-    state.endSimulation();
-    disconnect();
-  },
+export default apiCalls;
 
-  isSignedIn: state.isSignedIn,
+/**
+ * == State ==
+ *
+ * Signed in state is handled through the client using the `signIn` and
+ * `signOut` functions. These effectively act as normal API calls but with the
+ * additional functionality of setting or clearing `localStorage` with the
+ * returned API token.
+ *
+ * You can also manually set the API token by using the `setToken` named export.
+ * This is especially useful if the token is fixed in some context (as in most
+ * integrations).
+ */
+export { isSignedIn, setToken };
 
-  isSimulating: state.isSimulating,
+export const signIn = params => createApiKey(params).then(response => {
+  setToken(response.apiKey.token);
+  return response;
+});
 
-  setToken: state.setToken,
+export const signOut = () => deleteSession().then(response => {
+  clear();
+  disconnect();
+  return response;
+});
 
-  signIn: params => client.createApiKey(params).then(response => {
-    state.setToken(response.apiKey.token);
-    return response;
-  }),
+/**
+ * == Upload signing ==
+ *
+ * To support faster uploading, we allow images to be uploaded directly to S3,
+ * and then just send along the signed URL to the API for fetching. This allows
+ * API servers to continue processing requests instead of waiting for the upload
+ * to complete.
+ *
+ * To use this mechanism, call this function with a file object and it will
+ * return a Promise that resolves to the URL of the file that was uploaded, as
+ * in the following example:
+ *
+ *     import { signUpload } from "@culturehq/client";
+ *
+ *     signUpload(document.querySelector("#file").files[0]).then(url => {
+ *       console.log(url);
+ *     });
+ */
+export { signUpload };
 
-  signOut: () => client.deleteSession().then(response => {
-    state.clear();
-    disconnect();
-    return response;
-  }),
+/**
+ * == Simulation ==
+ *
+ * If you're listed as a CultureHQ admin, you can simulate users for debugging
+ * with read-only capabilities by using the `startUserSimulation` named export.
+ * The corresponding end call is `endUserSimulation`, along with the check for
+ * the current state which is `isSimulating`.
+ */
+export { isSimulating };
 
-  signUpload,
-
-  startUserSimulation: params => client.createSimulation(params).then(response => {
-    state.setSimulationToken(response.apiKey.token);
-    disconnect();
-    return response;
-  }),
-
-  ...API_CALLS
+export const endUserSimulation = () => {
+  clearSimulationToken();
+  disconnect();
 };
 
-export default client;
+export const startUserSimulation = params => (
+  createSimulation(params).then(response => {
+    setSimulationToken(response.apiKey.token);
+    disconnect();
+    return response;
+  })
+);
 
 /**
  * == Pagination ==
@@ -89,7 +122,7 @@ export default client;
  * This will return the pagination information as normal, but the events will
  * be concatenated together.
  */
-export const autoPaginate = dataType => new AutoPaginator(dataType),
+export const autoPaginate = dataType => new AutoPaginator(dataType);
 
 /**
  * == WebSocket connection semantics ==

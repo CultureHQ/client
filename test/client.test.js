@@ -1,11 +1,11 @@
 import createServer from "./create-server";
-import client from "../src/client";
+import client, { isSignedIn, signIn } from "../src/client";
 import state from "../src/state";
 
-afterEach(() => state.signOut());
+afterEach(() => state.clear());
 
 test("starts signed out", () => {
-  expect(client.isSignedIn()).toBe(false);
+  expect(isSignedIn()).toBe(false);
 });
 
 test("signs in and reports signed in status correctly", async () => {
@@ -16,9 +16,9 @@ test("signs in and reports signed in status correctly", async () => {
   server.listen(8080);
 
   try {
-    const response = await client.signIn({ email: "foo", password: "bar" });
+    const response = await signIn({ email: "foo", password: "bar" });
     expect(response.apiKey.token).toEqual("baz");
-    expect(client.isSignedIn()).toBe(true);
+    expect(isSignedIn()).toBe(true);
   } finally {
     server.close();
   }
@@ -34,7 +34,7 @@ test("can call getProfile after logged in", async () => {
   server.listen(8080);
 
   try {
-    await client.signIn({ email: "foo", password: "bar" });
+    await signIn({ email: "foo", password: "bar" });
     const response = await client.getProfile();
     expect(response.number).toEqual(number);
   } finally {

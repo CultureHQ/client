@@ -4,8 +4,8 @@ const SIMULATION_KEY = "simulation";
 const state = {
   clear: () => localStorage.clear(),
 
-  endSimulation: () => {
-    state.signIn(localStorage.getItem(SIMULATION_KEY));
+  clearSimulationToken: () => {
+    state.setToken(localStorage.getItem(SIMULATION_KEY));
     localStorage.removeItem(SIMULATION_KEY);
   },
 
@@ -24,7 +24,7 @@ const state = {
 
     localStorage.setItem(SIMULATION_KEY, state.getToken());
     state.setToken(token);
-  }
+  },
 
   setToken: token => localStorage.setItem(TOKEN_KEY, token),
 };
