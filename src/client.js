@@ -43,9 +43,7 @@ export default apiCalls;
  * This is especially useful if the token is fixed in some context (as in most
  * integrations).
  */
-export const isSignedIn = state.isSignedIn;
-
-export const setToken = state.setToken;
+export const { isSignedIn, setToken } = state;
 
 export const signIn = params => createApiKey(params).then(response => {
   state.setToken(response.apiKey.token);
@@ -86,7 +84,7 @@ export { default as signUpload } from "./sign-upload";
  * The corresponding end call is `endUserSimulation`, along with the check for
  * the current state which is `isSimulating`.
  */
-export const isSimulating = state.isSimulating;
+export const { isSimulating } = state;
 
 export const endUserSimulation = () => {
   state.clearSimulationToken();
