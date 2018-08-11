@@ -1,4 +1,4 @@
-import API_CALLS from "./api-calls";
+import apiCalls from "./api-calls";
 import calls from "./calls";
 
 /**
@@ -49,8 +49,8 @@ class AutoPaginator {
 Object.keys(calls).forEach(callName => {
   /* eslint-disable-next-line func-names */
   AutoPaginator.prototype[callName] = function (options) {
-    return this.aggregate(API_CALLS[callName], options);
+    return this.aggregate(apiCalls[callName], options);
   };
 });
 
-export default AutoPaginator;
+export default dataType => new AutoPaginator(dataType);

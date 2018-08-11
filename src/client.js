@@ -1,5 +1,5 @@
 import apiCalls from "./api-calls";
-import AutoPaginator from "./auto-paginator";
+import autoPaginate from "./auto-paginate";
 import { disconnect, subscribe } from "./cable";
 import state from "./state";
 import signUpload from "./sign-upload";
@@ -122,7 +122,7 @@ export const startUserSimulation = params => (
  * This will return the pagination information as normal, but the events will
  * be concatenated together.
  */
-export const autoPaginate = dataType => new AutoPaginator(dataType);
+export { autoPaginate };
 
 /**
  * == WebSocket connection semantics ==
