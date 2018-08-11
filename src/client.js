@@ -63,15 +63,15 @@ const client = {
 
   isSimulating: state.isSimulating,
 
-  setToken: token => state.signIn(token),
+  setToken: state.setToken,
 
   signIn: params => client.createApiKey(params).then(response => {
-    state.signIn(response.apiKey.token);
+    state.setToken(response.apiKey.token);
     return response;
   }),
 
   signOut: () => client.deleteSession().then(response => {
-    state.signOut();
+    state.clear();
     disconnect();
     return response;
   }),
@@ -79,7 +79,7 @@ const client = {
   signUpload,
 
   startUserSimulation: params => client.createSimulation(params).then(response => {
-    state.startSimulation(response.apiKey.token);
+    state.setSimulationToken(response.apiKey.token);
     disconnect();
     return response;
   }),

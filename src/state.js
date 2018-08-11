@@ -2,6 +2,8 @@ const TOKEN_KEY = "token";
 const SIMULATION_KEY = "simulation";
 
 const state = {
+  clear: () => localStorage.clear(),
+
   endSimulation: () => {
     state.signIn(localStorage.getItem(SIMULATION_KEY));
     localStorage.removeItem(SIMULATION_KEY);
@@ -15,18 +17,16 @@ const state = {
 
   isSimulating: () => localStorage.getItem(SIMULATION_KEY) !== null,
 
-  signIn: token => localStorage.setItem(TOKEN_KEY, token),
-
-  signOut: () => localStorage.clear(),
-
-  startSimulation: token => {
+  setSimulationToken: token => {
     if (!state.isSignedIn()) {
       throw new Error("Cannot simulate unless you're already logged in.");
     }
 
     localStorage.setItem(SIMULATION_KEY, state.getToken());
-    state.signIn(token);
+    state.setToken(token);
   }
+
+  setToken: token => localStorage.setItem(TOKEN_KEY, token),
 };
 
 export default state;
