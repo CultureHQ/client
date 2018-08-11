@@ -1,11 +1,8 @@
-import ActionCable from "actioncable";
-
 import API_CALLS from "./api-calls";
 import AutoPaginator from "./auto-paginator";
-import { API_HOST } from "./constants";
+import Cable from "./cable";
 import state from "./state";
 import signUpload from "./sign-upload";
-import { camelize } from "./string-case";
 
 /**
  * An object for handling the connection to and querying of the CultureHQ API.
@@ -86,11 +83,11 @@ import { camelize } from "./string-case";
  *     }
  */
 const client = {
-  consumer: null,
+  autoPaginate: dataType => new AutoPaginator(dataType),
 
   endUserSimulation: () => {
     state.endSimulation();
-    client.disconnectConsumer();
+    Cable.disconnectConsumer();
   },
 
   isSignedIn: () => state.isSignedIn(),
@@ -102,19 +99,19 @@ const client = {
   ),
 
   onLeaderboardUpdated: callback => (
-    client.subscribeToChannel("LeaderboardChannel", callback)
+    Cable.subscribeToChannel("LeaderboardChannel", callback)
   ),
 
   onNotificationReceived: callback => (
-    client.subscribeToChannel("NotificationChannel", callback)
+    Cable.subscribeToChannel("NotificationChannel", callback)
   ),
 
   onRecognitionCreated: callback => (
-    client.subscribeToChannel("RecognitionChannel", callback)
+    Cable.subscribeToChannel("RecognitionChannel", callback)
   ),
 
   onUserActivityCreated: callback => (
-    client.subscribeToChannel("UserActivityChannel", callback)
+    Cable.subscribeToChannel("UserActivityChannel", callback)
   ),
 
   setToken: token => state.signIn(token),
@@ -126,7 +123,7 @@ const client = {
 
   signOut: () => client.deleteSession().then(response => {
     state.signOut();
-    client.disconnectConsumer();
+    Cable.disconnectConsumer();
     return response;
   }),
 
@@ -134,34 +131,8 @@ const client = {
 
   startUserSimulation: params => client.createSimulation(params).then(response => {
     state.startSimulation(response.apiKey.token);
-    client.disconnectConsumer();
+    Cable.disconnectConsumer();
     return response;
-  }),
-
-  autoPaginate: dataType => new AutoPaginator(dataType),
-
-  disconnectConsumer: () => {
-    if (client.consumer) {
-      client.consumer.disconnect();
-      client.consumer = null;
-    }
-  },
-
-  ensureConsumer: () => {
-    if (client.consumer) {
-      return client.consumer;
-    }
-
-    const [protocol, host] = API_HOST.split("://");
-    const wsProtocol = protocol === "https" ? "wss" : "ws";
-    const endpoint = `${wsProtocol}://${host}/cable/${state.getToken()}`;
-
-    client.consumer = ActionCable.createConsumer(endpoint);
-    return client.consumer;
-  },
-
-  subscribeToChannel: (channel, callback) => client.ensureConsumer().subscriptions.create(channel, {
-    received: data => callback(camelize(data))
   }),
 
   ...API_CALLS
