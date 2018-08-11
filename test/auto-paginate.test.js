@@ -1,5 +1,5 @@
 import apiCalls from "../src/api-calls";
-import autoPaginate from "../src/auto-paginate";
+import { autoPaginate } from "../src/client";
 
 jest.mock("../src/api-calls", () => ({ listEvents: jest.fn() }));
 

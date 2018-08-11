@@ -1,7 +1,7 @@
 import fs from "fs";
 import http from "http";
 
-import signUpload from "../src/sign-upload";
+import { signUpload } from "../src/client";
 
 test("signs and uploads files to S3", async () => {
   const signerServer = http.createServer();
