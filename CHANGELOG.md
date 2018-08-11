@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Changed
 - Build an iframe and change the domain in order to avoid preflight checks.
 - Moved the WebSocket exports into their own named exports and out of the main client.
+- Moved the `autoPaginate` function into its own named export.
 
 ## [4.1.0] - 2018-08-11
 ### Added
