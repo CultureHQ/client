@@ -97,6 +97,10 @@ const client = {
 
   isSimulating: () => state.isSimulating(),
 
+  onEventStarting: callback => (
+    client.subscribeToChannel("EventStartingChannel", callback)
+  ),
+
   onLeaderboardUpdated: callback => (
     client.subscribeToChannel("LeaderboardChannel", callback)
   ),

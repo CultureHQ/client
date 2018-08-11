@@ -128,6 +128,10 @@ var client = _extends({
     return _state2.default.isSimulating();
   },
 
+  onEventStarting: function onEventStarting(callback) {
+    return client.subscribeToChannel("EventStartingChannel", callback);
+  },
+
   onLeaderboardUpdated: function onLeaderboardUpdated(callback) {
     return client.subscribeToChannel("LeaderboardChannel", callback);
   },
