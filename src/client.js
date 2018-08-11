@@ -1,8 +1,6 @@
 import apiCalls from "./api-calls";
-import autoPaginate from "./auto-paginate";
 import { disconnect, subscribe } from "./cable";
 import state from "./state";
-import signUpload from "./sign-upload";
 
 const { clear, clearSimulationToken, isSignedIn, isSimulating, setSimulationToken, setToken } = state;
 const { createApiKey, createSimulation, deleteSession } = apiCalls;
@@ -77,7 +75,7 @@ export const signOut = () => deleteSession().then(response => {
  *       console.log(url);
  *     });
  */
-export { signUpload };
+export { default as signUpload } from "./sign-upload";
 
 /**
  * == Simulation ==
@@ -122,7 +120,7 @@ export const startUserSimulation = params => (
  * This will return the pagination information as normal, but the events will
  * be concatenated together.
  */
-export { autoPaginate };
+export { default as autoPaginate } from "./auto-paginate";
 
 /**
  * == WebSocket connection semantics ==
