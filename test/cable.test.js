@@ -1,4 +1,4 @@
-import { createConsumer, consumer } from "actioncable";
+import { consumer } from "actioncable";
 
 import {
   onEventStarting,
@@ -40,10 +40,10 @@ const buildTest = (onSubscribe, channel) => () => {
   const updates = [];
   onSubscribe(update => updates.push(update));
 
-  consumer.broadcast(channel, { "foo_bar": 1 });
-  consumer.broadcast(channel, { "bar_baz": 2 });
+  consumer.broadcast(channel, { foo_bar: 1 });
+  consumer.broadcast(channel, { bar_baz: 2 });
 
-  expect(updates).toEqual([{ "fooBar": 1 }, { "barBaz": 2 }]);
+  expect(updates).toEqual([{ fooBar: 1 }, { barBaz: 2 }]);
 };
 
 test("event starting", buildTest(onEventStarting, "EventStartingChannel"));
