@@ -100,7 +100,7 @@ export const startUserSimulation = params => {
     state.setSimulationToken(response.apiKey.token);
     disconnect();
     return response;
-  })
+  });
 };
 
 /**
@@ -166,3 +166,32 @@ export {
   onRecognitionCreated,
   onUserActivityCreated
 } from "./cable";
+
+/**
+ * == Skipping preflight checks ==
+ *
+ * You can avoid all of the CORS preflight checks if the domains of both the
+ * request and response match. You can accomplish this only if you're on a
+ * subdomain and the server that you're trying to hit is on another subdomain of
+ * the same parent domain.
+ *
+ * The way it works is by changing the `document.domain` value to be the common
+ * parent domain of both the request and the response. The request can just be
+ * changed by setting `document.domain` in the main window (this is allowed by
+ * browsers because you're always allowed to set it to a suffix of the current
+ * domain).
+ *
+ * The response domain can be changed by embedding an `iframe` into the page
+ * that contains a specially crafted page from the response server. The `iframe`
+ * contains a small HTML page with a script tag that changes the
+ * `document.domain` value to match the requesting server. You can then pull the
+ * `fetch` function from the child window into the parent and use that to hit
+ * the server.
+ *
+ * So in this instance, since we're requesting things from `api.culturehq.com`
+ * using `fetch` from `platform.culturehq.com`, we can embed an `iframe` using
+ * the API's /proxy` endpoint which contains the code to change the
+ * `document.domain` value to `culturehq.com`. We can then do the same in this
+ * window and pull the `fetch` function from the child window.
+ */
+export { skipPreflightChecks } from "./fetcher";
