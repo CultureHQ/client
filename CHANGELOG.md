@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [5.0.3] - 2018-08-13
+### Changed
+- Bind the new `fetch` property to the child `window` when running `skipPreflightChecks` because otherwise it won't pick up the new domain.
+
 ## [5.0.2] - 2018-08-13
 ### Changed
 - Bind the new `fetch` property to the parent `window` when running `skipPreflightChecks`.

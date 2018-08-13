@@ -25,7 +25,7 @@ var buildHeaders = function buildHeaders(_ref) {
       token = _ref.token,
       simulation = _ref.simulation;
 
-  var headers = { "X-Client-Version": "5.0.2" };
+  var headers = { "X-Client-Version": "5.0.3" };
 
   if (!multipart) {
     headers["Content-Type"] = "application/json";

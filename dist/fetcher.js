@@ -30,7 +30,7 @@ var skipPreflightChecks = exports.skipPreflightChecks = function skipPreflightCh
   var iframe = document.createElement("iframe");
   iframe.onload = function () {
     /* eslint func-names: off */
-    fetcher.fetch = this.contentWindow.fetch.bind(window);
+    fetcher.fetch = this.contentWindow.fetch.bind(this.contentWindow);
   };
 
   iframe.setAttribute("src", API_HOST + "/proxy");
