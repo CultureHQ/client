@@ -1,4 +1,4 @@
-import ActionCable from "actioncable";
+import { createConsumer } from "actioncable";
 
 import { API_HOST } from "./constants";
 import state from "./state";
@@ -14,10 +14,16 @@ const getEndpoint = () => {
 
 const getConsumer = () => {
   if (!consumer) {
-    consumer = ActionCable.createConsumer(getEndpoint());
+    consumer = createConsumer(getEndpoint());
   }
   return consumer;
 };
+
+const subscribe = channel => callback => (
+  getConsumer().subscriptions.create(channel, {
+    received: data => callback(camelize(data))
+  })
+);
 
 export const disconnect = () => {
   if (consumer) {
@@ -26,8 +32,12 @@ export const disconnect = () => {
   }
 };
 
-export const subscribe = channel => callback => (
-  getConsumer().subscriptions.create(channel, {
-    received: data => callback(camelize(data))
-  })
-);
+export const onEventStarting = subscribe("EventStartingChannel");
+
+export const onLeaderboardUpdated = subscribe("LeaderboardChannel");
+
+export const onNotificationReceived = subscribe("NotificationChannel");
+
+export const onRecognitionCreated = subscribe("RecognitionChannel");
+
+export const onUserActivityCreated = subscribe("UserActivityChannel");
