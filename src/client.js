@@ -1,5 +1,5 @@
 import apiCalls from "./api-calls";
-import { disconnect, subscribe } from "./cable";
+import { disconnect } from "./cable";
 import state from "./state";
 
 const { createApiKey, createSimulation, deleteSession } = apiCalls;
@@ -155,12 +155,10 @@ export { default as autoPaginate } from "./auto-paginate";
  *       }
  *     }
  */
-export const onEventStarting = subscribe("EventStartingChannel");
-
-export const onLeaderboardUpdated = subscribe("LeaderboardChannel");
-
-export const onNotificationReceived = subscribe("NotificationChannel");
-
-export const onRecognitionCreated = subscribe("RecognitionChannel");
-
-export const onUserActivityCreated = subscribe("UserActivityChannel");
+export {
+  onEventStarting,
+  onLeaderboardUpdated,
+  onNotificationReceived,
+  onRecognitionCreated,
+  onUserActivityCreated
+} from "./cable";

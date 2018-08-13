@@ -46,9 +46,9 @@ const buildCall = ([method, template, expected = [], optional = [], multipart = 
   });
 };
 
-const API_CALLS = Object.keys(calls).reduce((accum, callName) => ({
+const apiCalls = Object.keys(calls).reduce((accum, callName) => ({
   ...accum,
   [callName]: buildCall(calls[callName])
 }), {});
 
-export default API_CALLS;
+export default apiCalls;
