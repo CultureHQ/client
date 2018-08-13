@@ -7,8 +7,12 @@ var TOKEN_KEY = "token";
 var SIMULATION_KEY = "simulation";
 
 var state = {
-  endSimulation: function endSimulation() {
-    state.signIn(localStorage.getItem(SIMULATION_KEY));
+  clear: function clear() {
+    return localStorage.clear();
+  },
+
+  clearSimulationToken: function clearSimulationToken() {
+    state.setToken(localStorage.getItem(SIMULATION_KEY));
     localStorage.removeItem(SIMULATION_KEY);
   },
 
@@ -28,21 +32,13 @@ var state = {
     return localStorage.getItem(SIMULATION_KEY) !== null;
   },
 
-  signIn: function signIn(token) {
-    return localStorage.setItem(TOKEN_KEY, token);
-  },
-
-  signOut: function signOut() {
-    return localStorage.clear();
-  },
-
-  startSimulation: function startSimulation(token) {
-    if (!state.isSignedIn()) {
-      throw new Error("Cannot simulate unless you're already logged in.");
-    }
-
+  setSimulationToken: function setSimulationToken(token) {
     localStorage.setItem(SIMULATION_KEY, state.getToken());
-    state.signIn(token);
+    state.setToken(token);
+  },
+
+  setToken: function setToken(token) {
+    return localStorage.setItem(TOKEN_KEY, token);
   }
 };
 

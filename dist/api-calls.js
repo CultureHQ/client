@@ -83,8 +83,8 @@ var buildCall = function buildCall(_ref) {
   });
 };
 
-var API_CALLS = Object.keys(_calls2.default).reduce(function (accum, callName) {
+var apiCalls = Object.keys(_calls2.default).reduce(function (accum, callName) {
   return _extends({}, accum, _defineProperty({}, callName, buildCall(_calls2.default[callName])));
 }, {});
 
-exports.default = API_CALLS;
+exports.default = apiCalls;

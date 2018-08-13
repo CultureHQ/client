@@ -3,42 +3,83 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.skipPreflightChecks = exports.onUserActivityCreated = exports.onRecognitionCreated = exports.onNotificationReceived = exports.onLeaderboardUpdated = exports.onEventStarting = exports.autoPaginate = exports.startUserSimulation = exports.endUserSimulation = exports.isSimulating = exports.signUpload = exports.signOut = exports.signIn = exports.setToken = exports.isSignedIn = exports.getToken = undefined;
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+var _signUpload = require("./sign-upload");
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+Object.defineProperty(exports, "signUpload", {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_signUpload).default;
+  }
+});
 
-var _actioncable = require("actioncable");
+var _autoPaginate = require("./auto-paginate");
 
-var _actioncable2 = _interopRequireDefault(_actioncable);
+Object.defineProperty(exports, "autoPaginate", {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_autoPaginate).default;
+  }
+});
+
+var _cable = require("./cable");
+
+Object.defineProperty(exports, "onEventStarting", {
+  enumerable: true,
+  get: function get() {
+    return _cable.onEventStarting;
+  }
+});
+Object.defineProperty(exports, "onLeaderboardUpdated", {
+  enumerable: true,
+  get: function get() {
+    return _cable.onLeaderboardUpdated;
+  }
+});
+Object.defineProperty(exports, "onNotificationReceived", {
+  enumerable: true,
+  get: function get() {
+    return _cable.onNotificationReceived;
+  }
+});
+Object.defineProperty(exports, "onRecognitionCreated", {
+  enumerable: true,
+  get: function get() {
+    return _cable.onRecognitionCreated;
+  }
+});
+Object.defineProperty(exports, "onUserActivityCreated", {
+  enumerable: true,
+  get: function get() {
+    return _cable.onUserActivityCreated;
+  }
+});
+
+var _fetcher = require("./fetcher");
+
+Object.defineProperty(exports, "skipPreflightChecks", {
+  enumerable: true,
+  get: function get() {
+    return _fetcher.skipPreflightChecks;
+  }
+});
 
 var _apiCalls = require("./api-calls");
 
 var _apiCalls2 = _interopRequireDefault(_apiCalls);
 
-var _autoPaginator = require("./auto-paginator");
-
-var _autoPaginator2 = _interopRequireDefault(_autoPaginator);
-
-var _constants = require("./constants");
-
 var _state = require("./state");
 
 var _state2 = _interopRequireDefault(_state);
 
-var _signUpload = require("./sign-upload");
-
-var _signUpload2 = _interopRequireDefault(_signUpload);
-
-var _stringCase = require("./string-case");
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var createApiKey = _apiCalls2.default.createApiKey,
+    createSimulation = _apiCalls2.default.createSimulation,
+    deleteSession = _apiCalls2.default.deleteSession;
+
 /**
- * An object for handling the connection to and querying of the CultureHQ API.
- * Mostly everything is represented in the `calls.json` file, as every call
- * listed in that file represents a member function on this class.
- *
  * == API call semantics ==
  *
  * Every API call function returns a `Promise` object. You can call them with
@@ -62,7 +103,92 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *         console.error(error);
  *       }
  *     };
+ */
+
+exports.default = _apiCalls2.default;
+
+/**
+ * == State ==
  *
+ * Signed in state is handled through the client using the `signIn` and
+ * `signOut` functions. These effectively act as normal API calls but with the
+ * additional functionality of setting or clearing `localStorage` with the
+ * returned API token.
+ *
+ * You can also manually set the API token by using the `setToken` named export.
+ * This is especially useful if the token is fixed in some context (as in most
+ * integrations).
+ */
+
+var getToken = _state2.default.getToken,
+    isSignedIn = _state2.default.isSignedIn,
+    setToken = _state2.default.setToken;
+exports.getToken = getToken;
+exports.isSignedIn = isSignedIn;
+exports.setToken = setToken;
+var signIn = exports.signIn = function signIn(params) {
+  return createApiKey(params).then(function (response) {
+    _state2.default.setToken(response.apiKey.token);
+    return response;
+  });
+};
+
+var signOut = exports.signOut = function signOut() {
+  return deleteSession().then(function (response) {
+    _state2.default.clear();
+    (0, _cable.disconnect)();
+    return response;
+  });
+};
+
+/**
+ * == Upload signing ==
+ *
+ * To support faster uploading, we allow images to be uploaded directly to S3,
+ * and then just send along the signed URL to the API for fetching. This allows
+ * API servers to continue processing requests instead of waiting for the upload
+ * to complete.
+ *
+ * To use this mechanism, call this function with a file object and it will
+ * return a Promise that resolves to the URL of the file that was uploaded, as
+ * in the following example:
+ *
+ *     import { signUpload } from "@culturehq/client";
+ *
+ *     signUpload(document.querySelector("#file").files[0]).then(url => {
+ *       console.log(url);
+ *     });
+ */
+
+
+/**
+ * == Simulation ==
+ *
+ * If you're listed as a CultureHQ admin, you can simulate users for debugging
+ * with read-only capabilities by using the `startUserSimulation` named export.
+ * The corresponding end call is `endUserSimulation`, along with the check for
+ * the current state which is `isSimulating`.
+ */
+var isSimulating = _state2.default.isSimulating;
+exports.isSimulating = isSimulating;
+var endUserSimulation = exports.endUserSimulation = function endUserSimulation() {
+  _state2.default.clearSimulationToken();
+  (0, _cable.disconnect)();
+};
+
+var startUserSimulation = exports.startUserSimulation = function startUserSimulation(params) {
+  if (!_state2.default.isSignedIn()) {
+    throw new Error("Cannot simulate unless you're already logged in.");
+  }
+
+  return createSimulation(params).then(function (response) {
+    _state2.default.setSimulationToken(response.apiKey.token);
+    (0, _cable.disconnect)();
+    return response;
+  });
+};
+
+/**
  * == Pagination ==
  *
  * Almost every one of the `list*` events is paginated, and will return
@@ -72,147 +198,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *     { currentPage, totalPages, totalCount }
  *
  * You can handle this pagination manually, e.g., links on the bottom of the
- * page. Alternatively, you can use the client's built-in automatic pagination
- * capabilities. You prefix your API call with a call to `autoPaginate`, as in
- * the following example:
+ * page. You can also use the client's built-in automatic pagination
+ * capabilities by using the `autoPaginate` named export, as in the following
+ * example:
  *
- *     const { events } = await client.autoPaginate("events").listEvents();
+ *     import { autoPaginate } from "@culturehq/client";
+ *     const { events } = await autoPaginate("events").listEvents();
  *
  * This will return the pagination information as normal, but the events will
  * be concatenated together.
- *
- * == WebSocket connection semantics ==
- *
- * There are a few functions on the client that will establish a WebSocket
- * connection and call a callback function when data is received. For these
- * functions, in order to avoid leaking memory, it's important to ensure that
- * when you're done with the subscription (for instance when the component
- * containing it is unmounted) that you call `unsubscribe` on the subscription
- * object. An example with React of using these functions is below:
- *
- *     class MyComponent {
- *       state = { lastNotification: null };
- *
- *       componentDidMount() {
- *         this.subscription = client.onNotificationReceived(notification => {
- *           this.setState({ lastNotification: notification });
- *         });
- *       }
- *
- *       componentWillUnmount() {
- *         if (this.subscription) {
- *           this.subscription.unsubscribe();
- *         }
- *       }
- *
- *       render() {
- *         const { lastNotification } = this.state;
- *
- *         return <span>{lastNotification}<span>;
- *       }
- *     }
  */
-var client = _extends({
-  consumer: null,
-
-  endUserSimulation: function endUserSimulation() {
-    _state2.default.endSimulation();
-    client.disconnectConsumer();
-  },
-
-  isSignedIn: function isSignedIn() {
-    return _state2.default.isSignedIn();
-  },
-
-  isSimulating: function isSimulating() {
-    return _state2.default.isSimulating();
-  },
-
-  onEventStarting: function onEventStarting(callback) {
-    return client.subscribeToChannel("EventStartingChannel", callback);
-  },
-
-  onLeaderboardUpdated: function onLeaderboardUpdated(callback) {
-    return client.subscribeToChannel("LeaderboardChannel", callback);
-  },
-
-  onNotificationReceived: function onNotificationReceived(callback) {
-    return client.subscribeToChannel("NotificationChannel", callback);
-  },
-
-  onRecognitionCreated: function onRecognitionCreated(callback) {
-    return client.subscribeToChannel("RecognitionChannel", callback);
-  },
-
-  onUserActivityCreated: function onUserActivityCreated(callback) {
-    return client.subscribeToChannel("UserActivityChannel", callback);
-  },
-
-  setToken: function setToken(token) {
-    return _state2.default.signIn(token);
-  },
-
-  signIn: function signIn(params) {
-    return client.createApiKey(params).then(function (response) {
-      _state2.default.signIn(response.apiKey.token);
-      return response;
-    });
-  },
-
-  signOut: function signOut() {
-    return client.deleteSession().then(function (response) {
-      _state2.default.signOut();
-      client.disconnectConsumer();
-      return response;
-    });
-  },
-
-  signUpload: _signUpload2.default,
-
-  startUserSimulation: function startUserSimulation(params) {
-    return client.createSimulation(params).then(function (response) {
-      _state2.default.startSimulation(response.apiKey.token);
-      client.disconnectConsumer();
-      return response;
-    });
-  },
-
-  autoPaginate: function autoPaginate(dataType) {
-    return new _autoPaginator2.default(dataType);
-  },
-
-  disconnectConsumer: function disconnectConsumer() {
-    if (client.consumer) {
-      client.consumer.disconnect();
-      client.consumer = null;
-    }
-  },
-
-  ensureConsumer: function ensureConsumer() {
-    if (client.consumer) {
-      return client.consumer;
-    }
-
-    var _API_HOST$split = _constants.API_HOST.split("://"),
-        _API_HOST$split2 = _slicedToArray(_API_HOST$split, 2),
-        protocol = _API_HOST$split2[0],
-        host = _API_HOST$split2[1];
-
-    var wsProtocol = protocol === "https" ? "wss" : "ws";
-    var endpoint = wsProtocol + "://" + host + "/cable/" + _state2.default.getToken();
-
-    client.consumer = _actioncable2.default.createConsumer(endpoint);
-    return client.consumer;
-  },
-
-  subscribeToChannel: function subscribeToChannel(channel, callback) {
-    return client.ensureConsumer().subscriptions.create(channel, {
-      received: function received(data) {
-        return callback((0, _stringCase.camelize)(data));
-      }
-    });
-  }
-
-}, _apiCalls2.default);
-
-exports.default = client;
