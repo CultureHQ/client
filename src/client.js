@@ -91,13 +91,17 @@ export const endUserSimulation = () => {
   disconnect();
 };
 
-export const startUserSimulation = params => (
-  createSimulation(params).then(response => {
+export const startUserSimulation = params => {
+  if (!state.isSignedIn()) {
+    throw new Error("Cannot simulate unless you're already logged in.");
+  }
+
+  return createSimulation(params).then(response => {
     state.setSimulationToken(response.apiKey.token);
     disconnect();
     return response;
   })
-);
+};
 
 /**
  * == Pagination ==
