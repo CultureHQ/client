@@ -9,6 +9,8 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 var _actioncable = require("actioncable");
 
+var _actioncable2 = _interopRequireDefault(_actioncable);
+
 var _constants = require("./constants");
 
 var _state = require("./state");
@@ -33,7 +35,7 @@ var getEndpoint = function getEndpoint() {
 
 var getConsumer = function getConsumer() {
   if (!consumer) {
-    consumer = (0, _actioncable.createConsumer)(getEndpoint());
+    consumer = _actioncable2.default.createConsumer(getEndpoint());
   }
   return consumer;
 };

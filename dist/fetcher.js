@@ -10,7 +10,7 @@ var _require = require("./constants"),
 // A container for holding the currently set `fetch` function.
 
 
-var fetcher = { fetch: window.fetch };
+var fetcher = { fetch: window.fetch.bind(window) };
 
 // If we're in production, build an iframe using the /proxy endpoint from the
 // API that contains the JS `document.domain = "culturehq.com"`. Then, set this

@@ -1,4 +1,4 @@
-import { createConsumer } from "actioncable";
+import ActionCable from "actioncable";
 
 import { API_HOST } from "./constants";
 import state from "./state";
@@ -14,7 +14,7 @@ const getEndpoint = () => {
 
 const getConsumer = () => {
   if (!consumer) {
-    consumer = createConsumer(getEndpoint());
+    consumer = ActionCable.createConsumer(getEndpoint());
   }
   return consumer;
 };

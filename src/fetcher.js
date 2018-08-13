@@ -1,7 +1,7 @@
 const { API_HOST } = require("./constants");
 
 // A container for holding the currently set `fetch` function.
-const fetcher = { fetch: window.fetch };
+const fetcher = { fetch: window.fetch.bind(window) };
 
 // If we're in production, build an iframe using the /proxy endpoint from the
 // API that contains the JS `document.domain = "culturehq.com"`. Then, set this
