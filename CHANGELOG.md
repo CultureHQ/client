@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- The `skipPreflightChecks` named export that handles building an `iframe` to match domains and skip preflight CORS checks.
+
 ### Changed
 - Build an iframe and change the domain in order to avoid preflight checks.
 - Moved the WebSocket exports into their own named exports and out of the main client: `onEventStarting`, `onLeaderboardUpdated`, `onNotificationReceived`, `onRecognitionCreated`, and `onUserActivityCreated`.
