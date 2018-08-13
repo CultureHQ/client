@@ -43,7 +43,7 @@ export default apiCalls;
  * This is especially useful if the token is fixed in some context (as in most
  * integrations).
  */
-export const { isSignedIn, setToken } = state;
+export const { getToken, isSignedIn, setToken } = state;
 
 export const signIn = params => createApiKey(params).then(response => {
   state.setToken(response.apiKey.token);
