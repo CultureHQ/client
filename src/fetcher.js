@@ -11,10 +11,13 @@ const fetcher = { fetch: window.fetch };
 // Note this works since you're allowed to set `document.domain` to any suffix
 // of the current domain (in this case we're modifying both `api.culturehq.com`
 // and `platform.culturehq.com`).
-//
-// Note that this only really works on non-IE browsers (likely because `fetch`
-// doesn't work on the old ones).
-if (process.env.NODE_ENV === "production" && !/Trident\/|MSIE /.test(window.navigator.userAgent)) {
+export const skipPreflightChecks = () => {
+  // Note that this only works on non-IE browsers (likely because `fetch`
+  // doesn't work on the old ones).
+  if (/Trident\/|MSIE /.test(window.navigator.userAgent)) {
+    return;
+  }
+
   const iframe = document.createElement("iframe");
   iframe.onload = function () { /* eslint func-names: off */
     fetcher.fetch = this.contentWindow.fetch;
@@ -25,6 +28,6 @@ if (process.env.NODE_ENV === "production" && !/Trident\/|MSIE /.test(window.navi
 
   document.domain = "culturehq.com";
   document.body.appendChild(iframe);
-}
+};
 
 export default fetcher;
