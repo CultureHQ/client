@@ -1,5 +1,5 @@
 import createServer from "./create-server";
-import client, { isSignedIn, signIn } from "../src/client";
+import client, { getToken, isSignedIn, setToken, signIn, startUserSimulation, endUserSimulation, isSimulating } from "../src/client";
 import state from "../src/state";
 
 afterEach(() => state.clear());
@@ -55,6 +55,25 @@ test("substitutes values into the request path", async () => {
   try {
     const { response } = await client.getUser({ userId: 42 });
     expect(response.url.endsWith("/users/42")).toBe(true);
+  } finally {
+    server.close();
+  }
+});
+
+test("can start a user simulation", async () => {
+  const server = createServer({ status: 200, body: { apiKey: { token: "bar" } } });
+  server.listen(8080);
+
+  setToken("foo");
+
+  try {
+    await startUserSimulation({ userId: 42 });
+    expect(isSimulating()).toBe(true);
+    expect(getToken()).toEqual("bar");
+
+    endUserSimulation();
+    expect(isSimulating()).toBe(false);
+    expect(getToken()).toEqual("foo");
   } finally {
     server.close();
   }
