@@ -1,5 +1,16 @@
 import createServer from "./create-server";
-import client, { getToken, isSignedIn, setToken, signIn, startUserSimulation, endUserSimulation, isSimulating } from "../src/client";
+
+import client, {
+  getToken,
+  isSignedIn,
+  setToken,
+  signIn,
+  signOut,
+  startUserSimulation,
+  endUserSimulation,
+  isSimulating
+} from "../src/client";
+
 import state from "../src/state";
 
 afterEach(() => state.clear());
@@ -19,6 +30,21 @@ test("signs in and reports signed in status correctly", async () => {
     const response = await signIn({ email: "foo", password: "bar" });
     expect(response.apiKey.token).toEqual("baz");
     expect(isSignedIn()).toBe(true);
+  } finally {
+    server.close();
+  }
+});
+
+test("can sign out", async () => {
+  const server = createServer({ status: 204 });
+  server.listen(8080);
+
+  setToken("foo");
+  expect(isSignedIn()).toBe(true);
+
+  try {
+    await signOut();
+    expect(isSignedIn()).toBe(false);
   } finally {
     server.close();
   }

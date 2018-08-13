@@ -18,10 +18,6 @@ const state = {
   isSimulating: () => localStorage.getItem(SIMULATION_KEY) !== null,
 
   setSimulationToken: token => {
-    if (!state.isSignedIn()) {
-      throw new Error("Cannot simulate unless you're already logged in.");
-    }
-
     localStorage.setItem(SIMULATION_KEY, state.getToken());
     state.setToken(token);
   },

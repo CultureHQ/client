@@ -8,6 +8,8 @@ import {
   onUserActivityCreated
 } from "../src/client";
 
+import { disconnect } from "../src/cable";
+
 jest.mock("actioncable", () => {
   class Subscriptions {
     constructor() {
@@ -15,7 +17,7 @@ jest.mock("actioncable", () => {
     }
 
     broadcast(channel, message) {
-      this.callbacks[channel].forEach(callback => callback(message));
+      this.getCallbacks(channel).forEach(callback => callback(message));
     }
 
     clear() {
@@ -23,7 +25,11 @@ jest.mock("actioncable", () => {
     }
 
     create(channel, { received }) {
-      this.callbacks[channel] = [...(this.callbacks[channel] || []), received];
+      this.callbacks[channel] = [...this.getCallbacks(channel), received];
+    }
+
+    getCallbacks(channel) {
+      return this.callbacks[channel] || [];
     }
   }
 
@@ -45,6 +51,19 @@ const buildTest = (onSubscribe, channel) => () => {
 
   expect(updates).toEqual([{ fooBar: 1 }, { barBaz: 2 }]);
 };
+
+test("when disconnected, does not broadcast", () => {
+  const updates = [];
+  onEventStarting(update => updates.push(update));
+
+  consumer.broadcast("EventStartingChannel", 1);
+  consumer.broadcast("EventStartingChannel", 2);
+
+  disconnect();
+  consumer.broadcast("EventStartingChannel", 3);
+
+  expect(updates).toEqual([1, 2]);
+});
 
 test("event starting", buildTest(onEventStarting, "EventStartingChannel"));
 
