@@ -45,13 +45,6 @@ Each function can be introspected to determine its expected parameters (`expecte
 const { expectedParams, optionalParams } = client.createEvent;
 ```
 
-If a function has `multipart` set on its config, it's because one or more of the attributes require a file object. In this case, a `File` object should be given for the value, as in:
-
-```js
-const avatar = document.querySelector("#avatar").files[0];
-const response = await client.updateUser({ userId: 12345, avatar });
-```
-
 ## Development
 
 First, install the dependencies with `yarn`.
