@@ -25,15 +25,14 @@ const prepare = (expected, actual, template) => {
   return { path, params };
 };
 
-const buildCall = ([method, template, expected = [], optional = [], multipart = false]) => {
+const buildCall = ([method, template, expected = [], optional = []]) => {
   const call = actual => {
     const { path, params } = prepare(expected, actual, template);
 
     return request(method, new URL(`${API_HOST}${path}`), {
       token: state.getToken(),
       simulation: state.getSimulationToken(),
-      params,
-      multipart
+      params
     });
   };
 
@@ -41,8 +40,7 @@ const buildCall = ([method, template, expected = [], optional = [], multipart = 
     method,
     path: template,
     expectedParams: expected,
-    optionalParams: optional,
-    multipart
+    optionalParams: optional
   });
 };
 
