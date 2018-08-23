@@ -9,7 +9,10 @@ jest.mock("../src/state", () => ({
 
 jest.mock("../src/request", () => (method, url, options) => {
   const { token, simulation, params } = options;
-  return { method, url, token, simulation, params };
+
+  return {
+    method, url, token, simulation, params
+  };
 });
 
 test("builds api calls from options", () => {
