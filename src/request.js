@@ -1,17 +1,17 @@
 import fetcher from "./fetcher";
-import formData from "./form-data";
 import processResponse from "./response";
 import { snakerize } from "./string-case";
 
-const buildHeaders = ({ multipart, token, simulation }) => {
-  const headers = { "X-Client-Version": process.env.npm_package_version };
+const buildHeaders = ({ token, simulation }) => {
+  const headers = {
+    "X-Client-Version": process.env.npm_package_version,
+    "Content-Type": "application/json"
+  };
 
-  if (!multipart) {
-    headers["Content-Type"] = "application/json";
-  }
   if (typeof token === "string" && token.length) {
     headers.Authorization = `token ${token}`;
   }
+
   if (typeof simulation === "string" && simulation.length) {
     headers["X-Client-Simulation"] = simulation;
   }
@@ -41,8 +41,6 @@ const buildRequest = (method, url, options) => {
 
   if (method === "GET") {
     attachGetParams(url, params);
-  } else if (options.multipart) {
-    reqOptions.body = formData(params);
   } else {
     reqOptions.body = JSON.stringify(params);
   }
