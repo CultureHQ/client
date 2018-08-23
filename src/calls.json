@@ -14,9 +14,8 @@
   "bulkCreateEventPhotos": [
     "POST",
     "/events/:eventId/albums",
-    ["images"],
-    [],
-    true
+    ["imageUrls"],
+    []
   ],
   "cancelEvent": [
     "POST",
@@ -59,7 +58,7 @@
       "details",
       "sponsored",
       "surveyId",
-      "image",
+      "imageUrl",
       "organizationValueIds",
       "location",
       "visibility",
@@ -72,8 +71,7 @@
       "interestNames",
       "allLocations",
       "createSurvey"
-    ],
-    true
+    ]
   ],
   "createEventComment": [
     "POST",
@@ -90,9 +88,8 @@
   "createEventPhoto": [
     "POST",
     "/events/:eventId/photos",
-    ["image"],
-    ["caption"],
-    true
+    ["imageUrl"],
+    ["caption"]
   ],
   "createEventPhotoComment": [
     "POST",
@@ -131,8 +128,7 @@
       "feedbackEnabled",
       "userCreatedInvitesEnabled",
       "accountInfoEnabled"
-    ],
-    true
+    ]
   ],
   "createOrganizationValue": ["POST", "/organization_values", ["name"]],
   "createPhotoTag": ["POST", "/photos/:photoId/photo_tags", ["userId"]],
@@ -579,8 +575,7 @@
     "POST",
     "/invites",
     ["name", "email"],
-    ["locationName", "departmentNames", "interestNames", "avatar", "title"],
-    true
+    ["locationName", "departmentNames", "interestNames", "avatarUrl", "title"]
   ],
   "subscribeToEventNotifications": [
     "POST",
@@ -642,7 +637,7 @@
       "eventType",
       "sponsored",
       "surveyId",
-      "image",
+      "imageUrl",
       "organizationValueIds",
       "location",
       "visibility",
@@ -652,8 +647,7 @@
       "openInvites",
       "interestNames",
       "allLocations"
-    ],
-    true
+    ]
   ],
   "updateEventComment": [
     "PATCH",
@@ -664,8 +658,7 @@
     "PATCH",
     "/events/:eventId/photos/:photoId",
     [],
-    ["image", "caption"],
-    true
+    ["imageUrl", "caption"]
   ],
   "updateEventPhotoComment": [
     "PATCH",
@@ -702,8 +695,7 @@
       "feedbackEnabled",
       "userCreatedInvitesEnabled",
       "accountInfoEnabled"
-    ],
-    true
+    ]
   ],
   "updateOrganizationValue": [
     "PATCH",
@@ -720,11 +712,10 @@
       "email",
       "departmentNames",
       "interestNames",
-      "avatar",
+      "avatarUrl",
       "title",
       "locationName"
-    ],
-    true
+    ]
   ],
   "updateProfileEmailSettings": [
     "PATCH",
@@ -790,12 +781,11 @@
       "email",
       "departmentNames",
       "interestNames",
-      "avatar",
+      "avatarUrl",
       "title",
       "locationName",
       "organizationAdmin"
-    ],
-    true
+    ]
   ],
   "updateUserActivityComment": [
     "PATCH",
