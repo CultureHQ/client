@@ -8,10 +8,6 @@ var _fetcher = require("./fetcher");
 
 var _fetcher2 = _interopRequireDefault(_fetcher);
 
-var _formData = require("./form-data");
-
-var _formData2 = _interopRequireDefault(_formData);
-
 var _response = require("./response");
 
 var _response2 = _interopRequireDefault(_response);
@@ -21,18 +17,18 @@ var _stringCase = require("./string-case");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var buildHeaders = function buildHeaders(_ref) {
-  var multipart = _ref.multipart,
-      token = _ref.token,
+  var token = _ref.token,
       simulation = _ref.simulation;
 
-  var headers = { "X-Client-Version": "5.0.3" };
+  var headers = {
+    "X-Client-Version": "6.0.0",
+    "Content-Type": "application/json"
+  };
 
-  if (!multipart) {
-    headers["Content-Type"] = "application/json";
-  }
   if (typeof token === "string" && token.length) {
     headers.Authorization = "token " + token;
   }
+
   if (typeof simulation === "string" && simulation.length) {
     headers["X-Client-Simulation"] = simulation;
   }
@@ -62,8 +58,6 @@ var buildRequest = function buildRequest(method, url, options) {
 
   if (method === "GET") {
     attachGetParams(url, params);
-  } else if (options.multipart) {
-    reqOptions.body = (0, _formData2.default)(params);
   } else {
     reqOptions.body = JSON.stringify(params);
   }

@@ -51,15 +51,13 @@ var prepare = function prepare(expected, actual, template) {
 };
 
 var buildCall = function buildCall(_ref) {
-  var _ref2 = _slicedToArray(_ref, 5),
+  var _ref2 = _slicedToArray(_ref, 4),
       method = _ref2[0],
       template = _ref2[1],
       _ref2$ = _ref2[2],
       expected = _ref2$ === undefined ? [] : _ref2$,
       _ref2$2 = _ref2[3],
-      optional = _ref2$2 === undefined ? [] : _ref2$2,
-      _ref2$3 = _ref2[4],
-      multipart = _ref2$3 === undefined ? false : _ref2$3;
+      optional = _ref2$2 === undefined ? [] : _ref2$2;
 
   var call = function call(actual) {
     var _prepare = prepare(expected, actual, template),
@@ -69,8 +67,7 @@ var buildCall = function buildCall(_ref) {
     return (0, _request2.default)(method, new URL("" + _constants.API_HOST + path), {
       token: _state2.default.getToken(),
       simulation: _state2.default.getSimulationToken(),
-      params: params,
-      multipart: multipart
+      params: params
     });
   };
 
@@ -78,8 +75,7 @@ var buildCall = function buildCall(_ref) {
     method: method,
     path: template,
     expectedParams: expected,
-    optionalParams: optional,
-    multipart: multipart
+    optionalParams: optional
   });
 };
 
