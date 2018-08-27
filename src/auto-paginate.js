@@ -1,10 +1,6 @@
 import apiCalls from "./api-calls";
 import calls from "./calls";
 
-/**
- * A class that wraps an API call and automatically concatenates the results
- * across multiple pages.
- */
 class AutoPaginator {
   constructor(dataType) {
     this.dataType = dataType;
@@ -53,4 +49,24 @@ Object.keys(calls).forEach(callName => {
   };
 });
 
-export default dataType => new AutoPaginator(dataType);
+/**
+ * Almost every one of the `list*` events is paginated, and will return
+ * pagination metadata along with the actual data of the call. The `pagination`
+ * object will look like:
+ *
+ *     { currentPage, totalPages, totalCount }
+ *
+ * You can handle this pagination manually, e.g., links on the bottom of the
+ * page. You can also use the client's built-in automatic pagination
+ * capabilities by using the `autoPaginate` named export, as in the following
+ * example:
+ *
+ *     import { autoPaginate } from "@culturehq/client";
+ *     const { events } = await autoPaginate("events").listEvents();
+ *
+ * This will return the pagination information as normal, but the events will
+ * be concatenated together.
+ */
+const autoPaginate = dataType => new AutoPaginator(dataType);
+
+export default autoPaginate;

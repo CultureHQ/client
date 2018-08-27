@@ -3,14 +3,31 @@ const { API_HOST } = require("./constants");
 // A container for holding the currently set `fetch` function.
 const fetcher = { fetch: window.fetch.bind(window) };
 
-// If we're in production, build an iframe using the /proxy endpoint from the
-// API that contains the JS `document.domain = "culturehq.com"`. Then, set this
-// window's domain to match and load the iframe. This allows us to avoid
-// preflight checks on CORS requests.
-//
-// Note this works since you're allowed to set `document.domain` to any suffix
-// of the current domain (in this case we're modifying both `api.culturehq.com`
-// and `platform.culturehq.com`).
+/**
+ * You can avoid all of the CORS preflight checks if the domains of both the
+ * request and response match. You can accomplish this only if you're on a
+ * subdomain and the server that you're trying to hit is on another subdomain of
+ * the same parent domain.
+ *
+ * The way it works is by changing the `document.domain` value to be the common
+ * parent domain of both the request and the response. The request can just be
+ * changed by setting `document.domain` in the main window (this is allowed by
+ * browsers because you're always allowed to set it to a suffix of the current
+ * domain).
+ *
+ * The response domain can be changed by embedding an `iframe` into the page
+ * that contains a specially crafted page from the response server. The `iframe`
+ * contains a small HTML page with a script tag that changes the
+ * `document.domain` value to match the requesting server. You can then pull the
+ * `fetch` function from the child window into the parent and use that to hit
+ * the server.
+ *
+ * So in this instance, since we're requesting things from `api.culturehq.com`
+ * using `fetch` from `platform.culturehq.com`, we can embed an `iframe` using
+ * the API's /proxy` endpoint which contains the code to change the
+ * `document.domain` value to `culturehq.com`. We can then do the same in this
+ * window and pull the `fetch` function from the child window.
+ */
 export const skipPreflightChecks = () => {
   // Note that this only works on non-IE browsers (likely because `fetch`
   // doesn't work on the old ones).
