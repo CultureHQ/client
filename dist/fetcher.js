@@ -3,24 +3,42 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = exports.skipPreflightChecks = void 0;
 
 var _require = require("./constants"),
-    API_HOST = _require.API_HOST;
-
-// A container for holding the currently set `fetch` function.
+    API_HOST = _require.API_HOST; // A container for holding the currently set `fetch` function.
 
 
-var fetcher = { fetch: window.fetch.bind(window) };
+var fetcher = {
+  fetch: window.fetch.bind(window)
+};
+/**
+ * You can avoid all of the CORS preflight checks if the domains of both the
+ * request and response match. You can accomplish this only if you're on a
+ * subdomain and the server that you're trying to hit is on another subdomain of
+ * the same parent domain.
+ *
+ * The way it works is by changing the `document.domain` value to be the common
+ * parent domain of both the request and the response. The request can just be
+ * changed by setting `document.domain` in the main window (this is allowed by
+ * browsers because you're always allowed to set it to a suffix of the current
+ * domain).
+ *
+ * The response domain can be changed by embedding an `iframe` into the page
+ * that contains a specially crafted page from the response server. The `iframe`
+ * contains a small HTML page with a script tag that changes the
+ * `document.domain` value to match the requesting server. You can then pull the
+ * `fetch` function from the child window into the parent and use that to hit
+ * the server.
+ *
+ * So in this instance, since we're requesting things from `api.culturehq.com`
+ * using `fetch` from `platform.culturehq.com`, we can embed an `iframe` using
+ * the API's /proxy` endpoint which contains the code to change the
+ * `document.domain` value to `culturehq.com`. We can then do the same in this
+ * window and pull the `fetch` function from the child window.
+ */
 
-// If we're in production, build an iframe using the /proxy endpoint from the
-// API that contains the JS `document.domain = "culturehq.com"`. Then, set this
-// window's domain to match and load the iframe. This allows us to avoid
-// preflight checks on CORS requests.
-//
-// Note this works since you're allowed to set `document.domain` to any suffix
-// of the current domain (in this case we're modifying both `api.culturehq.com`
-// and `platform.culturehq.com`).
-var skipPreflightChecks = exports.skipPreflightChecks = function skipPreflightChecks() {
+var skipPreflightChecks = function skipPreflightChecks() {
   // Note that this only works on non-IE browsers (likely because `fetch`
   // doesn't work on the old ones).
   if (/Trident\/|MSIE /.test(window.navigator.userAgent)) {
@@ -28,16 +46,18 @@ var skipPreflightChecks = exports.skipPreflightChecks = function skipPreflightCh
   }
 
   var iframe = document.createElement("iframe");
+
   iframe.onload = function () {
     /* eslint func-names: off */
     fetcher.fetch = this.contentWindow.fetch.bind(this.contentWindow);
   };
 
-  iframe.setAttribute("src", API_HOST + "/proxy");
+  iframe.setAttribute("src", "".concat(API_HOST, "/proxy"));
   iframe.style.display = "none";
-
   document.domain = "culturehq.com";
   document.body.appendChild(iframe);
 };
 
-exports.default = fetcher;
+exports.skipPreflightChecks = skipPreflightChecks;
+var _default = fetcher;
+exports.default = _default;

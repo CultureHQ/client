@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.UPLOAD_BUCKET = exports.SIGNER_URL = exports.AWS_ACCESS_KEY_ID = exports.API_HOST = void 0;
 var CONSTANTS = {
   production: {
     API_HOST: "https://api.culturehq.com",
@@ -23,13 +24,12 @@ var CONSTANTS = {
     UPLOAD_BUCKET: "http://localhost:8082"
   }
 };
-
 var _CONSTANTS = CONSTANTS[process.env.NODE_ENV || "development"],
     API_HOST = _CONSTANTS.API_HOST,
     AWS_ACCESS_KEY_ID = _CONSTANTS.AWS_ACCESS_KEY_ID,
     SIGNER_URL = _CONSTANTS.SIGNER_URL,
     UPLOAD_BUCKET = _CONSTANTS.UPLOAD_BUCKET;
-exports.API_HOST = API_HOST;
-exports.AWS_ACCESS_KEY_ID = AWS_ACCESS_KEY_ID;
-exports.SIGNER_URL = SIGNER_URL;
 exports.UPLOAD_BUCKET = UPLOAD_BUCKET;
+exports.SIGNER_URL = SIGNER_URL;
+exports.AWS_ACCESS_KEY_ID = AWS_ACCESS_KEY_ID;
+exports.API_HOST = API_HOST;

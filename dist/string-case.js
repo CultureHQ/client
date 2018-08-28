@@ -3,13 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.snakerize = exports.camelize = void 0;
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 // Convert from lower_snake_case to lowerCamelCase
 var camelizeString = function camelizeString(string) {
   var pattern = /_([a-z])/;
-
   var camelized = string;
   var match = pattern.exec(camelized);
 
@@ -19,17 +19,16 @@ var camelizeString = function camelizeString(string) {
   }
 
   return camelized;
-};
+}; // Convert from lowerCamelCase to lower_snake_case
 
-// Convert from lowerCamelCase to lower_snake_case
+
 var snakerizeString = function snakerizeString(string) {
   var pattern = /([A-Z])/;
-
   var snakerized = string;
   var match = pattern.exec(snakerized);
 
   while (match !== null) {
-    snakerized = snakerized.replace(match[0], "_" + match[1].toLowerCase());
+    snakerized = snakerized.replace(match[0], "_".concat(match[1].toLowerCase()));
     match = pattern.exec(snakerized);
   }
 
@@ -43,44 +42,46 @@ var shouldRecurse = function shouldRecurse(value) {
 var modifyKeys = function modifyKeys(object, stringFunc) {
   // If the node is not an object or is null, return the original object since
   // we don't need to modify its keys.
-  if ((typeof object === "undefined" ? "undefined" : _typeof(object)) !== "object" || object === null) {
+  if (_typeof(object) !== "object" || object === null) {
     return object;
-  }
+  } // For arrays, loop through each elemenet and modify as necessary.
 
-  // For arrays, loop through each elemenet and modify as necessary.
+
   if (Array.isArray(object)) {
     return object.map(function (element) {
       return modifyKeys(element, stringFunc);
     });
-  }
-
-  // For other objects, ensure they have at least one key returned from
+  } // For other objects, ensure they have at least one key returned from
   // Object.keys. This (should) ensure that we're only processing objects that
   // were constructed from object literals, as opposed to Blob or File objects.
+
+
   if (!Object.keys(object).length) {
     return object;
   }
 
   var modified = {};
-  var value = void 0;
-
+  var value;
   Object.keys(object).forEach(function (key) {
     value = object[key];
+
     if (shouldRecurse(value)) {
       value = modifyKeys(value, stringFunc);
     }
+
     modified[stringFunc(key)] = value;
   });
-
   return modified;
 };
 
 var camelize = function camelize(object) {
   return modifyKeys(object, camelizeString);
 };
+
+exports.camelize = camelize;
+
 var snakerize = function snakerize(object) {
   return modifyKeys(object, snakerizeString);
 };
 
-exports.camelize = camelize;
 exports.snakerize = snakerize;
