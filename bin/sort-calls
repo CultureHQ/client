@@ -6,13 +6,11 @@ const prettier = require("prettier");
 const content = JSON.parse(fs.readFileSync("src/calls.json"));
 const modified = {};
 
-Object.keys(content)
-  .sort()
-  .forEach(key => {
-    modified[key] = content[key];
-  });
+Object.keys(content).sort().forEach(key => {
+  modified[key] = content[key];
+});
 
 const sorted = JSON.stringify(modified, null, 2);
-const formatted = prettier.format(sorted, { parser: "json" });
+const formatted = prettier.format(sorted, { parser: "json", printWidth: 120 });
 
 fs.writeFileSync("src/calls.json", formatted);
