@@ -106,6 +106,7 @@
   "deleteEventPhoto": ["DELETE", "/events/:eventId/photos/:photoId"],
   "deleteEventPhotoComment": ["DELETE", "/events/:eventId/photos/:photoId/comments/:commentId"],
   "deleteExpense": ["DELETE", "/events/:eventId/expenses/:expenseId"],
+  "deleteGoogleIntegration": ["DELETE", "/google/integration"],
   "deleteInterest": ["DELETE", "/interests/:interestId"],
   "deleteLocation": ["DELETE", "/locations/:locationId"],
   "deleteOrganization": ["DELETE", "/admin/organizations/:organizationId"],

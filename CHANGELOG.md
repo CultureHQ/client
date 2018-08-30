@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [6.2.0] - 2018-08-30
+### Added
+- The `deleteGoogleIntegration` call.
+
 ## [6.1.0] - 2018-08-30
 ### Added
 - The `getGoogleIntegration` and `createGoogleIntegration` calls.
