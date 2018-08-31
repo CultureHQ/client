@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [6.3.0] - 2018-08-31
+### Added
+- The `deleteUser` call (currently only accessible to CultureHQ admins).
+
 ## [6.2.0] - 2018-08-30
 ### Added
 - The `deleteGoogleIntegration` call.

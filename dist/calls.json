@@ -121,6 +121,7 @@
   "deleteSurvey": ["DELETE", "/surveys/:surveyId"],
   "deleteSurveyItem": ["DELETE", "/survey_items/:surveyItemId"],
   "deleteSurveyItemResponseOption": ["DELETE", "/survey_item_response_options/:surveyItemResponseOptionId"],
+  "deleteUser": ["DELETE", "/users/:userId"],
   "deleteUserActivityComment": ["DELETE", "/user_activities/:userActivityId/comments/:commentId"],
   "denyEventAttendance": ["DELETE", "/events/:eventId/confirmation"],
   "disableStaticWidget": ["DELETE", "/widgets", ["widget"]],
