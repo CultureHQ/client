@@ -33,3 +33,11 @@ test("attaches metadata to the calls", () => {
   expect(createInterest.method).toEqual("POST");
   expect(createInterest.expectedParams).toEqual(["name"]);
 });
+
+test("you can reuse params without fearing mutation", () => {
+  const options = { userId: 5 };
+
+  expect(getUser(options).url).toEqual(new URL("http://localhost:8080/users/5"));
+
+  expect(options.userId).toEqual(5);
+});

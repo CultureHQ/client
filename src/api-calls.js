@@ -4,7 +4,7 @@ import request from "./request";
 import state from "./state";
 
 const prepare = (expected, actual, template) => {
-  const params = typeof actual !== "object" ? {} : actual;
+  const params = typeof actual !== "object" ? {} : { ...actual };
   let path = template;
 
   expected.forEach(param => {
