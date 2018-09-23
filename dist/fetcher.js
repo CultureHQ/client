@@ -49,7 +49,13 @@ var skipPreflightChecks = function skipPreflightChecks() {
 
   iframe.onload = function () {
     /* eslint func-names: off */
-    fetcher.fetch = this.contentWindow.fetch.bind(this.contentWindow);
+    var fetch = this.contentWindow.fetch; // It's possible that the iframe will not have `fetch` defined if it's an
+    // older browser (which would mean we had polyfilled in the main window but
+    // not the iframe).
+
+    if (fetch) {
+      fetcher.fetch = fetch.bind(this.contentWindow);
+    }
   };
 
   iframe.setAttribute("src", "".concat(API_HOST, "/proxy"));

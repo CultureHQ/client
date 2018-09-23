@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [6.3.2] - 2018-09-23
+### Changed
+- Handled the case that the nested iframe does not have `fetch` defined within the `skipPreflightChecks` function.
+
 ## [6.3.1] - 2018-09-17
 ### Changed
 - Fixed an issue where if options objects were passed to API calls multiple times, they would be mutated between calls by the client library.

@@ -1,7 +1,9 @@
 const { API_HOST } = require("./constants");
 
 // A container for holding the currently set `fetch` function.
-const fetcher = { fetch: window.fetch.bind(window) };
+const fetcher = {
+  fetch: window.fetch.bind(window)
+};
 
 /**
  * You can avoid all of the CORS preflight checks if the domains of both the
@@ -37,7 +39,14 @@ export const skipPreflightChecks = () => {
 
   const iframe = document.createElement("iframe");
   iframe.onload = function () { /* eslint func-names: off */
-    fetcher.fetch = this.contentWindow.fetch.bind(this.contentWindow);
+    const { fetch } = this.contentWindow;
+
+    // It's possible that the iframe will not have `fetch` defined if it's an
+    // older browser (which would mean we had polyfilled in the main window but
+    // not the iframe).
+    if (fetch) {
+      fetcher.fetch = fetch.bind(this.contentWindow);
+    }
   };
 
   iframe.setAttribute("src", `${API_HOST}/proxy`);
