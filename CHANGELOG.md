@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [6.4.0] - 2018-10-01
+### Added
+- The `autocompleteMentions` call. Slightly differs from the `autocompleteUsers` call in that it returns results no matter what (does not actually require a query).
+
 ## [6.3.2] - 2018-09-23
 ### Changed
 - Handled the case that the nested iframe does not have `fetch` defined within the `skipPreflightChecks` function.
@@ -862,7 +866,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/components/compare/6.3.1...HEAD
+[Unreleased]: https://github.com/CultureHQ/components/compare/6.4.0...HEAD
+[6.4.0]: https://github.com/CultureHQ/components/compare/v6.3.2...v6.4.0
+[6.3.2]: https://github.com/CultureHQ/components/compare/v6.3.1...v6.3.2
 [6.3.1]: https://github.com/CultureHQ/components/compare/v6.3.0...v6.3.1
 [6.3.0]: https://github.com/CultureHQ/components/compare/v6.2.0...v6.3.0
 [6.2.0]: https://github.com/CultureHQ/components/compare/v6.1.0...v6.2.0
