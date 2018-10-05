@@ -376,12 +376,20 @@
     "/profile/email_settings",
     [],
     [
+      "commentReplied",
+      "eventCommented",
+      "eventHostingCapped",
+      "eventInterestsAligned",
       "eventInvite",
       "eventNotification",
+      "feedbackSubmitted",
+      "mentioned",
+      "photoCommented",
+      "pointBonus",
       "postEventSurvey",
+      "recognitionGivenCommented",
+      "recognitionReceivedCommented",
       "recognized",
-      "redemptionApproved",
-      "redemptionRequested",
       "rsvpConfirmation"
     ]
   ],
