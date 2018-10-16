@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [6.4.1] - 2018-10-16
+### Changed
+- Handled the case where fetch is not even loaded at all (in IE).
+
 ## [6.4.0] - 2018-10-01
 ### Added
 - The `autocompleteMentions` call. Slightly differs from the `autocompleteUsers` call in that it returns results no matter what (does not actually require a query).

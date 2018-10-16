@@ -1,6 +1,6 @@
 {
   "name": "@culturehq/client",
-  "version": "6.4.0",
+  "version": "6.4.1",
   "description": "A JavaScript client that wraps the CultureHQ API",
   "main": "dist/client.js",
   "scripts": {
@@ -39,7 +39,6 @@
     "isomorphic-fetch": "^2.2.1",
     "isomorphic-form-data": "^2.0.0",
     "jest": "^23.6.0",
-    "packfiles": "^0.0.2",
     "prettier": "^1.14.0",
     "url-polyfill": "^1.1.0"
   },

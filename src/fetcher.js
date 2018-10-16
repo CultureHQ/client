@@ -1,9 +1,8 @@
 const { API_HOST } = require("./constants");
 
 // A container for holding the currently set `fetch` function.
-const fetcher = {
-  fetch: window.fetch.bind(window)
-};
+const { fetch } = window;
+const fetcher = { fetch: fetch && fetch.bind(window) };
 
 /**
  * You can avoid all of the CORS preflight checks if the domains of both the

@@ -50,7 +50,7 @@ const buildRequest = (method, url, options) => {
 
 const performRequest = (method, url, options) => {
   const request = buildRequest(method, url, options);
-  return fetcher.fetch(request.url, request.options).then(processResponse);
+  return (fetcher.fetch || window.fetch)(request.url, request.options).then(processResponse);
 };
 
 export default performRequest;
