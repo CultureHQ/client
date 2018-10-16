@@ -17,7 +17,7 @@ var buildHeaders = function buildHeaders(_ref) {
   var token = _ref.token,
       simulation = _ref.simulation;
   var headers = {
-    "X-Client-Version": "6.4.0",
+    "X-Client-Version": "6.4.1",
     "Content-Type": "application/json"
   };
 
@@ -69,7 +69,7 @@ var buildRequest = function buildRequest(method, url, options) {
 
 var performRequest = function performRequest(method, url, options) {
   var request = buildRequest(method, url, options);
-  return _fetcher.default.fetch(request.url, request.options).then(_response.default);
+  return (_fetcher.default.fetch || window.fetch)(request.url, request.options).then(_response.default);
 };
 
 var _default = performRequest;
