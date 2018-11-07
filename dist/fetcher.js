@@ -9,10 +9,8 @@ var _require = require("./constants"),
     API_HOST = _require.API_HOST; // A container for holding the currently set `fetch` function.
 
 
-var _window = window,
-    fetch = _window.fetch;
 var fetcher = {
-  fetch: fetch && fetch.bind(window)
+  fetch: window.fetch && window.fetch.bind(window)
 };
 /**
  * You can avoid all of the CORS preflight checks if the domains of both the

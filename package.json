@@ -23,9 +23,9 @@
     "actioncable": "^5.2.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.1.2",
-    "@babel/core": "^7.1.2",
-    "@babel/preset-env": "^7.1.0",
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.5",
+    "@babel/preset-env": "^7.1.5",
     "babel-core": "^7.0.0-0",
     "babel-eslint": "^10.0.0",
     "babel-jest": "^23.6.0",
@@ -38,7 +38,7 @@
     "isomorphic-fetch": "^2.2.1",
     "isomorphic-form-data": "^2.0.0",
     "jest": "^23.6.0",
-    "prettier": "^1.14.0",
+    "prettier": "^1.15.1",
     "url-polyfill": "^1.1.0"
   },
   "jest": {
