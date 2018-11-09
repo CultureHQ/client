@@ -184,6 +184,7 @@
   "listApiKeys": ["GET", "/api_keys"],
   "listDepartmentAnalytics": ["GET", "/analytics/departments", [], ["page"]],
   "listDepartments": ["GET", "/departments", [], ["page"]],
+  "listEntityUsers": ["GET", "/entities/users", [], ["page", "departmentIds", "interestIds", "locationIds", "userIds"]],
   "listEventAnalytics": ["GET", "/analytics/events", [], ["page"]],
   "listEventCommentCheers": ["GET", "/events/:eventId/comments/:commentId/cheers", [], ["page"]],
   "listEventComments": ["GET", "/events/:eventId/comments", [], ["page"]],
