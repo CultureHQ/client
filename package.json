@@ -6,8 +6,7 @@
   "scripts": {
     "build": "rm -r dist && babel src --out-dir dist --copy-files",
     "lint": "eslint .",
-    "test": "jest",
-    "prettier": "prettier --write '**/*.{js,json}'"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -38,7 +37,6 @@
     "isomorphic-fetch": "^2.2.1",
     "isomorphic-form-data": "^2.0.0",
     "jest": "^23.6.0",
-    "prettier": "^1.15.1",
     "url-polyfill": "^1.1.0"
   },
   "jest": {
