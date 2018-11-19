@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [6.6.0] - 2018-11-19
+### Added
+- The `getActiveAnnouncements` call.
+- The `getEventComment` call.
+- The `getEventPhotoComment` call.
+- The `getPost` call.
+- The `getRecognitionComment` call.
+- The `getUserActivityComment` call.
+
 ## [6.5.0] - 2018-11-13
 ### Added
 - The `listEntityUsers` call.
