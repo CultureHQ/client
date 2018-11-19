@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [6.6.1] - 2018-11-19
+### Changed
+- Fixed the `getActiveAnnouncements` to be `getActiveAnnouncement` to be consistent. Making this a patch even though it's breaking because I released this 5 minutes ago.
+
 ## [6.6.0] - 2018-11-19
 ### Added
 - The `getActiveAnnouncements` call.

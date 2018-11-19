@@ -148,7 +148,7 @@
   "flagLocation": ["POST", "/locations/:locationId/flags", [], ["message"]],
   "flagPhoto": ["POST", "/photos/:photoId/flags", [], ["message"]],
   "flagRecognition": ["POST", "/recognitions/:recognitionId/flags", [], ["message"]],
-  "getActiveAnnouncements": ["GET", "/active_announcements/:announcementId"],
+  "getActiveAnnouncement": ["GET", "/active_announcements/:announcementId"],
   "getAnnouncement": ["GET", "/announcements/:announcementId"],
   "getAutoRecognitionSettings": ["GET", "/recognitions/auto_recognition_settings"],
   "getDepartment": ["GET", "/departments/:departmentId"],
