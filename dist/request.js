@@ -17,7 +17,7 @@ var buildHeaders = function buildHeaders(_ref) {
   var token = _ref.token,
       simulation = _ref.simulation;
   var headers = {
-    "X-Client-Version": "6.6.1",
+    "X-Client-Version": "6.6.2",
     "Content-Type": "application/json"
   };
 

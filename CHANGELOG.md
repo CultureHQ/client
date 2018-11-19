@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [6.6.2] - 2018-11-19
+### Changed
+- Getting this right this time, removing the added `get*Comment` calls added in `6.6.0` and instead just rolling with `getComment`.
+
 ## [6.6.1] - 2018-11-19
 ### Changed
 - Fixed the `getActiveAnnouncements` to be `getActiveAnnouncement` to be consistent. Making this a patch even though it's breaking because I released this 5 minutes ago.

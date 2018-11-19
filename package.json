@@ -1,6 +1,6 @@
 {
   "name": "@culturehq/client",
-  "version": "6.6.1",
+  "version": "6.6.2",
   "description": "A JavaScript client that wraps the CultureHQ API",
   "main": "dist/client.js",
   "scripts": {
