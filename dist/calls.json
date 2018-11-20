@@ -13,6 +13,7 @@
   "cancelEvent": ["POST", "/events/:eventId/event_cancellations", [], ["message"]],
   "changePassword": ["PATCH", "/password", ["oldPassword", "newPassword"]],
   "checkInEventAttendee": ["POST", "/events/:eventId/check_ins", ["userId"]],
+  "cheerComment": ["POST", "/comments/:commentId/cheers"],
   "cheerEventComment": ["POST", "/events/:eventId/comments/:commentId/cheers"],
   "cheerEventPhoto": ["POST", "/events/:eventId/photos/:photoId/cheers"],
   "cheerEventPhotoComment": ["POST", "/events/:eventId/photos/:photoId/comments/:commentId/cheers"],
@@ -190,6 +191,7 @@
   "listActiveAnnouncements": ["GET", "/active_announcements", [], ["page"]],
   "listAnnouncements": ["GET", "/announcements", [], ["page", "active"]],
   "listApiKeys": ["GET", "/api_keys"],
+  "listCommentCheers": ["GET", "/comments/:commentId", [], ["page"]],
   "listDepartmentAnalytics": ["GET", "/analytics/departments", [], ["page"]],
   "listDepartments": ["GET", "/departments", [], ["page"]],
   "listEntityUsers": ["GET", "/entities/users", [], ["page", "departmentIds", "interestIds", "locationIds", "userIds"]],
@@ -305,6 +307,7 @@
     ["locationName", "departmentNames", "interestNames", "avatarUrl", "title"]
   ],
   "subscribeToEventNotifications": ["POST", "/events/:eventId/event_notification_subscription"],
+  "uncheerComment": ["DELETE", "/comments/:commentId/cheers"],
   "uncheerEventComment": ["DELETE", "/events/:eventId/comments/:commentId/cheers"],
   "uncheerEventPhoto": ["DELETE", "/events/:eventId/photos/:photoId/cheers"],
   "uncheerEventPhotoComment": ["DELETE", "/events/:eventId/photos/:photoId/comments/:commentId/cheers"],

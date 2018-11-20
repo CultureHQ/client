@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [6.7.0] - 2018-11-20
+### Added
+- The `cheerComment`, `uncheerComment`, and `listCommentCheers` calls. These allow directly accessing the comment instance instead of going through the associated comment entity.
+
 ## [6.6.2] - 2018-11-19
 ### Changed
 - Getting this right this time, removing the added `get*Comment` calls added in `6.6.0` and instead just rolling with `getComment`.
