@@ -346,7 +346,8 @@
       "inviteOnly",
       "openInvites",
       "interestNames",
-      "allLocations"
+      "allLocations",
+      "timezone"
     ]
   ],
   "updateEventComment": ["PATCH", "/events/:eventId/comments/:commentId", ["body"]],

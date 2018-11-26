@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [6.7.1] - 2018-11-26
+### Added
+- Document the optional `timezone` param on the `updateEvent` call.
+
 ## [6.7.0] - 2018-11-20
 ### Added
 - The `cheerComment`, `uncheerComment`, and `listCommentCheers` calls. These allow directly accessing the comment instance instead of going through the associated comment entity.
