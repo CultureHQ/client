@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [7.0.0] - 2018-11-26
+### Added
+- The `deleteComment` call.
+
+### Removed
+- [BREAKING] The `delete*Comment` calls.
+
 ## [6.7.2] - 2018-11-26
 ### Changed
 - Fix up the `listCommentCheers` endpoint.
