@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [7.1.0] - 2018-11-27
+### Added
+- The `getUserActivity` call.
+
 ## [7.0.0] - 2018-11-26
 ### Added
 - The `deleteComment` call.

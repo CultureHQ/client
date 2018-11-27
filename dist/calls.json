@@ -179,6 +179,7 @@
   "getSurveyItemResponseOption": ["GET", "/survey_item_response_options/:surveyItemResponseOptionId"],
   "getSurveyUserItemResponse": ["GET", "/survey_items/:surveyItemId/survey_user_item_response"],
   "getUser": ["GET", "/users/:userId"],
+  "getUserActivity": ["GET", "/user_activities/:userActivityId"],
   "getUserEventTypeBreakdown": ["GET", "/users/:userId/event_type_breakdown"],
   "getUserPointBreakdown": ["GET", "/users/:userId/point_breakdown"],
   "getUserPointIncrements": ["GET", "/users/:userId/point_increments", [], ["page"]],
