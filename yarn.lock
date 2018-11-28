@@ -5313,9 +5313,9 @@ urix@^0.1.0:
   integrity sha1-2pN/emLiH+wf0Y1Js1wpNQZ6bHI=
 
 url-polyfill@^1.1.0:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/url-polyfill/-/url-polyfill-1.1.1.tgz#e7488a6dc95b688c19c524ab4aa19d256f1fe7e2"
-  integrity sha512-pvplRmxW8xvlPbx8dMrsTja7P8T3DGdHG/it21lj1et0WaaP/vozgWHWt+dkXlDR5v6ggEazeKyyMT1HCk+ydg==
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/url-polyfill/-/url-polyfill-1.1.2.tgz#88cd1aa29e6771f13baa29ea58ebf38bb0e14420"
+  integrity sha512-ysIPB51YdpgGYcAJgY64QbBLQCR1DhR/oemwAMKy6yRuMRd1eWRxTHxqv9ZvHb+Jv8xyEg9MIBg42q0ds6tYLg==
 
 use@^3.1.0:
   version "3.1.0"
