@@ -14,13 +14,9 @@
   "changePassword": ["PATCH", "/password", ["oldPassword", "newPassword"]],
   "checkInEventAttendee": ["POST", "/events/:eventId/check_ins", ["userId"]],
   "cheerComment": ["POST", "/comments/:commentId/cheers"],
-  "cheerEventComment": ["POST", "/events/:eventId/comments/:commentId/cheers"],
-  "cheerEventPhoto": ["POST", "/events/:eventId/photos/:photoId/cheers"],
-  "cheerEventPhotoComment": ["POST", "/events/:eventId/photos/:photoId/comments/:commentId/cheers"],
+  "cheerPhoto": ["POST", "/photos/:photoId/cheers"],
   "cheerRecognition": ["POST", "/recognitions/:recognitionId/cheers"],
-  "cheerRecognitionComment": ["POST", "/recognitions/:recognitionId/comments/:commentId/cheers"],
   "cheerUserActivity": ["POST", "/user_activities/:userActivityId/cheers"],
-  "cheerUserActivityComment": ["POST", "/user_activities/:userActivityId/comments/:commentId/cheers"],
   "confirmEventAttendance": ["POST", "/events/:eventId/confirmation"],
   "createAnnouncement": ["POST", "/announcements", ["title", "active"], ["body", "imageUrl"]],
   "createApiKey": ["POST", "/api_keys", ["email", "password"]],
@@ -56,7 +52,6 @@
     ["userIds", "locationIds", "interestIds", "departmentIds"]
   ],
   "createEventPhoto": ["POST", "/events/:eventId/photos", ["imageUrl"], ["caption"]],
-  "createEventPhotoComment": ["POST", "/events/:eventId/photos/:photoId/comments", ["body"], ["parentCommentId"]],
   "createEventRsvp": ["POST", "/events/:eventId/rsvps", ["responseType"]],
   "createExpense": ["POST", "/events/:eventId/expenses", ["description", "amount"], ["incurredAt"]],
   "createFeedback": ["POST", "/feedbacks", ["body"], ["anonymous"]],
@@ -82,6 +77,7 @@
     ]
   ],
   "createOrganizationValue": ["POST", "/organization_values", ["name"]],
+  "createPhotoComment": ["POST", "/photos/:photoId/comments", ["body"], ["parentCommentId"]],
   "createPhotoTag": ["POST", "/photos/:photoId/photo_tags", ["userId"]],
   "createPost": ["POST", "/posts", ["title"], ["body", "imageUrl"]],
   "createProfileNotificationView": ["POST", "/profile/notification_views"],
@@ -110,13 +106,13 @@
   "deleteComment": ["DELETE", "/comments/:commentId"],
   "deleteDepartment": ["DELETE", "/departments/:departmentId"],
   "deleteEvent": ["DELETE", "/events/:eventId", [], ["message"]],
-  "deleteEventPhoto": ["DELETE", "/events/:eventId/photos/:photoId"],
   "deleteExpense": ["DELETE", "/events/:eventId/expenses/:expenseId"],
   "deleteGoogleIntegration": ["DELETE", "/google/integration"],
   "deleteInterest": ["DELETE", "/interests/:interestId"],
   "deleteLocation": ["DELETE", "/locations/:locationId"],
   "deleteOrganization": ["DELETE", "/admin/organizations/:organizationId"],
   "deleteOrganizationValue": ["DELETE", "/organization_values/:organizationValueId"],
+  "deletePhoto": ["DELETE", "/photos/:photoId"],
   "deletePhotoTag": ["DELETE", "/photos/:photoId/photo_tags/:photoTagId"],
   "deletePost": ["DELETE", "/posts/:postId"],
   "deleteRecognition": ["DELETE", "/recognitions/:recognitionId"],
@@ -154,7 +150,6 @@
   "getDepartmentEventParticipation": ["GET", "/events/:eventId/department_event_participation"],
   "getEvent": ["GET", "/events/:eventId"],
   "getEventAnalytics": ["GET", "/analytics/events/:eventId"],
-  "getEventPhoto": ["GET", "/events/:eventId/photos/:photoId"],
   "getEventRsvp": ["GET", "/events/:eventId/rsvps/:rsvpId"],
   "getExpense": ["GET", "/events/:eventId/expenses/:expenseId"],
   "getFeedback": ["GET", "/feedbacks/:feedbackId"],
@@ -166,6 +161,7 @@
   "getOrganization": ["GET", "/admin/organizations/:organizationId"],
   "getOrganizationValue": ["GET", "/organization_values/:organizationValueId"],
   "getOrganizationValueLeaderboard": ["GET", "/leaderboard/organization_values"],
+  "getPhoto": ["GET", "/photos/:photoId"],
   "getPhotoGallery": ["GET", "/gallery", [], ["page", "range"]],
   "getPointLeaderboard": ["GET", "/leaderboard/points"],
   "getPost": ["GET", "/posts/:postId"],
@@ -194,12 +190,8 @@
   "listDepartments": ["GET", "/departments", [], ["page"]],
   "listEntityUsers": ["GET", "/entities/users", [], ["page", "departmentIds", "interestIds", "locationIds", "userIds"]],
   "listEventAnalytics": ["GET", "/analytics/events", [], ["page"]],
-  "listEventCommentCheers": ["GET", "/events/:eventId/comments/:commentId/cheers", [], ["page"]],
   "listEventComments": ["GET", "/events/:eventId/comments", [], ["page"]],
   "listEventInterests": ["GET", "/events/interests", [], ["page"]],
-  "listEventPhotoCheers": ["GET", "/events/:eventId/photos/:photoId/cheers", [], ["page"]],
-  "listEventPhotoCommentCheers": ["GET", "/events/:eventId/photos/:photoId/comments/:commentId/cheers", [], ["page"]],
-  "listEventPhotoComments": ["GET", "/events/:eventId/photos/:photoId/comments", [], ["page"]],
   "listEventPhotos": ["GET", "/events/:eventId/photos", [], ["page"]],
   "listEventRsvps": ["GET", "/events/:eventId/rsvps", [], ["page", "responseType"]],
   "listEvents": [
@@ -231,6 +223,8 @@
   "listOrganizationValues": ["GET", "/organization_values", [], ["page"]],
   "listOrganizations": ["GET", "/admin/organizations", [], ["page"]],
   "listPendingRecognitions": ["GET", "/recognitions/pending_recognitions", [], ["page"]],
+  "listPhotoCheers": ["GET", "/photos/:photoId/cheers", [], ["page"]],
+  "listPhotoComments": ["GET", "/photos/:photoId/comments", [], ["page"]],
   "listPhotoTags": ["GET", "/photos/:photoId/photo_tags", [], ["page"]],
   "listProfileAvailableWidgetSurveys": ["GET", "/profile/widget_surveys/available_surveys", [], ["page"]],
   "listProfileCompletedWidgetSurveys": ["GET", "/profile/widget_surveys/completed_surveys", [], ["page"]],
@@ -239,7 +233,6 @@
   "listProfileNotifications": ["GET", "/profile/notifications", [], ["seen", "page"]],
   "listProfilePointNotifications": ["GET", "/profile/point_notifications", [], ["seen", "page"]],
   "listRecognitionCheers": ["GET", "/recognitions/:recognitionId/cheers", [], ["page"]],
-  "listRecognitionCommentCheers": ["GET", "/recognitions/:recognitionId/comments/:commentId/cheers", [], ["page"]],
   "listRecognitionComments": ["GET", "/recognitions/:recognitionId/comments", [], ["page"]],
   "listRecognitionTypes": ["GET", "/recognitions/recognition_types", [], ["page"]],
   "listRecognitions": [
@@ -259,7 +252,6 @@
   "listTrendingEvents": ["GET", "/trending_events"],
   "listUserActivities": ["GET", "/user_activities", [], ["types", "page"]],
   "listUserActivityCheers": ["GET", "/user_activities/:userActivityId/cheers", [], ["page"]],
-  "listUserActivityCommentCheers": ["GET", "/user_activities/:userActivityId/comments/:commentId/cheers", [], ["page"]],
   "listUserActivityComments": ["GET", "/user_activities/:userActivityId/comments", [], ["page"]],
   "listUserAnalytics": ["GET", "/analytics/users", [], ["page"]],
   "listUserHostedEvents": ["GET", "/users/:userId/hosted_events", [], ["page"]],
@@ -306,13 +298,9 @@
   ],
   "subscribeToEventNotifications": ["POST", "/events/:eventId/event_notification_subscription"],
   "uncheerComment": ["DELETE", "/comments/:commentId/cheers"],
-  "uncheerEventComment": ["DELETE", "/events/:eventId/comments/:commentId/cheers"],
-  "uncheerEventPhoto": ["DELETE", "/events/:eventId/photos/:photoId/cheers"],
-  "uncheerEventPhotoComment": ["DELETE", "/events/:eventId/photos/:photoId/comments/:commentId/cheers"],
+  "uncheerPhoto": ["DELETE", "/photos/:photoId/cheers"],
   "uncheerRecognition": ["DELETE", "/recognitions/:recognitionId/cheers"],
-  "uncheerRecognitionComment": ["DELETE", "/recognitions/:recognitionId/comments/:commentId/cheers"],
   "uncheerUserActivity": ["DELETE", "/user_activities/:userActivityId/cheers"],
-  "uncheerUserActivityComment": ["DELETE", "/user_activities/:userActivityId/comments/:commentId/cheers"],
   "unpinUserActivity": ["DELETE", "/user_activities/:userActivityId/pin"],
   "unsubscribeFromEventNotifications": ["DELETE", "/events/:eventId/event_notification_subscription"],
   "updateAnnouncement": ["PATCH", "/announcements/:announcementId", [], ["title", "body", "active", "imageUrl"]],
@@ -348,9 +336,6 @@
       "timezone"
     ]
   ],
-  "updateEventComment": ["PATCH", "/events/:eventId/comments/:commentId", ["body"]],
-  "updateEventPhoto": ["PATCH", "/events/:eventId/photos/:photoId", [], ["imageUrl", "caption"]],
-  "updateEventPhotoComment": ["PATCH", "/events/:eventId/photos/:photoId/comments/:commentId", ["body"]],
   "updateEventRsvp": ["PATCH", "/events/:eventId/rsvps/:rsvpId", ["responseType"]],
   "updateExpense": ["PATCH", "/events/:eventId/expenses/:expenseId", [], ["description", "amount", "incurredAt"]],
   "updateFlag": ["PATCH", "/flags/:flagId", ["reviewed"]],
@@ -375,6 +360,7 @@
     ]
   ],
   "updateOrganizationValue": ["PATCH", "/organization_values/:organizationValueId", ["name"]],
+  "updatePhoto": ["PATCH", "/photos/:photoId", [], ["imageUrl", "caption"]],
   "updatePost": ["PATCH", "/posts/:postId", [], ["title", "body", "imageUrl"]],
   "updateProfile": [
     "PATCH",
@@ -405,7 +391,6 @@
     ]
   ],
   "updateRecognition": ["PATCH", "/recognitions/:recognitionId", ["body"], ["userIds"]],
-  "updateRecognitionComment": ["PATCH", "/recognitions/:recognitionId/comments/:commentId", ["body"]],
   "updateRecognitionType": [
     "PATCH",
     "/recognitions/recognition_types/:recognitionTypeId",
@@ -431,6 +416,5 @@
     "/users/:userId",
     [],
     ["name", "email", "departmentNames", "interestNames", "avatarUrl", "title", "locationName", "organizationAdmin"]
-  ],
-  "updateUserActivityComment": ["PATCH", "/user_activities/:userActivityId/comments/:commentId", ["body"]]
+  ]
 }

@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [8.0.0] - 2018-11-28
+### Added
+- The `*Photo*` equivalents of all `*EventPhoto*` calls.
+
+### Removed
+- The `cheer*Comment` calls in favor of using the `cheerComment` call.
+- The `uncheer*Comment` calls in favor of using the `uncheerComment` call.
+- The `list*CommentCheers` calls in favor of using the `listCommentCheers` call.
+- The `update*Comment` calls as they are no longer supported by the API.
+- All `*EventPhoto*` calls in favor of `*Photo*` equivalents that are shallow (only requiring the `:photoId` param instead of also the `:eventId` param).
+
 ## [7.1.0] - 2018-11-27
 ### Added
 - The `getUserActivity` call.
