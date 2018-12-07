@@ -10,6 +10,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - The `getProfileAvailableWidgetSurvey` call.
 
+### Removed
+- The `X-Client-Version` header.
+
 ## [8.0.0] - 2018-11-28
 ### Added
 - The `*Photo*` equivalents of all `*EventPhoto*` calls.

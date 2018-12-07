@@ -3,10 +3,7 @@ import processResponse from "./response";
 import { snakerize } from "./string-case";
 
 const buildHeaders = ({ token, simulation }) => {
-  const headers = {
-    "X-Client-Version": process.env.npm_package_version,
-    "Content-Type": "application/json"
-  };
+  const headers = { "Content-Type": "application/json" };
 
   if (typeof token === "string" && token.length) {
     headers.Authorization = `token ${token}`;
