@@ -166,6 +166,7 @@
   "getPointLeaderboard": ["GET", "/leaderboard/points"],
   "getPost": ["GET", "/posts/:postId"],
   "getProfile": ["GET", "/profile"],
+  "getProfileAvailableWidgetSurvey": ["GET", "/profile/widget_surveys/available_surveys/:surveyId"],
   "getProfileEmailSettings": ["GET", "/profile/email_settings"],
   "getProfilePointStanding": ["GET", "/profile/point_standing"],
   "getRecognition": ["GET", "/recognitions/:recognitionId"],

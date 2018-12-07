@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [8.1.0] - 2018-12-07
+### Added
+- The `getProfileAvailableWidgetSurvey` call.
+
 ## [8.0.0] - 2018-11-28
 ### Added
 - The `*Photo*` equivalents of all `*EventPhoto*` calls.
