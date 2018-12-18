@@ -1,6 +1,6 @@
-import apiCalls from "./api-calls";
+import client from "./apiCalls";
 
-export default apiCalls;
+export default client;
 
 export {
   getToken,
@@ -8,9 +8,9 @@ export {
   setToken,
   signIn,
   signOut
-} from "./sign-in-state";
+} from "./signInState";
 
-export { default as signUpload } from "./sign-upload";
+export { default as signUpload } from "./signUpload";
 
 export {
   isSimulating,
@@ -18,7 +18,7 @@ export {
   startUserSimulation
 } from "./simulation";
 
-export { default as autoPaginate } from "./auto-paginate";
+export { default as autoPaginate } from "./autoPaginate";
 
 export {
   onEventStarting,

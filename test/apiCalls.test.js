@@ -7,7 +7,7 @@ jest.mock("../src/state", () => ({
   getSimulationToken: () => "simulation"
 }));
 
-jest.mock("../src/request", () => (method, url, options) => {
+jest.mock("../src/performRequest", () => (method, url, options) => {
   const { token, simulation, params } = options;
 
   return {

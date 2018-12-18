@@ -1,4 +1,4 @@
-import apiCalls from "./api-calls";
+import apiCalls from "./apiCalls";
 import { disconnect } from "./cable";
 import state from "./state";
 

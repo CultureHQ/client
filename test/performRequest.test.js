@@ -1,5 +1,5 @@
-import createServer from "./create-server";
-import request from "../src/request";
+import createServer from "./createServer";
+import performRequest from "../src/performRequest";
 
 const withServer = async callback => {
   const server = createServer({ status: 200, body: { foo: "bar" } });
@@ -16,7 +16,7 @@ withServer.currentPort = 1693;
 
 test("attaches GET params directly to the query string", () => (
   withServer(async (server, url) => {
-    const { response } = await request("GET", url, {
+    const { response } = await performRequest("GET", url, {
       params: {
         one: "one",
         two: [],
@@ -47,7 +47,7 @@ test("attaches GET params directly to the query string", () => (
 
 test("adds appropriate headers", () => (
   withServer(async (server, url) => {
-    await request("GET", url, {
+    await performRequest("GET", url, {
       params: {},
       simulation: "simulation-token",
       token: "regular-token"

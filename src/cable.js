@@ -2,7 +2,7 @@ import ActionCable from "actioncable";
 
 import { API_HOST } from "./constants";
 import state from "./state";
-import { camelize } from "./string-case";
+import { camelize } from "./stringCase";
 
 let consumer = null;
 

@@ -1,4 +1,4 @@
-import { camelize } from "./string-case";
+import { camelize } from "./stringCase";
 
 const jsonResponse = response => json => new Promise((resolve, reject) => {
   const { status } = response;

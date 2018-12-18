@@ -11,7 +11,7 @@ var _constants = require("./constants");
 
 var _state = _interopRequireDefault(require("./state"));
 
-var _stringCase = require("./string-case");
+var _stringCase = require("./stringCase");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

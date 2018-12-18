@@ -1,5 +1,5 @@
 import { AWS_ACCESS_KEY_ID, SIGNER_URL, UPLOAD_BUCKET } from "./constants";
-import formData from "./form-data";
+import formData from "./formData";
 
 /**
  * To support faster uploading, we allow images to be uploaded directly to S3,

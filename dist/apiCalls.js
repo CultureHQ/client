@@ -9,7 +9,7 @@ var _calls = _interopRequireDefault(require("./calls"));
 
 var _constants = require("./constants");
 
-var _request = _interopRequireDefault(require("./request"));
+var _performRequest = _interopRequireDefault(require("./performRequest"));
 
 var _state = _interopRequireDefault(require("./state"));
 
@@ -65,7 +65,7 @@ var buildCall = function buildCall(_ref) {
         path = _prepare.path,
         params = _prepare.params;
 
-    return (0, _request.default)(method, new URL("".concat(_constants.API_HOST).concat(path)), {
+    return (0, _performRequest.default)(method, new URL("".concat(_constants.API_HOST).concat(path)), {
       token: _state.default.getToken(),
       simulation: _state.default.getSimulationToken(),
       params: params

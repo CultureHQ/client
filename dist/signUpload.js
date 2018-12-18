@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var _constants = require("./constants");
 
-var _formData = _interopRequireDefault(require("./form-data"));
+var _formData = _interopRequireDefault(require("./formData"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

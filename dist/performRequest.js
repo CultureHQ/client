@@ -7,9 +7,9 @@ exports.default = void 0;
 
 var _fetcher = _interopRequireDefault(require("./fetcher"));
 
-var _response = _interopRequireDefault(require("./response"));
+var _processResponse = _interopRequireDefault(require("./processResponse"));
 
-var _stringCase = require("./string-case");
+var _stringCase = require("./stringCase");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -68,7 +68,7 @@ var buildRequest = function buildRequest(method, url, options) {
 
 var performRequest = function performRequest(method, url, options) {
   var request = buildRequest(method, url, options);
-  return (_fetcher.default.fetch || window.fetch)(request.url, request.options).then(_response.default);
+  return (_fetcher.default.fetch || window.fetch)(request.url, request.options).then(_processResponse.default);
 };
 
 var _default = performRequest;

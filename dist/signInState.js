@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.signOut = exports.signIn = exports.setToken = exports.isSignedIn = exports.getToken = void 0;
 
-var _apiCalls = _interopRequireDefault(require("./api-calls"));
+var _apiCalls = _interopRequireDefault(require("./apiCalls"));
 
 var _cable = require("./cable");
 

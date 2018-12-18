@@ -101,15 +101,15 @@ Object.defineProperty(exports, "skipPreflightChecks", {
 });
 exports.default = void 0;
 
-var _apiCalls = _interopRequireDefault(require("./api-calls"));
+var _apiCalls = _interopRequireDefault(require("./apiCalls"));
 
-var _signInState = require("./sign-in-state");
+var _signInState = require("./signInState");
 
-var _signUpload = _interopRequireDefault(require("./sign-upload"));
+var _signUpload = _interopRequireDefault(require("./signUpload"));
 
 var _simulation = require("./simulation");
 
-var _autoPaginate = _interopRequireDefault(require("./auto-paginate"));
+var _autoPaginate = _interopRequireDefault(require("./autoPaginate"));
 
 var _cable = require("./cable");
 

@@ -1,4 +1,4 @@
-import createServer from "./create-server";
+import createServer from "./createServer";
 
 import client, {
   getToken,

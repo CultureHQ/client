@@ -1,4 +1,4 @@
-import formData from "../src/form-data";
+import formData from "../src/formData";
 
 const serializeFormData = data => { /* eslint-disable no-underscore-dangle */
   const serialized = [];

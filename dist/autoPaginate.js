@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _apiCalls = _interopRequireDefault(require("./api-calls"));
+var _apiCalls = _interopRequireDefault(require("./apiCalls"));
 
 var _calls = _interopRequireDefault(require("./calls"));
 

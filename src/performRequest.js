@@ -1,6 +1,6 @@
 import fetcher from "./fetcher";
-import processResponse from "./response";
-import { snakerize } from "./string-case";
+import processResponse from "./processResponse";
+import { snakerize } from "./stringCase";
 
 const buildHeaders = ({ token, simulation }) => {
   const headers = { "Content-Type": "application/json" };

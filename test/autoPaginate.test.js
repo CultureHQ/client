@@ -1,7 +1,7 @@
-import apiCalls from "../src/api-calls";
+import apiCalls from "../src/apiCalls";
 import { autoPaginate } from "../src/client";
 
-jest.mock("../src/api-calls", () => ({ listEvents: jest.fn() }));
+jest.mock("../src/apiCalls", () => ({ listEvents: jest.fn() }));
 
 const PER_PAGE = 5;
 const EVENTS = [...Array(18)].map((empty, idx) => ({ idx, name: `Event ${idx}` }));

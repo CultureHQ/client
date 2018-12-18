@@ -1,4 +1,4 @@
-import apiCalls from "./api-calls";
+import apiCalls from "./apiCalls";
 import calls from "./calls";
 
 class AutoPaginator {
