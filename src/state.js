@@ -22,7 +22,7 @@ const state = {
     state.setToken(token);
   },
 
-  setToken: token => localStorage.setItem(TOKEN_KEY, token),
+  setToken: token => localStorage.setItem(TOKEN_KEY, token)
 };
 
 export default state;
