@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [8.1.1] - 2018-12-18
+### Added
+- Fixed the documentation of optional params for `createEvent` by including the `imageDefault` prop.
+
 ## [8.1.0] - 2018-12-07
 ### Added
 - The `getProfileAvailableWidgetSurvey` call.
