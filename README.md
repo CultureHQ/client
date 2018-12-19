@@ -1,6 +1,5 @@
 # @culturehq/client
 
-[![Build Status](https://travis-ci.com/CultureHQ/client.svg?branch=master)](https://travis-ci.com/CultureHQ/client)
 [![Package Version](https://img.shields.io/npm/v/@culturehq/client.svg)](https://www.npmjs.com/package/@culturehq/client)
 
 A JavaScript client that wraps the CultureHQ API.
