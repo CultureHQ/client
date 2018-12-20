@@ -2,7 +2,7 @@ const CONSTANTS = {
   production: {
     API_HOST: "https://api.culturehq.com",
     AWS_ACCESS_KEY_ID: "AKIAIPWT257FWZ5I4ZGQ",
-    SIGNER_URL: "https://726l7tpb5a.execute-api.us-west-2.amazonaws.com/production/signature",
+    SIGNER_URL: "https://mqxr6sjf84.execute-api.us-west-2.amazonaws.com/production/signature",
     UPLOAD_BUCKET: "https://culturehq-direct-uploads.s3-us-west-2.amazonaws.com"
   },
   development: {
