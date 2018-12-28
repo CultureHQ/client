@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [8.2.0] - 2018-12-28
+### Added
+- Support the location params on photos.
+
 ## [8.1.2] - 2018-12-20
 ### Changed
 - Fixed up to use the new upload signer URL.
