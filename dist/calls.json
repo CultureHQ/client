@@ -78,9 +78,10 @@
       "accountInfoEnabled"
     ]
   ],
+  "createUserConnection": ["POST", "/users/:userId/connection", [], ["reason", "note"]],
   "createOrganizationValue": ["POST", "/organization_values", ["name"]],
   "createPhotoComment": ["POST", "/photos/:photoId/comments", ["body"], ["parentCommentId"]],
-  "createPhotoTag": ["POST", "/photos/:photoId/photo_tags", ["userId"], ["left", "top", "width", "height"]],
+  "createPhotoTag": ["POST", "/photos/:photoId/photo_tags", ["userId"], ["left", "top", "width", "height", "uuid"]],
   "createPost": ["POST", "/posts", ["title"], ["body", "imageUrl"]],
   "createProfileNotificationView": ["POST", "/profile/notification_views"],
   "createProfilePointNotificationView": ["POST", "/profile/point_notification_views"],

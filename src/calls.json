@@ -78,6 +78,7 @@
       "accountInfoEnabled"
     ]
   ],
+  "createUserConnection": ["POST", "/users/:userId/connection", [], ["reason", "note"]],
   "createOrganizationValue": ["POST", "/organization_values", ["name"]],
   "createPhotoComment": ["POST", "/photos/:photoId/comments", ["body"], ["parentCommentId"]],
   "createPhotoTag": ["POST", "/photos/:photoId/photo_tags", ["userId"], ["left", "top", "width", "height", "uuid"]],
