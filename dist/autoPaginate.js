@@ -70,7 +70,7 @@ function () {
           var data = _toConsumableArray(response[_this.dataType]);
 
           for (page = 0; page <= totalPages - 2; page += 1) {
-            data = _toConsumableArray(data).concat(_toConsumableArray(responses[page][_this.dataType]));
+            data = [].concat(_toConsumableArray(data), _toConsumableArray(responses[page][_this.dataType]));
           }
 
           var aggregated = _objectSpread({}, response);

@@ -1,6 +1,6 @@
 {
   "name": "@culturehq/client",
-  "version": "8.3.0",
+  "version": "8.4.0",
   "description": "A JavaScript client that wraps the CultureHQ API",
   "main": "dist/client.js",
   "module": "src/client.js",
@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/CultureHQ/client#readme",
   "dependencies": {
-    "actioncable": "^5.2.1"
+    "actioncable": "^5.2.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
@@ -31,7 +31,7 @@
     "babel-eslint": "^10.0.0",
     "babel-jest": "^24.0.0",
     "eslint": "^5.12.1",
-    "eslint-plugin-import": "^2.15.0",
+    "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.0",
     "eslint-plugin-react": "^7.12.4",
     "isomorphic-fetch": "^2.2.1",

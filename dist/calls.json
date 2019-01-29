@@ -186,6 +186,7 @@
   "getUserRecognitionLeaderboard": ["GET", "/leaderboard/user_recognitions"],
   "incrementUserPoints": ["POST", "/users/:userId/point_increments", ["points"]],
   "invalidateOtherApiKeys": ["DELETE", "/api_keys"],
+  "listUserCommonEntities": ["GET", "/users/:userId/common_entities", [], ["page"]],
   "listActiveAnnouncements": ["GET", "/active_announcements", [], ["page"]],
   "listAnnouncements": ["GET", "/announcements", [], ["page", "active"]],
   "listApiKeys": ["GET", "/api_keys"],
