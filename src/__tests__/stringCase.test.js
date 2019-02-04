@@ -1,4 +1,4 @@
-import { camelize, snakerize } from "../src/stringCase";
+import { camelize, snakerize } from "../stringCase";
 
 test("camelizes the keys of basic objects", () => {
   const object = {

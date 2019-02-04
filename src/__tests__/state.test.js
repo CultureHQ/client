@@ -1,5 +1,5 @@
-import { setToken, isSimulating, startUserSimulation } from "../src/client";
-import state from "../src/state";
+import { setToken, isSimulating, startUserSimulation } from "../client";
+import state from "../state";
 
 const { clear, clearSimulationToken, setSimulationToken } = state;
 

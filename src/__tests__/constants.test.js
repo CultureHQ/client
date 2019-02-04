@@ -1,4 +1,4 @@
-import * as constants from "../src/constants";
+import * as constants from "../constants";
 
 test("exports sane values for each constant", () => {
   Object.keys(constants).forEach(constant => {

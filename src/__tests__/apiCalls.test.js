@@ -1,13 +1,13 @@
-import client from "../src/client";
+import client from "../client";
 
 const { getUser, createInterest } = client;
 
-jest.mock("../src/state", () => ({
+jest.mock("../state", () => ({
   getToken: () => "token",
   getSimulationToken: () => "simulation"
 }));
 
-jest.mock("../src/performRequest", () => (method, url, options) => {
+jest.mock("../performRequest", () => (method, url, options) => {
   const { token, simulation, params } = options;
 
   return {

@@ -5,7 +5,7 @@
   "main": "dist/client.js",
   "module": "src/client.js",
   "scripts": {
-    "build": "rm -r dist && babel src --out-dir dist --copy-files",
+    "build": "rm -r dist && babel src --out-dir dist --ignore '**/__tests__' && cp src/calls.json dist/calls.json",
     "lint": "eslint .",
     "test": "jest"
   },
@@ -41,7 +41,8 @@
   },
   "jest": {
     "setupFilesAfterEnv": [
-      "./test/setupTests.js"
-    ]
+      "./setupTests.js"
+    ],
+    "testRegex": ".test.js"
   }
 }

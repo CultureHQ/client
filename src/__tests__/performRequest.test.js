@@ -1,5 +1,5 @@
 import createServer from "./createServer";
-import performRequest from "../src/performRequest";
+import performRequest from "../performRequest";
 
 const withServer = async callback => {
   const server = createServer({ status: 200, body: { foo: "bar" } });

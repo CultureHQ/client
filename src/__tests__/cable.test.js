@@ -6,9 +6,9 @@ import {
   onNotificationReceived,
   onRecognitionCreated,
   onUserActivityCreated
-} from "../src/client";
+} from "../client";
 
-import { disconnect } from "../src/cable";
+import { disconnect } from "../cable";
 
 jest.mock("actioncable", () => {
   class Subscriptions {

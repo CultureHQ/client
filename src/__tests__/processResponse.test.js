@@ -1,4 +1,4 @@
-import processResponse from "../src/processResponse";
+import processResponse from "../processResponse";
 
 class Headers {
   constructor(headers) {

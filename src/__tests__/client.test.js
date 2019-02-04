@@ -9,9 +9,9 @@ import client, {
   startUserSimulation,
   endUserSimulation,
   isSimulating
-} from "../src/client";
+} from "../client";
 
-import state from "../src/state";
+import state from "../state";
 
 afterEach(() => state.clear());
 
