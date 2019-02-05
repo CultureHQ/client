@@ -1,3 +1,5 @@
+/* eslint-disable import/no-extraneous-dependencies */
+
 import "isomorphic-fetch";
 import "isomorphic-form-data";
 import "url-polyfill";
