@@ -78,7 +78,6 @@
       "accountInfoEnabled"
     ]
   ],
-  "createUserConnection": ["POST", "/users/:userId/connection", [], ["reason", "note"]],
   "createOrganizationValue": ["POST", "/organization_values", ["name"]],
   "createPhotoComment": ["POST", "/photos/:photoId/comments", ["body"], ["parentCommentId"]],
   "createPhotoTag": ["POST", "/photos/:photoId/photo_tags", ["userId"], ["left", "top", "width", "height", "uuid"]],
@@ -102,6 +101,7 @@
     ["body", "surveyItemResponseOptionIds"]
   ],
   "createUserActivityComment": ["POST", "/user_activities/:userActivityId/comments", ["body"], ["parentCommentId"]],
+  "createUserConnection": ["POST", "/users/:userId/connection", [], ["reason", "note"]],
   "createUserInvite": ["POST", "/users/:userId/invites"],
   "deactivateSurvey": ["DELETE", "/surveys/:surveyId/survey_activation"],
   "deactivateUser": ["POST", "/users/:userId/deactivation"],
@@ -186,7 +186,6 @@
   "getUserRecognitionLeaderboard": ["GET", "/leaderboard/user_recognitions"],
   "incrementUserPoints": ["POST", "/users/:userId/point_increments", ["points"]],
   "invalidateOtherApiKeys": ["DELETE", "/api_keys"],
-  "listUserCommonEntities": ["GET", "/users/:userId/common_entities", [], ["page"]],
   "listActiveAnnouncements": ["GET", "/active_announcements", [], ["page"]],
   "listAnnouncements": ["GET", "/announcements", [], ["page", "active"]],
   "listApiKeys": ["GET", "/api_keys"],
@@ -237,6 +236,7 @@
   "listProfileManageableWidgetSurveys": ["GET", "/profile/widget_surveys/manageable_surveys", [], ["page"]],
   "listProfileNotifications": ["GET", "/profile/notifications", [], ["seen", "page"]],
   "listProfilePointNotifications": ["GET", "/profile/point_notifications", [], ["seen", "page"]],
+  "listProfileSuggestedInterests": ["GET", "/profile/suggestions/interests"],
   "listRecognitionCheers": ["GET", "/recognitions/:recognitionId/cheers", [], ["page"]],
   "listRecognitionComments": ["GET", "/recognitions/:recognitionId/comments", [], ["page"]],
   "listRecognitionTypes": ["GET", "/recognitions/recognition_types", [], ["page"]],
@@ -259,6 +259,7 @@
   "listUserActivityCheers": ["GET", "/user_activities/:userActivityId/cheers", [], ["page"]],
   "listUserActivityComments": ["GET", "/user_activities/:userActivityId/comments", [], ["page"]],
   "listUserAnalytics": ["GET", "/analytics/users", [], ["page"]],
+  "listUserCommonEntities": ["GET", "/users/:userId/common_entities", [], ["page"]],
   "listUserHostedEvents": ["GET", "/users/:userId/hosted_events", [], ["page"]],
   "listUserRecognitions": ["GET", "/users/:userId/recognitions", [], ["page"]],
   "listUserRsvpdEvents": ["GET", "/users/:userId/rsvpd_events", [], ["when", "sort"]],
