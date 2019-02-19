@@ -288,6 +288,7 @@
   ],
   "messageEventGuests": ["POST", "/events/:eventId/event_notifications", ["body"]],
   "pinUserActivity": ["POST", "/user_activities/:userActivityId/pin"],
+  "profileAutocompleteTags": ["GET", "/profile/autocomplete/tags", ["query"]],
   "reactivateUser": ["DELETE", "/users/:userId/deactivation"],
   "registerUser": ["POST", "/invites/:token/users", ["password"]],
   "reorderProfileInterests": ["PATCH", "/profile/interest_order", ["order"]],

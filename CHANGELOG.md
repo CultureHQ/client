@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [8.7.0] - 2019-02-19
+### Added
+- The `profileAutocompleteTags` call.
+
 ## [8.6.0] - 2019-02-19
 ### Added
 - The `createProfileSkill`, `deleteProfileSkill`, and `listProfileSkills` calls.
@@ -963,7 +967,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v8.6.0...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v8.7.0...HEAD
+[8.7.0]: https://github.com/CultureHQ/client/compare/v8.6.0...v8.7.0
 [8.6.0]: https://github.com/CultureHQ/client/compare/v8.5.0...v8.6.0
 [8.5.0]: https://github.com/CultureHQ/client/compare/v8.4.0...v8.5.0
 [8.4.0]: https://github.com/CultureHQ/client/compare/v8.3.0...v8.4.0
