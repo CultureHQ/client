@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [9.0.0] - 2019-02-20
+### Added
+- The optional `names` param to the `listProfileSuggestedInterests` and the `listProfileSuggestedSkills` calls.
+- The optional `skillIds` param to the `listUsers` call.
+- The `listUserSkills`, `profileAutocompleteInterests`, `profileAutocompleteSkills`, and `reorderProfileSkills` calls.
+
+### Changed
+- The required param on `createProfileSkill` and `createProfileUserInterest` from `tag_id` and `interest_id` to `name`.
+- Corrected the path param on `deleteProfileSkill` and `deleteProfileUserInterest`.
+
+### Removed
+- The `profileAutocompleteTags` call.
+
 ## [8.7.0] - 2019-02-19
 ### Added
 - The `profileAutocompleteTags` call.
@@ -967,7 +980,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v8.7.0...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v9.0.0...HEAD
+[9.0.0]: https://github.com/CultureHQ/client/compare/v8.7.0...v9.0.0
 [8.7.0]: https://github.com/CultureHQ/client/compare/v8.6.0...v8.7.0
 [8.6.0]: https://github.com/CultureHQ/client/compare/v8.5.0...v8.6.0
 [8.5.0]: https://github.com/CultureHQ/client/compare/v8.4.0...v8.5.0
