@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [9.1.0] - 2019-02-21
+### Added
+- The `listUserConnectedUsers` call.
+
 ## [9.0.0] - 2019-02-20
 ### Added
 - The optional `names` param to the `listProfileSuggestedInterests` and the `listProfileSuggestedSkills` calls.
@@ -980,7 +984,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v9.0.0...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v9.1.0...HEAD
+[9.1.0]: https://github.com/CultureHQ/client/compare/v9.0.0...v9.1.0
 [9.0.0]: https://github.com/CultureHQ/client/compare/v8.7.0...v9.0.0
 [8.7.0]: https://github.com/CultureHQ/client/compare/v8.6.0...v8.7.0
 [8.6.0]: https://github.com/CultureHQ/client/compare/v8.5.0...v8.6.0
