@@ -270,7 +270,7 @@
   "listUserHostedEvents": ["GET", "/users/:userId/hosted_events", [], ["page"]],
   "listUserRecognitions": ["GET", "/users/:userId/recognitions", [], ["page"]],
   "listUserRsvpdEvents": ["GET", "/users/:userId/rsvpd_events", [], ["when", "sort"]],
-  "listUserSentConnections": ["GET", "/users/:userId/connected_users", [], ["page"]],
+  "listUserSentConnections": ["GET", "/users/:userId/sent_connections", [], ["page"]],
   "listUserSkills": ["GET", "/users/:userId/skills"],
   "listUsers": [
     "GET",

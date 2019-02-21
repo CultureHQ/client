@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [9.1.2] - 2019-02-21
+### Changed
+- Properly handle the URL for `listUserSentConnections`.
+
 ## [9.1.1] - 2019-02-21
 ### Changed
 - Rename the `listUserConnectedUsers` call to `listUserSentConnections`.
