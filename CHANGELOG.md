@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [9.2.0] - 2019-03-07
+### Added
+- The `listProfileSuggestedConnections` call.
+
 ## [9.1.2] - 2019-02-21
 ### Changed
 - Properly handle the URL for `listUserSentConnections`.

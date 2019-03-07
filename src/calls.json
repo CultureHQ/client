@@ -253,6 +253,7 @@
     [],
     ["page", "locationIds", "departmentIds", "organizationValueIds", "type"]
   ],
+  "listProfileSuggestedConnections": ["GET", "/profile/suggestions/connections", [], ["page"]],
   "listRecognitionsOrganizationValues": ["GET", "/recognitions/organization_values"],
   "listRecognitionsRecognizedUsers": ["GET", "/recognitions/recognized_users"],
   "listRecognitionsRecognizingUsers": ["GET", "/recognitions/recognizing_users"],
