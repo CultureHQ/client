@@ -174,6 +174,7 @@
   "getPost": ["GET", "/posts/:postId"],
   "getProfile": ["GET", "/profile"],
   "getProfileAvailableWidgetSurvey": ["GET", "/profile/widget_surveys/available_surveys/:surveyId"],
+  "getProfileCommunityStrength": ["GET", "/profile/community_strength"],
   "getProfileEmailSettings": ["GET", "/profile/email_settings"],
   "getProfilePointStanding": ["GET", "/profile/point_standing"],
   "getRecognition": ["GET", "/recognitions/:recognitionId"],
@@ -241,6 +242,7 @@
   "listProfileNotifications": ["GET", "/profile/notifications", [], ["seen", "page"]],
   "listProfilePointNotifications": ["GET", "/profile/point_notifications", [], ["seen", "page"]],
   "listProfileSkills": ["GET", "/profile/skills"],
+  "listProfileSuggestedConnections": ["GET", "/profile/suggestions/connections", [], ["page"]],
   "listProfileSuggestedInterests": ["GET", "/profile/suggestions/interests", [], ["num", "names"]],
   "listProfileSuggestedSkills": ["GET", "/profile/suggestions/skills", [], ["num", "names"]],
   "listProfileUserInterests": ["GET", "/profile/user_interests"],
@@ -253,7 +255,6 @@
     [],
     ["page", "locationIds", "departmentIds", "organizationValueIds", "type"]
   ],
-  "listProfileSuggestedConnections": ["GET", "/profile/suggestions/connections", [], ["page"]],
   "listRecognitionsOrganizationValues": ["GET", "/recognitions/organization_values"],
   "listRecognitionsRecognizedUsers": ["GET", "/recognitions/recognized_users"],
   "listRecognitionsRecognizingUsers": ["GET", "/recognitions/recognizing_users"],

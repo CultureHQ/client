@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [9.3.0] - 2019-03-08
+### Added
+- The `getProfileCommunityStrength` call.
+
 ## [9.2.0] - 2019-03-07
 ### Added
 - The `listProfileSuggestedConnections` call.
@@ -996,7 +1000,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v9.1.0...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v9.3.0...HEAD
+[9.3.0]: https://github.com/CultureHQ/client/compare/v9.2.0...v9.3.0
+[9.2.0]: https://github.com/CultureHQ/client/compare/v9.1.2...v9.2.0
+[9.1.2]: https://github.com/CultureHQ/client/compare/v9.1.1...v9.1.2
+[9.1.1]: https://github.com/CultureHQ/client/compare/v9.1.0...v9.1.1
 [9.1.0]: https://github.com/CultureHQ/client/compare/v9.0.0...v9.1.0
 [9.0.0]: https://github.com/CultureHQ/client/compare/v8.7.0...v9.0.0
 [8.7.0]: https://github.com/CultureHQ/client/compare/v8.6.0...v8.7.0
