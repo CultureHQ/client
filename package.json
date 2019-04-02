@@ -27,11 +27,11 @@
     "@babel/core": "^7.4.0",
     "@babel/preset-env": "^7.4.1",
     "@culturehq/eslint-config": "^1.1.0",
-    "babel-jest": "^24.5.0",
+    "babel-jest": "^24.6.0",
     "eslint": "^5.16.0",
     "isomorphic-fetch": "^2.2.1",
     "isomorphic-form-data": "^2.0.0",
-    "jest": "^24.5.0",
+    "jest": "^24.6.0",
     "prettier": "^1.16.4",
     "url-polyfill": "^1.1.3"
   },
