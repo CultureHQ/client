@@ -134,12 +134,4 @@ skipPreflightChecks();
 
 ## Development
 
-First, install the dependencies with `yarn`.
-
-### Styling
-
-Styling is handled through `prettier`. Run it with `yarn prettier`.
-
-### Testing
-
-Run `yarn test` to run the tests with `jest`.
+First, install the dependencies with `yarn`. Run `yarn test` to run the tests with `jest`. Run `yarn lint` to run linting with `eslint`.
