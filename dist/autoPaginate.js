@@ -3,13 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _apiCalls = _interopRequireDefault(require("./apiCalls"));
 
 var _calls = _interopRequireDefault(require("./calls"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
@@ -85,10 +85,10 @@ function () {
   return AutoPaginator;
 }();
 
-Object.keys(_calls.default).forEach(function (callName) {
+Object.keys(_calls["default"]).forEach(function (callName) {
   /* eslint-disable-next-line func-names */
   AutoPaginator.prototype[callName] = function (options) {
-    return this.aggregate(_apiCalls.default[callName], options);
+    return this.aggregate(_apiCalls["default"][callName], options);
   };
 });
 /**
@@ -115,4 +115,4 @@ var autoPaginate = function autoPaginate(dataType) {
 };
 
 var _default = autoPaginate;
-exports.default = _default;
+exports["default"] = _default;

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 var TOKEN_KEY = "token";
 var SIMULATION_KEY = "simulation";
 var state = {
@@ -35,4 +35,4 @@ var state = {
   }
 };
 var _default = state;
-exports.default = _default;
+exports["default"] = _default;

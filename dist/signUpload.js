@@ -3,13 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _constants = require("./constants");
 
 var _formData = _interopRequireDefault(require("./formData"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 /**
  * To support faster uploading, we allow images to be uploaded directly to S3,
@@ -54,7 +54,7 @@ var signUpload = function signUpload(file, onProgress) {
         });
       }
 
-      xhr.send((0, _formData.default)({
+      xhr.send((0, _formData["default"])({
         key: key,
         AWSAccessKeyId: _constants.AWS_ACCESS_KEY_ID,
         acl: "public-read",
@@ -64,9 +64,9 @@ var signUpload = function signUpload(file, onProgress) {
         "Content-Type": file.type,
         file: file
       }));
-    }).catch(reject);
+    })["catch"](reject);
   });
 };
 
 var _default = signUpload;
-exports.default = _default;
+exports["default"] = _default;

@@ -11,7 +11,7 @@ var _cable = require("./cable");
 
 var _state = _interopRequireDefault(require("./state"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 /**
  * If you're listed as a CultureHQ admin, you can simulate users for debugging
@@ -19,11 +19,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * The corresponding end call is `endUserSimulation`, along with the check for
  * the current state which is `isSimulating`.
  */
-var isSimulating = _state.default.isSimulating;
+var isSimulating = _state["default"].isSimulating;
 exports.isSimulating = isSimulating;
 
 var endUserSimulation = function endUserSimulation() {
-  _state.default.clearSimulationToken();
+  _state["default"].clearSimulationToken();
 
   (0, _cable.disconnect)();
 };
@@ -31,12 +31,12 @@ var endUserSimulation = function endUserSimulation() {
 exports.endUserSimulation = endUserSimulation;
 
 var startUserSimulation = function startUserSimulation(params) {
-  if (!_state.default.isSignedIn()) {
+  if (!_state["default"].isSignedIn()) {
     throw new Error("Cannot simulate unless you're already logged in.");
   }
 
-  return _apiCalls.default.createSimulation(params).then(function (response) {
-    _state.default.setSimulationToken(response.apiKey.token);
+  return _apiCalls["default"].createSimulation(params).then(function (response) {
+    _state["default"].setSimulationToken(response.apiKey.token);
 
     (0, _cable.disconnect)();
     return response;

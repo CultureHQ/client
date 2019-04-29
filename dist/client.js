@@ -3,6 +3,24 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var _exportNames = {
+  getToken: true,
+  isSignedIn: true,
+  setToken: true,
+  signIn: true,
+  signOut: true,
+  signUpload: true,
+  isSimulating: true,
+  endUserSimulation: true,
+  startUserSimulation: true,
+  autoPaginate: true,
+  onEventStarting: true,
+  onLeaderboardUpdated: true,
+  onNotificationReceived: true,
+  onRecognitionCreated: true,
+  onUserActivityCreated: true,
+  skipPreflightChecks: true
+};
 Object.defineProperty(exports, "getToken", {
   enumerable: true,
   get: function get() {
@@ -36,7 +54,7 @@ Object.defineProperty(exports, "signOut", {
 Object.defineProperty(exports, "signUpload", {
   enumerable: true,
   get: function get() {
-    return _signUpload.default;
+    return _signUpload["default"];
   }
 });
 Object.defineProperty(exports, "isSimulating", {
@@ -60,7 +78,7 @@ Object.defineProperty(exports, "startUserSimulation", {
 Object.defineProperty(exports, "autoPaginate", {
   enumerable: true,
   get: function get() {
-    return _autoPaginate.default;
+    return _autoPaginate["default"];
   }
 });
 Object.defineProperty(exports, "onEventStarting", {
@@ -99,7 +117,7 @@ Object.defineProperty(exports, "skipPreflightChecks", {
     return _fetcher.skipPreflightChecks;
   }
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _apiCalls = _interopRequireDefault(require("./apiCalls"));
 
@@ -115,7 +133,20 @@ var _cable = require("./cable");
 
 var _fetcher = require("./fetcher");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _requests = require("./requests");
 
-var _default = _apiCalls.default;
-exports.default = _default;
+Object.keys(_requests).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _requests[key];
+    }
+  });
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var _default = _apiCalls["default"];
+exports["default"] = _default;

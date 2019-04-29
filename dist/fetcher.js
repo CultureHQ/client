@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exports.skipPreflightChecks = void 0;
+exports["default"] = exports.skipPreflightChecks = void 0;
 
 var _require = require("./constants"),
     API_HOST = _require.API_HOST; // A container for holding the currently set `fetch` function.
@@ -66,4 +66,4 @@ var skipPreflightChecks = function skipPreflightChecks() {
 
 exports.skipPreflightChecks = skipPreflightChecks;
 var _default = fetcher;
-exports.default = _default;
+exports["default"] = _default;

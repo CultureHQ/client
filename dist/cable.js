@@ -13,7 +13,7 @@ var _state = _interopRequireDefault(require("./state"));
 
 var _stringCase = require("./stringCase");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
@@ -32,12 +32,12 @@ var getEndpoint = function getEndpoint() {
       host = _API_HOST$split2[1];
 
   var wsProtocol = protocol === "https" ? "wss" : "ws";
-  return "".concat(wsProtocol, "://").concat(host, "/cable/").concat(_state.default.getToken());
+  return "".concat(wsProtocol, "://").concat(host, "/cable/").concat(_state["default"].getToken());
 };
 
 var getConsumer = function getConsumer() {
   if (!consumer) {
-    consumer = _actioncable.default.createConsumer(getEndpoint());
+    consumer = _actioncable["default"].createConsumer(getEndpoint());
   }
 
   return consumer;

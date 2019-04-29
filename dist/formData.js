@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var valueFor = function valueFor(object) {
   if (object === undefined || object === null) {
@@ -30,4 +30,4 @@ var formData = function formData(params) {
 };
 
 var _default = formData;
-exports.default = _default;
+exports["default"] = _default;

@@ -43,7 +43,8 @@
       "sponsored",
       "surveyId",
       "timezone",
-      "visibility"
+      "visibility",
+      "hostOnlySurvey"
     ]
   ],
   "createEventComment": ["POST", "/events/:eventId/comments", ["body"], ["parentCommentId"]],
@@ -421,7 +422,7 @@
     [],
     ["name", "approval", "points", "imageUrl"]
   ],
-  "updateSurvey": ["PATCH", "/surveys/:surveyId", [], ["title", "points", "viewableResults"]],
+  "updateSurvey": ["PATCH", "/surveys/:surveyId", [], ["title", "points", "viewableResults", "hostOnlySurvey"]],
   "updateSurveyItem": ["PATCH", "/survey_items/:surveyItemId", [], ["prompt", "itemType", "minRange", "maxRange"]],
   "updateSurveyItemResponseOption": [
     "PATCH",

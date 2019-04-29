@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [9.5.0] - 2019-04-29
+### Added
+- The optional `hostOnlySurvey` on the `createEvent` and `updateSurvey` calls.
+
 ### Changed
 - [INTERNAL] Switch to using `@culturehq/scripts` for simpler development setup.
 
@@ -1006,7 +1011,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Initial checkin.
 
-[Unreleased]: https://github.com/CultureHQ/client/compare/v9.4.0...HEAD
+[Unreleased]: https://github.com/CultureHQ/client/compare/v9.5.0...HEAD
+[9.5.0]: https://github.com/CultureHQ/client/compare/v9.4.0...v9.5.0
 [9.4.0]: https://github.com/CultureHQ/client/compare/v9.3.0...v9.4.0
 [9.3.0]: https://github.com/CultureHQ/client/compare/v9.2.0...v9.3.0
 [9.2.0]: https://github.com/CultureHQ/client/compare/v9.1.2...v9.2.0

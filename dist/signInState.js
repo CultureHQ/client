@@ -11,10 +11,10 @@ var _cable = require("./cable");
 
 var _state = _interopRequireDefault(require("./state"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var createApiKey = _apiCalls.default.createApiKey,
-    deleteSession = _apiCalls.default.deleteSession;
+var createApiKey = _apiCalls["default"].createApiKey,
+    deleteSession = _apiCalls["default"].deleteSession;
 /**
  * Signed in state is handled through the client using the `signIn` and
  * `signOut` functions. These effectively act as normal API calls but with the
@@ -26,16 +26,16 @@ var createApiKey = _apiCalls.default.createApiKey,
  * integrations).
  */
 
-var getToken = _state.default.getToken,
-    isSignedIn = _state.default.isSignedIn,
-    setToken = _state.default.setToken;
+var getToken = _state["default"].getToken,
+    isSignedIn = _state["default"].isSignedIn,
+    setToken = _state["default"].setToken;
 exports.setToken = setToken;
 exports.isSignedIn = isSignedIn;
 exports.getToken = getToken;
 
 var signIn = function signIn(params) {
   return createApiKey(params).then(function (response) {
-    _state.default.setToken(response.apiKey.token);
+    _state["default"].setToken(response.apiKey.token);
 
     return response;
   });
@@ -45,7 +45,7 @@ exports.signIn = signIn;
 
 var signOut = function signOut() {
   return deleteSession().then(function (response) {
-    _state.default.clear();
+    _state["default"].clear();
 
     (0, _cable.disconnect)();
     return response;

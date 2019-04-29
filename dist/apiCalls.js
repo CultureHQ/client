@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _calls = _interopRequireDefault(require("./calls"));
 
@@ -13,7 +13,7 @@ var _performRequest = _interopRequireDefault(require("./performRequest"));
 
 var _state = _interopRequireDefault(require("./state"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
@@ -65,9 +65,9 @@ var buildCall = function buildCall(_ref) {
         path = _prepare.path,
         params = _prepare.params;
 
-    return (0, _performRequest.default)(method, new URL("".concat(_constants.API_HOST).concat(path)), {
-      token: _state.default.getToken(),
-      simulation: _state.default.getSimulationToken(),
+    return (0, _performRequest["default"])(method, new URL("".concat(_constants.API_HOST).concat(path)), {
+      token: _state["default"].getToken(),
+      simulation: _state["default"].getSimulationToken(),
       params: params
     });
   };
@@ -80,8 +80,8 @@ var buildCall = function buildCall(_ref) {
   });
 };
 
-var apiCalls = Object.keys(_calls.default).reduce(function (accum, callName) {
-  return _objectSpread({}, accum, _defineProperty({}, callName, buildCall(_calls.default[callName])));
+var apiCalls = Object.keys(_calls["default"]).reduce(function (accum, callName) {
+  return _objectSpread({}, accum, _defineProperty({}, callName, buildCall(_calls["default"][callName])));
 }, {});
 var _default = apiCalls;
-exports.default = _default;
+exports["default"] = _default;
