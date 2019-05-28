@@ -135,3 +135,11 @@ skipPreflightChecks();
 ## Development
 
 First, install the dependencies with `yarn`. Run `yarn test` to run the tests with `jest`. Run `yarn lint` to run linting with `eslint`.
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/CultureHQ/client.
+
+## License
+
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
