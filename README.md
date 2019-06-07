@@ -18,11 +18,14 @@ Every API call function returns a `Promise` object. You can call them with norma
 
 ```js
 const getProfile = () => {
-  client.getProfile().then(response => {
-    console.log(response);
-  }).catch(error => {
-    console.error(error);
-  });
+  client
+    .getProfile()
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => {
+      console.error(error);
+    });
 };
 ```
 
@@ -70,7 +73,7 @@ signUpload(document.querySelector("#file").files[0]).then(url => {
 Almost every one of the `list*` events is paginated, and will return pagination metadata along with the actual data of the call. The `pagination` object will look like:
 
 ```js
-{ currentPage, totalPages, totalCount }
+const pagination = { currentPage, totalPages, totalCount };
 ```
 
 You can handle this pagination manually, e.g., links on the bottom of the page. You can also use the client's built-in automatic pagination capabilities by using the `autoPaginate` named export, as in the following example:
@@ -124,7 +127,7 @@ The way it works is by changing the `document.domain` value to be the common par
 
 The response domain can be changed by embedding an `iframe` into the page that contains a specially crafted page from the response server. The `iframe` contains a small HTML page with a script tag that changes the `document.domain` value to match the requesting server. You can then pull the `fetch` function from the child window into the parent and use that to hit the server.
 
-If using this code in production on a `culturehq` subdomain, we can embed an `iframe` using the API's /proxy` endpoint which contains the code to change the `document.domain` value to `culturehq.com`. We can then do the same in this window and pull the `fetch` function from the child window. This logic is encapsulated in the `skipPreflightChecks` and can be used like so:
+If using this code in production on a `culturehq` subdomain, we can embed an `iframe` using the API's /proxy`endpoint which contains the code to change the`document.domain`value to`culturehq.com`. We can then do the same in this window and pull the`fetch`function from the child window. This logic is encapsulated in the`skipPreflightChecks` and can be used like so:
 
 ```js
 import { skipPreflightChecks } from "@culturehq/client";

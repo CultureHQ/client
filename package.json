@@ -1,12 +1,12 @@
 {
   "name": "@culturehq/client",
-  "version": "9.5.0",
+  "version": "9.5.1",
   "description": "A JavaScript client that wraps the CultureHQ API",
   "main": "dist/client.js",
   "module": "src/client.js",
   "scripts": {
-    "build": "rm -r dist && babel src --out-dir dist --ignore '**/__tests__' && cp src/calls.json dist/calls.json",
     "lint": "chq-scripts lint",
+    "prepublishOnly": "rm -rf dist && babel src --out-dir dist --ignore '**/__tests__' && cp src/calls.json dist/calls.json",
     "test": "chq-scripts test"
   },
   "repository": {
@@ -29,7 +29,7 @@
     "@culturehq/scripts": "^1.0.0",
     "isomorphic-fetch": "^2.2.1",
     "isomorphic-form-data": "^2.0.0",
-    "prettier": "^1.16.4",
+    "prettier": "^1.18.2",
     "url-polyfill": "^1.1.3"
   }
 }
