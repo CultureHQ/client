@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [9.6.0] - 2019-06-26
+
+### Added
+
+- The `makePaginatedGet` export for automatically handling pagination.
+
 ## [9.5.1] - 2019-06-07
 
 ### Changed
@@ -1402,7 +1408,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 - Initial checkin.
 
-[unreleased]: https://github.com/CultureHQ/client/compare/v9.5.1...HEAD
+[unreleased]: https://github.com/CultureHQ/client/compare/v9.6.0...HEAD
+[9.6.0]: https://github.com/CultureHQ/client/compare/v9.5.1...v9.6.0
 [9.5.1]: https://github.com/CultureHQ/client/compare/v9.5.0...v9.5.1
 [9.5.0]: https://github.com/CultureHQ/client/compare/v9.4.0...v9.5.0
 [9.4.0]: https://github.com/CultureHQ/client/compare/v9.3.0...v9.4.0
