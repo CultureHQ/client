@@ -152,7 +152,6 @@
   "flagRecognition": ["POST", "/recognitions/:recognitionId/flags", [], ["message"]],
   "getActiveAnnouncement": ["GET", "/active_announcements/:announcementId"],
   "getAnnouncement": ["GET", "/announcements/:announcementId"],
-  "getAutoRecognitionSettings": ["GET", "/recognitions/auto_recognition_settings"],
   "getComment": ["GET", "/comments/:commentId"],
   "getDepartment": ["GET", "/departments/:departmentId"],
   "getDepartmentEventParticipation": ["GET", "/events/:eventId/department_event_participation"],
@@ -197,7 +196,6 @@
   "listApiKeys": ["GET", "/api_keys"],
   "listCommentCheers": ["GET", "/comments/:commentId/cheers", [], ["page"]],
   "listDepartmentAnalytics": ["GET", "/analytics/departments", [], ["page"]],
-  "listDepartments": ["GET", "/departments", [], ["page"]],
   "listEntityUsers": ["GET", "/entities/users", [], ["page", "departmentIds", "interestIds", "locationIds", "userIds"]],
   "listEventAnalytics": ["GET", "/analytics/events", [], ["page"]],
   "listEventComments": ["GET", "/events/:eventId/comments", [], ["page"]],
@@ -326,12 +324,6 @@
   "unpinUserActivity": ["DELETE", "/user_activities/:userActivityId/pin"],
   "unsubscribeFromEventNotifications": ["DELETE", "/events/:eventId/event_notification_subscription"],
   "updateAnnouncement": ["PATCH", "/announcements/:announcementId", [], ["title", "body", "active", "imageUrl"]],
-  "updateAutoRecognitionSettings": [
-    "PATCH",
-    "/recognitions/auto_recognition_settings",
-    [],
-    ["allDepartments", "eventCreation", "newAttendees", "didRecognize", "wasRecognized", "inviteCreation"]
-  ],
   "updateDepartment": ["PATCH", "/departments/:departmentId", [], ["name"]],
   "updateEvent": [
     "PATCH",
