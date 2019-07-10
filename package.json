@@ -24,12 +24,12 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.5.0",
-    "@babel/core": "^7.5.0",
-    "@babel/preset-env": "^7.5.0",
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
     "@culturehq/scripts": "^2.1.0",
     "isomorphic-fetch": "^2.2.1",
     "isomorphic-form-data": "^2.0.0",
     "prettier": "^1.18.2",
-    "url-polyfill": "^1.1.3"
+    "url-polyfill": "^1.1.6"
   }
 }
