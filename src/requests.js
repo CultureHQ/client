@@ -32,7 +32,7 @@ export const makePaginatedGet = (entity, path, params = {}) => {
     return Promise.all(promises).then(responses => responses.reduce(
       (accum, response) => ({
         ...response,
-        [entity]: [...accum[entity], response[entity]]
+        [entity]: accum[entity].concat(response[entity])
       }),
       initial
     ));

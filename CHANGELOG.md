@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [9.6.1] - 2019-07-19
+
+### Changed
+
+- Fix up `makePaginatedGet` so that it properly handles concatenating multiple pages worth of results.
+
 ## [9.6.0] - 2019-06-26
 
 ### Added
@@ -1408,7 +1414,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 - Initial checkin.
 
-[unreleased]: https://github.com/CultureHQ/client/compare/v9.6.0...HEAD
+[unreleased]: https://github.com/CultureHQ/client/compare/v9.6.1...HEAD
+[9.6.1]: https://github.com/CultureHQ/client/compare/v9.6.0...v9.6.1
 [9.6.0]: https://github.com/CultureHQ/client/compare/v9.5.1...v9.6.0
 [9.5.1]: https://github.com/CultureHQ/client/compare/v9.5.0...v9.5.1
 [9.5.0]: https://github.com/CultureHQ/client/compare/v9.4.0...v9.5.0
