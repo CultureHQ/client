@@ -1,5 +1,6 @@
 # @culturehq/client
 
+[![Build Status](https://github.com/CultureHQ/client/workflows/Push/badge.svg)](https://github.com/CultureHQ/client/actions)
 [![Package Version](https://img.shields.io/npm/v/@culturehq/client.svg)](https://www.npmjs.com/package/@culturehq/client)
 
 A JavaScript client that wraps the CultureHQ API.
