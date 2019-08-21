@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [10.0.1] - 2019-08-21
+
+### Changed
+
+- Fixed up new `@rails/actioncable` usage.
+
 ## [10.0.0] - 2019-08-21
 
 ### Changed
@@ -1426,7 +1432,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 - Initial checkin.
 
-[unreleased]: https://github.com/CultureHQ/client/compare/v10.0.0...HEAD
+[unreleased]: https://github.com/CultureHQ/client/compare/v10.0.1...HEAD
+[10.0.1]: https://github.com/CultureHQ/client/compare/v10.0.0...v10.0.1
 [10.0.0]: https://github.com/CultureHQ/client/compare/v9.7.0...v10.0.0
 [9.7.0]: https://github.com/CultureHQ/client/compare/v9.6.1...v9.7.0
 [9.6.1]: https://github.com/CultureHQ/client/compare/v9.6.0...v9.6.1

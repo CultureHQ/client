@@ -1,4 +1,4 @@
-import ActionCable from "@rails/actioncable";
+import { createConsumer } from "@rails/actioncable";
 
 import { API_HOST } from "./constants";
 import state from "./state";
@@ -14,7 +14,7 @@ const getEndpoint = () => {
 
 const getConsumer = () => {
   if (!consumer) {
-    consumer = ActionCable.createConsumer(getEndpoint());
+    consumer = createConsumer(getEndpoint());
   }
   return consumer;
 };
@@ -27,29 +27,22 @@ const getConsumer = () => {
  * containing it is unmounted) that you call `unsubscribe` on the subscription
  * object. An example with React of using these functions is below:
  *
+ *     import React, { useEffect } from "react";
  *     import { onNotificationReceived } from "@culturehq/client";
  *
- *     class MyComponent {
- *       state = { lastNotification: null };
+ *     const MyComponent = () => {
+ *       const [lastNotification, setLastNotification] = useState(null);
  *
- *       componentDidMount() {
- *         this.subscription = onNotificationReceived(notification => {
- *           this.setState({ lastNotification: notification });
- *         });
- *       }
+ *       useEffect(
+ *         () => {
+ *           const subscription = onNotificationReceived(setLastNotification);
+ *           return () => subscription.unsubscribe();
+ *         },
+ *         [setLastNotification]
+ *       );
  *
- *       componentWillUnmount() {
- *         if (this.subscription) {
- *           this.subscription.unsubscribe();
- *         }
- *       }
- *
- *       render() {
- *         const { lastNotification } = this.state;
- *
- *         return <span>{lastNotification}<span>;
- *       }
- *     }
+ *       return <span>{lastNotification}<span>;
+ *     };
  */
 const subscribe = channel => callback => (
   getConsumer().subscriptions.create(channel, {
