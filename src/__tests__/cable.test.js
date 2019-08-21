@@ -1,4 +1,4 @@
-import { consumer } from "actioncable";
+import { consumer } from "@rails/actioncable";
 
 import {
   onEventStarting,
@@ -10,7 +10,7 @@ import {
 
 import { disconnect } from "../cable";
 
-jest.mock("actioncable", () => {
+jest.mock("@rails/actioncable", () => {
   class Subscriptions {
     constructor() {
       this.clear();

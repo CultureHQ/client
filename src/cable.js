@@ -1,4 +1,4 @@
-import ActionCable from "actioncable";
+import ActionCable from "@rails/actioncable";
 
 import { API_HOST } from "./constants";
 import state from "./state";
