@@ -14,7 +14,7 @@ test("exits early if there's only one page of responses", async () => {
 
   const { events, pagination } = await autoPaginate("events").listEvents();
 
-  expect(events.length).toEqual(EVENTS.length);
+  expect(events).toHaveLength(EVENTS.length);
   expect(pagination.totalPages).toEqual(1);
 });
 
@@ -32,6 +32,6 @@ test("concatenates all results together", async () => {
 
   const { events, pagination } = await autoPaginate("events").listEvents();
 
-  expect(events.length).toEqual(EVENTS.length);
+  expect(events).toHaveLength(EVENTS.length);
   expect(pagination.totalPages).toEqual(Math.ceil(EVENTS.length / PER_PAGE));
 });

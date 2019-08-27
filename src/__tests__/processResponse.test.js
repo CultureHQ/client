@@ -41,12 +41,11 @@ test("handles unsuccessful text/html responses", async () => {
     text: () => Promise.resolve()
   };
 
-  try {
-    await processResponse(response);
-    expect(true).toBe(false);
-  } catch (error) {
-    expect(error).toEqual({ error: "Internal Server Error", response, status });
-  }
+  await expect(processResponse(response)).rejects.toEqual({
+    error: "Internal Server Error",
+    response,
+    status
+  });
 });
 
 test("handles successful application/json responses", async () => {
@@ -69,10 +68,9 @@ test("handles unsuccessful application/json responses", async () => {
     json: () => Promise.resolve({ foo_bar: "baz" })
   };
 
-  try {
-    await processResponse(response);
-    expect(true).toBe(false);
-  } catch (error) {
-    expect(error).toEqual({ fooBar: "baz", response, status });
-  }
+  await expect(processResponse(response)).rejects.toEqual({
+    fooBar: "baz",
+    response,
+    status
+  });
 });

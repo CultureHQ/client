@@ -26,10 +26,18 @@
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
-    "@culturehq/scripts": "^3.0.1",
+    "@culturehq/scripts": "^4.0.1",
     "isomorphic-fetch": "^2.2.1",
     "isomorphic-form-data": "^2.0.0",
     "prettier": "^1.18.2",
     "url-polyfill": "^1.1.6"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@culturehq"
+    ],
+    "env": {
+      "browser": true
+    }
   }
 }

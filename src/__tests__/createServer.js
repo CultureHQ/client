@@ -21,6 +21,7 @@ const createServer = mockConfig => {
   server.requests = [];
 
   server.on("request", async (request, response) => {
+    // eslint-disable-next-line require-atomic-updates
     request.parsedBody = await parsedBody(request);
     server.requests.push(request);
 
