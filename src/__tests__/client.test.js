@@ -69,9 +69,7 @@ test("can call getProfile after logged in", async () => {
 });
 
 test("cannot call createApiKey without expected parameters", () => {
-  const pattern = new RegExp("parameter email");
-
-  expect(client.createApiKey).toThrow(pattern);
+  expect(client.createApiKey).toThrow(/parameter email/);
 });
 
 test("substitutes values into the request path", async () => {
