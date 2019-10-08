@@ -18,8 +18,6 @@ export {
   startUserSimulation
 } from "./simulation";
 
-export { default as autoPaginate } from "./autoPaginate";
-
 export {
   onEventStarting,
   onLeaderboardUpdated,
