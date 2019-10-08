@@ -10,17 +10,16 @@ A JavaScript client that wraps the CultureHQ API.
 Install the package into your application using `npm` (`npm install @culturehq/client --save`) or `yarn` (`yarn add @culturehq/client`). Then import the package into your `node` application like:
 
 ```js
-import client from "@culturehq/client";
+import { makeGet } from "@culturehq/client";
 ```
 
 ### API calls
 
-Every API call function returns a `Promise` object. You can call them with normal `Promise` semantics, as in below:
+Every API call function returns a `Promise`. You can call them with normal `Promise` semantics, as in below:
 
 ```js
 const getProfile = () => {
-  client
-    .getProfile()
+  makeGet("/profile")
     .then(response => {
       console.log(response);
     })
@@ -35,18 +34,12 @@ or you can use `async`/`await` syntax, as in below:
 ```js
 const getProfile = async () => {
   try {
-    const response = await client.getProfile();
+    const response = await makeGet("/profile");
     console.log(response);
   } catch (error) {
     console.error(error);
   }
 };
-```
-
-Each function can be introspected to determine its expected parameters (`expectedParams`) and optional parameters (`optionalParams`), as in:
-
-```js
-const { expectedParams, optionalParams } = client.createEvent;
 ```
 
 ### Sign-in state
@@ -71,18 +64,18 @@ signUpload(document.querySelector("#file").files[0]).then(url => {
 
 ### Pagination
 
-Almost every one of the `list*` events is paginated, and will return pagination metadata along with the actual data of the call. The `pagination` object will look like:
+Almost every one of the index endpoints is paginated, and will return pagination metadata along with the actual data of the call. The `pagination` object will look like:
 
 ```js
 const pagination = { currentPage, totalPages, totalCount };
 ```
 
-You can handle this pagination manually, e.g., links on the bottom of the page. You can also use the client's built-in automatic pagination capabilities by using the `autoPaginate` named export, as in the following example:
+You can handle this pagination manually, e.g., links on the bottom of the page. You can also use the client's built-in automatic pagination capabilities by using the `makePaginatedGet` named export, as in the following example:
 
 ```js
-import { autoPaginate } from "@culturehq/client";
+import { makePaginatedGet } from "@culturehq/client";
 
-const { events } = await autoPaginate("events").listEvents();
+const { events } = await makePaginatedGet("events", "/events");
 ```
 
 This will return the pagination information as normal, but the events will
