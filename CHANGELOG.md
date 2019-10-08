@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Removed
 
 - The `autoPaginate` function in favor of the `makePaginatedGet` function.
+- 30ish calls that are no longer used on the frontend as we migrate more toward `make*` usage.
 
 ## [10.0.1] - 2019-08-21
 
