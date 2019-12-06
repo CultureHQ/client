@@ -1,6 +1,6 @@
 {
   "name": "@culturehq/client",
-  "version": "10.0.1",
+  "version": "10.1.0",
   "description": "A JavaScript client that wraps the CultureHQ API",
   "main": "dist/client.js",
   "module": "src/client.js",
@@ -23,9 +23,9 @@
     "@rails/actioncable": "^6.0.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.7.4",
-    "@babel/core": "^7.7.4",
-    "@babel/preset-env": "^7.7.4",
+    "@babel/cli": "^7.7.5",
+    "@babel/core": "^7.7.5",
+    "@babel/preset-env": "^7.7.5",
     "@culturehq/scripts": "^5.0.0",
     "isomorphic-fetch": "^2.2.1",
     "isomorphic-form-data": "^2.0.0",
