@@ -23,10 +23,10 @@
     "@rails/actioncable": "^6.0.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.7.5",
-    "@babel/core": "^7.7.5",
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.5",
-    "@culturehq/scripts": "^5.0.0",
+    "@culturehq/scripts": "^5.1.2",
     "isomorphic-fetch": "^2.2.1",
     "isomorphic-form-data": "^2.0.0",
     "prettier": "^1.18.2",

@@ -1,4 +1,4 @@
-import calls from "./calls";
+import calls from "./calls.json";
 import { API_HOST } from "./constants";
 import performRequest from "./performRequest";
 import state from "./state";
