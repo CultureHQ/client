@@ -1,4 +1,4 @@
-import { AWS_ACCESS_KEY_ID, SIGNER_URL, UPLOAD_BUCKET } from "./constants";
+import config from "./config";
 import formData from "./formData";
 
 /**
@@ -19,39 +19,42 @@ import formData from "./formData";
  */
 const signUpload = (file, onProgress) => (
   new Promise((resolve, reject) => (
-    fetch(SIGNER_URL).then(response => response.json()).then(({ policy, signature, key }) => {
-      const xhr = new XMLHttpRequest();
-      xhr.open("POST", `${UPLOAD_BUCKET}/`);
+    fetch(config.signerURL)
+      .then(response => response.json())
+      .then(({ policy, signature, key }) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", `${config.uploadBucket}/`);
 
-      xhr.upload.addEventListener("load", event => {
-        if (event.type === "error") {
-          reject(event);
-        } else {
-          resolve(`${UPLOAD_BUCKET}/${key}`);
-        }
-      });
-
-      xhr.upload.addEventListener("error", reject);
-
-      if (onProgress) {
-        xhr.upload.addEventListener("progress", ({ loaded, total }) => {
-          onProgress(total === 0 ? 100 : Math.ceil((loaded / total) * 100));
+        xhr.upload.addEventListener("load", event => {
+          if (event.type === "error") {
+            reject(event);
+          } else {
+            resolve(`${config.uploadBucket}/${key}`);
+          }
         });
-      }
 
-      xhr.send(
-        formData({
-          key,
-          AWSAccessKeyId: AWS_ACCESS_KEY_ID,
-          acl: "public-read",
-          policy,
-          signature,
-          success_action_status: "201",
-          "Content-Type": file.type,
-          file
-        })
-      );
-    }).catch(reject)
+        xhr.upload.addEventListener("error", reject);
+
+        if (onProgress) {
+          xhr.upload.addEventListener("progress", ({ loaded, total }) => {
+            onProgress(total === 0 ? 100 : Math.ceil((loaded / total) * 100));
+          });
+        }
+
+        xhr.send(
+          formData({
+            key,
+            AWSAccessKeyId: config.awsAccessKeyId,
+            acl: "public-read",
+            policy,
+            signature,
+            success_action_status: "201",
+            "Content-Type": file.type,
+            file
+          })
+        );
+      })
+      .catch(reject)
   ))
 );
 

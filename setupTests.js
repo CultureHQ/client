@@ -4,6 +4,15 @@ import "isomorphic-fetch";
 import "isomorphic-form-data";
 import "url-polyfill";
 
+import { configure } from "./src/client";
+
+configure({
+  apiHost: "http://localhost:8080",
+  awsAccessKeyId: "access-key-id",
+  signerURL: "http://localhost:8081",
+  uploadBucket: "http://localhost:8082"
+});
+
 class LocalStorage {
   constructor() {
     this.store = {};

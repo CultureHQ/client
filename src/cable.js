@@ -1,13 +1,13 @@
 import { createConsumer } from "@rails/actioncable";
 
-import { API_HOST } from "./constants";
+import config from "./config";
 import state from "./state";
 import { camelize } from "./stringCase";
 
 let consumer = null;
 
 const getEndpoint = () => {
-  const [protocol, host] = API_HOST.split("://");
+  const [protocol, host] = config.apiHost.split("://");
   const wsProtocol = protocol === "https" ? "wss" : "ws";
   return `${wsProtocol}://${host}/cable/${state.getToken()}`;
 };

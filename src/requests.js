@@ -1,9 +1,9 @@
-import { API_HOST } from "./constants";
+import config from "./config";
 import performRequest from "./performRequest";
 import state from "./state";
 
 const makeRequest = method => (path, params = {}) => (
-  performRequest(method, new URL(`${API_HOST}${path}`), {
+  performRequest(method, new URL(`${config.apiHost}${path}`), {
     token: state.getToken(),
     simulation: state.getSimulationToken(),
     params

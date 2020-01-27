@@ -1,5 +1,5 @@
 import calls from "./calls.json";
-import { API_HOST } from "./constants";
+import config from "./config";
 import performRequest from "./performRequest";
 import state from "./state";
 
@@ -29,7 +29,7 @@ const buildCall = ([method, template, expected = [], optional = []]) => {
   const call = actual => {
     const { path, params } = prepare(expected, actual, template);
 
-    return performRequest(method, new URL(`${API_HOST}${path}`), {
+    return performRequest(method, new URL(`${config.apiHost}${path}`), {
       token: state.getToken(),
       simulation: state.getSimulationToken(),
       params

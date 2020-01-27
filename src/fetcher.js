@@ -1,4 +1,4 @@
-const { API_HOST } = require("./constants");
+import config from "./config";
 
 // A container for holding the currently set `fetch` function.
 const fetcher = {
@@ -49,7 +49,7 @@ export const skipPreflightChecks = () => {
     }
   };
 
-  iframe.setAttribute("src", `${API_HOST}/proxy`);
+  iframe.setAttribute("src", `${config.apiHost}/proxy`);
   iframe.style.display = "none";
 
   document.domain = "culturehq.com";

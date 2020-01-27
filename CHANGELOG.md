@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [10.2.1] - 2020-01-27
+
+### Added
+
+- The `configure` function, for setting the singleton values for the client.
+
+### Removed
+
+- The `makeClient` function, as it didn't actually solve the problem.
+
 ## [10.2.0] - 2020-01-27
 
 ### Added
@@ -1449,7 +1459,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 - Initial checkin.
 
-[unreleased]: https://github.com/CultureHQ/client/compare/v10.2.0...HEAD
+[unreleased]: https://github.com/CultureHQ/client/compare/v10.2.1...HEAD
+[10.2.1]: https://github.com/CultureHQ/client/compare/v10.2.0...v10.2.1
 [10.2.0]: https://github.com/CultureHQ/client/compare/v10.1.0...v10.2.0
 [10.1.0]: https://github.com/CultureHQ/client/compare/v10.0.1...v10.1.0
 [10.0.1]: https://github.com/CultureHQ/client/compare/v10.0.0...v10.0.1

@@ -29,4 +29,5 @@ export {
 export { skipPreflightChecks } from "./fetcher";
 
 export * from "./requests";
-export { default as makeClient } from "./makeClient";
+
+export { default as config, configure } from "./config";
