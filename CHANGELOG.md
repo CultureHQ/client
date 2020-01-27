@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [10.2.0] - 2020-01-27
+
+### Added
+
+- The `makeClient` function to allow passing in options like `apiHost` to an object that will thereafter configure all API calls.
+
 ## [10.1.0] - 2019-12-06
 
 ### Added
@@ -1443,7 +1449,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 - Initial checkin.
 
-[unreleased]: https://github.com/CultureHQ/client/compare/v10.1.0...HEAD
+[unreleased]: https://github.com/CultureHQ/client/compare/v10.2.0...HEAD
+[10.2.0]: https://github.com/CultureHQ/client/compare/v10.1.0...v10.2.0
 [10.1.0]: https://github.com/CultureHQ/client/compare/v10.0.1...v10.1.0
 [10.0.1]: https://github.com/CultureHQ/client/compare/v10.0.0...v10.0.1
 [10.0.0]: https://github.com/CultureHQ/client/compare/v9.7.0...v10.0.0

@@ -25,7 +25,7 @@ const createServer = mockConfig => {
     request.parsedBody = await parsedBody(request);
     server.requests.push(request);
 
-    const { status, body } = mocks.shift();
+    const { status, body = {} } = mocks.shift();
     response.writeHead(status, { "Content-Type": "application/json" });
     response.write(JSON.stringify(body));
     response.end();
