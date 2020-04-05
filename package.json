@@ -29,7 +29,7 @@
     "@culturehq/scripts": "^5.1.4",
     "isomorphic-fetch": "^2.2.1",
     "isomorphic-form-data": "^2.0.0",
-    "prettier": "^2.0.1",
+    "prettier": "^2.0.3",
     "url-polyfill": "^1.1.6"
   },
   "eslintConfig": {
