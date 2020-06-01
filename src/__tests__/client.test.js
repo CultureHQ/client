@@ -1,4 +1,4 @@
-import createServer from "./createServer";
+import testServer from "./testServer";
 
 import client, {
   getToken,
@@ -20,52 +20,33 @@ test("starts signed out", () => {
 });
 
 test("signs in and reports signed in status correctly", async () => {
-  const server = createServer({
-    status: 200,
-    body: { apiKey: { token: "baz" } }
-  });
-  server.listen(8080);
+  testServer.mock({ status: 200, body: { apiKey: { token: "baz" } } });
 
-  try {
-    const response = await signIn({ email: "foo", password: "bar" });
-    expect(response.apiKey.token).toEqual("baz");
-    expect(isSignedIn()).toBe(true);
-  } finally {
-    server.close();
-  }
+  const response = await signIn({ email: "foo", password: "bar" });
+  expect(response.apiKey.token).toEqual("baz");
+  expect(isSignedIn()).toBe(true);
 });
 
 test("can sign out", async () => {
-  const server = createServer({ status: 204 });
-  server.listen(8080);
+  testServer.mock({ status: 204 });
 
   setToken("foo");
   expect(isSignedIn()).toBe(true);
 
-  try {
-    await signOut();
-    expect(isSignedIn()).toBe(false);
-  } finally {
-    server.close();
-  }
+  await signOut();
+  expect(isSignedIn()).toBe(false);
 });
 
 test("can call getProfile after logged in", async () => {
   const number = Math.random();
-  const server = createServer([
-    { status: 200, body: { apiKey: { token: "baz" } } },
-    { status: 200, body: { number } }
-  ]);
 
-  server.listen(8080);
+  testServer.mock({ status: 200, body: { apiKey: { token: "baz" } } });
+  await signIn({ email: "foo", password: "bar" });
 
-  try {
-    await signIn({ email: "foo", password: "bar" });
-    const response = await client.getProfile();
-    expect(response.number).toEqual(number);
-  } finally {
-    server.close();
-  }
+  testServer.mock({ status: 200, body: { number } });
+  const response = await client.getProfile();
+
+  expect(response.number).toEqual(number);
 });
 
 test("cannot call createApiKey without expected parameters", () => {
@@ -73,32 +54,22 @@ test("cannot call createApiKey without expected parameters", () => {
 });
 
 test("substitutes values into the request path", async () => {
-  const server = createServer({ status: 200, body: {} });
-  server.listen(8080);
+  testServer.mock({ status: 200, body: {} });
 
-  try {
-    const { response } = await client.getUser({ userId: 42 });
-    expect(response.url.endsWith("/users/42")).toBe(true);
-  } finally {
-    server.close();
-  }
+  const { response } = await client.getUser({ userId: 42 });
+  expect(response.url.endsWith("/users/42")).toBe(true);
 });
 
 test("can start a user simulation", async () => {
-  const server = createServer({ status: 200, body: { apiKey: { token: "bar" } } });
-  server.listen(8080);
+  testServer.mock({ status: 200, body: { apiKey: { token: "bar" } } });
 
   setToken("foo");
 
-  try {
-    await startUserSimulation({ userId: 42 });
-    expect(isSimulating()).toBe(true);
-    expect(getToken()).toEqual("bar");
+  await startUserSimulation({ userId: 42 });
+  expect(isSimulating()).toBe(true);
+  expect(getToken()).toEqual("bar");
 
-    endUserSimulation();
-    expect(isSimulating()).toBe(false);
-    expect(getToken()).toEqual("foo");
-  } finally {
-    server.close();
-  }
+  endUserSimulation();
+  expect(isSimulating()).toBe(false);
+  expect(getToken()).toEqual("foo");
 });

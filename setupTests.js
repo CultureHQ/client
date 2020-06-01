@@ -5,6 +5,7 @@ import "isomorphic-form-data";
 import "url-polyfill";
 
 import { configure } from "./src/client";
+import { startTestServer, stopTestServer } from "./src/__tests__/testServer";
 
 configure({
   apiHost: "http://localhost:8080",
@@ -13,26 +14,26 @@ configure({
   uploadBucket: "http://localhost:8082"
 });
 
-class LocalStorage {
-  constructor() {
-    this.store = {};
-  }
+const makeLocalStorage = () => {
+  let store = {};
 
-  clear() {
-    this.store = {};
-  }
+  return {
+    clear() {
+      store = {};
+    },
+    getItem(key) {
+      return store[key] || null;
+    },
+    setItem(key, value) {
+      store[key] = value.toString();
+    },
+    removeItem(key) {
+      delete store[key];
+    }
+  };
+};
 
-  getItem(key) {
-    return this.store[key] || null;
-  }
+global.localStorage = makeLocalStorage();
 
-  setItem(key, value) {
-    this.store[key] = value.toString();
-  }
-
-  removeItem(key) {
-    delete this.store[key];
-  }
-}
-
-global.localStorage = new LocalStorage();
+beforeAll(() => startTestServer());
+afterAll(() => stopTestServer());
