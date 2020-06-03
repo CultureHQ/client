@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [10.2.2] - 2020-06-03
 
+### Changed
+
+- Changing spotlights endpoint to endorsements.
+
+## [10.2.2] - 2020-06-03
+
 ### Added
 
 - Adding endpoint to flag different types of user activities.
