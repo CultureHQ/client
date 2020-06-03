@@ -6,7 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
-## [10.2.2] - 2020-06-03
+## [10.2.4] - 2020-06-03
+
+### Added
+
+- New endpoint to delete endorsements.
+
+## [10.2.3] - 2020-06-03
 
 ### Changed
 
