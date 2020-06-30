@@ -17,6 +17,7 @@ import formData from "./formData";
  *       console.log(url);
  *     });
  */
+/* eslint-disable no-promise-executor-return */
 const signUpload = (file, onProgress) => (
   new Promise((resolve, reject) => (
     fetch(config.signerURL)

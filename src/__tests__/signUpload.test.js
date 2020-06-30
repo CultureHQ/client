@@ -40,7 +40,9 @@ const startSignerServer = () => new Promise(resolve => {
   signerServer.listen({ port, host: "localhost", exclusive: true });
 });
 
-const stopSignerServer = () => new Promise(resolve => signerServer.close(resolve));
+const stopSignerServer = () => new Promise(resolve => {
+  signerServer.close(resolve);
+});
 
 const startS3Server = () => new Promise(resolve => {
   let port = 8082;
@@ -69,7 +71,9 @@ const startS3Server = () => new Promise(resolve => {
   s3Server.listen({ port, host: "localhost", exclusive: true });
 });
 
-const stopS3Server = () => new Promise(resolve => s3Server.close(resolve));
+const stopS3Server = () => new Promise(resolve => {
+  s3Server.close(resolve);
+});
 
 beforeAll(async () => {
   await startSignerServer();
