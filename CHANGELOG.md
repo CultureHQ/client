@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [10.2.6] - 2020-07-09
+
+### Added
+
+- The `listProfileSimilarPeople` call for fetching the most similar people to a user.
+- Removing `listUserSuggestedConnections` because it does not perform the right operation
+
 ## [10.2.5] - 2020-07-08
 
 ### Added
