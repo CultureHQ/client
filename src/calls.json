@@ -212,7 +212,7 @@
   "listProfileEventSurveys": ["GET", "/profile/event_surveys"],
   "listProfileManageableWidgetSurveys": ["GET", "/profile/widget_surveys/manageable_surveys", [], ["page"]],
   "listProfileSuggestedConnections": ["GET", "/profile/suggestions/connections", [], ["page"]],
-  "listProfileSimilarPeople": ["GET", "/profile/:userId/similar_people", [], ["page"]],
+  "listProfileSimilarPeople": ["GET", "/profile/similar_people", [], ["page", "userId"]],
   "listProfileSuggestedInterests": ["GET", "/profile/suggestions/interests", [], ["num", "names"]],
   "listProfileSuggestedSkills": ["GET", "/profile/suggestions/skills", [], ["num", "names"]],
   "listProfileUserInterests": ["GET", "/profile/user_interests"],
