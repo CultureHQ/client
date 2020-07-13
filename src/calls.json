@@ -235,6 +235,7 @@
   "listUserCommonEntities": ["GET", "/users/:userId/common_entities", [], ["page"]],
   "listUserHostedEvents": ["GET", "/users/:userId/hosted_events", [], ["page"]],
   "listUserRecognitions": ["GET", "/users/:userId/recognitions", [], ["page"]],
+  "listUserReceivedConnections": ["GET", "/users/:userId/received_connections", [], ["page"]],
   "listUserRsvpdEvents": ["GET", "/users/:userId/rsvpd_events", [], ["when", "sort"]],
   "listUserSentConnections": ["GET", "/users/:userId/sent_connections", [], ["page"]],
   "listUsers": [
