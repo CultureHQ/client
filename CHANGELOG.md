@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [10.2.9] - 2020-07-15
+
+### Added
+
+- The `deleteUserConnection` call for fetching the followers of a user.
+
 ## [10.2.8] - 2020-07-13
 
 ### Added

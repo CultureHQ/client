@@ -98,6 +98,7 @@
   ],
   "createUserActivityComment": ["POST", "/user_activities/:userActivityId/comments", ["body"], ["parentCommentId"]],
   "createUserConnection": ["POST", "/users/:userId/connection", [], ["reason", "note"]],
+  "deleteUserConnection": ["DELETE", "/users/:userId/connection"],
   "createUserInvite": ["POST", "/users/:userId/invites"],
   "deactivateSurvey": ["DELETE", "/surveys/:surveyId/survey_activation"],
   "deactivateUser": ["POST", "/users/:userId/deactivation"],
