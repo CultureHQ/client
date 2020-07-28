@@ -100,6 +100,7 @@
   "createUserConnection": ["POST", "/users/:userId/connection", [], ["reason", "note"]],
   "deleteUserConnection": ["DELETE", "/users/:userId/connection"],
   "createUserInvite": ["POST", "/users/:userId/invites"],
+  "createStoryQuestion": ["POST", "/story_questions", ["question", "image_url", "points"]],
   "deactivateSurvey": ["DELETE", "/surveys/:surveyId/survey_activation"],
   "deactivateUser": ["POST", "/users/:userId/deactivation"],
   "deleteAnnouncement": ["DELETE", "/announcements/:announcementId"],
@@ -123,6 +124,7 @@
   "deleteSurvey": ["DELETE", "/surveys/:surveyId"],
   "deleteSurveyItem": ["DELETE", "/survey_items/:surveyItemId"],
   "deleteSurveyItemResponseOption": ["DELETE", "/survey_item_response_options/:surveyItemResponseOptionId"],
+  "deleteStoryQuestion": ["DELETE", "/story_questions/:storyQuestionId"],
   "deleteUser": ["DELETE", "/users/:userId"],
   "denyEventAttendance": ["DELETE", "/events/:eventId/confirmation"],
   "disableStaticWidget": ["DELETE", "/widgets", ["widget"]],
@@ -166,6 +168,7 @@
   "getRecognitionType": ["GET", "/recognitions/recognition_types/:recognitionTypeId"],
   "getSurvey": ["GET", "/surveys/:surveyId"],
   "getSurveyItem": ["GET", "/survey_items/:surveyItemId"],
+  "getStoryQuestion": ["GET", "/story_questions"],
   "getUser": ["GET", "/users/:userId"],
   "getUserActivity": ["GET", "/user_activities/:userActivityId"],
   "getUserPointBreakdown": ["GET", "/users/:userId/point_breakdown"],
@@ -390,6 +393,7 @@
     [],
     ["body", "surveyItemResponseOptionIds"]
   ],
+  "updateStoryQuestion": ["PATCH", "/story_questions/:storyQuestionId", ["question", "image_url", "points"]],
   "updateUser": [
     "PATCH",
     "/users/:userId",

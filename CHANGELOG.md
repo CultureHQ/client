@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [10.3.0] - 2020-07-28
+
+### Added
+
+- The `createStoryQuestion, deleteStoryQuestion, getStoryQuestion, updateStoryQuestion` CRUD operations for story questions.
+
 ## [10.2.9] - 2020-07-15
 
 ### Added
