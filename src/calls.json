@@ -169,6 +169,7 @@
   "getSurvey": ["GET", "/surveys/:surveyId"],
   "getSurveyItem": ["GET", "/survey_items/:surveyItemId"],
   "getStoryQuestion": ["GET", "/story_questions"],
+  "getTrendingStoryQuestion": ["GET", "/trending_stories"],
   "getUser": ["GET", "/users/:userId"],
   "getUserActivity": ["GET", "/user_activities/:userActivityId"],
   "getUserPointBreakdown": ["GET", "/users/:userId/point_breakdown"],
