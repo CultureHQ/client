@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [10.3.4] - 2020-08-12
+
+### Added
+
+- The `listStories` to get stories by user.
+
 ## [10.3.3] - 2020-08-11
 
 ### Added
