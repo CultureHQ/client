@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [10.3.6] - 2020-08-21
+
+### Added
+
+- Fixing `getStory` path.
+
 ## [10.3.5] - 2020-08-21
 
 ### Added

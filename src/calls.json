@@ -171,7 +171,7 @@
   "getRecognitionType": ["GET", "/recognitions/recognition_types/:recognitionTypeId"],
   "getSurvey": ["GET", "/surveys/:surveyId"],
   "getSurveyItem": ["GET", "/survey_items/:surveyItemId"],
-  "getStory": ["GET", "/story/:storyId"],
+  "getStory": ["GET", "/stories/:storyId"],
   "getStoryQuestion": ["GET", "/story_questions"],
   "getTrendingStoryQuestion": ["GET", "/trending_stories"],
   "getUser": ["GET", "/users/:userId"],
