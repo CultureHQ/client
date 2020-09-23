@@ -120,6 +120,7 @@
   "deletePhotoTag": ["DELETE", "/photos/:photoId/photo_tags/:photoTagId"],
   "deletePost": ["DELETE", "/posts/:postId"],
   "deleteProfileUserInterest": ["DELETE", "/profile/user_interests/:userInterestId"],
+  "deleteProfileUserCourse": ["DELETE", "/profile/user_courses/:userCourseId"],
   "deleteRecognition": ["DELETE", "/recognitions/:recognitionId"],
   "deleteRecognitionType": ["DELETE", "/recognitions/recognition_types/:recognitionTypeId"],
   "deleteSession": ["DELETE", "/session"],
