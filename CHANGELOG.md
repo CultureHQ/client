@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [10.3.7] - 2020-09-23
+
+### Added
+
+- The `listProfileSuggestedCourses` to list the suggested courses.
+
 ## [10.3.6] - 2020-08-21
 
 ### Added

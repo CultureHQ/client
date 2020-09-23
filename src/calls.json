@@ -224,6 +224,7 @@
   "listProfileSimilarPeople": ["GET", "/profile/similar_people", [], ["page", "userId"]],
   "listProfileSuggestedInterests": ["GET", "/profile/suggestions/interests", [], ["num", "names"]],
   "listProfileSuggestedSkills": ["GET", "/profile/suggestions/skills", [], ["num", "names"]],
+  "listProfileSuggestedCourses": ["GET", "/profile/suggestions/courses", [], ["num", "names"]],
   "listProfileUserInterests": ["GET", "/profile/user_interests"],
   "listRecognitionComments": ["GET", "/recognitions/:recognitionId/comments", [], ["page"]],
   "listRecognitionTypes": ["GET", "/recognitions/recognition_types", [], ["page"]],
