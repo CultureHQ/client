@@ -398,6 +398,12 @@
     [],
     ["name", "approval", "points", "imageUrl"]
   ],
+  "updateSocialMedia": [
+    "PATCH",
+    "/profile/social",
+    [],
+    ["data"]
+  ],
   "updateSurvey": ["PATCH", "/surveys/:surveyId", [], ["title", "points", "viewableResults", "hostOnlySurvey"]],
   "updateSurveyItem": ["PATCH", "/survey_items/:surveyItemId", [], ["prompt", "itemType", "minRange", "maxRange"]],
   "updateSurveyUserItemResponse": [

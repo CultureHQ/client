@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [10.3.11] - 2020-09-28
+
+### Added
+
+- New endpoint to update the social media values.
+
 ## [10.3.10] - 2020-09-23
 
 ### Added
