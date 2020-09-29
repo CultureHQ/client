@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [10.4.0] - 2020-09-29
+
+### Added
+
+- New admin endpoints to handle new colleges fields.
+
 ## [10.3.11] - 2020-09-28
 
 ### Added
