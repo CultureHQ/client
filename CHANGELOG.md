@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [10.6.0] - 2020-10-29
+
+### Added
+
+- New endpoint to retrieve a story trend.
+
 ## [10.5.0] - 2020-10-06
 
 ### Added
