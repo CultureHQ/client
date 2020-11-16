@@ -313,6 +313,7 @@
     ["name", "email"],
     ["locationName", "departmentNames", "interestNames", "avatarUrl", "title"]
   ],
+  "shareStoryQuestion": ["POST", "/story_questions/:storyQuestionId/share", ["imageUrl", "slackChannel"], []],
   "subscribeToEventNotifications": ["POST", "/events/:eventId/event_notification_subscription"],
   "unpinUserActivity": ["DELETE", "/user_activities/:userActivityId/pin"],
   "unsubscribeFromEventNotifications": ["DELETE", "/events/:eventId/event_notification_subscription"],

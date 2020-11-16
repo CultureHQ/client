@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [10.7.0] - 2020-11-16
+
+### Added
+
+- New endpoint to share story questions through Slack
+
 ## [10.6.0] - 2020-10-29
 
 ### Added
