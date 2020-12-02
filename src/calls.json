@@ -188,6 +188,7 @@
   "getTrendingStoryQuestion": ["GET", "/trending_stories"],
   "getUser": ["GET", "/users/:userId"],
   "getUserActivity": ["GET", "/user_activities/:userActivityId"],
+  "getUserClaimed": ["GET", "/users_claimed/:userId"],
   "getUserPointBreakdown": ["GET", "/users/:userId/point_breakdown"],
   "getUserPointIncrements": ["GET", "/users/:userId/point_increments", [], ["page"]],
   "incrementUserPoints": ["POST", "/users/:userId/point_increments", ["points"]],

@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [10.8.0] - 2020-12-01
+
+### Added
+
+- New endpoint to get users claimed by id
+
 ## [10.7.0] - 2020-11-16
 
 ### Added
