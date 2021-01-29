@@ -16,6 +16,7 @@
   "confirmEventAttendance": ["POST", "/events/:eventId/confirmation"],
   "createAnnouncement": ["POST", "/announcements", ["title", "active"], ["body", "imageUrl"]],
   "createApiKey": ["POST", "/api_keys", ["email", "password"]],
+  "createMsalKey": ["POST", "/msal_keys", ["email", "password"]],
   "createDepartment": ["POST", "/departments", ["name"]],
   "createEvent": [
     "POST",
