@@ -5,6 +5,7 @@ export default client;
 export {
   getToken,
   isSignedIn,
+  msalSignIn,
   setToken,
   signIn,
   signOut
