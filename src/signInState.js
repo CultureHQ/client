@@ -2,7 +2,7 @@ import apiCalls from "./apiCalls";
 import { disconnect } from "./cable";
 import state from "./state";
 
-const { createApiKey, deleteSession } = apiCalls;
+const { createApiKey, createMsalKey, deleteSession } = apiCalls;
 
 /**
  * Signed in state is handled through the client using the `signIn` and
@@ -18,6 +18,11 @@ const { createApiKey, deleteSession } = apiCalls;
 export const { getToken, isSignedIn, setToken } = state;
 
 export const signIn = params => createApiKey(params).then(response => {
+  state.setToken(response.apiKey.token);
+  return response;
+});
+
+export const msalSignIn = params => createMsalKey(params).then(response => {
   state.setToken(response.apiKey.token);
   return response;
 });

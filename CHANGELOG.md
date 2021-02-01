@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [10.9.1] - 2020-01-29
+
+### Added
+
+- Fixing endpoint to store msal session
 ## [10.9.0] - 2020-01-29
 
 ### Added
