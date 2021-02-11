@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [10.10.0] - 2020-02-11
+
+### Added
+
+- New endpoint to register device token to handle push notifications
+
 ## [10.9.2] - 2020-02-01
 
 ### Added
