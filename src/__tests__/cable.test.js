@@ -3,6 +3,7 @@ import { consumer } from "@rails/actioncable";
 import {
   onEventStarting,
   onLeaderboardUpdated,
+  onLiveEventCommented,
   onNotificationReceived,
   onRecognitionCreated,
   onUserActivityCreated
@@ -36,6 +37,8 @@ test("when disconnected, does not broadcast", () => {
 test("event starting", buildTest(onEventStarting, "EventStartingChannel"));
 
 test("leaderboard updated", buildTest(onLeaderboardUpdated, "LeaderboardChannel"));
+
+test("live event commented", buildTest(onLiveEventCommented, "LiveEventChannel"));
 
 test("notification", buildTest(onNotificationReceived, "NotificationChannel"));
 

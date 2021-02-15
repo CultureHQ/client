@@ -61,6 +61,8 @@ export const onEventStarting = subscribe("EventStartingChannel");
 
 export const onLeaderboardUpdated = subscribe("LeaderboardChannel");
 
+export const onLiveEventCommented = subscribe("LiveEventChannel");
+
 export const onNotificationReceived = subscribe("NotificationChannel");
 
 export const onRecognitionCreated = subscribe("RecognitionChannel");

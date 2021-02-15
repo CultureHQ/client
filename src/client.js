@@ -22,6 +22,7 @@ export {
 export {
   onEventStarting,
   onLeaderboardUpdated,
+  onLiveEventCommented,
   onNotificationReceived,
   onRecognitionCreated,
   onUserActivityCreated

@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [10.11.0] - 2018-15-02
+
+### Added
+
+- The `onLiveEventCommented` functions for subscribing to the live events channel.
+
 ## [10.10.1] - 2020-02-11
 
 ### Added
