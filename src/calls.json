@@ -91,6 +91,7 @@
   "createRecognitionComment": ["POST", "/recognitions/:recognitionId/comments", ["body"], ["parentCommentId"]],
   "createRecognitionType": ["POST", "/recognitions/recognition_types", ["name", "approval", "imageUrl"], ["points"]],
   "createRegistrationToken": ["POST", "/registration_tokens", ["token", "device"]],
+  "resetRegistrationTokenBadgeCount": ["POST", "/registration_tokens/:token/reset_badge_count"],
   "createSSOAgreement": ["POST", "/sso/agreement"],
   "createSession": ["POST", "/sessions", ["email"]],
   "createSimulation": ["POST", "/admin/simulation", ["userId"]],

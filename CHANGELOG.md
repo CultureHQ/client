@@ -6,7 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
-## [10.11.0] - 2018-15-02
+## [10.12.0] - 2021-03-25
+
+### Added
+
+- New endpoint to reset badge count, we need it for iOS
+
+## [10.11.0] - 2020-02-15
 
 ### Added
 
