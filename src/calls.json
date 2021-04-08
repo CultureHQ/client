@@ -297,6 +297,7 @@
   "profileAutocompleteSkills": ["GET", "/profile/autocomplete/skills", ["query"]],
   "reactivateUser": ["DELETE", "/users/:userId/deactivation"],
   "registerUser": ["POST", "/invites/:token/users", ["password"]],
+  "removeGettingStarted": ["DELETE", "/getting_started_widgets"],
   "reorderProfileInterests": ["PATCH", "/profile/interest_order", ["order"]],
   "reorderProfileCourses": ["PATCH", "/profile/course_order", ["order"]],
   "reorderProfileSkills": ["PATCH", "/profile/skill_order", ["order"]],
