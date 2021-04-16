@@ -6,6 +6,7 @@ export {
   getToken,
   isSignedIn,
   msalSignIn,
+  serviceSignIn,
   setToken,
   signIn,
   signOut

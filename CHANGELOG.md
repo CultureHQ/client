@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [10.14.0] - 2021-04-16
+
+### Added
+
+- The `serviceSignIn` endpoint to handle external services login
+
 ## [10.13.0] - 2021-04-08
 
 ### Added
