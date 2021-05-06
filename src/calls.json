@@ -61,6 +61,7 @@
   "createLocation": ["POST", "/locations", ["name"]],
   "createClassYear": ["POST", "/class_years", ["name"]],
   "createCourse": ["POST", "/courses", ["name"]],
+  "createLandingPage": ["POST", "/landing_pages", ["logoUrl", "headerImageUrl", "headerText", "welcomeNote", "primaryColor"]],
   "createMajor": ["POST", "/majors", ["name"]],
   "createResident": ["POST", "/residents", ["name"]],
   "createOrganization": [
@@ -172,6 +173,7 @@
   "getGoogleIntegration": ["GET", "/google/integration"],
   "getInterest": ["GET", "/interests/:interestId"],
   "getInvite": ["GET", "/invites/:token"],
+  "getLandingPage": ["GET", "/landing_pages/:landingPageId"],
   "getLocation": ["GET", "/locations/:locationId"],
   "getMicrosoftIntegration": ["GET", "/microsoft/integration"],
   "getPhoto": ["GET", "/photos/:photoId"],
@@ -231,6 +233,7 @@
   "listLocations": ["GET", "/locations", [], ["page"]],
   "listClassYears": ["GET", "/class_years", [], ["page"]],
   "listCourses": ["GET", "/courses", [], ["page"]],
+  "listLandingPages": ["GET", "/landing_pages", [], ["page"]],
   "listMajors": ["GET", "/majors", [], ["page"]],
   "listResidents": ["GET", "/residents", [], ["page"]],
   "listOrganizationValues": ["GET", "/organization_values", [], ["page"]],
@@ -367,6 +370,7 @@
   "updateLocation": ["PATCH", "/locations/:locationId", ["name"]],
   "updateClassYear": ["PATCH", "/class_years/:classYearId", ["name"]],
   "updateCourse": ["PATCH", "/courses/:courseId", ["name"]],
+  "updateLandingPage": ["PATCH", "/landing_pages/:landingPageId", ["logoUrl", "headerImageUrl", "headerText", "welcomeNote", "primaryColor"]],
   "updateMajor": ["PATCH", "/majors/:majorId", ["name"]],
   "updateResident": ["PATCH", "/residents/:residentId", ["name"]],
   "updateOrganization": [
