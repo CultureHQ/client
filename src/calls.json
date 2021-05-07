@@ -62,8 +62,8 @@
   "createClassYear": ["POST", "/class_years", ["name"]],
   "createCourse": ["POST", "/courses", ["name"]],
   "createLandingPage": ["POST", "/landing_pages", ["logoUrl", "headerImageUrl", "headerText", "welcomeNote", "primaryColor"]],
-  "createLandingPageProfile": ["POST", "/landing_pages/:landing_page_id/users", ["userId"]],
-  "createLandingPageStory": ["POST", "/landing_pages/:landing_page_id/stories", ["storyId"]],
+  "createLandingPageProfile": ["POST", "/landing_pages/:landingPageId/users", ["userId"]],
+  "createLandingPageStory": ["POST", "/landing_pages/:landingPageId/stories", ["storyId"]],
   "createMajor": ["POST", "/majors", ["name"]],
   "createResident": ["POST", "/residents", ["name"]],
   "createOrganization": [
