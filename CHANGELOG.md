@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [10.17.0] - 2021-05-07
+
+### Added
+
+- The organization landing page endpoint
+
 ## [10.16.5] - 2021-05-07
 
 ### Added
