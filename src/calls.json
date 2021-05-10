@@ -244,7 +244,7 @@
   "listResidents": ["GET", "/residents", [], ["page"]],
   "listOrganizationValues": ["GET", "/organization_values", [], ["page"]],
   "listOrganizations": ["GET", "/admin/organizations", [], ["page"]],
-  "listOrganizationLandingPages": ["GET", "/organization/landing_pages", ["organization"]],
+  "listOrganizationLandingPages": ["GET", "/organizations/landing_pages", ["organization"]],
   "listPendingRecognitions": ["GET", "/recognitions/pending_recognitions", [], ["page"]],
   "listPhotoComments": ["GET", "/photos/:photoId/comments", [], ["page"]],
   "listProfileAvailableWidgetSurveys": ["GET", "/profile/widget_surveys/available_surveys", [], ["page"]],
