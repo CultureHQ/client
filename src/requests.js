@@ -1,4 +1,5 @@
 import config from "./config";
+import performFormRequest from "./performFormRequest";
 import performRequest from "./performRequest";
 import state from "./state";
 
@@ -10,10 +11,19 @@ const makeRequest = method => (path, params = {}) => (
   })
 );
 
+const makeFormRequest = method => (path, body) => (
+  performFormRequest(method, new URL(`${config.apiHost}${path}`), {
+    token: state.getToken(),
+    simulation: state.getSimulationToken(),
+    body
+  })
+);
+
 export const makeGet = makeRequest("GET");
 export const makePost = makeRequest("POST");
 export const makePatch = makeRequest("PATCH");
 export const makeDelete = makeRequest("DELETE");
+export const makeFormPost = makeFormRequest("POST");
 
 export const makePaginatedGet = (entity, path, params = {}) => {
   const onFetch = page => makeGet(path, { ...params, page });
