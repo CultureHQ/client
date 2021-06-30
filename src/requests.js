@@ -24,6 +24,7 @@ export const makePost = makeRequest("POST");
 export const makePatch = makeRequest("PATCH");
 export const makeDelete = makeRequest("DELETE");
 export const makeFormPost = makeFormRequest("POST");
+export const makeFormPatch = makeFormRequest("PATCH");
 
 export const makePaginatedGet = (entity, path, params = {}) => {
   const onFetch = page => makeGet(path, { ...params, page });

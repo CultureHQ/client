@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [10.19.0] - 2021-06-30
+
+### Added
+
+- Adding form patch to send files too
+
 ## [10.18.1] - 2021-06-30
 
 ### Added
