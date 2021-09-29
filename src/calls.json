@@ -238,6 +238,7 @@
   "listClassYears": ["GET", "/class_years", [], ["page"]],
   "listCourses": ["GET", "/courses", [], ["page"]],
   "listLandingPages": ["GET", "/landing_pages", [], ["page"]],
+  "listLandingPageStories": ["GET", "/landing_pages/stories", [], ["page"]],
   "listLandingPageProfiles": ["GET", "/landing_pages/:landingPageId/selected_users", [], ["page"]],
   "listLandingStories": ["GET", "/landing_pages/:landingPageId/selected_stories", [], ["page"]],
   "listMajors": ["GET", "/majors", [], ["page"]],

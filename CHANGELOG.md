@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [10.20.0] - 2021-09-29
+
+### Added
+
+- Adding get stories from landing page
+
 ## [10.19.0] - 2021-06-30
 
 ### Added
