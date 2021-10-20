@@ -19,12 +19,25 @@ const makeFormRequest = method => (path, body) => (
   })
 );
 
+const makeLinkedinRequest = method => (url, params = {}) => (
+  performRequest(method, new URL(url), {
+    linkedin: true,
+    params
+  })
+);
+
 export const makeGet = makeRequest("GET");
 export const makePost = makeRequest("POST");
 export const makePatch = makeRequest("PATCH");
 export const makeDelete = makeRequest("DELETE");
+
 export const makeFormPost = makeFormRequest("POST");
 export const makeFormPatch = makeFormRequest("PATCH");
+
+export const makeLinkedinGet = makeLinkedinRequest("GET");
+export const makeLinkedinPost = makeLinkedinRequest("POST");
+export const makeLinkedinPatch = makeLinkedinRequest("PATCH");
+export const makeLinkedinDelete = makeLinkedinRequest("DELETE");
 
 export const makePaginatedGet = (entity, path, params = {}) => {
   const onFetch = page => makeGet(path, { ...params, page });

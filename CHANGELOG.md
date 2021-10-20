@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [11.0.0] - 2021-10-20
+
+### Added
+
+- Adding linkedin requests
+
 ## [10.20.0] - 2021-09-29
 
 ### Added
