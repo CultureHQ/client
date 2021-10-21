@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [11.0.1] - 2021-10-21
+
+### Added
+
+- Adding linkedin bearer token in auth header
+
 ## [11.0.0] - 2021-10-20
 
 ### Added

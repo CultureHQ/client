@@ -19,9 +19,9 @@ const makeFormRequest = method => (path, body) => (
   })
 );
 
-const makeLinkedinRequest = method => (url, params = {}) => (
+const makeLinkedinRequest = method => (url, linkedinToken, params = {}) => (
   performRequest(method, new URL(url), {
-    linkedin: true,
+    linkedinToken,
     params
   })
 );
