@@ -2,7 +2,7 @@ import fetcher from "./fetcher";
 import processResponse from "./processResponse";
 import { snakerize } from "./stringCase";
 
-const buildHeaders = ({ token, simulation, linkedinToken }) => {
+const buildHeaders = ({ token, simulation }) => {
   const headers = { "Content-Type": "application/json" };
 
   if (typeof token === "string" && token.length) {
@@ -11,11 +11,6 @@ const buildHeaders = ({ token, simulation, linkedinToken }) => {
 
   if (typeof simulation === "string" && simulation.length) {
     headers["X-Client-Simulation"] = simulation;
-  }
-
-  if (linkedinToken) {
-    headers["X-Restli-Protocol-Version"] = "2.0.0";
-    headers.Authorization = `Bearer ${linkedinToken}`;
   }
 
   return headers;
