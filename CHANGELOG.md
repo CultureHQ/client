@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [12.0.1] - 2021-10-25
+
+### Added
+
+- Removing linkedin options because is better to handle the integration from the BE
+- Adding landing page users sort endpoint
+
 ## [11.0.1] - 2021-10-21
 
 ### Added
