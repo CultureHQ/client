@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/CultureHQ/client#readme",
   "dependencies": {
-    "@rails/actioncable": "^6.0.1"
+    "@rails/actioncable": "^7.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.4",
