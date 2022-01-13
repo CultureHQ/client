@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [12.1.0] - 2022-01-13
+
+### Added
+
+- Adding landing page users and stories endpoints
+
 ## [12.0.1] - 2021-10-25
 
 ### Added
