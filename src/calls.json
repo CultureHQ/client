@@ -195,7 +195,7 @@
   "getStory": ["GET", "/stories/:storyId"],
   "getStoryQuestions": ["GET", "/story_questions"],
   "getStoryQuestion": ["GET", "/story_questions/:storyQuestionId"],
-  "getStoryQuestionsRequests": ["GET", "/story_questions/requests"],
+  "getStoryQuestionsRequests": ["GET", "/prompts/requests"],
   "getTrendingStoryQuestion": ["GET", "/trending_stories"],
   "getUser": ["GET", "/users/:userId"],
   "getUserActivity": ["GET", "/user_activities/:userActivityId"],

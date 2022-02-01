@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [12.2.1] - 2022-02-01
+
+### Added
+
+- Changing endpoint to get story question requests
+
 ## [12.2.0] - 2022-02-01
 
 ### Added
