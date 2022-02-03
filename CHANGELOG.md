@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
-## [12.3.1] - 2022-02-03
+## [12.3.2] - 2022-02-03
 
 ### Added
 
