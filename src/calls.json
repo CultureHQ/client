@@ -273,7 +273,7 @@
   "listRecognitionsOrganizationValues": ["GET", "/recognitions/organization_values"],
   "listRecognitionsRecognizedUsers": ["GET", "/recognitions/recognized_users"],
   "listRecognitionsRecognizingUsers": ["GET", "/recognitions/recognizing_users"],
-  "listStories": ["GET", "/stories", [], ["userId"]],
+  "listStories": ["GET", "/stories", [], ["userId", "states"]],
   "listStoryTrend": ["GET", "/story_trend", [], ["storyQuestionId"]],
   "listStoryComments": ["GET", "/stories/:storyId/comments", [], ["page"]],
   "listSurveyResults": ["GET", "/surveys/:surveyId/survey_results"],
