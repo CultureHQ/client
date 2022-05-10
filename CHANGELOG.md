@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [12.4.0] - 2022-05-10
+
+### Added
+
+- New endpoint to get stories of one prompt
+
 ## [12.3.2] - 2022-02-03
 
 ### Added

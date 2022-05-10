@@ -274,6 +274,7 @@
   "listRecognitionsRecognizedUsers": ["GET", "/recognitions/recognized_users"],
   "listRecognitionsRecognizingUsers": ["GET", "/recognitions/recognizing_users"],
   "listStories": ["GET", "/stories", [], ["userId", "states"]],
+  "listPromptStories": ["GET", "/story_questions/:storyQuestionId/stories"],
   "listStoryTrend": ["GET", "/story_trend", [], ["storyQuestionId"]],
   "listStoryComments": ["GET", "/stories/:storyId/comments", [], ["page"]],
   "listSurveyResults": ["GET", "/surveys/:surveyId/survey_results"],
