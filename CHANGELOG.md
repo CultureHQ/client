@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [12.5.0] - 2022-06-29
+
+### Added
+
+- New endpoint to get story trends of the landing page
+
 ## [12.4.0] - 2022-05-10
 
 ### Added

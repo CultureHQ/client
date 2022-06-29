@@ -249,6 +249,7 @@
   "listOrganizationLandingPages": ["GET", "/organizations/landing_pages", ["organization"]],
   "listOrganizationLandingPagesStories": ["GET", "/organizations/landing_pages/stories", ["organization"]],
   "listOrganizationLandingPagesUsers": ["GET", "/organizations/landing_pages/users", ["organization"]],
+  "listOrganizationLandingPagesStoryTrends": ["GET", "/organizations/landing_pages/story_trends", ["organization"]],
   "listPendingRecognitions": ["GET", "/recognitions/pending_recognitions", [], ["page"]],
   "listPhotoComments": ["GET", "/photos/:photoId/comments", [], ["page"]],
   "listProfileAvailableWidgetSurveys": ["GET", "/profile/widget_surveys/available_surveys", [], ["page"]],
