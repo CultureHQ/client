@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [12.6.0] - 2022-07-28
+
+### Changed
+
+- Updating endpoints to the use new educational fields
+
 ## [12.5.0] - 2022-06-29
 
 ### Added
