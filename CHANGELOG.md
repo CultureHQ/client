@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [13.0.0] - 2022-09-05
+
+### Changed
+
+- Updating signer url because of the endpoint change
+
 ## [12.6.0] - 2022-07-28
 
 ### Changed
