@@ -18,6 +18,7 @@
   "createApiKey": ["POST", "/api_keys", ["email", "password"]],
   "createMsalKey": ["POST", "/msal_keys", ["email", "password"]],
   "createServiceKey": ["POST", "/session_keys", ["email", "password"]],
+  "createCompany": ["POST", "/companies", ["name"]],
   "createDepartment": ["POST", "/departments", ["name"]],
   "createEvent": [
     "POST",
@@ -51,7 +52,7 @@
     "POST",
     "/events/:eventId/event_invites",
     [],
-    ["userIds", "locationIds", "interestIds", "departmentIds"]
+    ["userIds", "locationIds", "interestIds", "departmentIds", "companyIds"]
   ],
   "createEventRsvp": ["POST", "/events/:eventId/rsvps", ["responseType"]],
   "createExpense": ["POST", "/events/:eventId/expenses", ["description", "amount"], ["incurredAt"]],
@@ -118,6 +119,7 @@
   "deactivateUser": ["POST", "/users/:userId/deactivation"],
   "deleteAnnouncement": ["DELETE", "/announcements/:announcementId"],
   "deleteComment": ["DELETE", "/comments/:commentId"],
+  "deleteCompany": ["DELETE", "/companies/:companyId"],
   "deleteDepartment": ["DELETE", "/departments/:departmentId"],
   "deleteEndorsement": ["DELETE", "/endorsements/:endorsementId"],
   "deleteEvent": ["DELETE", "/events/:eventId", [], ["message"]],
@@ -172,6 +174,7 @@
   "getAnnouncement": ["GET", "/announcements/:announcementId"],
   "getAutoRecognitionSettings": ["GET", "/recognitions/auto_recognition_settings"],
   "getComment": ["GET", "/comments/:commentId"],
+  "getCompany": ["GET", "/companies/:companyId"],
   "getDepartment": ["GET", "/departments/:departmentId"],
   "getEvent": ["GET", "/events/:eventId"],
   "getGoogleIntegration": ["GET", "/google/integration"],
@@ -207,8 +210,9 @@
   "listActiveAnnouncements": ["GET", "/active_announcements", [], ["page"]],
   "listAnnouncements": ["GET", "/announcements", [], ["page", "active"]],
   "listApiKeys": ["GET", "/api_keys"],
+  "listCompanies": ["GET", "/companies", [], ["page"]],
   "listDepartments": ["GET", "/departments", [], ["page"]],
-  "listEntityUsers": ["GET", "/entities/users", [], ["page", "departmentIds", "interestIds", "locationIds", "userIds"]],
+  "listEntityUsers": ["GET", "/entities/users", [], ["page", "companyIds", "departmentIds", "interestIds", "locationIds", "userIds"]],
   "listEventAnalytics": ["GET", "/analytics/events", [], ["page"]],
   "listEventComments": ["GET", "/events/:eventId/comments", [], ["page"]],
   "listEventPhotos": ["GET", "/events/:eventId/photos", [], ["page"]],
@@ -296,11 +300,13 @@
     [
       "page",
       "includeDeactivated",
+      "companyId",
       "departmentId",
       "interestId",
       "locationId",
       "active",
       "inviteStatus",
+      "companyIds",
       "departmentIds",
       "interestIds",
       "skillIds",
@@ -334,7 +340,7 @@
     "POST",
     "/invites",
     ["name", "email"],
-    ["locationName", "departmentNames", "interestNames", "avatarUrl", "title"]
+    ["locationName", "companyNames", "departmentNames", "interestNames", "avatarUrl", "title"]
   ],
   "shareStoryQuestion": ["POST", "/story_questions/:storyQuestionId/share", ["imageUrl", "slackChannel"], []],
   "subscribeToEventNotifications": ["POST", "/events/:eventId/event_notification_subscription"],
@@ -347,6 +353,7 @@
     [],
     ["allDepartments", "eventCreation", "newAttendees", "didRecognize", "wasRecognized", "inviteCreation"]
   ],
+  "updateCompany": ["PATCH", "/companies/:companyId", [], ["name"]],
   "updateDepartment": ["PATCH", "/departments/:departmentId", [], ["name"]],
   "updateEvent": [
     "PATCH",
@@ -411,7 +418,7 @@
     "PATCH",
     "/profile",
     [],
-    ["name", "email", "departmentNames", "interestNames", "avatarUrl", "title", "locationName"]
+    ["name", "email", "companyNames", "departmentNames", "interestNames", "avatarUrl", "title", "locationName"]
   ],
   "updateProfileEmailSettings": [
     "PATCH",
@@ -462,6 +469,6 @@
     "PATCH",
     "/users/:userId",
     [],
-    ["name", "email", "departmentNames", "interestNames", "avatarUrl", "title", "locationName", "organizationAdmin"]
+    ["name", "email", "companyNames", "departmentNames", "interestNames", "avatarUrl", "title", "locationName", "organizationAdmin"]
   ]
 }
