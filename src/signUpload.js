@@ -1,6 +1,5 @@
-import AWS from "aws-sdk";
-import fs from "fs";
-import path from "path";
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+
 import config from "./config";
 import formData from "./formData";
 
@@ -21,7 +20,7 @@ import formData from "./formData";
  *     });
  */
 /* eslint-disable no-promise-executor-return */
-const signUpload = (file, onProgress) => {
+const signUpload = (file, onProgress, folderPath = undefined) => {
   if (config.uploadBucket !== "https://culturehq-direct-uploads-eu.s3-eu-west-2.amazonaws.com") {
     return new Promise((resolve, reject) => (
       fetch(config.signerURL)
@@ -63,34 +62,36 @@ const signUpload = (file, onProgress) => {
     ));
   }
 
-  AWS.config.loadFromPath("./aws-config.json");
-  const s3 = new AWS.S3({ apiVersion: "2006-03-01" });
-  // call S3 to retrieve upload file to specified bucket
-  const uploadParams = { Bucket: config.uploadBucket, Key: "", Body: "" };
-
-  // Configure the file stream and obtain the upload parameters
-  const fileStream = fs.createReadStream(file);
-  fileStream.on("error", err => {
-    // eslint-disable-next-line no-console
-    console.log("File Error", err);
+  const s3Client = new S3Client({
+    region: "eu-west-2",
+    credentials: {
+      accessKeyId: config.AWSAccessKey,
+      secretAccessKey: config.AWSSecretAccessKey
+    }
   });
-  uploadParams.Body = fileStream;
-  uploadParams.Key = path.basename(file);
 
-  // call S3 to retrieve upload file to specified bucket
-  return new Promise((resolve, reject) => (
-    s3.upload(uploadParams, (err, data) => {
-      if (err) {
+  // Construct the S3 object key
+  const objectKey = folderPath ? `${folderPath}/${file.name}` : file.name;
+
+  // Create a PutObjectCommand to upload the file to S3
+  const uploadParams = {
+    Bucket: config.bucketName,
+    Key: objectKey,
+    Body: file
+  };
+
+  return new Promise((resolve, reject) => {
+    s3Client.send(new PutObjectCommand(uploadParams))
+      .then(response => {
         // eslint-disable-next-line no-console
-        console.log("Error", err);
-        reject(err);
-      } if (data) {
+        console.error("File uploaded", response);
+        resolve(response);
+      }).catch(error => {
         // eslint-disable-next-line no-console
-        console.log("Upload Success", data.Location);
-        resolve(`${config.uploadBucket}/${data.Location}`);
-      }
-    })
-  ));
+        console.error("File upload error:", error);
+        reject(error);
+      });
+  });
 };
 
 export default signUpload;
