@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [14.1.1] - 2023-09-05
+
+### Changed
+
+- Have the right interfeca to accept the aws credentials
+
 ## [14.1.0] - 2023-09-05
 
 ### Added
