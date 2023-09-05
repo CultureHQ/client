@@ -1,6 +1,6 @@
 {
   "name": "@culturehq/client",
-  "version": "13.0.1",
+  "version": "14.0.0",
   "description": "A JavaScript client that wraps the CultureHQ API",
   "main": "dist/client.js",
   "module": "src/client.js",
@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/CultureHQ/client#readme",
   "dependencies": {
-    "@rails/actioncable": "^7.0.0"
+    "@rails/actioncable": "^7.0.0",
+    "aws-sdk": "^2.1451.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.4",

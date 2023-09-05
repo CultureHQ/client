@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [14.0.0] - 2023-09-05
+
+### Added
+
+- Upload files to s3 bucket using the SDK because of the signature that AWS is asking
+
 ## [13.0.1] - 2022-09-16
 
 ### Changed
