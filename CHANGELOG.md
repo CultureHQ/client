@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [14.2.0] - 2024-12-18
+
+### Changed
+
+- Chagne the signer endpoint
+
 ## [14.1.1] - 2023-09-05
 
 ### Changed
