@@ -339,7 +339,7 @@
   "sendInvite": [
     "POST",
     "/invites",
-    ["name", "email"],
+    ["email"],
     ["locationName", "companyNames", "departmentNames", "interestNames", "avatarUrl", "title"]
   ],
   "shareStoryQuestion": ["POST", "/story_questions/:storyQuestionId/share", ["imageUrl", "slackChannel"], []],
