@@ -1,5 +1,3 @@
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
-
 import config from "./config";
 import formData from "./formData";
 
@@ -20,78 +18,45 @@ import formData from "./formData";
  *     });
  */
 /* eslint-disable no-promise-executor-return */
-const signUpload = (file, onProgress, folderPath = undefined) => {
-  if (config.uploadBucket !== "https://culturehq-direct-uploads-eu.s3-eu-west-2.amazonaws.com") {
-    return new Promise((resolve, reject) => (
-      fetch(config.signerURL)
-        .then(response => response.json())
-        .then(({ policy, signature, key }) => {
-          const xhr = new XMLHttpRequest();
-          xhr.open("POST", `${config.uploadBucket}/`);
+const signUpload = (file, onProgress) => (
+  new Promise((resolve, reject) => (
+    fetch(config.signerURL)
+      .then(response => response.json())
+      .then(({ policy, signature, key }) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", `${config.uploadBucket}/`);
 
-          xhr.upload.addEventListener("load", event => {
-            if (event.type === "error") {
-              reject(event);
-            } else {
-              resolve(`${config.uploadBucket}/${key}`);
-            }
-          });
-
-          xhr.upload.addEventListener("error", reject);
-
-          if (onProgress) {
-            xhr.upload.addEventListener("progress", ({ loaded, total }) => {
-              onProgress(total === 0 ? 100 : Math.ceil((loaded / total) * 100));
-            });
+        xhr.upload.addEventListener("load", event => {
+          if (event.type === "error") {
+            reject(event);
+          } else {
+            resolve(`${config.uploadBucket}/${key}`);
           }
+        });
 
-          xhr.send(
-            formData({
-              key,
-              AWSAccessKeyId: config.awsAccessKeyId,
-              acl: "public-read",
-              policy,
-              signature,
-              success_action_status: "201",
-              "Content-Type": file.type,
-              file
-            })
-          );
-        })
-        .catch(reject)
-    ));
-  }
+        xhr.upload.addEventListener("error", reject);
 
-  const s3Client = new S3Client({
-    region: "eu-west-2",
-    credentials: {
-      accessKeyId: config.AWSAccessKey,
-      secretAccessKey: config.AWSSecretAccessKey
-    }
-  });
+        if (onProgress) {
+          xhr.upload.addEventListener("progress", ({ loaded, total }) => {
+            onProgress(total === 0 ? 100 : Math.ceil((loaded / total) * 100));
+          });
+        }
 
-  // Construct the S3 object key
-  const objectKey = folderPath ? `${folderPath}/${file.name}` : file.name;
-
-  // Create a PutObjectCommand to upload the file to S3
-  const uploadParams = {
-    Bucket: config.bucketName,
-    Key: objectKey,
-    Body: file
-  };
-
-  return new Promise((resolve, reject) => {
-    s3Client.send(new PutObjectCommand(uploadParams))
-      .then(response => {
-        // eslint-disable-next-line no-console
-        console.error("File uploaded", response);
-        resolve(response);
-      }).catch(error => {
-        // eslint-disable-next-line no-console
-        console.error("File upload error:", error);
-        reject(error);
-      });
-  });
-};
+        xhr.send(
+          formData({
+            key,
+            AWSAccessKeyId: config.awsAccessKeyId,
+            acl: "public-read",
+            policy,
+            signature,
+            success_action_status: "201",
+            "Content-Type": file.type,
+            file
+          })
+        );
+      })
+      .catch(reject)
+  ))
+);
 
 export default signUpload;
