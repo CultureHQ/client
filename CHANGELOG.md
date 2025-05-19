@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [14.4.1] - 2025-05-19
+
+### Changed
+
+- Fix issue in `signUpload`
+
 ## [14.4.0] - 2025-05-19
 
 ### Changed

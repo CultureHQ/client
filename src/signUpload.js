@@ -196,7 +196,7 @@ const performUpload = (file, { policy, signature, key }, onProgress, attempt = 0
 
     // Handle successful upload
     xhr.upload.addEventListener("load", event => {
-      if (event.type === "error" || xhr.status < 200 || xhr.status >= 300) {
+      if (event.type === "error") {
         retryOrReject(event);
       } else {
         resolve(`${config.uploadBucket}/${key}`);
