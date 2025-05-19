@@ -40,7 +40,15 @@ test("can sign out", async () => {
 test("can call getProfile after logged in", async () => {
   const number = Math.random();
 
-  testServer.mock({ status: 200, body: { apiKey: { token: "baz" } } });
+  testServer.mock({ 
+    status: 200, 
+    body: { 
+      apiKey: { 
+        token: "baz",
+        user: { number }
+      } 
+    } 
+  });
   await signIn({ email: "foo", password: "bar" });
 
   testServer.mock({ status: 200, body: { number } });
@@ -61,7 +69,15 @@ test("substitutes values into the request path", async () => {
 });
 
 test("can start a user simulation", async () => {
-  testServer.mock({ status: 200, body: { apiKey: { token: "bar" } } });
+  testServer.mock({ 
+    status: 200, 
+    body: { 
+      apiKey: { 
+        token: "bar",
+        user: { id: 42 }
+      } 
+    } 
+  });
 
   setToken("foo");
 

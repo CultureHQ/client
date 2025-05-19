@@ -45,15 +45,15 @@ const UPLOAD_CONFIG = {
   RETRY_DELAY: 2000, // 2 seconds
   UPLOAD_TIMEOUT: 30 * 60 * 1000, // 30 minutes
   ERROR_TYPES: {
-    VALIDATION: 'VALIDATION_ERROR',
-    INITIALIZATION: 'INITIALIZATION_ERROR',
-    NETWORK: 'NETWORK_ERROR',
-    PERMISSION: 'PERMISSION_ERROR',
-    FILE_TOO_LARGE: 'FILE_TOO_LARGE',
-    UPLOAD: 'UPLOAD_ERROR',
-    S3: 'S3_ERROR',
-    RESPONSE: 'RESPONSE_ERROR',
-    UNKNOWN: 'UNKNOWN_ERROR'
+    VALIDATION: "VALIDATION_ERROR",
+    INITIALIZATION: "INITIALIZATION_ERROR",
+    NETWORK: "NETWORK_ERROR",
+    PERMISSION: "PERMISSION_ERROR",
+    FILE_TOO_LARGE: "FILE_TOO_LARGE",
+    UPLOAD: "UPLOAD_ERROR",
+    S3: "S3_ERROR",
+    RESPONSE: "RESPONSE_ERROR",
+    UNKNOWN: "UNKNOWN_ERROR"
   }
 };
 
@@ -112,9 +112,11 @@ const signUpload = async (file, onProgress, attempt = 0) => {
       throw new Error(`Failed to get upload credentials: ${response.status} ${response.statusText}`);
     }
     const credentials = await response.json();
+    // eslint-disable-next-line no-use-before-define
     return performUpload(file, credentials, onProgress, attempt);
   } catch (error) {
     if (attempt < UPLOAD_CONFIG.MAX_RETRIES) {
+      // eslint-disable-next-line no-promise-executor-return
       await new Promise(resolve => setTimeout(resolve, UPLOAD_CONFIG.RETRY_DELAY));
       return signUpload(file, onProgress, attempt + 1);
     }
@@ -147,24 +149,24 @@ const performUpload = (file, { policy, signature, key }, onProgress, attempt = 0
     const retryOrReject = error => {
       const errorDetails = getErrorDetails(error, file, xhr);
 
-      if (attempt < UPLOAD_CONFIG.MAX_RETRIES) {        
+      if (attempt < UPLOAD_CONFIG.MAX_RETRIES) {
         setTimeout(() => {
           signUpload(file, onProgress, attempt + 1)
             .then(resolve)
             .catch(reject);
         }, UPLOAD_CONFIG.RETRY_DELAY);
       } else {
-        let errorMessage = 'Unknown error occurred';
+        let errorMessage = "Unknown error occurred";
         let errorType = UPLOAD_CONFIG.ERROR_TYPES.UNKNOWN;
 
         if (xhr.status === 0) {
-          errorMessage = 'Network error - check your internet connection';
+          errorMessage = "Network error - check your internet connection";
           errorType = UPLOAD_CONFIG.ERROR_TYPES.NETWORK;
         } else if (xhr.status === 403) {
-          errorMessage = 'Permission denied - upload authorization failed';
+          errorMessage = "Permission denied - upload authorization failed";
           errorType = UPLOAD_CONFIG.ERROR_TYPES.PERMISSION;
         } else if (xhr.status === 413) {
-          errorMessage = 'File is too large to upload';
+          errorMessage = "File is too large to upload";
           errorType = UPLOAD_CONFIG.ERROR_TYPES.FILE_TOO_LARGE;
         } else if (error?.message) {
           errorMessage = error.message;
