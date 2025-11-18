@@ -194,14 +194,34 @@ const performUpload = (file, { policy, signature, key }, onProgress, attempt = 0
       }
     };
 
-    // Handle successful upload
-    xhr.upload.addEventListener("load", event => {
-      if (event.type === "error") {
-        retryOrReject(event);
+    // Handle successful response from S3
+    xhr.onload = () => {
+      // S3 returns 201 for successful uploads (due to success_action_status: "201")
+      if (xhr.status === 201) {
+        // Verify the response contains valid XML from S3
+        if (xhr.responseText && xhr.responseText.includes('<PostResponse>')) {
+          // Additional validation: check if we actually uploaded the file data
+          // The uploadedBytes should be close to file.size (accounting for multipart form overhead)
+          if (uploadedBytes === 0) {
+            retryOrReject(new Error("Upload completed but no data was transmitted - likely blocked by proxy/firewall"));
+          } else if (uploadedBytes < file.size * 0.9) {
+            // If less than 90% of file size was uploaded (accounting for form data overhead)
+            retryOrReject(new Error(`Upload incomplete: only ${uploadedBytes} bytes transmitted of ${file.size} byte file - may be blocked by proxy/firewall`));
+          } else {
+            resolve(`${config.uploadBucket}/${key}`);
+          }
+        } else {
+          // Response doesn't look like valid S3 response - might be intercepted
+          retryOrReject(new Error("Invalid S3 response - upload may have been intercepted by proxy/firewall"));
+        }
+      } else if (xhr.status >= 200 && xhr.status < 300) {
+        // Unexpected success status - S3 should return 201
+        retryOrReject(new Error(`Unexpected response status ${xhr.status} - expected 201 from S3`));
       } else {
-        resolve(`${config.uploadBucket}/${key}`);
+        // Clear error status
+        retryOrReject(new Error(`S3 returned error status: ${xhr.status}`));
       }
-    });
+    };
 
     // Handle upload error
     xhr.upload.addEventListener("error", retryOrReject);
@@ -216,13 +236,17 @@ const performUpload = (file, { policy, signature, key }, onProgress, attempt = 0
       retryOrReject(new Error("Network error occurred"));
     };
 
+    // Track uploaded bytes for validation
+    let uploadedBytes = 0;
+    
     // Handle progress
-    if (onProgress) {
-      xhr.upload.addEventListener("progress", ({ loaded, total }) => {
+    xhr.upload.addEventListener("progress", ({ loaded, total }) => {
+      uploadedBytes = loaded;
+      if (onProgress) {
         const progress = total === 0 ? 100 : Math.ceil((loaded / total) * 100);
         onProgress(Math.min(progress, 100));
-      });
-    }
+      }
+    });
 
     // Send the upload
     try {
