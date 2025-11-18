@@ -6,6 +6,24 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [14.4.2] - 2025-11-18
+
+### Changed
+
+- Adding firewall validations when using `signUpload`
+
+## [14.4.1] - 2025-05-19
+
+### Changed
+
+- Fix issue in `signUpload`
+
+## [14.4.0] - 2025-05-19
+
+### Changed
+
+- Adding error handling to the `signUpload`
+
 ## [14.3.1] - 2025-01-09
 
 ### Changed
