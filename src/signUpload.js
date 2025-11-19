@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import config from "./config";
 import formData from "./formData";
 
@@ -90,6 +91,29 @@ const getErrorDetails = (error, file, xhr) => ({
 });
 
 /**
+ * Logs detailed information about the file being uploaded
+ * This helps diagnose issues with MediaRecorder blobs vs regular files
+ * @param {File} file - The file to analyze
+ * @param {string} uploadId - Upload tracking ID
+ */
+const logFileDetails = (file, uploadId) => {
+  console.log(`[Upload ${uploadId}] Detailed file analysis`, {
+    name: file.name,
+    size: file.size,
+    type: file.type,
+    lastModified: file.lastModified,
+    lastModifiedDate: file.lastModifiedDate,
+    // Check if it"s a Blob vs File
+    isBlob: file instanceof Blob,
+    isFile: file instanceof File,
+    // For MediaRecorder blobs, these might be different
+    constructor: file.constructor.name,
+    // Try to detect if this is a MediaRecorder blob
+    likelyMediaRecorderBlob: !file.lastModifiedDate && file.type.includes("video")
+  });
+};
+
+/**
  * Signs and uploads a file to S3
  * @param {File} file - The file to upload
  * @param {function(number): void} [onProgress] - Optional progress callback
@@ -106,16 +130,37 @@ const signUpload = async (file, onProgress, attempt = 0) => {
     });
   }
 
+  console.log("[signUpload] Initiating upload", {
+    fileName: file.name,
+    fileSize: file.size,
+    fileType: file.type,
+    attempt: attempt + 1,
+    signerURL: config.signerURL
+  });
+
   try {
+    console.log("[signUpload] Fetching upload credentials");
     const response = await fetch(config.signerURL);
     if (!response.ok) {
       throw new Error(`Failed to get upload credentials: ${response.status} ${response.statusText}`);
     }
     const credentials = await response.json();
+    console.log("[signUpload] Credentials received", {
+      hasPolicy: !!credentials.policy,
+      hasSignature: !!credentials.signature,
+      hasKey: !!credentials.key,
+      key: credentials.key
+    });
     // eslint-disable-next-line no-use-before-define
     return performUpload(file, credentials, onProgress, attempt);
   } catch (error) {
+    console.error("[signUpload] Error during initialization", {
+      error: error.message,
+      attempt: attempt + 1
+    });
+
     if (attempt < UPLOAD_CONFIG.MAX_RETRIES) {
+      console.log(`[signUpload] Retrying credential fetch (attempt ${attempt + 2}/${UPLOAD_CONFIG.MAX_RETRIES + 1})`);
       // eslint-disable-next-line no-promise-executor-return
       await new Promise(resolve => setTimeout(resolve, UPLOAD_CONFIG.RETRY_DELAY));
       return signUpload(file, onProgress, attempt + 1);
@@ -142,14 +187,41 @@ const signUpload = async (file, onProgress, attempt = 0) => {
  */
 const performUpload = (file, { policy, signature, key }, onProgress, attempt = 0) => (
   new Promise((resolve, reject) => {
+    // Generate upload ID for tracking this specific upload
+    const uploadId = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+
+    console.log(`[Upload ${uploadId}] Starting upload`, {
+      fileName: file.name,
+      fileSize: file.size,
+      fileType: file.type,
+      attempt: attempt + 1,
+      key,
+      timestamp: new Date().toISOString()
+    });
+
+    // Log detailed file information to help diagnose MediaRecorder blob issues
+    logFileDetails(file, uploadId);
+
     const xhr = new XMLHttpRequest();
     xhr.open("POST", `${config.uploadBucket}/`);
     xhr.timeout = UPLOAD_CONFIG.UPLOAD_TIMEOUT;
 
+    // Track uploaded bytes for validation - MUST be declared before onload handler
+    let uploadedBytes = 0;
+    let progressEventFired = false;
+
     const retryOrReject = error => {
       const errorDetails = getErrorDetails(error, file, xhr);
 
+      console.error(`[Upload ${uploadId}] Upload error`, {
+        ...errorDetails,
+        uploadedBytes,
+        progressEventFired,
+        attempt: attempt + 1
+      });
+
       if (attempt < UPLOAD_CONFIG.MAX_RETRIES) {
+        console.log(`[Upload ${uploadId}] Retrying upload (attempt ${attempt + 2}/${UPLOAD_CONFIG.MAX_RETRIES + 1})`);
         setTimeout(() => {
           signUpload(file, onProgress, attempt + 1)
             .then(resolve)
@@ -182,13 +254,20 @@ const performUpload = (file, { policy, signature, key }, onProgress, attempt = 0
           }
         }
 
+        console.error(`[Upload ${uploadId}] Upload failed after all retries`, {
+          errorMessage,
+          errorType,
+          attemptsMade: UPLOAD_CONFIG.MAX_RETRIES
+        });
+
         reject(new UploadError(
           `Upload failed after ${UPLOAD_CONFIG.MAX_RETRIES} attempts: ${errorMessage}`,
           {
             ...errorDetails,
             errorType,
             attemptsMade: UPLOAD_CONFIG.MAX_RETRIES,
-            finalError: errorMessage
+            finalError: errorMessage,
+            uploadId
           }
         ));
       }
@@ -196,73 +275,139 @@ const performUpload = (file, { policy, signature, key }, onProgress, attempt = 0
 
     // Handle successful response from S3
     xhr.onload = () => {
+      console.log(`[Upload ${uploadId}] XHR onload fired`, {
+        status: xhr.status,
+        statusText: xhr.statusText,
+        uploadedBytes,
+        expectedBytes: file.size,
+        progressEventFired,
+        responseTextLength: xhr.responseText?.length,
+        responsePreview: xhr.responseText?.substring(0, 200)
+      });
+
       // S3 returns 201 for successful uploads (due to success_action_status: "201")
       if (xhr.status === 201) {
         // Verify the response contains valid XML from S3
-        if (xhr.responseText && xhr.responseText.includes('<PostResponse>')) {
+        if (xhr.responseText && xhr.responseText.includes("<PostResponse>")) {
           // Additional validation: check if we actually uploaded the file data
           // The uploadedBytes should be close to file.size (accounting for multipart form overhead)
-          if (uploadedBytes === 0) {
+
+          if (!progressEventFired) {
+            console.warn(`[Upload ${uploadId}] WARNING: No progress events fired during upload - cannot verify data transmission`);
+            // For files where progress events don"t fire, we"ll trust the S3 response
+            // but log a warning
+          } else if (uploadedBytes === 0) {
+            console.error(`[Upload ${uploadId}] CRITICAL: Upload completed but no data was transmitted`);
             retryOrReject(new Error("Upload completed but no data was transmitted - likely blocked by proxy/firewall"));
+            return;
           } else if (uploadedBytes < file.size * 0.9) {
             // If less than 90% of file size was uploaded (accounting for form data overhead)
+            console.error(`[Upload ${uploadId}] CRITICAL: Incomplete upload detected`, {
+              uploadedBytes,
+              fileSize: file.size,
+              percentageUploaded: ((uploadedBytes / file.size) * 100).toFixed(2)
+            });
             retryOrReject(new Error(`Upload incomplete: only ${uploadedBytes} bytes transmitted of ${file.size} byte file - may be blocked by proxy/firewall`));
-          } else {
-            resolve(`${config.uploadBucket}/${key}`);
+            return;
           }
+
+          const finalUrl = `${config.uploadBucket}/${key}`;
+          console.log(`[Upload ${uploadId}] Upload successful`, {
+            url: finalUrl,
+            uploadedBytes,
+            fileSize: file.size,
+            progressEventFired
+          });
+          resolve(finalUrl);
         } else {
-          // Response doesn't look like valid S3 response - might be intercepted
+          // Response doesn"t look like valid S3 response - might be intercepted
+          console.error(`[Upload ${uploadId}] Invalid S3 response detected`, {
+            responseText: xhr.responseText?.substring(0, 500)
+          });
           retryOrReject(new Error("Invalid S3 response - upload may have been intercepted by proxy/firewall"));
         }
       } else if (xhr.status >= 200 && xhr.status < 300) {
         // Unexpected success status - S3 should return 201
+        console.error(`[Upload ${uploadId}] Unexpected success status: ${xhr.status}`);
         retryOrReject(new Error(`Unexpected response status ${xhr.status} - expected 201 from S3`));
       } else {
         // Clear error status
+        console.error(`[Upload ${uploadId}] S3 error status: ${xhr.status}`);
         retryOrReject(new Error(`S3 returned error status: ${xhr.status}`));
       }
     };
 
     // Handle upload error
-    xhr.upload.addEventListener("error", retryOrReject);
+    xhr.upload.addEventListener("error", error => {
+      console.error(`[Upload ${uploadId}] Upload error event`, { error });
+      retryOrReject(error);
+    });
 
     // Handle timeout
     xhr.ontimeout = () => {
+      console.error(`[Upload ${uploadId}] Upload timeout after ${UPLOAD_CONFIG.UPLOAD_TIMEOUT}ms`);
       retryOrReject(new Error("Upload timed out"));
     };
 
     // Handle network errors
     xhr.onerror = () => {
+      console.error(`[Upload ${uploadId}] Network error`);
       retryOrReject(new Error("Network error occurred"));
     };
 
-    // Track uploaded bytes for validation
-    let uploadedBytes = 0;
-    
     // Handle progress
     xhr.upload.addEventListener("progress", ({ loaded, total }) => {
+      progressEventFired = true;
       uploadedBytes = loaded;
+
+      console.log(`[Upload ${uploadId}] Progress`, {
+        loaded,
+        total,
+        percentage: total > 0 ? ((loaded / total) * 100).toFixed(2) : 0
+      });
+
       if (onProgress) {
         const progress = total === 0 ? 100 : Math.ceil((loaded / total) * 100);
         onProgress(Math.min(progress, 100));
       }
     });
 
+    // Handle loadstart to track if upload actually starts
+    xhr.upload.addEventListener("loadstart", () => {
+      console.log(`[Upload ${uploadId}] Upload started`);
+    });
+
+    // Handle loadend to track when upload completes
+    xhr.upload.addEventListener("loadend", () => {
+      console.log(`[Upload ${uploadId}] Upload loadend`, {
+        uploadedBytes,
+        progressEventFired
+      });
+    });
+
     // Send the upload
     try {
-      xhr.send(
-        formData({
-          key,
-          AWSAccessKeyId: config.awsAccessKeyId,
-          acl: "public-read",
-          policy,
-          signature,
-          success_action_status: "201",
-          "Content-Type": file.type,
-          file
-        })
-      );
+      const formDataToSend = formData({
+        key,
+        AWSAccessKeyId: config.awsAccessKeyId,
+        acl: "public-read",
+        policy,
+        signature,
+        success_action_status: "201",
+        "Content-Type": file.type,
+        file
+      });
+
+      console.log(`[Upload ${uploadId}] Sending XHR request`, {
+        bucket: config.uploadBucket,
+        key,
+        fileType: file.type,
+        hasFormData: !!formDataToSend
+      });
+
+      xhr.send(formDataToSend);
     } catch (error) {
+      console.error(`[Upload ${uploadId}] Error sending XHR`, { error });
       retryOrReject(error);
     }
   })
