@@ -9,7 +9,8 @@ export {
   serviceSignIn,
   setToken,
   signIn,
-  signOut
+  signOut,
+  trustedPartnerSignIn
 } from "./signInState";
 
 export { default as signUpload } from "./signUpload";

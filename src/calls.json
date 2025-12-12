@@ -18,6 +18,7 @@
   "createApiKey": ["POST", "/api_keys", ["email", "password"]],
   "createMsalKey": ["POST", "/msal_keys", ["email", "password"]],
   "createServiceKey": ["POST", "/session_keys", ["email", "password"]],
+  "createTrustedPartnerKey": ["POST", "/trusted_partner_keys", ["partnerToken"]],
   "createCompany": ["POST", "/companies", ["name"]],
   "createDepartment": ["POST", "/departments", ["name"]],
   "createEvent": [

@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [14.5.0] - 2025-12-12
+
+### Added
+
+- Adding `trustedPartnerSignIn` authentication
+
 ## [14.4.3] - 2025-11-19
 
 ### Changed
