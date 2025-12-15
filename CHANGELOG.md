@@ -6,6 +6,24 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [14.6.0] - 2025-12-15
+
+### Added
+
+- Adding middleware validation with a 403 response handler
+
+## [14.5.0] - 2025-12-12
+
+### Added
+
+- Adding `trustedPartnerSignIn` authentication
+
+## [14.4.3] - 2025-11-19
+
+### Changed
+
+- Adding logs to `signUpload`
+
 ## [14.4.2] - 2025-11-18
 
 ### Changed
