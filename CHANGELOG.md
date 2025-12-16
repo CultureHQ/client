@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [14.6.1] - 2025-12-16
+
+### Changed
+
+- Adding validation for the middleware validation with a 403 response handler
+
 ## [14.6.0] - 2025-12-15
 
 ### Added

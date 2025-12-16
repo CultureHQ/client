@@ -4,7 +4,14 @@ import state from "./state";
 
 // Global handler for session expiration (403 responses)
 // Note: We use state.clear() directly instead of signOut() to avoid circular dependency
+// Only redirects if user was logged in (had a token) to avoid infinite loops on guest pages
 const handleSessionExpired = () => {
+  // Only redirect if user was actually logged in
+  // If no token exists, they're a guest and 403 is expected for authenticated endpoints
+  if (!state.isSignedIn()) {
+    return;
+  }
+
   state.clear();
   disconnect();
   // Redirect to login page
