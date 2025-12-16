@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [14.6.2] - 2025-12-16
+
+### Changed
+
+- Changing validation for the middleware for a 401 Unauthorized response
+
 ## [14.6.1] - 2025-12-16
 
 ### Changed

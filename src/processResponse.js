@@ -2,12 +2,12 @@ import { camelize } from "./stringCase";
 import { disconnect } from "./cable";
 import state from "./state";
 
-// Global handler for session expiration (403 responses)
+// Global handler for session expiration (401 Unauthorized responses)
 // Note: We use state.clear() directly instead of signOut() to avoid circular dependency
 // Only redirects if user was logged in (had a token) to avoid infinite loops on guest pages
 const handleSessionExpired = () => {
   // Only redirect if user was actually logged in
-  // If no token exists, they're a guest and 403 is expected for authenticated endpoints
+  // If no token exists, they're a guest and 401 is expected for authenticated endpoints
   if (!state.isSignedIn()) {
     return;
   }
@@ -21,8 +21,8 @@ const handleSessionExpired = () => {
 const jsonResponse = response => json => new Promise((resolve, reject) => {
   const { status } = response;
 
-  // Handle session expired globally
-  if (status === 403) {
+  // Handle session expired globally (401 = authentication required)
+  if (status === 401) {
     handleSessionExpired();
     // Still reject so the calling code knows something went wrong
     /* eslint-disable-next-line prefer-promise-reject-errors */
@@ -38,8 +38,8 @@ const jsonResponse = response => json => new Promise((resolve, reject) => {
 const textResponse = response => text => new Promise((resolve, reject) => {
   const { status, statusText } = response;
 
-  // Handle session expired globally
-  if (status === 403) {
+  // Handle session expired globally (401 = authentication required)
+  if (status === 401) {
     handleSessionExpired();
     /* eslint-disable-next-line prefer-promise-reject-errors */
     reject({ error: statusText, response, status });
@@ -61,8 +61,8 @@ const processResponse = response => {
     return Promise.resolve(null);
   }
 
-  // Handle 403 early for empty responses
-  if (status === 403) {
+  // Handle 401 early for empty responses
+  if (status === 401) {
     handleSessionExpired();
     /* eslint-disable-next-line prefer-promise-reject-errors */
     return Promise.reject({ error: "Session expired", response, status });
